@@ -1,0 +1,59 @@
+.c-onboarding {
+  .swiper-pagination {
+    bottom: 7%;
+
+    .swiper-pagination-bullet-active {
+      background: color($colors, light, base);
+    }
+  }
+}
+
+.c-onboarding__slide {
+  display: flex;
+  flex-direction: column;
+
+  .slide-zoom {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.c-onboarding__illustration {
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+
+  }
+}
+.c-onboarding__text {
+  height: 50%;
+  background-color: color($colors, primary, base);
+  color: color($colors, light, base);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h1 {
+    text-transform: uppercase;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  p {
+    text-align: justify;
+  }
+}
+
+.c-onboarding__button {
+  position: absolute;
+  bottom: 1em;
+  z-index: 99;
+  text-align: center;
+  background: none;
+  width: 100%;
+  color: rgb(130, 130, 130);
+}

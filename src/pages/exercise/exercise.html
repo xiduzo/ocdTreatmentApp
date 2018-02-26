@@ -1,0 +1,42 @@
+<ion-header>
+  <section class="c-exercise__header">
+    <div class="tasks">
+      completed
+      <div>
+        <span>0</span>/<span>16</span>
+      </div>
+    </div>
+    <div class="level">
+      level
+      <div>
+        <span>1</span>
+      </div>
+    </div>
+  </section>
+  <section class="c-exercise__monster" [@isLevelSelected]='isLevelSelected' (@isLevelSelected.done)="resizeContent()">
+    <img *ngIf="selectedLevel" (click)="goToLevelOverview()" [src]="selectedLevel.monster">
+  </section>
+</ion-header>
+
+<ion-content>
+
+  <ion-list no-lines class="c-exercise__levels" *ngIf="!selectedLevel" [@showList]>
+    <ion-item *ngFor="let level of levels; let last = last">
+      <section class="level" [ngClass]="{ 'inactive': !level.open }">
+        <img (click)="goToLevel(level)" [src]="level.monster" [@showLevel]>
+        <span *ngIf="!last" class="level__seperator" [@showSeperator]></span>
+      </section>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="selectedLevel" class="c-level__exercises" [@showList]>
+    <ion-item text-wrap *ngFor="let exercise of selectedLevel.exercises" [@showExercise]>
+      <ion-icon name="radio-button-off"></ion-icon>
+      <!-- <ion-icon name="checkmark-circle-outline"></ion-icon> -->
+      <!-- {{ exercise }} -->
+      <span class="exercise__text">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
+      </span>
+    </ion-item>
+  </ion-list>
+</ion-content>

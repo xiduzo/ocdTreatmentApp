@@ -1,0 +1,50 @@
+<ion-content>
+  <ion-slides pager (ionSlideDidChange)="slideChanged()" class="c-onboarding">
+    <ion-slide class="c-onboarding__slide">
+      <div class="c-onboarding__illustration">
+        <img src="assets/imgs/onboarding/step1.png" alt="">
+      </div>
+      <article class="c-onboarding__text" padding>
+        <h1>
+          OCD the monsters in your mind
+        </h1>
+        <p>
+          Obsessions are like little monsters in your mind which sometimes capture your thoughts and command action.
+          It is your task to beat all of them, step by step.
+        </p>
+      </article>
+    </ion-slide>
+    <ion-slide class="c-onboarding__slide">
+      <div class="c-onboarding__illustration">
+        <img src="assets/imgs/onboarding/step2.png" alt="">
+      </div>
+      <article class="c-onboarding__text" padding>
+        <h1>
+          Ready to face your ocd monsters
+        </h1>
+        <p>
+          You already defined all of those different obsession monstster on a list.
+          Some obsession monsters are more scary than others.
+        </p>
+      </article>
+    </ion-slide>
+    <ion-slide class="c-onboarding__slide">
+      <div class="c-onboarding__illustration">
+        <img src="assets/imgs/onboarding/step3.png" alt="">
+      </div>
+      <article class="c-onboarding__text" padding>
+        <h1>
+          Climp up your fear ladder
+        </h1>
+        <p>
+          Start facing the easiest monster.
+          Once you experience only a little anxiety when completing an exercise, you can move on to the next level.
+        </p>
+      </article>
+    </ion-slide>
+  </ion-slides>
+  <button class="c-onboarding__button" (click)="skip()">
+    {{ skipMessage }}
+  </button>
+
+</ion-content>
