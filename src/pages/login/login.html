@@ -1,0 +1,26 @@
+<ion-content>
+  <section class="p-login__header"></section>
+
+  <ion-list class="p-login__inputs">
+
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input [(ngModel)]="username" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input [(ngModel)]="password" type="password"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <section class="p-login__buttons">
+    <button (click)="login()" ion-button block large color="secondary">
+      Sign in
+    </button>
+    <button ion-button block large color="primary">
+      Sign up
+    </button>
+  </section>
+</ion-content>

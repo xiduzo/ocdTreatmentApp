@@ -9,6 +9,7 @@ import {
   style,
   animate,
   transition,
+  stagger,
   keyframes
 } from '@angular/animations';
 
@@ -42,9 +43,17 @@ import {
       ])
     ]),
     trigger('showLevel', [
-      state('void', style({transform: 'scale(0)'})),
-      state('*', style({transform: 'scale(1)'})),
-      transition('void => *', animate('300ms 200ms ease-in'))
+      // state('void', style({transform: 'scale(0)'})),
+      // state('*', style({transform: 'scale(1)'})),
+      transition('* => *', [
+        query(':enter', [
+          stagger(100, [
+              animate('300ms ease-in')
+            ]
+          )
+        ], { optional: true })
+      ])
+      // transition('void => *', animate('300ms 200ms ease-in'))
     ]),
     trigger('showExercise', [
       state('void', style({opacity: 0})),
