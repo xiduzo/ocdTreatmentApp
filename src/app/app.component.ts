@@ -15,7 +15,7 @@ import { AuthService } from '../lib/services';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage; // Always start the app with the LoginPage to be sure
+  private rootPage:any = LoginPage; // Always start the app with the LoginPage to be sure
 
   constructor(
     protected platform: Platform,
@@ -31,7 +31,8 @@ export class MyApp {
       splashScreen.hide();
 
       // Set rootPage based on storage 'jwtToken' and 'onboardingCompleted'
-      storage.get('jwtToken').then((val) => {
+      storage.get('jwtToken')
+      .then((val) => {
         const localToken = val;
         // If there is no token present
         if(!localToken) { this.rootPage = LoginPage; } else {
@@ -48,23 +49,18 @@ export class MyApp {
                 // Based on the 'onboardingCompleted' we guide the user to the next page
                 this.rootPage = val === true ? TabsPage : OnboardingPage;
               })
-              .catch((err) => {
-                // Something went wrong getting the storage
-                console.log(err);
-              })
+              // Something went wrong getting the 'onboardingCompleted'
+              .catch((err) => { console.log(err); });
             })
-            .catch((err) => {
-              // Error refreshing token
-              console.log(err);
-            })
+            // Error refreshing token
+            .catch((err) => { console.log(err); });
           })
-          .catch((err) => {
-            // Token expired
-            console.log(err);
-          });
+          // Token expired
+          .catch((err) => { console.log(err); });
         }
-
-      });
+      })
+      // Something went wrong getting the 'jwtToken'
+      .catch((err) => { console.log(err); });
     });
   }
 }
