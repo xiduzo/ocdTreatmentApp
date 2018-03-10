@@ -1,11 +1,13 @@
 from rest_framework import routers
 
 from .views import (
-    UserView,
+    UserValidateView,
+    UserCreateView,
 )
 
 router = routers.DefaultRouter()
 
-router.register(r'user', UserView)
+router.register(r'validate', UserValidateView, base_name='validate')
+router.register(r'create', UserCreateView)
 
 urlpatterns = router.urls

@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 
 @Injectable()
-
 export class AuthService {
 
   private baseUrl:string = 'http://localhost:8000/';
@@ -22,7 +21,6 @@ export class AuthService {
   }
 
   setLocalToken(token:string) {
-    console.log(token);
     this.storage.set('jwtToken', token);
     this.token = token;
   }
@@ -30,7 +28,7 @@ export class AuthService {
   refreshJwtToken(tokenData) {
     return this.http.post(
       this.baseUrl + 'jwt-token-refresh/',
-      tokenData
+      {token: tokenData.token}
     )
     .toPromise();
   }
@@ -38,7 +36,7 @@ export class AuthService {
   verifyJwtToken(tokenData) {
     return this.http.post(
       this.baseUrl + 'jwt-token-verify/',
-      tokenData
+      {token: tokenData.token}
     )
     .toPromise();
   }
@@ -46,10 +44,31 @@ export class AuthService {
   getJwtToken(userData) {
     return this.http.post(
       this.baseUrl + 'jwt-token-auth/',
-      userData
+      {username: userData.username, password: userData.password}
     )
     .toPromise();
   }
 
+}
+
+@Injectable()
+export class UserService {
+
+  private user:any;
+
+  constructor(
+    private appCtrl: App,
+    private http: HttpClient,
+    protected storage: Storage
+  ) { }
+
+  setUser(user:string) {
+    this.storage.set('user', user);
+    this.user = user;
+  }
+
+  getUser() {
+    return this.user;
+  }
 
 }

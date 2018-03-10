@@ -27,31 +27,8 @@ export class OnboardingPage {
 
 
   ngOnInit() {
-    this.restangular.all('ladders/level').getList().subscribe((resp) => {
-      console.log(resp.plain());
-    });
-    // console.log(this.authService.getLocalToken());
-    // if(!authService.getJwtToken()) {
-    //   console.log(true);
-    // }
-    // let data = {
-    //   username: "sander",
-    //   password: "sandertjuh94"
-    // };
-    //
-    // this.restangular.all('/ladder/level').getList().subscribe( (response) => {
-    //   console.log(true);
-    //   console.log(response.plain());
-    // });
-    // this.restangular.all('/api-token-auth').post(data).subscribe( (response) => {
-    //   console.log(response.plain());
-    //   // this.restangular.configuration.defaultHeaders = {'Authorization': response.token};
-    //   // this.restangular.all('/api-token-verify').post({ token: response.token }).subscribe( (response) => {
-    //   //   console.log(response.plain());
-    //   // });
-    // });
-    // this.restangular.one('/api/patient').getList().subscribe( (response) => {
-    //   console.log(response.plain());
+    // this.restangular.all('ladders/level').getList().subscribe((resp) => {
+    //   console.log(resp.plain());
     // });
   }
 

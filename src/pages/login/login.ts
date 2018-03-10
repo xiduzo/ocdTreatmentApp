@@ -3,9 +3,10 @@ import { App } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 
 
-import { AuthService } from '../../lib/services';
+import { AuthService, UserService } from '../../lib/services';
 import { Restangular } from 'ngx-restangular';
 import { OnboardingPage } from '../onboarding/onboarding';
+import { SignUpPage } from '../signup/signup'
 
 @Component({
   selector: 'page-login',
@@ -20,7 +21,8 @@ export class LoginPage {
     private appCtrl: App,
     private restangular: Restangular,
     private authService: AuthService,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private userService: UserService
   ) {
   }
 
@@ -34,11 +36,11 @@ export class LoginPage {
       username: this.username,
       password: this.password
     };
-    this.restangular.one('users/user').get(data).subscribe((response) => {
+    this.restangular.one('users/validate').get(data).subscribe((response) => {
+      this.userService.setUser(response.plain()[0].profile);
       if(response.plain().length === 1) {
         this.authService.getJwtToken(data)
         .then((resp) => {
-          console.log('set new token', resp.token);
           this.authService.setLocalToken(resp.token);
           this.appCtrl.getRootNav().push(OnboardingPage);
         })
@@ -53,6 +55,10 @@ export class LoginPage {
         console.log("user doesnt exist");
       }
     });
+  }
+
+  signUp() {
+    this.appCtrl.getRootNav().push(SignUpPage);
   }
 
 }

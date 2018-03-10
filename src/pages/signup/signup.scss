@@ -1,0 +1,29 @@
+page-signup {
+
+  // https://forum.ionicframework.com/t/weird-padding-showing-up-on-scroll-content/48185/6
+  ion-content.content-md:not([padding]) .scroll-content { padding-bottom: 0 !important; }
+  .scroll-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .p-signup__header {
+    flex: 1;
+    display: flex;
+    background-image: url('../assets/imgs/signup_background.png');
+    background-size: cover;
+    background-position: center center;
+  }
+
+  ion-list {
+  }
+
+  form {
+    button.button {
+      border-radius: 0;
+      box-shadow: none;
+      margin: 0;
+    }
+  }
+}

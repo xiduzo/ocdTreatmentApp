@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Sign up
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <section class="p-signup__header"></section>
+  <!-- <section padding *ngIf="errors.length" [@showErrors]>
+    <p *ngFor="let error of errors" class="o-message--error" [@showError]>
+      {{ error }}
+    </p>
+  </section> -->
+  <form [formGroup]="registerForm" (ngSubmit)="signUp()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input formControlName="username" type="text"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="username.invalid && (username.dirty || username.touched)">
+        <p *ngIf="username.errors.required">
+          This field is required
+        </p>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input formControlName="email" type="text"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="email.invalid && (email.dirty || email.touched)">
+        <p *ngIf="email.errors.required">
+          This field is required
+        </p>
+        <p *ngIf="email.errors.email && !email.errors.required">
+          This is not a valid email
+        </p>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="password.invalid && (password.dirty || password.touched)">
+        <p *ngIf="password.errors.required">
+          This field is required
+        </p>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Repeat password</ion-label>
+        <ion-input formControlName="password_repeat" type="password"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="password_repeat.invalid && (password_repeat.dirty || password_repeat.touched)">
+        <p *ngIf="password_repeat.errors.required">
+          This field is required
+        </p>
+      </ion-item>
+      <ion-item *ngIf="password_repeat.valid && (password_repeat.dirty || password_repeat.touched) && registerForm.hasError('mismatchedPasswords')">
+        <p>
+          Passwords do not match
+        </p>
+      </ion-item>
+    </ion-list>
+    <button type="submit" [disabled]="!registerForm.valid" ion-button block large color="secondary">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </form>
+</ion-content>

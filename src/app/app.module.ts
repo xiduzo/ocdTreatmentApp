@@ -12,6 +12,7 @@ import { HomePage } from '../pages/home/home';
 import { ExercisePage } from '../pages/exercise/exercise';
 import { OnboardingPage } from '../pages/onboarding/onboarding';
 import { LoginPage } from '../pages/login/login';
+import { SignUpPage } from '../pages/signup/signup';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,7 +23,9 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { RestangularModule } from 'ngx-restangular';
 
-import { AuthService } from '../lib/services';
+import { AuthService, UserService } from '../lib/services';
+
+import { RoundProgressModule, RoundProgressConfig } from 'angular-svg-round-progressbar';
 
 // Function for setting the default restangular configuration
 export function RestangularConfigFactory(RestangularProvider, authService) {
@@ -49,7 +52,8 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     TabsPage,
     OnboardingPage,
     ExercisePage,
-    LoginPage
+    LoginPage,
+    SignUpPage
   ],
   imports: [
     BrowserModule,
@@ -57,6 +61,7 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     HttpClientModule,
+    RoundProgressModule,
     RestangularModule.forRoot([AuthService], RestangularConfigFactory)
   ],
   bootstrap: [IonicApp],
@@ -67,7 +72,8 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     TabsPage,
     OnboardingPage,
     ExercisePage,
-    LoginPage
+    LoginPage,
+    SignUpPage
   ],
   providers: [
     StatusBar,
@@ -75,7 +81,16 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     NativePageTransitions,
     ScreenOrientation,
     AuthService,
+    UserService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(
+    private _progressConfig: RoundProgressConfig
+  ) {
+    _progressConfig.setDefaults({
+      color: '#FCD28A'
+    })
+  }
+}

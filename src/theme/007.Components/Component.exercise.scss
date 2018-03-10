@@ -30,7 +30,7 @@
 
     > div {
       font-weight: bold;
-      padding: 10px 0;
+      padding: 10px 0 0 0;
       font-size: 2.5em;
     }
   }
@@ -51,16 +51,30 @@
     align-items: center;
 
     &.inactive {
-      img { filter: grayscale(100%); }
+      // img { filter: grayscale(100%); }
     }
 
-    img { border-radius: 50%; }
+    .level__monster {
+      display: flex;
+      min-height: 100px;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+      }
+      round-progress {
+        position: absolute;
+        z-index: -1;
+      }
+    }
 
     .level__seperator {
       content: '';
       border-left: 1px dotted lighten(color($colors, dark, base), 60);
-      height: 4vh;
-      margin: 16px 0;
+      height: 6vh;
+      margin: 6px 0;
     }
   }
 }
@@ -68,7 +82,9 @@
 .c-level__exercises {
 
   ion-item {
-    background-color: color($colors, light, base) !important;
+
+    &.completed { text-decoration: line-through; }
+
     ion-label {
       display: flex;
       align-items: center;

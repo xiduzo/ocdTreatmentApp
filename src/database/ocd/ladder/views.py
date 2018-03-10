@@ -7,32 +7,25 @@ from rest_framework import (
 )
 
 from .models import (
-    ladderLevel,
-    ladderLevelExercise
+    ladderExercise
 )
 
 from .serializers import (
-    ladderLevelSerializer,
-    ladderLevelExerciseSerializer
+    ladderExerciseSerializer
 )
 
 # Create your views here.
-class ladderLevelView(viewsets.ModelViewSet):
-    queryset = ladderLevel.objects.all()
-    serializer_class = ladderLevelSerializer
+class ladderExerciseView(viewsets.ModelViewSet):
+    queryset = ladderExercise.objects.all()
+    serializer_class = ladderExerciseSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
-        qs = super(ladderLevelView, self).get_queryset()
+        qs = super(ladderExerciseView, self).get_queryset()
 
-        return qs
+        patient = self.request.query_params.get('patient')
 
-class ladderLevelExerciseView(viewsets.ModelViewSet):
-    queryset = ladderLevelExercise.objects.all()
-    serializer_class = ladderLevelExerciseSerializer
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def get_queryset(self):
-        qs = super(ladderLevelExerciseView, self).get_queryset()
+        if patient:
+            qs = qs.filter(patient=patient)
 
         return qs

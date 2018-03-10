@@ -1,26 +1,17 @@
 from rest_framework import serializers
 
 from .models import (
-    ladderLevel,
-    ladderLevelExercise
+    ladderExercise
 )
 
-class ladderLevelSerializer(serializers.ModelSerializer):
+class ladderExerciseSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ladderLevel
+        model = ladderExercise
         fields = (
             'url',
             'id',
             'situation',
-            'fear_rating'
-        )
-
-class ladderLevelExerciseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ladderLevelExercise
-        fields = (
-            'url',
-            'id',
-            'completed',
-            'time'
+            'fear_rating',
+            'patient',
+            'completed'
         )

@@ -1,13 +1,11 @@
 from rest_framework import routers
 
 from .views import (
-    ladderLevelView,
-    ladderLevelExerciseView
+    ladderExerciseView
 )
 
 router = routers.DefaultRouter()
 
-router.register(r'level', ladderLevelView)
-router.register(r'levelExercise', ladderLevelExerciseView)
+router.register(r'exercise', ladderExerciseView)
 
 urlpatterns = router.urls

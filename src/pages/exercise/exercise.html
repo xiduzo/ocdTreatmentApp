@@ -1,20 +1,20 @@
 <ion-header>
-  <section class="c-exercise__header">
-    <div class="tasks">
-      completed
-      <div>
-        <span>0</span>/<span>16</span>
-      </div>
-    </div>
+  <section class="c-exercise__header" *ngIf="activeLevel">
     <div class="level">
       level
       <div>
-        <span>1</span>
+        <span>{{activeLevel.level}}</span>
+      </div>
+    </div>
+    <div class="tasks">
+      completed
+      <div>
+        <span>{{activeLevel.completedExercises}}</span>/<span>{{activeLevel.exercises.length}}</span>
       </div>
     </div>
   </section>
-  <section class="c-exercise__monster" [@isLevelSelected]='isLevelSelected' (@isLevelSelected.done)="resizeContent()">
-    <img *ngIf="selectedLevel" (click)="goToLevelOverview()" [src]="selectedLevel.monster">
+  <section class="c-exercise__monster" [@isLevelSelected]='isLevelSelected' (@isLevelSelected.done)="resizeContent()" (click)="goToLevelOverview()">
+    <img *ngIf="selectedLevel" [src]="selectedLevel.monster">
   </section>
 </ion-header>
 
@@ -23,19 +23,21 @@
   <ion-list no-lines class="c-exercise__levels" *ngIf="!selectedLevel" [@showList]>
     <ion-item *ngFor="let level of levels; let last = last">
       <section class="level" [ngClass]="{ 'inactive': !level.open }">
-        <img (click)="goToLevel(level)" [src]="level.monster" [@showLevel]>
+        <div class="level__monster">
+          <img (click)="goToLevel(level)" [src]="level.monster" [@showLevelMonster]>
+          <round-progress [current]="level.completion" [max]="100" [radius]="45" [stroke]="5" [duration]="1" [@showLevelProgress]></round-progress>
+        </div>
         <span *ngIf="!last" class="level__seperator" [@showSeperator]></span>
       </section>
     </ion-item>
   </ion-list>
 
   <ion-list *ngIf="selectedLevel" class="c-level__exercises" [@showList]>
-    <ion-item text-wrap *ngFor="let exercise of selectedLevel.exercises" [@showExercise]>
-      <ion-icon name="radio-button-off"></ion-icon>
-      <!-- <ion-icon name="checkmark-circle-outline"></ion-icon> -->
-      <!-- {{ exercise }} -->
+    <ion-item text-wrap *ngFor="let exercise of selectedLevel.exercises" [@showExercise] [ngClass]="{ 'completed': exercise.completed === true }">
+      <ion-icon name="radio-button-off" *ngIf="!exercise.completed"></ion-icon>
+      <ion-icon name="checkmark-circle" *ngIf="exercise.completed"></ion-icon>
       <span class="exercise__text">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
+        {{ exercise.situation }}
       </span>
     </ion-item>
   </ion-list>

@@ -133,6 +133,7 @@ STATIC_URL = '/static/'
 REST_FRAMEWORK = {
      # Only show content if authenticated
     'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
         'rest_framework.permissions.IsAuthenticated'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -146,6 +147,7 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:8100',
 )
 # CORS_ORIGIN_ALLOW_ALL=True
+
 
 JWT_AUTH = {
     'JWT_ENCODE_HANDLER':
@@ -169,11 +171,11 @@ JWT_AUTH = {
     'JWT_PRIVATE_KEY': None,
     'JWT_ALGORITHM': 'HS256',
     'JWT_VERIFY': True,
-    'JWT_VERIFY_EXPIRATION': True,
+    'JWT_VERIFY_EXPIRATION': False, # TODO need to fix experation for a more secure authentication
     'JWT_LEEWAY': 0,
-     #take into account the UTC difference
+     # NOTE take into account the UTC difference
      # JWT uses datetime.utcnow
-    'JWT_EXPIRATION_DELTA': timedelta(minutes=75), #including 60 mins for timezone
+    'JWT_EXPIRATION_DELTA': timedelta(minutes=5),
     'JWT_AUDIENCE': None,
     'JWT_ISSUER': None,
 
