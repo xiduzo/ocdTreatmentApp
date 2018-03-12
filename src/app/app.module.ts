@@ -27,6 +27,9 @@ import { AuthService, UserService } from '../lib/services';
 
 import { RoundProgressModule, RoundProgressConfig } from 'angular-svg-round-progressbar';
 
+import { ChartModule } from 'angular2-highcharts';
+import * as highcharts from 'highcharts';
+
 // Function for setting the default restangular configuration
 export function RestangularConfigFactory(RestangularProvider, authService) {
   RestangularProvider.setBaseUrl('http://localhost:8000/');
@@ -60,6 +63,7 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     BrowserAnimationsModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
+    ChartModule.forRoot(highcharts),
     HttpClientModule,
     RoundProgressModule,
     RestangularModule.forRoot([AuthService], RestangularConfigFactory)
