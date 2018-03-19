@@ -40,7 +40,7 @@ export class LoginPage {
       this.userService.setUser(response.plain()[0].profile);
       if(response.plain().length === 1) {
         this.authService.getJwtToken(data)
-        .then((resp) => {
+        .then((resp:any) => {
           this.authService.setLocalToken(resp.token);
           this.appCtrl.getRootNav().push(OnboardingPage);
         })

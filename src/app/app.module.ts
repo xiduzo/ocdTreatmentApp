@@ -10,6 +10,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { ProfilePage } from '../pages/profile/profile';
 import { HomePage } from '../pages/home/home';
 import { ExercisePage } from '../pages/exercise/exercise';
+import { ExerciseDetailPage } from '../pages/exercise/detail/exercise.detail';
 import { OnboardingPage } from '../pages/onboarding/onboarding';
 import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/signup/signup';
@@ -29,6 +30,8 @@ import { RoundProgressModule, RoundProgressConfig } from 'angular-svg-round-prog
 
 import { ChartModule } from 'angular2-highcharts';
 import * as highcharts from 'highcharts';
+
+import { NgxCircularSliderModule } from 'ngx-circular-slider';
 
 // Function for setting the default restangular configuration
 export function RestangularConfigFactory(RestangularProvider, authService) {
@@ -55,6 +58,7 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     TabsPage,
     OnboardingPage,
     ExercisePage,
+    ExerciseDetailPage,
     LoginPage,
     SignUpPage
   ],
@@ -66,6 +70,7 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     ChartModule.forRoot(highcharts),
     HttpClientModule,
     RoundProgressModule,
+    NgxCircularSliderModule,
     RestangularModule.forRoot([AuthService], RestangularConfigFactory)
   ],
   bootstrap: [IonicApp],
@@ -76,6 +81,7 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     TabsPage,
     OnboardingPage,
     ExercisePage,
+    ExerciseDetailPage,
     LoginPage,
     SignUpPage
   ],

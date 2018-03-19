@@ -21,6 +21,7 @@ class ladderExercise(UUIDModel):
         (7,7),
         (8,8),
     ]
+    
     situation = models.TextField(max_length=99999)
     fear_rating = models.PositiveSmallIntegerField(choices=FEAR_RATINGS, default=1)
     patient = models.ForeignKey(Profile, null=True)
@@ -29,6 +30,6 @@ class ladderExercise(UUIDModel):
     def __str__(self):
         return '\'{}\' for {} ({})'.format(
             self.situation,
-            self.patient.username,
+            self.patient,
             self.fear_rating
         )

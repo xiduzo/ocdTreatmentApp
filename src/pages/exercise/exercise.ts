@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { App, Content } from 'ionic-angular';
 
 import { Restangular } from 'ngx-restangular';
+import { ExerciseDetailPage } from '../exercise/detail/exercise.detail';
 
 import {
   animateChild,
@@ -159,7 +160,7 @@ export class ExercisePage {
   }
 
   selectExercise() {
-    this.appCtrl.getRootNav().push();
+    this.appCtrl.getRootNav().push(ExerciseDetailPage);
   }
 
 }

@@ -33,7 +33,7 @@
   </ion-list>
 
   <ion-list *ngIf="selectedLevel" class="c-level__exercises" [@showList]>
-    <ion-item text-wrap *ngFor="let exercise of selectedLevel.exercises" [@showExercise] [ngClass]="{ 'completed': exercise.completed === true }">
+    <ion-item (click)="selectExercise()" text-wrap *ngFor="let exercise of selectedLevel.exercises" [@showExercise] [ngClass]="{ 'completed': exercise.completed === true }">
       <ion-icon name="radio-button-off" *ngIf="!exercise.completed"></ion-icon>
       <ion-icon name="checkmark-circle" *ngIf="exercise.completed"></ion-icon>
       <span class="exercise__text">

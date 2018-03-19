@@ -1,0 +1,24 @@
+<ion-content [@trackMood]='mood'>
+    <ion-fab top right>
+        <button ion-fab mini color="light" (click)="stopExercise()">
+            <ion-icon name="close"></ion-icon>
+        </button>
+    </ion-fab>
+    <section class="c-mood__mood">
+        I am feeling
+        <div class="mood__name">
+            {{ mood }}
+        </div>
+    </section>
+    <section class="c-mood__circle">
+        <ngx-cs-slider [className]="mood"
+        (update)="setMood($event)"[props]="props"
+        [startAngle]="0"
+        [angleLength]="0">
+        </ngx-cs-slider>
+        <div class="c-mood__face">
+            {{ mood }}
+        </div>
+    </section>
+
+</ion-content>

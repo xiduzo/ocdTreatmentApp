@@ -1,3 +1,6 @@
 page-home {
-
+  .highcharts-series-hover path {
+    stroke: rgb(255, 66, 66);
+    stroke-width: 2px;
+  }
 }

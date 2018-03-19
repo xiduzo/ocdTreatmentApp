@@ -32,7 +32,7 @@ export class MyApp {
       splashScreen.hide();
 
       // Uncomment to start with fresh user
-      // storage.clear();
+      storage.clear();
 
       // Get the user
       storage.get('user').then((user) => {
@@ -50,7 +50,7 @@ export class MyApp {
           .then((resp) => {
             // Token is verified --> refresh the token
             authService.refreshJwtToken({token: localToken})
-            .then((resp) => {
+            .then((resp:any) => {
               // Set the token for the app
               authService.setLocalToken(resp.token);
               // Token is refreshed!
