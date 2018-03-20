@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { App } from 'ionic-angular';
-import { ToastController } from 'ionic-angular';
 
 import {
   FormBuilder,
@@ -16,13 +14,10 @@ import {
   state,
   style,
   animate,
-  transition,
-  keyframes
+  transition
 } from '@angular/animations';
 
-import { AuthService } from '../../lib/services';
 import { Restangular } from 'ngx-restangular';
-import { OnboardingPage } from '../onboarding/onboarding';
 
 @Component({
   selector: 'page-signup',
@@ -58,10 +53,7 @@ export class SignUpPage {
   private password_repeat:AbstractControl;
 
   constructor(
-    private appCtrl: App,
     private restangular: Restangular,
-    private authService: AuthService,
-    private toastCtrl: ToastController,
     private formBuilder: FormBuilder
   ) {
   }
@@ -112,50 +104,5 @@ export class SignUpPage {
       }
     });
   }
-
-  // signUp() {
-  //   if(!this.username || !this.password || !this.password_repeat || !this.email) {
-  //     return this.toastCtrl.create({
-  //       message: 'Please fill in out all the fields',
-  //       position: 'middle',
-  //       duration: 3000
-  //     }).present();
-  //   }
-  //
-  //   if(!this.validateEmail(this.email)) {
-  //     return this.toastCtrl.create({
-  //       message: 'Provide a valid email',
-  //       position: 'middle',
-  //       duration: 3000
-  //     }).present();
-  //   }
-  //
-  //   if(this.password !== this.password_repeat) {
-  //     return this.toastCtrl.create({
-  //       message: 'Passwords don\'t match',
-  //       position: 'middle',
-  //       duration: 3000
-  //     }).present();
-  //   }
-  //
-    // this.restangular.all('users/create').post({
-    //   username: this.username,
-    //   password: this.password,
-    //   email: this.email
-    // })
-    // .subscribe((resp) => {
-    //   console.log(resp)
-    // }, (err) => {
-    //   if(err.data.email) {
-    //     this.errors.email = err.data.email;
-    //     // this.errors.push(err.data.email);
-    //   }
-    //   if(err.data.username) {
-    //     this.errors.username = err.data.username;
-    //     // this.errors.push(err.data.username);
-    //   }
-    //   console.log(err);
-    // });
-  // }
 
 }

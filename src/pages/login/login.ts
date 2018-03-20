@@ -16,6 +16,7 @@ export class LoginPage {
 
   private username:string;
   private password:string;
+  private err:any;
 
   constructor(
     private appCtrl: App,
@@ -45,11 +46,12 @@ export class LoginPage {
           this.appCtrl.getRootNav().push(OnboardingPage);
         })
         .catch((err) => {
-          this.toastCtrl.create({
-            message: 'Wrong combination of username and password',
-            position: 'middle',
-            duration: 3000
-          }).present();
+          this.err = err;
+          // this.toastCtrl.create({
+          //   message: 'Wrong combination of username and password',
+          //   position: 'middle',
+          //   duration: 3000
+          // }).present();
         });
       } else {
         console.log("user doesnt exist");

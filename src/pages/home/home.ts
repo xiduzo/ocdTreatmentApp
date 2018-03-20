@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import * as highcharts from 'highcharts';
 
 @Component({
   selector: 'page-home',

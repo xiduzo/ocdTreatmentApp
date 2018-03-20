@@ -35,8 +35,10 @@ import { NgxCircularSliderModule } from 'ngx-circular-slider';
 
 // Function for setting the default restangular configuration
 export function RestangularConfigFactory(RestangularProvider, authService) {
-  RestangularProvider.setBaseUrl('http://localhost:8000/');
+  // RestangularProvider.setBaseUrl('http://localhost:8000/');
+  RestangularProvider.setBaseUrl('http://3fa93021.ngrok.io');
   RestangularProvider.setRequestSuffix('/');
+  RestangularProvider.setFullResponse(true);
 
 
   RestangularProvider.addFullRequestInterceptor((element, operation, path, url, headers, params) => {

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { App } from 'ionic-angular';
 
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
@@ -11,8 +10,7 @@ export class AuthService {
   private token:string;
 
   constructor(
-    private appCtrl: App,
-    private http: HttpClient,
+    protected http: HttpClient,
     protected storage: Storage
   ) { }
 
@@ -57,8 +55,6 @@ export class UserService {
   private user:any;
 
   constructor(
-    private appCtrl: App,
-    private http: HttpClient,
     protected storage: Storage
   ) { }
 

@@ -4,9 +4,6 @@ import { TabsPage } from '../tabs/tabs';
 
 import { Storage } from '@ionic/storage';
 
-import { Restangular } from 'ngx-restangular';
-import { AuthService } from '../../lib/services';
-
 @Component({
   selector: 'page-onboarding',
   templateUrl: 'onboarding.html'
@@ -15,13 +12,10 @@ export class OnboardingPage {
   @ViewChild(Slides) slides: Slides;
 
   skipMessage:string = "skip";
-  jwtToken:string;
 
   constructor(
     private appCtrl: App,
-    private storage: Storage,
-    private restangular: Restangular,
-    private authService: AuthService
+    private storage: Storage
   ) {
   }
 

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ocd</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <description>OCD supportive treatment app.</description>
+    <author email="mail@sanderboer.nl" href="http://sanderboer.nl">Sander Boer</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -84,10 +84,10 @@
     <plugin name="cordova-sqlite-storage" spec="^2.2.1" />
     <plugin name="com.telerik.plugins.nativepagetransitions" spec="^0.6.5" />
     <allow-navigation href="http://172.18.12.251:8100" />
-    <engine name="android" spec="~7.0.0" />
     <plugin name="cordova-plugin-screen-orientation" spec="^3.0.1" />
     <allow-navigation href="http://145.109.168.112:8100" />
     <allow-navigation href="http://145.109.168.112:8101" />
     <allow-navigation href="http://100.72.57.150:8101" />
     <allow-navigation href="http://192.168.1.116:8100" />
+    <engine name="android" spec="~7.0.0" />
 </widget>

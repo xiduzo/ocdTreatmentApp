@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
-import { TabsPage } from '../../tabs/tabs';
-
 import {
   trigger,
   state,
