@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App } from 'ionic-angular';
+import { NavParams, ViewController } from 'ionic-angular';
 
 import { TabsPage } from '../../tabs/tabs';
 
@@ -20,8 +20,8 @@ import {
       state('content', style({background: 'rgb(252, 201, 138)'})),
       state('ok', style({background: 'rgb(145, 207, 204)'})),
       state('meh', style({background: 'rgb(214, 217, 204)'})),
-      state('panic', style({background: 'rgb(82, 156, 204)'})),
-      state('worried', style({background: 'rgb(240,120,121)'})),
+      state('panic', style({background: 'rgb(240,120,121)'})),
+      state('worried', style({background: 'rgb(82, 156, 204)'})),
       transition('* => *', animate('350ms ease-in'))
     ])
   ]
@@ -29,7 +29,7 @@ import {
 export class ExerciseDetailPage {
   public props:any = {
     segments: 5,
-    strokeWidth: 35,
+    strokeWidth: 40,
     radius: 150,
     gradientColorFrom: '#F2EAD7',
     gradientColorTo: '#F2EAD7',
@@ -38,38 +38,36 @@ export class ExerciseDetailPage {
   }
 
   public mood:string = 'content';
+  public moodReason:string;
+  public exercise:any;
 
   constructor(
-    public appCtrl: App
+    private params: NavParams,
+    public viewCtrl: ViewController
   ) {
 
   }
 
-  ionViewDidEnter() {
-  }
-
-  ionViewDidLoad() {
+  ionViewWillEnter() {
+    this.exercise = this.params.get('exercise');
   }
 
   setMood(event) {
-    if(event.angleLength >= 5 || event.angleLength <= 1) {
+    if(event.angleLength <= (6.24 / this.props.segments * 1)) {
       this.mood = 'content';
-    } else if(event.angleLength >= 4) {
+    } else if(event.angleLength <= (6.24 / this.props.segments * 2)) {
       this.mood = 'ok';
-    } else if(event.angleLength >= 3) {
+    } else if(event.angleLength <= (6.24 / this.props.segments * 3)) {
       this.mood = 'meh';
-    } else if(event.angleLength >= 2) {
+    } else if(event.angleLength <= (6.24 / this.props.segments * 4)) {
       this.mood = 'panic';
-    } else if(event.angleLength >= 1) {
+    } else if(event.angleLength <= (6.24 / this.props.segments * 5)) {
       this.mood = 'worried';
     }
-    console.log(event);
   }
 
   stopExercise() {
-    this.appCtrl.getRootNav().push(TabsPage);
-    this.appCtrl.getRootNav().getActiveChildNav().select(1);
-    // console.log(this.appCtrl.getRootNav());
+    this.viewCtrl.dismiss();
   }
 
 }

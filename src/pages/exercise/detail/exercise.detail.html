@@ -12,13 +12,47 @@
     </section>
     <section class="c-mood__circle">
         <ngx-cs-slider [className]="mood"
-        (update)="setMood($event)"[props]="props"
-        [startAngle]="0"
-        [angleLength]="0">
+        (update)="setMood($event)"
+        [props]="props">
         </ngx-cs-slider>
-        <div class="c-mood__face">
-            {{ mood }}
-        </div>
+        <section [className]="mood">
+            <div class="c-mood__face">
+                <section class="face__attributes">
+                    <section class="face__eyebrows">
+                        <div class="eyebrow eyebrow--left"></div>
+                        <div class="eyebrow eyebrow--right"></div>
+                    </section>
+                    <section class="face__blush">
+                        <div class="blush blush--left"></div>
+                        <div class="blush blush--right"></div>
+                    </section>
+                    <div class="face__drop"></div>
+                </section>
+                <section class="face__eyes">
+                    <div class="eye eye--left"></div>
+                    <div class="eye eye--right"></div>
+                </section>
+                <section class="face__mouth">
+                    <div class="mouth__lips"></div>
+                    <div class="mouth__inside"></div>
+                </section>
+                <!-- {{ mood }} -->
+            </div>
+        </section>
     </section>
 
+    <form>
+        <ion-item>
+            <ion-label floating>
+                What causes this mood (optional)
+            </ion-label>
+            <ion-textarea [(ngModel)]="moodReason" name="moodReason"></ion-textarea>
+        </ion-item>
+    </form>
+
 </ion-content>
+<ion-footer no-margin>
+    <button no-margin ion-button large type="submit" block>
+        Start exercise
+    </button>
+</ion-footer>

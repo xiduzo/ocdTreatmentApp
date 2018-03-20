@@ -36,10 +36,10 @@ page-exercise-detail {
       g g circle { stroke: rgb(214, 217, 204); }
     }
     &.panic {
-      g g circle { stroke: rgb(82, 156, 204); }
+      g g circle { stroke: rgb(240,120,121); }
     }
     &.worried {
-      g g circle { stroke: rgb(240,120,121); }
+      g g circle { stroke: rgb(82, 156, 204); }
     }
   }
 

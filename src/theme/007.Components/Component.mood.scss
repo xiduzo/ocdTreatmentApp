@@ -18,7 +18,205 @@
   ngx-cs-slider {
     position: relative;
   }
-  .c-mood__face {
+  > section {
     position: absolute;
+  }
+}
+
+.c-mood__face {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .face__attributes {
+    position: absolute;
+    width: 150px;
+    .face__blush,
+    .face__drop,
+    .face__eyebrows {
+      display: none;
+    }
+  }
+  .face__eyes {
+    display: flex;
+    justify-content: center;
+    .eye {
+      width: 75px;
+      height: 75px;
+      background: color($colors, light, base);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 4px;
+      transition: all 550ms;
+      &:after {
+        transition: all 350ms;
+        content: ' ';
+        width: 25px;
+        height: 25px;
+        background: color($colors, dark, base);
+        position: absolute;
+        border-radius: 50%;
+      }
+    }
+  }
+  .face__mouth {
+    transition: width 550ms, height 150ms, margin 200ms;
+    border-radius: 50px;
+    margin: 16px 0;
+  }
+}
+
+.c-mood__circle {
+  .content {
+    .c-mood__face {
+      .face__attributes {
+        .face__blush {
+          display: block;
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          .blush {
+            width: 40px;
+            height: 40px;
+            background: lighten(color($colors, contrast, base), 8);
+            border-radius: 50%;
+            margin-top: 40px;
+          }
+        }
+      }
+      .face__eyes {
+        .eye {
+          border-bottom: 8px solid lighten(color($colors, dark, base), 15);
+          background: none;
+          &:after {
+            display: none;
+          }
+        }
+      }
+      .face__mouth {
+        border-bottom: 8px solid lighten(color($colors, dark, base), 15);
+        width: 60px;
+        height: 50px;
+        border-radius: 0 0 40px 40px;
+      }
+    }
+  }
+  .panic {
+    .c-mood__face {
+      .face__eyes {
+        .eye {
+          margin: 0;
+          &:after {
+            width: 20px;
+            height: 20px;
+            margin-top: -15px;
+          }
+        }
+      }
+      .face__mouth {
+        margin: 4px 0;
+        border: 10px solid color($colors, primary, base);
+        height: 125px;
+        width: 75px;
+        border-radius: 50% 50% 25% 25% / 60% 60% 30% 30%;
+        &:before {
+          content: ' ';
+          background: color($colors, dark, base);
+          width: 75px;
+          height: 125px;
+          position: absolute;
+          border-radius: 50% 50% 25% 25% / 60% 60% 30% 30%;
+          z-index: -2;
+          margin: -10px 0 0 -10px;
+        }
+        &:after {
+          content: ' ';
+          background: #F07879;
+          width: 50px;
+          height: 40px;
+          position: absolute;
+          z-index: -1;
+          margin: 75px 0 0 20px;
+          border-radius: 50px;
+        }
+      }
+    }
+  }
+  .worried {
+    .c-mood__face {
+      .face__attributes {
+        position: relative;
+        .face__eyebrows {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          .eyebrow {
+            width: 70px;
+            background: lighten(color($colors, dark, base), 15);
+            border-radius: 50px;
+            height: 12px;
+            position: absolute;
+            &--left {
+              margin: 3px 0 0 -10px;
+              transform: rotate(-12deg);
+            }
+            &--right {
+              margin: 0 0 0 85px;
+              transform: rotate(6deg);
+            }
+          }
+        }
+        .face__drop {
+          display: block;
+          width: 50px;
+          height: 50px;
+          background: lighten(rgb(82, 156, 204), 15);
+          position: absolute;
+          margin: 40px 0 0 150px;
+          border-radius: 0 90px 90px 90px;
+          transform: rotate(45deg);
+          &:after {
+            content: ' ';
+            display: block;
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 15px;
+            border-top: 4px solid rgb(82, 156, 204);
+            transform: rotate(100deg);
+            margin: 15px 0 0 23px;
+          }
+        }
+      }
+      .face__mouth {
+        width: 100px;
+        height: 25px;
+        border-top: 8px solid lighten(color($colors, dark, base), 15);
+      }
+    }
+  }
+  .meh {
+    .c-mood__face {
+      .face__mouth {
+        border-bottom: 8px solid lighten(color($colors, dark, base), 15);
+        width: 100px;
+        height: 8px;
+        border-radius: 50px;
+        margin-top: 35px;
+      }
+    }
+  }
+  .ok {
+    .c-mood__face {
+      .face__mouth {
+        border-bottom: 8px solid lighten(color($colors, dark, base), 15);
+        width: 60px;
+        height: 30px;
+        border-radius: 0 0 20px 20px;
+        margin: 0;
+      }
+    }
   }
 }

@@ -4,6 +4,9 @@ import { App, Content } from 'ionic-angular';
 import { Restangular } from 'ngx-restangular';
 import { ExerciseDetailPage } from '../exercise/detail/exercise.detail';
 
+import { ModalController } from 'ionic-angular';
+// import { }
+
 import {
   animateChild,
   query,
@@ -90,7 +93,8 @@ export class ExercisePage {
   constructor(
     public appCtrl: App,
     private restangular: Restangular,
-    private userService: UserService
+    private userService: UserService,
+    public modalCtrl: ModalController
   ) {
 
   }
@@ -159,8 +163,10 @@ export class ExercisePage {
     this.content.resize();
   }
 
-  selectExercise() {
-    this.appCtrl.getRootNav().push(ExerciseDetailPage);
+  selectExercise(exercise) {
+    let model = this.modalCtrl.create(ExerciseDetailPage, {exercise: exercise});
+    model.present();
+    // this.appCtrl.getRootNav().push(ExerciseDetailPage);
   }
 
 }

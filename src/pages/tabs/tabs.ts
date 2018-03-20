@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NavParams, Tabs } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 import { ExercisePage } from '../exercise/exercise';
@@ -9,6 +10,7 @@ import { ProfilePage } from '../profile/profile';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
+  @ViewChild('mainTabs') tabRef: Tabs;
 
   loaded:boolean = false;
   tabIndex:number = 0;
@@ -17,7 +19,10 @@ export class TabsPage {
   ExercisePageRoot = ExercisePage;
   ProfilePageRoot = ProfilePage;
 
-  constructor(private nativePageTransitions: NativePageTransitions) {
+  constructor(
+    private nativePageTransitions: NativePageTransitions,
+    private navParams: NavParams
+  ) {
 
   }
 
@@ -47,5 +52,11 @@ export class TabsPage {
     }
 
     this.nativePageTransitions.slide(options);
+  }
+
+  ionViewWillEnter() {
+    if(this.navParams.get('opentab')) {
+      this.tabRef.select(this.navParams.get('opentab'));
+    }
   }
 }

@@ -32,7 +32,7 @@ export class MyApp {
       splashScreen.hide();
 
       // Uncomment to start with fresh user
-      storage.clear();
+      // storage.clear();
 
       // Get the user
       storage.get('user').then((user) => {
