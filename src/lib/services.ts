@@ -6,7 +6,8 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class AuthService {
 
-  private baseUrl:string = 'https://mdd-ocd.herokuapp.com/';
+  private baseUrl:string = 'http://localhost:8000/';
+  // private baseUrl:string = 'https://mdd-ocd.herokuapp.com/';
   private token:string;
 
   constructor(

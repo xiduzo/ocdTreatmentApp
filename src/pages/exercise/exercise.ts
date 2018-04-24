@@ -23,21 +23,21 @@ import { UserService } from '../../lib/services';
   animations: [
     trigger('isLevelSelected', [
       state('no', style({ height: '0vh', opacity: 0})),
-      state('yes', style({ height: '16vh', opacity: 1})),
+      state('yes', style({ height: '20vh', opacity: 1})),
       transition('no => yes', animate('650ms ease-in', keyframes([
         style({height: '0vh', opacity: 0, offset: 0}),
-        style({height: '16vh', opacity: 0, offset: 0.3}),
-        style({height: '17vh', opacity: 0.2, offset: 0.4}),
-        style({height: '18vh', opacity: 0.4, offset: 0.6}),
-        style({height: '17vh', opacity: 0.8, offset: 0.7}),
-        style({height: '16vh', opacity: 1, offset: 1})
+        style({height: '20vh', opacity: 0, offset: 0.3}),
+        style({height: '21vh', opacity: 0.2, offset: 0.4}),
+        style({height: '22vh', opacity: 0.4, offset: 0.6}),
+        style({height: '21vh', opacity: 0.8, offset: 0.7}),
+        style({height: '20vh', opacity: 1, offset: 1})
       ]))),
       transition('yes => no', animate('200ms ease-in', keyframes([
-        style({height: '16vh', offset: 0}),
-        style({height: '18vh', offset: 0.2}),
-        style({height: '19vh', offset: 0.25}),
-        style({height: '18vh', offset: 0.3}),
-        style({height: '16vh', offset: 0.6}),
+        style({height: '20vh', offset: 0}),
+        style({height: '21vh', offset: 0.2}),
+        style({height: '22vh', offset: 0.25}),
+        style({height: '21vh', offset: 0.3}),
+        style({height: '20vh', offset: 0.6}),
         style({height: '0vh', offset: 1})
       ]))),
     ]),
@@ -86,6 +86,32 @@ export class ExercisePage {
     { level: 7, exercises: [] },
     { level: 8, exercises: [] },
   ];
+
+  private tracking:any = {
+    beforeMood: {
+      mood: null,
+      angle: null,
+      explanation: null
+    },
+    afterMood: {
+      mood: null,
+      angle: null,
+      explanation: null
+    },
+    gaveInToCompulsion: false,
+    obsessiveThoughts: {
+      rating: null,
+      explanation: null
+    },
+    compulsiveBehaviour: {
+      rating: null,
+      explanation: null
+    },
+    exercise: {
+      start: null,
+      end: null
+    }
+  }
 
   constructor(
     public appCtrl: App,
@@ -172,14 +198,7 @@ export class ExercisePage {
   }
 
   selectExercise(exercise) {
-    let exerciseMoodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.selectedLevel, exercise: exercise, before: true});
-
-    exerciseMoodModal.onDidDismiss((data => {
-      console.log(data);
-      // Dont do anything when we just close the exercise
-      if(!data) return;
-    }));
-
+    let exerciseMoodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.selectedLevel, exercise: exercise, before: true, tracking: this.tracking});
     exerciseMoodModal.present();
   }
 

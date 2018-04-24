@@ -12,8 +12,12 @@ import { HomePage } from '../pages/home/home';
 
 import { ExercisePage } from '../pages/exercise/exercise';
 import { ExerciseMoodPage } from '../pages/exercise/mood/exercise.mood';
-import { ExerciseDuringModal } from '../pages/exercise/during/exercise.during'
-;
+import { ExerciseDuringModal } from '../pages/exercise/during/exercise.during';
+import { ExerciseAfterModal } from '../pages/exercise/after/exercise.after';
+import { ExerciseSuccessModal } from '../pages/exercise/success/exercise.success';
+
+import { YbocsModal } from '../pages/ybocs/ybocs';
+
 import { OnboardingPage } from '../pages/onboarding/onboarding';
 
 import { LoginPage } from '../pages/login/login';
@@ -39,8 +43,8 @@ import { NgxCircularSliderModule } from 'ngx-circular-slider';
 
 // Function for setting the default restangular configuration
 export function RestangularConfigFactory(RestangularProvider, authService) {
-  // RestangularProvider.setBaseUrl('http://localhost:8000/');
-  RestangularProvider.setBaseUrl('https://mdd-ocd.herokuapp.com/');
+  RestangularProvider.setBaseUrl('http://localhost:8000/');
+  // RestangularProvider.setBaseUrl('https://mdd-ocd.herokuapp.com/');
   RestangularProvider.setRequestSuffix('/');
   RestangularProvider.setFullResponse(true);
 
@@ -66,6 +70,9 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     ExercisePage,
     ExerciseMoodPage,
     ExerciseDuringModal,
+    ExerciseAfterModal,
+    ExerciseSuccessModal,
+    YbocsModal,
     LoginPage,
     SignUpPage
   ],
@@ -90,6 +97,9 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     ExercisePage,
     ExerciseMoodPage,
     ExerciseDuringModal,
+    ExerciseAfterModal,
+    ExerciseSuccessModal,
+    YbocsModal,
     LoginPage,
     SignUpPage
   ],
@@ -108,7 +118,7 @@ export class AppModule {
     private _progressConfig: RoundProgressConfig
   ) {
     _progressConfig.setDefaults({
-      color: '#FCD28A'
+      color: '#50D2C2'
     })
   }
 }

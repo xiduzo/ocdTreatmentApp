@@ -10,6 +10,7 @@ import {
 } from '@angular/animations';
 
 import { ExerciseDuringModal } from '../during/exercise.during';
+import { ExerciseAfterModal } from '../after/exercise.after';
 
 @Component({
   selector: 'page-exercise-mood',
@@ -38,9 +39,14 @@ export class ExerciseMoodPage {
 
   public mood:string = 'content';
   public moodReason:string;
+  public moodAngle:number;
+
   public level:any;
   public exercise:any;
+
   public beforeMeasure:boolean = false;
+
+  private tracking:any;
 
   constructor(
     private params: NavParams,
@@ -53,12 +59,14 @@ export class ExerciseMoodPage {
   ionViewWillEnter() {
     this.exercise = this.params.get('exercise');
     this.level = this.params.get('level');
-    // console.log(this.exercise)
+    this.tracking = this.params.get('tracking');
+    this.beforeMeasure = this.params.get('before');
 
-    if(this.params.get('before')) this.beforeMeasure = this.params.get('before');
   }
 
   setMood(event) {
+    this.moodAngle = event.angleLength;
+
     if(event.angleLength <= (6.24 / this.props.segments * 1)) {
       this.mood = 'content';
     } else if(event.angleLength <= (6.24 / this.props.segments * 2)) {
@@ -72,13 +80,28 @@ export class ExerciseMoodPage {
     }
   }
 
-  stopExercise() {
-    this.viewCtrl.dismiss(false);
+  startExercise() {
+    this.tracking.beforeMood.mood = this.mood;
+    this.tracking.beforeMood.angle = this.moodAngle;
+    this.tracking.beforeMood.explanation = this.moodReason;
+
+    let duringModal = this.modalCtrl.create(ExerciseDuringModal, {level: this.level, exercise: this.exercise, tracking: this.tracking });
+    duringModal.present();
+    this.viewCtrl.dismiss();
   }
 
-  startExercise() {
-    let duringModal = this.modalCtrl.create(ExerciseDuringModal, {level: this.level, exercise: this.exercise});
-    duringModal.present();
+  finishExercise() {
+    this.tracking.afterMood.mood = this.mood;
+    this.tracking.afterMood.angle = this.moodAngle;
+    this.tracking.afterMood.explanation = this.moodReason;
+
+    let afterModal = this.modalCtrl.create(ExerciseAfterModal, {level: this.level, exercise: this.exercise, tracking: this.tracking });
+    afterModal.present();
+    this.viewCtrl.dismiss();
+  }
+
+  stopExercise() {
+    this.viewCtrl.dismiss();
   }
 
 }

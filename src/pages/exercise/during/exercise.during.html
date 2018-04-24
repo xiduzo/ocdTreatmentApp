@@ -19,11 +19,11 @@
 </ion-content>
 
 <ion-footer>
-    <button no-margin ion-button large color="danger" block icon-left>
+    <button no-margin ion-button large color="danger" block icon-left (click)="finishExercise(false)">
       <ion-icon name="close"></ion-icon>
         Gave in to compulsive behaviour
     </button>
-    <button no-margin ion-button large block icon-left>
+    <button no-margin ion-button large block icon-left (click)="finishExercise(true)">
       <ion-icon name="checkmark"></ion-icon>
         Succeeded without compulsion
     </button>

@@ -1,5 +1,5 @@
 <ion-header>
-  <section class="c-exercise__header" *ngIf="activeLevel">
+  <!-- <section class="c-exercise__header" *ngIf="activeLevel">
     <div class="level">
       level
       <div>
@@ -12,14 +12,13 @@
         <span>{{activeLevel.completedExercises}}</span>/<span>{{activeLevel.exercises.length}}</span>
       </div>
     </div>
-  </section>
+  </section> -->
   <section class="c-exercise__monster" [@isLevelSelected]='isLevelSelected' (@isLevelSelected.done)="resizeContent()" (click)="goToLevelOverview()">
     <div class="level__monster" *ngIf="selectedLevel">
       <div class="monster__icon" [@showLevelMonster]>
         <div class="monster" [style.backgroundImage]="'url('+ selectedLevel.monster +')'"></div>
       </div>
     </div>
-    <!-- <img *ngIf="selectedLevel" [src]="selectedLevel.monster"> -->
   </section>
 </ion-header>
 
@@ -32,7 +31,7 @@
             <div class="monster" [style.backgroundImage]="'url('+ level.monster +')'"></div>
           </div>
           <!-- <img  [src]="level.monster" [@showLevelMonster]> -->
-          <round-progress [current]="level.completion" [max]="100" [radius]="50" [stroke]="5" [duration]="1" [@showLevelProgress]></round-progress>
+          <round-progress [current]="level.completion" [max]="100" [radius]="60" [stroke]="5" [duration]="1" [@showLevelProgress]></round-progress>
         </div>
         <span *ngIf="!last" class="level__seperator" [@showSeperator]></span>
       </section>

@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
 
-import { ExerciseMoodPage } from '../mood/exercise.mood';
-
 @Component({
-  selector: 'page-exercise-during',
-  templateUrl: 'exercise.during.html'
+  selector: 'page-exercise-success',
+  templateUrl: 'exercise.success.html'
 })
-export class ExerciseDuringModal {
+export class ExerciseSuccessModal {
 
   public level:any;
   public exercise:any;
@@ -25,19 +23,14 @@ export class ExerciseDuringModal {
     this.exercise = this.params.get('exercise');
     this.level = this.params.get('level');
     this.tracking = this.params.get('tracking');
+
+    console.log(this.level);
   }
 
   ionViewWillEnter() {
-    this.tracking.exercise.start = new Date();
   }
 
-  finishExercise(succeed) {
-    if(!succeed) this.tracking.gaveInToCompulsion = true;
-    
-    this.tracking.exercise.end = new Date();
-
-    let moodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.level, exercise: this.exercise, before: false, tracking: this.tracking});
-    moodModal.present();
+  close() {
     this.viewCtrl.dismiss();
   }
 

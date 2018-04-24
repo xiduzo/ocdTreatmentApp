@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
+
+import { ExerciseSuccessModal } from '../exercise/success/exercise.success';
+import { YbocsModal } from '../ybocs/ybocs';
 
 @Component({
   selector: 'page-home',
@@ -12,7 +15,8 @@ export class HomePage {
   public _dataParallel:any = [];
 
   constructor(
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private modalCtrl: ModalController
   ) {
     for(let i = 0; i<=25; i++) {
       this._dataScatter.push([
@@ -176,6 +180,11 @@ export class HomePage {
       25, // Width
       25 // Height
     ).attr({zIndex: 10}).add();
+  }
+
+  testModal() {
+    let testModal = this.modalCtrl.create(ExerciseSuccessModal);
+    testModal.present();
   }
 
 }

@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: color($colors, secondary, base);
 }
 
 .c-exercise__header {
@@ -59,13 +60,13 @@
 
 .level__monster {
   display: flex;
-  min-height: 100px;
+  min-height: 120px;
   justify-content: center;
   align-items: center;
 
   .monster__icon {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     background: #FCD28A;
     overflow: hidden;

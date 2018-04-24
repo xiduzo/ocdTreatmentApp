@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title text-center>
+      Score the intensity of
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div ion-fixed>
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>
+          Obsessive thoughts
+        </ion-label>
+        <ion-range min="{{range.min}}" max="{{range.max}}" [(ngModel)]="obsessiveThoughts" pin="true">
+          <ion-label range-left>{{range.min}}</ion-label>
+          <ion-label range-right>{{range.max}}</ion-label>
+        </ion-range>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          Why (optional)
+        </ion-label>
+        <ion-textarea [(ngModel)]="obsessiveThoughtsReason" name="obsessiveThoughtsReason"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>
+          Compulsive behaviour
+        </ion-label>
+        <ion-range min="{{range.min}}" max="{{range.max}}" [(ngModel)]="compulsiveBehaviour" pin="true">
+          <ion-label range-left>{{range.min}}</ion-label>
+          <ion-label range-right>{{range.max}}</ion-label>
+        </ion-range>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          Why (optional)
+        </ion-label>
+        <ion-textarea [(ngModel)]="compulsiveBehaviourReason" name="compulsiveBehaviourReason"></ion-textarea>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+
+<ion-footer>
+    <button no-margin ion-button large block (click)="done()">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+</ion-footer>

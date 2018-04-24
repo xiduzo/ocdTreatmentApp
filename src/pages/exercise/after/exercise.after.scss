@@ -1,0 +1,38 @@
+page-exercise-after {
+
+  ion-header {
+    ion-toolbar {
+      ion-title {
+        text-transform: uppercase;
+      }
+    }
+  }
+  ion-content.content-md {
+
+    ion-item {
+      ion-label[stacked] {
+        font-weight: bold;
+        font-size: 1em;
+        margin: 1em 0;
+      }
+    }
+  }
+  .range-md .range-knob-handle .range-pin {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .range-md:not(.range-has-pin) .range-knob-handle .range-knob {
+    transform: scale(1);
+  }
+
+  .range-ios .range-knob-handle .range-pin {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .range-md .range-knob-min.range-knob-min .range-pin, .range-md .range-knob-min.range-knob-min .range-pin::before,
+  .range-md .range-knob-min.range-knob-min .range-knob {
+    background: color($colors, primary, base);
+    border: none;
+  }
+
+}

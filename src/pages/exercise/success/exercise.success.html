@@ -1,0 +1,30 @@
+<ion-content>
+  <div ion-fixed>
+    <section class="exercise" *ngIf="exercise" text-center>
+      <div class="illustration">
+        <div class="illustration__backdrop">
+          <div class="illustration__monster">
+            <img [src]="level.monster" alt="">
+          </div>
+        </div>
+      </div>
+      <h1>
+        {{ exercise.situation }}
+      </h1>
+      <h2>
+        without (?)
+      </h2>
+    </section>
+    <section class="message" text-center>
+      <h3>
+        SUCCESS!
+      </h3>
+    </section>
+  </div>
+</ion-content>
+
+<ion-footer>
+    <button no-margin ion-button large block color="secondary" (click)="close()">
+        <ion-icon name="checkmark"></ion-icon>
+    </button>
+</ion-footer>
