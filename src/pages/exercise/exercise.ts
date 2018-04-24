@@ -1,11 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { App, Content } from 'ionic-angular';
+import { App, Content, ModalController } from 'ionic-angular';
 
 import { Restangular } from 'ngx-restangular';
-import { ExerciseDetailPage } from '../exercise/detail/exercise.detail';
-
-import { ModalController } from 'ionic-angular';
-// import { }
+import { ExerciseMoodPage } from '../exercise/mood/exercise.mood';
 
 import {
   animateChild,
@@ -99,10 +96,6 @@ export class ExercisePage {
 
   }
 
-  ionViewDidEnter() {
-    this.setLevelsMonsterAndCompletion();
-  }
-
   ionViewDidLoad() {
     this.profile = this.userService.getUser();
     this.getExersises();
@@ -113,7 +106,7 @@ export class ExercisePage {
       patient: this.profile
     };
     this.restangular.all('ladders/exercise').getList(filters).subscribe((resp) => {
-      resp.forEach(exercise => {
+      resp.data.forEach(exercise => {
         this.levels.find(item => item.level === exercise.fear_rating).exercises.push(exercise);
       });
       this.setLevelsMonsterAndCompletion();
@@ -124,15 +117,22 @@ export class ExercisePage {
     this.levels.forEach(level => {
       level.done = level.exercises.find(exercise => exercise.completed === false) ? false : true;
 
+      // Get the level completion rate for the progress bar
       level.completion = level.done ? 100 : level.exercises.filter(exercise => exercise.completed === true).length * 100 / level.exercises.length;
 
-      if(level.completion === 100) {
-        level.monster = 'assets/imgs/monsters/level'+level.level+'_100.png';
-      } else if(level.completion > 49) {
-        level.monster = 'assets/imgs/monsters/level'+level.level+'_50.png';
-      } else {
-        level.monster = 'assets/imgs/monsters/level'+level.level+'_0.png';
-      }
+      // Make sure the level is open when it's finished
+      if(level.done) level.open = true;
+
+      level.monster = 'assets/imgs/monsters/monster-0'+level.level+'.png';
+      // TODO
+      // fix monster icon based on completion
+      // if(level.completion === 100) {
+      //   level.monster = 'assets/imgs/monsters/level'+level.level+'_100.png';
+      // } else if(level.completion > 49) {
+      //   level.monster = 'assets/imgs/monsters/level'+level.level+'_50.png';
+      // } else {
+      //   level.monster = 'assets/imgs/monsters/level'+level.level+'_0.png';
+      // }
     });
 
     this.setActiveLevel();
@@ -144,17 +144,25 @@ export class ExercisePage {
     if(uncompletedLevels.length) {
       this.activeLevel = uncompletedLevels[0];
       this.activeLevel.completedExercises = this.activeLevel.exercises.filter(exercise => exercise.completed === true).length;
+
+      // Make sure to open the active level as well
+      this.activeLevel.open = true;
     }
 
     this.resizeContent();
   }
 
   goToLevel(level) {
+    // Don't open levels which you can't access yet
+    // if(!level.open) return;
+
     this.isLevelSelected = 'yes';
     this.selectedLevel = level;
   }
 
   goToLevelOverview() {
+    // TODO
+    // remember position of the scroll before going into the detail view
     this.selectedLevel = null;
     this.isLevelSelected = 'no';
   }
@@ -164,9 +172,15 @@ export class ExercisePage {
   }
 
   selectExercise(exercise) {
-    let model = this.modalCtrl.create(ExerciseDetailPage, {exercise: exercise});
-    model.present();
-    // this.appCtrl.getRootNav().push(ExerciseDetailPage);
+    let exerciseMoodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.selectedLevel, exercise: exercise, before: true});
+
+    exerciseMoodModal.onDidDismiss((data => {
+      console.log(data);
+      // Dont do anything when we just close the exercise
+      if(!data) return;
+    }));
+
+    exerciseMoodModal.present();
   }
 
 }

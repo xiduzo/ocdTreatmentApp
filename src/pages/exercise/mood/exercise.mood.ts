@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController } from 'ionic-angular';
+import { NavParams, ViewController, ModalController } from 'ionic-angular';
 
 import {
   trigger,
@@ -9,10 +9,11 @@ import {
   transition
 } from '@angular/animations';
 
+import { ExerciseDuringModal } from '../during/exercise.during';
 
 @Component({
-  selector: 'page-exercise-detail',
-  templateUrl: 'exercise.detail.html',
+  selector: 'page-exercise-mood',
+  templateUrl: 'exercise.mood.html',
   animations: [
     trigger('trackMood', [
       state('content', style({background: 'rgb(252, 201, 138)'})),
@@ -20,11 +21,11 @@ import {
       state('meh', style({background: 'rgb(214, 217, 204)'})),
       state('panic', style({background: 'rgb(240,120,121)'})),
       state('worried', style({background: 'rgb(82, 156, 204)'})),
-      transition('* => *', animate('350ms ease-in'))
+      transition('* => *', animate('450ms ease-in'))
     ])
   ]
 })
-export class ExerciseDetailPage {
+export class ExerciseMoodPage {
   public props:any = {
     segments: 5,
     strokeWidth: 40,
@@ -37,17 +38,24 @@ export class ExerciseDetailPage {
 
   public mood:string = 'content';
   public moodReason:string;
+  public level:any;
   public exercise:any;
+  public beforeMeasure:boolean = false;
 
   constructor(
     private params: NavParams,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    private modalCtrl: ModalController
   ) {
 
   }
 
   ionViewWillEnter() {
     this.exercise = this.params.get('exercise');
+    this.level = this.params.get('level');
+    // console.log(this.exercise)
+
+    if(this.params.get('before')) this.beforeMeasure = this.params.get('before');
   }
 
   setMood(event) {
@@ -65,7 +73,12 @@ export class ExerciseDetailPage {
   }
 
   stopExercise() {
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss(false);
+  }
+
+  startExercise() {
+    let duringModal = this.modalCtrl.create(ExerciseDuringModal, {level: this.level, exercise: this.exercise});
+    duringModal.present();
   }
 
 }

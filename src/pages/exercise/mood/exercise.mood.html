@@ -1,15 +1,17 @@
 <ion-content [@trackMood]='mood'>
-    <ion-fab top right>
-        <button ion-fab mini color="light" (click)="stopExercise()">
-            <ion-icon name="close"></ion-icon>
-        </button>
+  <div ion-fixed>
+    <ion-fab top right *ngIf="beforeMeasure">
+      <button ion-fab mini color="light" (click)="stopExercise()">
+        <ion-icon name="close"></ion-icon>
+      </button>
     </ion-fab>
-    <section class="c-mood__mood">
+    <strong class="c-mood__mood">
         I am feeling
         <div class="mood__name">
             {{ mood }}
         </div>
-    </section>
+    </strong>
+
     <section class="c-mood__circle">
         <ngx-cs-slider [className]="mood"
         (update)="setMood($event)"
@@ -42,17 +44,20 @@
     </section>
 
     <form>
-        <ion-item>
-            <ion-label floating>
-                What causes this mood (optional)
-            </ion-label>
-            <ion-textarea [(ngModel)]="moodReason" name="moodReason"></ion-textarea>
-        </ion-item>
+      <ion-item>
+        <ion-label floating>
+          What causes this mood (optional)
+        </ion-label>
+        <ion-textarea [(ngModel)]="moodReason" name="moodReason"></ion-textarea>
+      </ion-item>
     </form>
 
+  </div>
+
 </ion-content>
-<ion-footer no-margin>
-    <button no-margin ion-button large type="submit" block>
+
+<ion-footer>
+    <button no-margin ion-button large block (click)="startExercise()">
         Start exercise
     </button>
 </ion-footer>

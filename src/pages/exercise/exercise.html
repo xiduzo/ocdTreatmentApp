@@ -14,18 +14,25 @@
     </div>
   </section>
   <section class="c-exercise__monster" [@isLevelSelected]='isLevelSelected' (@isLevelSelected.done)="resizeContent()" (click)="goToLevelOverview()">
-    <img *ngIf="selectedLevel" [src]="selectedLevel.monster">
+    <div class="level__monster" *ngIf="selectedLevel">
+      <div class="monster__icon" [@showLevelMonster]>
+        <div class="monster" [style.backgroundImage]="'url('+ selectedLevel.monster +')'"></div>
+      </div>
+    </div>
+    <!-- <img *ngIf="selectedLevel" [src]="selectedLevel.monster"> -->
   </section>
 </ion-header>
 
 <ion-content>
-
   <ion-list no-lines class="c-exercise__levels" *ngIf="!selectedLevel" [@showList]>
     <ion-item *ngFor="let level of levels; let last = last">
       <section class="level" [ngClass]="{ 'inactive': !level.open }">
-        <div class="level__monster">
-          <img (click)="goToLevel(level)" [src]="level.monster" [@showLevelMonster]>
-          <round-progress [current]="level.completion" [max]="100" [radius]="45" [stroke]="5" [duration]="1" [@showLevelProgress]></round-progress>
+        <div class="level__monster" (click)="goToLevel(level)">
+          <div class="monster__icon" [@showLevelMonster]>
+            <div class="monster" [style.backgroundImage]="'url('+ level.monster +')'"></div>
+          </div>
+          <!-- <img  [src]="level.monster" [@showLevelMonster]> -->
+          <round-progress [current]="level.completion" [max]="100" [radius]="50" [stroke]="5" [duration]="1" [@showLevelProgress]></round-progress>
         </div>
         <span *ngIf="!last" class="level__seperator" [@showSeperator]></span>
       </section>

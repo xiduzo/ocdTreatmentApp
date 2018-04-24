@@ -38,8 +38,8 @@ export class LoginPage {
       password: this.password
     };
     this.restangular.one('users/validate').get(data).subscribe((response) => {
-      this.userService.setUser(response.plain()[0].profile);
-      if(response.plain().length === 1) {
+      if(response.data.plain().length === 1) {
+        this.userService.setUser(response.data.plain()[0].profile);
         this.authService.getJwtToken(data)
         .then((resp:any) => {
           this.authService.setLocalToken(resp.token);

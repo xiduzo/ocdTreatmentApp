@@ -6,7 +6,7 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class AuthService {
 
-  private baseUrl:string = 'http://localhost:8000/';
+  private baseUrl:string = 'https://mdd-ocd.herokuapp.com/';
   private token:string;
 
   constructor(
@@ -21,6 +21,10 @@ export class AuthService {
   setLocalToken(token:string) {
     this.storage.set('jwtToken', token);
     this.token = token;
+  }
+
+  removeLocalToken() {
+    this.storage.remove('jwtToken');
   }
 
   refreshJwtToken(tokenData) {
@@ -61,6 +65,10 @@ export class UserService {
   setUser(user:string) {
     this.storage.set('user', user);
     this.user = user;
+  }
+
+  removeUser() {
+    this.storage.remove('user');
   }
 
   getUser() {

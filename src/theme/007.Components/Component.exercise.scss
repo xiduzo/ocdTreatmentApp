@@ -1,7 +1,3 @@
-.c-exercise {
-
-}
-
 .c-exercise__monster {
   display: flex;
   justify-content: center;
@@ -16,12 +12,8 @@
   font-size: 0.8em;
   color: color($colors, light, base);
 
-  .tasks {
-    background: color($colors, primary, base);
-  }
-  .level {
-    background: color($colors, secondary, base);
-  }
+  .tasks { background: color($colors, primary, base); }
+  .level { background: color($colors, secondary, base); }
 
   .tasks,
   .level {
@@ -40,42 +32,53 @@
   padding: 32px 0;
 
   ion-item {
+
     .item-inner {
       ion-label { margin: 0 8px 0 0; }
     }
-  }
 
-  .level {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    &.inactive {
-      // img { filter: grayscale(100%); }
-    }
-
-    .level__monster {
+    .level {
       display: flex;
-      min-height: 100px;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      img {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-      }
-      round-progress {
-        position: absolute;
-        z-index: -1;
-      }
-    }
 
-    .level__seperator {
-      content: '';
-      border-left: 1px dotted lighten(color($colors, dark, base), 60);
-      height: 6vh;
-      margin: 6px 0;
+      &.inactive {
+        filter: grayscale(100%);
+        // img { filter: grayscale(100%); }
+      }
+
+      .level__seperator {
+        content: '';
+        border-left: 1px dotted lighten(color($colors, dark, base), 60);
+        height: 6vh;
+        margin: 6px 0;
+      }
     }
+  }
+}
+
+.level__monster {
+  display: flex;
+  min-height: 100px;
+  justify-content: center;
+  align-items: center;
+
+  .monster__icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #FCD28A;
+    overflow: hidden;
+    .monster {
+      width: inherit;
+      height: inherit;
+      background-size: cover;
+      margin-top: 20px;
+    }
+  }
+  round-progress {
+    position: absolute;
+    z-index: -1;
   }
 }
 

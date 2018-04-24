@@ -1,3 +1,6 @@
 ion-content.content {
   // background-color: color($colors, background, base);
+  [ion-fixed] {
+    width: 100vw;
+  }
 }

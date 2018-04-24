@@ -9,9 +9,13 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { ProfilePage } from '../pages/profile/profile';
 import { HomePage } from '../pages/home/home';
+
 import { ExercisePage } from '../pages/exercise/exercise';
-import { ExerciseDetailPage } from '../pages/exercise/detail/exercise.detail';
+import { ExerciseMoodPage } from '../pages/exercise/mood/exercise.mood';
+import { ExerciseDuringModal } from '../pages/exercise/during/exercise.during'
+;
 import { OnboardingPage } from '../pages/onboarding/onboarding';
+
 import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/signup/signup';
 
@@ -36,7 +40,7 @@ import { NgxCircularSliderModule } from 'ngx-circular-slider';
 // Function for setting the default restangular configuration
 export function RestangularConfigFactory(RestangularProvider, authService) {
   // RestangularProvider.setBaseUrl('http://localhost:8000/');
-  RestangularProvider.setBaseUrl('http://3fa93021.ngrok.io');
+  RestangularProvider.setBaseUrl('https://mdd-ocd.herokuapp.com/');
   RestangularProvider.setRequestSuffix('/');
   RestangularProvider.setFullResponse(true);
 
@@ -60,7 +64,8 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     TabsPage,
     OnboardingPage,
     ExercisePage,
-    ExerciseDetailPage,
+    ExerciseMoodPage,
+    ExerciseDuringModal,
     LoginPage,
     SignUpPage
   ],
@@ -83,7 +88,8 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     TabsPage,
     OnboardingPage,
     ExercisePage,
-    ExerciseDetailPage,
+    ExerciseMoodPage,
+    ExerciseDuringModal,
     LoginPage,
     SignUpPage
   ],

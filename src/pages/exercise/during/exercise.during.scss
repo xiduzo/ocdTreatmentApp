@@ -1,0 +1,104 @@
+$monster-oversize: 5vw;
+$monster-size: 50vw;
+
+page-exercise-during {
+
+  .monster {
+    background: #FCD28A;
+    width: $monster-size;
+    height: $monster-size;
+    border-radius: 50%;
+    margin: 12vh auto;
+    // animation: pulse 2500ms infinite;
+
+    .monster__illustration {
+      width: $monster-size - $monster-oversize;
+      height: $monster-size - $monster-oversize;
+      margin: 3vh $monster-oversize/2 0 $monster-oversize/2;
+      background-size: cover;
+      position: absolute;
+      // animation: pulseMonster 3s infinite;
+    }
+
+    .monster__rings {
+      border: 2px solid rgba(252, 211, 139, 0.9);
+      width: $monster-size + 2vw;
+      height: $monster-size + 2vw;
+      border-radius: 50%;
+      position: relative;
+      left: -1vw;
+      top: -1vw;
+      z-index: -1;
+      // display: none;
+      animation: pulseRing 3000ms infinite;
+
+      &:after,
+      &:before {
+        content:" ";
+        display: inline-block;
+        position: absolute;
+        border-radius: 50%;
+        animation: pulseRing 3000ms infinite;
+      }
+      &:after {
+        border: 2px solid rgba(252, 211, 139, 0.4);
+        width: $monster-size + 8vw;
+        height: $monster-size + 8vw;
+        left: -4vw;
+        top: -4vw;
+        animation-delay: 500ms;
+      }
+      &:before {
+        border: 2px solid rgba(252, 211, 139, 0.2);
+        width: $monster-size + 18vw;
+        height: $monster-size + 18vw;
+        left: -9vw;
+        top: -9vw;
+        animation-delay: 800ms;
+      }
+    }
+  }
+}
+
+@keyframes pulseRing {
+    0% {
+      transform: scale(1, 1);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1.0;
+    }
+    100% {transform: scale(1.1, 1.1);
+      opacity: 0;
+    }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(252, 211, 139, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 60px rgba(204,169,44, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+
+@keyframes pulseMonster {
+  0% {
+    width: $monster-size - $monster-oversize;
+    height: $monster-size - $monster-oversize;
+    margin: 3vh $monster-oversize/2 0 $monster-oversize/2;
+  }
+  30% {
+    width: $monster-size - $monster-oversize/2;
+    height: $monster-size - $monster-oversize/2;
+    margin: 0 $monster-oversize/4 0 $monster-oversize/4;
+  }
+  100% {
+    width: $monster-size - $monster-oversize;
+    height: $monster-size - $monster-oversize;
+    margin: 3vh $monster-oversize/2 0 $monster-oversize/2;
+  }
+}
