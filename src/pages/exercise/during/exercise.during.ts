@@ -12,6 +12,7 @@ export class ExerciseDuringModal {
   public level:any;
   public exercise:any;
   private tracking:any;
+  private dbLink:string;
 
   constructor(
     private params: NavParams,
@@ -25,6 +26,7 @@ export class ExerciseDuringModal {
     this.exercise = this.params.get('exercise');
     this.level = this.params.get('level');
     this.tracking = this.params.get('tracking');
+    this.dbLink = this.params.get('dbLink');
   }
 
   ionViewWillEnter() {
@@ -33,10 +35,10 @@ export class ExerciseDuringModal {
 
   finishExercise(succeed) {
     if(!succeed) this.tracking.gaveInToCompulsion = true;
-    
+
     this.tracking.exercise.end = new Date();
 
-    let moodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.level, exercise: this.exercise, before: false, tracking: this.tracking});
+    let moodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.level, exercise: this.exercise, before: false, tracking: this.tracking, dbLink: this.dbLink });
     moodModal.present();
     this.viewCtrl.dismiss();
   }

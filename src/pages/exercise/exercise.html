@@ -15,6 +15,11 @@
   </section> -->
   <section class="c-exercise__monster" [@isLevelSelected]='isLevelSelected' (@isLevelSelected.done)="resizeContent()" (click)="goToLevelOverview()">
     <div class="level__monster" *ngIf="selectedLevel">
+      <ion-fab top right>
+        <button ion-fab mini color="light" (click)="goToLevelOverview()">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-fab>
       <div class="monster__icon" [@showLevelMonster]>
         <div class="monster" [style.backgroundImage]="'url('+ selectedLevel.monster +')'"></div>
       </div>

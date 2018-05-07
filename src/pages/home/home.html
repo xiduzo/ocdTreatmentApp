@@ -1,16 +1,36 @@
-<!-- <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Home
+<ion-header>
+  <ion-navbar color="secondary">
+    <button clear ion-button color="light" (click)="previousWeek()">
+      <ion-icon name="arrow-dropleft"></ion-icon>
+    </button>
+    <ion-title text-center>
+      <!-- TODO look at this, maybe it is nice to select the date -->
+      <!-- <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="startWeek"></ion-datetime> -->
+      {{ startWeek | date : 'dd/MM'}} - {{ endWeek | date : 'dd/MM' }}
     </ion-title>
+    <button clear ion-button color="light" (click)="nextWeek()" [disabled]="!canSelectNextWeek">
+      <ion-icon name="arrow-dropright"></ion-icon>
+    </button>
   </ion-navbar>
-</ion-header> -->
+</ion-header>
 
 <ion-content>
-  <!-- <chart [options]="_chartOptionsScatter" style="display: block" type="chart"></chart> -->
-  <chart [options]="_chartOptionsParallel" style="display: block" type="chart" (load)="onChartload($event)"></chart>
+  <chart [options]="_chartOptions" style="display: block" type="chart" (load)="onChartload($event)"></chart>
 
-  <button (click)="testModal()">
-    test modal
-  </button>
+  <ion-list>
+    <ion-item>
+      <ion-label>Filter</ion-label>
+      <ion-select [(ngModel)]="filter">
+      <ion-option value="all">all</ion-option>
+      <ion-option value="n64">Nintendo64</ion-option>
+      <ion-option value="ps">PlayStation</ion-option>
+      <ion-option value="genesis">Sega Genesis</ion-option>
+      <ion-option value="saturn">Sega Saturn</ion-option>
+      <ion-option value="snes">SNES</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngFor="let mood of moods">
+      {{ mood }}
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -21,6 +21,7 @@ export class ExerciseAfterModal {
   public compulsiveBehaviourReason:string;
 
   public tracking:any;
+  private dbLink:string;
 
   constructor(
     private params: NavParams,
@@ -34,6 +35,7 @@ export class ExerciseAfterModal {
     this.exercise = this.params.get('exercise');
     this.level = this.params.get('level');
     this.tracking = this.params.get('tracking');
+    this.dbLink = this.params.get('dbLink');
   }
 
 
@@ -42,8 +44,8 @@ export class ExerciseAfterModal {
     this.tracking.obsessiveThoughts.explanation = this.obsessiveThoughtsReason;
     this.tracking.compulsiveBehaviour.rating = this.compulsiveBehaviour;
     this.tracking.compulsiveBehaviour.explanation = this.compulsiveBehaviourReason;
-    
-    let successModal = this.modalCtrl.create(ExerciseSuccessModal, {level: this.level, exercise: this.exercise, tracking: this.tracking });
+
+    let successModal = this.modalCtrl.create(ExerciseSuccessModal, {level: this.level, exercise: this.exercise, tracking: this.tracking, dbLink: this.dbLink });
     successModal.present();
 
     // console.table(this.tracking);

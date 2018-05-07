@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
 
+import { Restangular } from 'ngx-restangular';
+
 import {
   trigger,
   state,
@@ -38,6 +40,7 @@ export class ExerciseMoodPage {
   }
 
   public mood:string = 'content';
+  private moodNumber:number = 1;
   public moodReason:string;
   public moodAngle:number;
 
@@ -48,10 +51,13 @@ export class ExerciseMoodPage {
 
   private tracking:any;
 
+  private dbLink:string;
+
   constructor(
     private params: NavParams,
     public viewCtrl: ViewController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private restangular: Restangular,
   ) {
 
   }
@@ -61,7 +67,7 @@ export class ExerciseMoodPage {
     this.level = this.params.get('level');
     this.tracking = this.params.get('tracking');
     this.beforeMeasure = this.params.get('before');
-
+    this.dbLink = this.params.get('dbLink');
   }
 
   setMood(event) {
@@ -69,25 +75,58 @@ export class ExerciseMoodPage {
 
     if(event.angleLength <= (6.24 / this.props.segments * 1)) {
       this.mood = 'content';
+      this.moodNumber = 1;
     } else if(event.angleLength <= (6.24 / this.props.segments * 2)) {
       this.mood = 'ok';
+      this.moodNumber = 2;
     } else if(event.angleLength <= (6.24 / this.props.segments * 3)) {
       this.mood = 'meh';
+      this.moodNumber = 3;
     } else if(event.angleLength <= (6.24 / this.props.segments * 4)) {
       this.mood = 'panic';
+      this.moodNumber = 4;
     } else if(event.angleLength <= (6.24 / this.props.segments * 5)) {
       this.mood = 'worried';
+      this.moodNumber = 5;
     }
   }
 
   startExercise() {
-    this.tracking.beforeMood.mood = this.mood;
-    this.tracking.beforeMood.angle = this.moodAngle;
-    this.tracking.beforeMood.explanation = this.moodReason;
+    // Create db entry
+    // this.restangular.all('ladders/exerciseExecution/').post({
+    //   exercise: this.exercise.id
+    // })
+    // .toPromise()
+    // .then((response) => {
+    //   let exerciseExecution = response.data;
+    //
+    //   this.tracking.beforeMood.mood = this.moodNumber;
+    //   this.tracking.beforeMood.angle = Math.floor(this.moodAngle * 100);
+    //   this.tracking.beforeMood.explanation = this.moodReason;
+    //
+    //   this.restangular.all('ladders/exerciseMood').post({
+    //     mood: this.tracking.beforeMood.mood,
+    //     angle: this.tracking.beforeMood.angle / 100,
+    //     explanation: this.tracking.beforeMood.explanation
+    //   })
+    //   .toPromise()
+    //   .then((response) => {
+    //     exerciseExecution.beforeMood = response.data.id;
+    //     exerciseExecution.patch();
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    //
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    // });
 
     let duringModal = this.modalCtrl.create(ExerciseDuringModal, {level: this.level, exercise: this.exercise, tracking: this.tracking });
     duringModal.present();
     this.viewCtrl.dismiss();
+
   }
 
   finishExercise() {
@@ -95,7 +134,7 @@ export class ExerciseMoodPage {
     this.tracking.afterMood.angle = this.moodAngle;
     this.tracking.afterMood.explanation = this.moodReason;
 
-    let afterModal = this.modalCtrl.create(ExerciseAfterModal, {level: this.level, exercise: this.exercise, tracking: this.tracking });
+    let afterModal = this.modalCtrl.create(ExerciseAfterModal, {level: this.level, exercise: this.exercise, tracking: this.tracking, dbLink: this.dbLink });
     afterModal.present();
     this.viewCtrl.dismiss();
   }

@@ -3,4 +3,13 @@ page-home {
     stroke: rgb(255, 66, 66);
     stroke-width: 2px;
   }
+
+  ion-header {
+    ion-navbar {
+      .toolbar-content {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
 }
