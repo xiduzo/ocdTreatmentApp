@@ -1,0 +1,19 @@
+logbook-page {
+  ion-header {
+    background: color($colors, secondary, base);
+    color: color($colors, light, base);
+  }
+
+  ion-content {
+    ion-list {
+      ion-card {
+        ion-card-content.card-content {
+          h1 {
+            font-size: 1em;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}

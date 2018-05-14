@@ -1,6 +1,6 @@
 .c-onboarding {
   .swiper-pagination {
-    bottom: 7%;
+    bottom: 12%;
 
     .swiper-pagination-bullet-active {
       background: color($colors, light, base);
@@ -20,40 +20,31 @@
 }
 
 .c-onboarding__illustration {
-  height: 50%;
+  height: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  img {
-
-  }
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 .c-onboarding__text {
-  height: 50%;
-  background-color: color($colors, primary, base);
+  height: 40%;
+  background-color: color($colors, secondary, base);
   color: color($colors, light, base);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-
-  h1 {
-    text-transform: uppercase;
-    font-size: 1.2em;
-    font-weight: bold;
-  }
 
   p {
-    text-align: justify;
+    padding-top: 1.5em;
+    text-align: center;
   }
 }
 
 .c-onboarding__button {
   position: absolute;
-  bottom: 1em;
+  bottom: 0;
+  margin: 0;
   z-index: 99;
-  text-align: center;
-  background: none;
-  width: 100%;
-  color: rgb(130, 130, 130);
+  color:  darken(color($colors, light, base),15);
 }

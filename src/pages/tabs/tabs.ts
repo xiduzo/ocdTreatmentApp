@@ -5,6 +5,7 @@ import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/na
 import { ExercisePage } from '../exercise/exercise';
 import { HomePage } from '../home/home';
 import { ProfilePage } from '../profile/profile';
+import { LogbookPage } from '../logbook/logbook';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -18,6 +19,7 @@ export class TabsPage {
   HomePageRoot = HomePage;
   ExercisePageRoot = ExercisePage;
   ProfilePageRoot = ProfilePage;
+  LogbookPageRoot = LogbookPage;
 
   constructor(
     private nativePageTransitions: NativePageTransitions,

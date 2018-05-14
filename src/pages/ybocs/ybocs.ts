@@ -15,10 +15,6 @@ export class YbocsModal {
 
   }
 
-  ionViewDidLoad() {
-    console.log('select random question');
-  }
-
   close() {
     this.viewCtrl.dismiss();
   }

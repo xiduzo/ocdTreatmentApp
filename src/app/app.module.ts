@@ -20,6 +20,8 @@ import { YbocsModal } from '../pages/ybocs/ybocs';
 
 import { OnboardingPage } from '../pages/onboarding/onboarding';
 
+import { LogbookPage } from '../pages/logbook/logbook';
+
 import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/signup/signup';
 
@@ -74,7 +76,8 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     ExerciseSuccessModal,
     YbocsModal,
     LoginPage,
-    SignUpPage
+    SignUpPage,
+    LogbookPage
   ],
   imports: [
     BrowserModule,
@@ -101,7 +104,8 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     ExerciseSuccessModal,
     YbocsModal,
     LoginPage,
-    SignUpPage
+    SignUpPage,
+    LogbookPage
   ],
   providers: [
     StatusBar,

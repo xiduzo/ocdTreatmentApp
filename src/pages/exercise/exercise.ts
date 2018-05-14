@@ -198,6 +198,8 @@ export class ExercisePage {
   }
 
   selectExercise(exercise) {
+    if(exercise.completed) return;
+
     let exerciseMoodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.selectedLevel, exercise: exercise, before: true, tracking: this.tracking});
     exerciseMoodModal.present();
   }

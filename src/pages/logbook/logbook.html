@@ -1,0 +1,29 @@
+<ion-header color="secondary">
+  <ion-navbar color="secondary" text-center>
+    <img src="assets/imgs/logbook_illustration.png" alt="logbook illustration" class="o-illustration header__illustation">
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card *ngFor="let x of [1,2,3,4,5,6,7,8,9,0,11,22,33,44,55,66,77,88,99,12,23,34,45,56,67,78,98,90]">
+      <ion-item>
+      <ion-avatar item-start>
+        <div class="o-moodindicator">
+          <span class="before before--panic"></span>
+          <span class="after after--ok"></span>
+        </div>
+      </ion-avatar>
+        <h2>Task name over here</h2>
+        <p>November 5, 1955</p>
+      </ion-item>
+        <!-- Task name over here -->
+      <ion-card-content>
+        <h1>
+          Notes:
+        </h1>
+        Scream for no reason at 4 am stand in front of the computer screen. Sleep everywhere, but not in my bed sun bathe fall asleep on the washing machine lick left leg for ninety minutes.
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>
