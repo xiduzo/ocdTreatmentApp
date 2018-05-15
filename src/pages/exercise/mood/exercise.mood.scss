@@ -1,6 +1,13 @@
 page-exercise-mood {
   ion-content.content {
     background: rgb(252, 201, 138);
+
+    [ion-fixed], .ion-fixed {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
   }
   ion-fab {
     button.fab {
@@ -13,7 +20,10 @@ page-exercise-mood {
   }
   ngx-cs-slider {
     circle,
-    path { stroke-width: 2; }
+    path {
+      stroke-width: 2;
+    }
+
 
     g {
       g {
@@ -24,7 +34,7 @@ page-exercise-mood {
 
         circle {
           stroke-width: 5;
-          transition: all 350ms;
+          transition: all 450ms;
         }
       }
     }

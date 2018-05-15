@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController, ModalController } from 'ionic-angular';
+import { NavParams, ViewController } from 'ionic-angular';
 
 @Component({
   selector: 'page-exercise-success',
@@ -13,8 +13,7 @@ export class ExerciseSuccessModal {
 
   constructor(
     private params: NavParams,
-    public viewCtrl: ViewController,
-    private modalCtrl: ModalController
+    public viewCtrl: ViewController
   ) {
 
   }

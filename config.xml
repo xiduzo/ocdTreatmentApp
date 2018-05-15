@@ -92,4 +92,5 @@
     <allow-navigation href="http://145.109.203.155:8100" />
     <engine name="android" spec="~7.0.0" />
     <engine name="browser" spec="~5.0.3" />
+    <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
 </widget>

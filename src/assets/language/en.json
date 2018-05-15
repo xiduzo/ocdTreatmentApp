@@ -1,0 +1,38 @@
+{
+  "NAV_HOME": "Home",
+  "NAV_EXERCISE": "Exercise",
+  "NAV_LOGBOOK": "Logbook",
+  "NAV_PROFILE": "Profile",
+
+  "NOTES": "Notes",
+  "FILTER": "Filter",
+  "LANGUAGE": "Language",
+
+  "MOOD_HEADER": "Anxiety rating scale",
+  "MOOD_EXPLENATION": "What causes this mood (optional)",
+  "MOOD_SUCCESS": "Success",
+  "MOOD_CONTENT": "Calm",
+  "MOOD_OK": "Tiny bit of anxiety",
+  "MOOD_MEH": "Somewhat anxious",
+  "MOOD_WORRIED": "Strong anxiety",
+  "MOOD_PANIC": "Freak out anxiety",
+
+  "WITHOUT": "Without",
+
+  "BUTTON_GAVE_IN": "Gave in to compulsive behavior",
+  "BUTTON_SUCCEED_EXERCISE": "Succeeded without compulsion",
+
+  "INTENSITY_HEADER": "Score intensitiy of",
+  "INTENSITY_OBSESSIVE_THOUGHTS": "Obsessive thoughts",
+  "INTENSITY_COMPULSIVE_BEHAVIOUR": "Compulsive behavior",
+  "INTENSITY_WHY": "Why (optional)",
+
+  "ONBOARDING_SKIP": "Skip",
+  "ONBOARDING_GOT_IT": "Got it",
+  "ONBOARDING_SLIDE_1": "Obsessions are like little monsters, liing in your mind. The mosnters sometimes take over your thoughts and actions",
+  "ONBOARDING_SLIDE_2": "You already defined what monsters live in your mind and some monsters scare you more than others.",
+  "ONBOARDING_SLIDE_3": "The more space you allow the mosnters, the more they will grow. You allow them to take over your mind.",
+  "ONBOARDING_SLIDE_4": "If you success an exercise and faced the monster successfully you ...",
+  "ONBOARDING_SLIDE_5": "By conducting the exercises you allow them less space and give more to yourself.",
+  "ONBOARDING_SLIDE_6": "After completing all exercises successfully you give the monster no space at all and it will shrink."
+}

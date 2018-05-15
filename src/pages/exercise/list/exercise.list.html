@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-fab top right (click)="close()">
+    <button ion-fab mini color="light">
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-toolbar color="secondary">
+    <div class="level__monster">
+      <div class="monster__icon">
+        <div class="monster" [style.backgroundImage]="'url('+ level?.monster +')'"></div>
+      </div>
+      <round-progress [current]="level?.completion" [max]="100" [radius]="60" [stroke]="5" [duration]="1"></round-progress>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="c-level__exercises">
+    <ion-item (click)="selectExercise(exercise)" text-wrap *ngFor="let exercise of level?.exercises" [ngClass]="{ 'completed': exercise.completed === true }">
+      <ion-icon name="radio-button-off" *ngIf="!exercise.completed"></ion-icon>
+      <ion-icon name="checkmark-circle" *ngIf="exercise.completed"></ion-icon>
+      <span class="exercise__text">
+        {{ exercise.situation }}
+      </span>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="secondary">
     <ion-title text-center>
-      Score the intensity of
+      {{ 'INTENSITY_HEADER' | translate}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,7 +11,7 @@
     <ion-list>
       <ion-item>
         <ion-label stacked>
-          Obsessive thoughts
+          {{ 'INTENSITY_OBSESSIVE_THOUGHTS' | translate }}
         </ion-label>
         <ion-range min="{{range.min}}" max="{{range.max}}" [(ngModel)]="obsessiveThoughts" pin="true">
           <ion-label range-left>{{range.min}}</ion-label>
@@ -20,13 +20,13 @@
       </ion-item>
       <ion-item>
         <ion-label floating>
-          Why (optional)
+          {{ 'INTENSITY_WHY' | translate }}
         </ion-label>
         <ion-textarea [(ngModel)]="obsessiveThoughtsReason" name="obsessiveThoughtsReason"></ion-textarea>
       </ion-item>
       <ion-item>
         <ion-label stacked>
-          Compulsive behaviour
+          {{ 'INTENSITY_COMPULSIVE_BEHAVIOUR' | translate }}
         </ion-label>
         <ion-range min="{{range.min}}" max="{{range.max}}" [(ngModel)]="compulsiveBehaviour" pin="true">
           <ion-label range-left>{{range.min}}</ion-label>
@@ -35,7 +35,7 @@
       </ion-item>
       <ion-item>
         <ion-label floating>
-          Why (optional)
+          {{ 'INTENSITY_WHY' | translate}}
         </ion-label>
         <ion-textarea [(ngModel)]="compulsiveBehaviourReason" name="compulsiveBehaviourReason"></ion-textarea>
       </ion-item>

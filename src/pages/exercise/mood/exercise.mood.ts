@@ -53,6 +53,8 @@ export class ExerciseMoodPage {
 
   private dbLink:string;
 
+  private moodAngleElement:any;
+
   constructor(
     private params: NavParams,
     public viewCtrl: ViewController,
@@ -70,23 +72,34 @@ export class ExerciseMoodPage {
     this.dbLink = this.params.get('dbLink');
   }
 
+  ionViewDidEnter() {
+    // Hacking a number into the graph
+    // TODO:
+    // Implement this in the library itself (maybe make pull request)
+    document.querySelectorAll('ngx-cs-slider g g')[0].innerHTML += '<text text-anchor="middle" font-weight="bold" fill="#222" dy=".35em">0</text>'
+    this.moodAngleElement = document.querySelectorAll('ngx-cs-slider g g text')[0];
+  }
+
   setMood(event) {
     this.moodAngle = event.angleLength;
 
-    if(event.angleLength <= (6.24 / this.props.segments * 1)) {
+    // Set moodAngle in graph
+    if(this.moodAngleElement) this.moodAngleElement.innerHTML = parseFloat(this.moodAngle.toFixed(0));
+
+    if(event.angleLength <= (Math.PI*2 / this.props.segments * 1)) {
       this.mood = 'content';
       this.moodNumber = 1;
-    } else if(event.angleLength <= (6.24 / this.props.segments * 2)) {
+    } else if(event.angleLength <= (Math.PI*2 / this.props.segments * 2)) {
       this.mood = 'ok';
       this.moodNumber = 2;
-    } else if(event.angleLength <= (6.24 / this.props.segments * 3)) {
+    } else if(event.angleLength <= (Math.PI*2 / this.props.segments * 3)) {
       this.mood = 'meh';
       this.moodNumber = 3;
-    } else if(event.angleLength <= (6.24 / this.props.segments * 4)) {
-      this.mood = 'panic';
-      this.moodNumber = 4;
-    } else if(event.angleLength <= (6.24 / this.props.segments * 5)) {
+    } else if(event.angleLength <= (Math.PI*2 / this.props.segments * 4)) {
       this.mood = 'worried';
+      this.moodNumber = 4;
+    } else if(event.angleLength <= (Math.PI*2 / this.props.segments * 5)) {
+      this.mood = 'panic';
       this.moodNumber = 5;
     }
   }

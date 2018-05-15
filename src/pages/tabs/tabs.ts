@@ -25,7 +25,6 @@ export class TabsPage {
     private nativePageTransitions: NativePageTransitions,
     private navParams: NavParams
   ) {
-
   }
 
   private getAnimationDirection(index):string {

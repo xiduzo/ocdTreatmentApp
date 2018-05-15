@@ -1,13 +1,13 @@
 <ion-content>
   <ion-slides pager (ionSlideDidChange)="slideChanged()" class="c-onboarding">
-    <ion-slide class="c-onboarding__slide" *ngFor="let slide of _slides">
-      <div class="c-onboarding__illustration" [style.backgroundImage]="'url(assets/imgs/onboarding/'+ slide.image +')'"></div>
+    <ion-slide class="c-onboarding__slide" *ngFor="let slide of _slides; let i = index;">
+      <div class="c-onboarding__illustration" [style.backgroundImage]="'url(assets/imgs/onboarding/step'+ (i + 1) +'.png)'"></div>
       <article class="c-onboarding__text" padding>
-        <p> {{ slide.text }} </p>
+        <p> {{ slide | translate }} </p>
       </article>
     </ion-slide>
   </ion-slides>
   <button ion-button block large color="secondary" class="c-onboarding__button" (click)="done()">
-    {{ doneMessage }}
+    {{ buttonText | translate }}
   </button>
 </ion-content>

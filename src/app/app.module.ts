@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { Http } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -15,6 +16,7 @@ import { ExerciseMoodPage } from '../pages/exercise/mood/exercise.mood';
 import { ExerciseDuringModal } from '../pages/exercise/during/exercise.during';
 import { ExerciseAfterModal } from '../pages/exercise/after/exercise.after';
 import { ExerciseSuccessModal } from '../pages/exercise/success/exercise.success';
+import { ExerciseListPage } from '../pages/exercise/list/exercise.list';
 
 import { YbocsModal } from '../pages/ybocs/ybocs';
 
@@ -43,6 +45,10 @@ import * as highcharts from 'highcharts';
 
 import { NgxCircularSliderModule } from 'ngx-circular-slider';
 
+import { TranslateModule } from 'ng2-translate/ng2-translate';
+import { TranslateLoader, TranslateStaticLoader } from 'ng2-translate/src/translate.service';
+import { Globalization } from '@ionic-native/globalization';
+
 // Function for setting the default restangular configuration
 export function RestangularConfigFactory(RestangularProvider, authService) {
   RestangularProvider.setBaseUrl('http://localhost:8000/');
@@ -62,6 +68,11 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
   });
 }
 
+// Language settings
+export function createTranslateLoader(http: Http) {
+  return new TranslateStaticLoader(http, 'assets/language', '.json');
+}
+
 @NgModule({
   declarations: [
     MyApp,
@@ -74,6 +85,7 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     ExerciseDuringModal,
     ExerciseAfterModal,
     ExerciseSuccessModal,
+    ExerciseListPage,
     YbocsModal,
     LoginPage,
     SignUpPage,
@@ -88,7 +100,12 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     HttpClientModule,
     RoundProgressModule,
     NgxCircularSliderModule,
-    RestangularModule.forRoot([AuthService], RestangularConfigFactory)
+    RestangularModule.forRoot([AuthService], RestangularConfigFactory),
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useFactory: (createTranslateLoader),
+      deps: [Http]
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -102,6 +119,7 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     ExerciseDuringModal,
     ExerciseAfterModal,
     ExerciseSuccessModal,
+    ExerciseListPage,
     YbocsModal,
     LoginPage,
     SignUpPage,
@@ -114,6 +132,7 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
     ScreenOrientation,
     AuthService,
     UserService,
+    Globalization,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
@@ -121,7 +140,7 @@ export class AppModule {
   constructor(
     private _progressConfig: RoundProgressConfig
   ) {
-    _progressConfig.setDefaults({
+    this._progressConfig.setDefaults({
       color: '#50D2C2'
     })
   }

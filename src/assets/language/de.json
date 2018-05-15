@@ -1,0 +1,38 @@
+{
+  "NAV_HOME": "Home",
+  "NAV_EXERCISE": "Übungen",
+  "NAV_LOGBOOK": "Logbuch",
+  "NAV_PROFILE": "Profil",
+
+  "NOTES": "Notiz",
+  "FILTER": "Filter",
+  "LANGUAGE": "Sprache",
+
+  "MOOD_HEADER": "Angst Rating Skala",
+  "MOOD_EXPLENATION": "Wordurch wird dieses Gefühl verursacht (optional)",
+  "MOOD_SUCCESS": "Triumph",
+  "MOOD_CONTENT": "Ruhe",
+  "MOOD_OK": "Ein kleines bisschen Angst",
+  "MOOD_MEH": "Etwas ängstlich",
+  "MOOD_WORRIED": "Starke Angst",
+  "MOOD_PANIC": "Angst ausflippen",
+
+  "WITHOUT": "Ohne",
+
+  "BUTTON_GAVE_IN": "Gab zwanghaftes Verhalten auf",
+  "BUTTON_SUCCEED_EXERCISE": "Erfolg ohne Zwang",
+
+  "INTENSITY_HEADER": "Wie stark ist dein drang",
+  "INTENSITY_OBSESSIVE_THOUGHTS": "Zwangsgedanke",
+  "INTENSITY_COMPULSIVE_BEHAVIOUR": "Zwangshandlung",
+  "INTENSITY_WHY": "Bescheibe deinen Gedanken (optional)",
+
+  "ONBOARDING_SKIP": "Überspringen",
+  "ONBOARDING_GOT_IT": "Fertig",
+  "ONBOARDING_SLIDE_1": "Zwangsvorstellungen sind wie Monster, die sich in dein Gehrin eingeschlichen haben. Die Monster besetzen manchmal deine Gedanken und bestimmen deine Handlungen.",
+  "ONBOARDING_SLIDE_2": "Du hast bereits herausgefunden, welche Monster sich in deinem Kopf herumtreiben, einige davon beängstigen dich mehr als andere.",
+  "ONBOARDING_SLIDE_3": "Je mehr Platz du denk Monstern einrämst umso mehr breiten sie sich aus un bestimmen deine Gedanken und Handlungen.",
+  "ONBOARDING_SLIDE_4": "Sobald du eine Übung erfolgreich durchgeführt und das Monster besiegt hast, kannst du es in eine Käfig einsperren.",
+  "ONBOARDING_SLIDE_5": "Durch das Durchführen der Übungen engst du den Raum der Monster ein un verschaffst dir selbst Freiheit.",
+  "ONBOARDING_SLIDE_6": "Sobald du alle Übungen einer Schwierigkeitsstufe erfolgreich durchgeführt hast, wird das entsprechende Monster im Käftig schrumpfen."
+}

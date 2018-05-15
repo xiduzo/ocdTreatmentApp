@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController, ModalController } from 'ionic-angular';
+import { ViewController} from 'ionic-angular';
 
 @Component({
   selector: 'ybocs',
@@ -8,9 +8,7 @@ import { NavParams, ViewController, ModalController } from 'ionic-angular';
 export class YbocsModal {
 
   constructor(
-    private params: NavParams,
-    public viewCtrl: ViewController,
-    private modalCtrl: ModalController
+    public viewCtrl: ViewController
   ) {
 
   }

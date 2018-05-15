@@ -6,9 +6,13 @@
       </button>
     </ion-fab>
     <strong class="c-mood__mood">
-        I am feeling
+        {{ 'MOOD_HEADER' | translate }}
         <div class="mood__name">
-          {{ mood }}
+          <span *ngIf="this.moodNumber === 1">{{ 'MOOD_CONTENT' | translate }}</span>
+          <span *ngIf="this.moodNumber === 2">{{ 'MOOD_OK' | translate }}</span>
+          <span *ngIf="this.moodNumber === 3">{{ 'MOOD_MEH' | translate }}</span>
+          <span *ngIf="this.moodNumber === 4">{{ 'MOOD_WORRIED' | translate }}</span>
+          <span *ngIf="this.moodNumber === 5">{{ 'MOOD_PANIC' | translate }}</span>
         </div>
     </strong>
 
@@ -46,7 +50,7 @@
     <form>
       <ion-item>
         <ion-label floating>
-          What causes this mood (optional)
+          {{ 'MOOD_EXPLENATION' | translate }}
         </ion-label>
         <ion-textarea [(ngModel)]="moodReason" name="moodReason"></ion-textarea>
       </ion-item>

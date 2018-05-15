@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { App, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -11,6 +11,10 @@ import { LoginPage } from '../pages/login/login';
 
 import { AuthService, UserService } from '../lib/services';
 
+import { TranslateService } from 'ng2-translate';
+import { Globalization } from '@ionic-native/globalization';
+import { defaultLanguage, availableLanguages, sysOptions } from '../lib/constants';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -18,14 +22,19 @@ export class MyApp {
   private rootPage:any = LoginPage; // Always start the app with the LoginPage to be sure
 
   constructor(
+    protected appCtrl: App,
     protected platform: Platform,
     protected statusBar: StatusBar,
     protected splashScreen: SplashScreen,
     protected storage: Storage,
     protected authService: AuthService,
-    protected userService: UserService
+    protected userService: UserService,
+    protected translate: TranslateService,
+    protected globalization: Globalization
     ) {
     platform.ready().then(() => {
+      this.setLanguage();
+
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
@@ -58,7 +67,7 @@ export class MyApp {
               storage.get('onboardingCompleted')
               .then((val) => {
                 // Based on the 'onboardingCompleted' we guide the user to the next page
-                this.rootPage = val === true ? TabsPage : OnboardingPage;
+                val === true ? this.appCtrl.getRootNav().push(TabsPage) : this.appCtrl.getRootNav().push(OnboardingPage);
               })
               // Something went wrong getting the 'onboardingCompleted'
               .catch((err) => { console.log(err); });
@@ -73,5 +82,38 @@ export class MyApp {
       // Something went wrong getting the 'jwtToken'
       .catch((err) => { console.log(err); });
     });
+  }
+
+  setLanguage() {
+    // See if we have set the language allready
+    this.storage.get('language')
+    .then((val) => {
+      // return if we have set a language
+      if(val) return this.translate.setDefaultLang(val);
+
+      // Else try to find the best option
+      this.translate.setDefaultLang(defaultLanguage);
+
+      if ((<any>window).cordova) {
+        this.globalization.getPreferredLanguage().then(result => {
+          var language = this.getSuitableLanguage(result.value);
+          this.translate.use(language);
+          sysOptions.systemLanguage = language;
+          this.storage.set('language', language);
+        });
+      } else {
+        let browserLanguage = this.translate.getBrowserLang() || defaultLanguage;
+        var language = this.getSuitableLanguage(browserLanguage);
+        this.translate.use(language);
+        sysOptions.systemLanguage = language;
+        this.storage.set('language', language);
+      }
+    })
+
+  }
+
+  getSuitableLanguage(language) {
+    language = language.substring(0, 2).toLowerCase();
+		return availableLanguages.some(x => x.code == language) ? language : defaultLanguage;
   }
 }

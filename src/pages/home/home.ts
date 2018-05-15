@@ -1,8 +1,4 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
-
-import { ExerciseSuccessModal } from '../exercise/success/exercise.success';
-import { YbocsModal } from '../ybocs/ybocs';
 
 import moment from 'moment';
 
@@ -14,21 +10,20 @@ export class HomePage {
 
   public _chartOptions:any;
 
+  public filter:string = 'all';
+  public moods:any = [
+    'MOOD_CONTENT',
+    'MOOD_OK',
+    'MOOD_MEH',
+    'MOOD_WORRIED',
+    'MOOD_PANIC'
+  ];
+
   public endWeek:any = moment(moment.now()).endOf('week');
   public startWeek:any = moment(moment.now()).startOf('week');
   public canSelectNextWeek:boolean = false;
 
-  public moods = [
-    'panicly',
-    'worried',
-    'meh',
-    'okay',
-    'content'
-  ];
-
   constructor(
-    public navCtrl: NavController,
-    private modalCtrl: ModalController
   ) {
 
     this._chartOptions = {
@@ -37,15 +32,15 @@ export class HomePage {
       },
       title: { text: ''},
       xAxis: {
-        min: 0, // use angleLength
-        max: 6.26, // use angleLength
+        min: 0,
+        max: 5,
         title: {
           text: 'BEFORE'
         }
       },
       yAxis: {
-        min: 0, // use angleLength
-        max: 6.26, // use angleLength
+        min: 0,
+        max: 5,
         title: {
           text: 'AFTER'
         }
@@ -73,42 +68,9 @@ export class HomePage {
     }
   }
 
-  // Add images to chart
-  onChartload(){}
-  // onChartload (event) {
-  //   event.context.renderer.image(
-  //     'https://www.highcharts.com/samples/graphics/sun.png',
-  //     30, // X
-  //     55, // Y
-  //     30, // Width
-  //     30 // Height
-  //   ).attr({zIndex: 10}).add();
-  //   event.context.renderer.image(
-  //     'https://www.highcharts.com/samples/graphics/sun.png',
-  //     97, // X
-  //     55, // Y
-  //     30, // Width
-  //     30 // Height
-  //   ).attr({zIndex: 10}).add();
-  //   event.context.renderer.image(
-  //     'https://cdn.shopify.com/s/files/1/1061/1924/products/Sad_Face_Emoji_large.png?v=1480481055',
-  //     30, // X
-  //     180, // Y
-  //     25, // Width
-  //     25 // Height
-  //   ).attr({zIndex: 10}).add();
-  //   event.context.renderer.image(
-  //     'http://pngimg.com/uploads/smiley/smiley_PNG36231.png',
-  //     300, // X
-  //     180, // Y
-  //     25, // Width
-  //     25 // Height
-  //   ).attr({zIndex: 10}).add();
-  // }
-
-  testModal() {
-    let testModal = this.modalCtrl.create(ExerciseSuccessModal);
-    testModal.present();
+  // https://www.arduino.cc/reference/en/language/functions/math/map/
+  map(x, in_min, in_max, out_min, out_max){
+    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
   }
 
   previousWeek() {

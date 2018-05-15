@@ -1,0 +1,19 @@
+$exercise-list-header-height: 140px;
+
+exercise-list-page {
+  ion-header {
+    ion-fab {
+      button.fab {
+        background: none;
+        box-shadow: none;
+        ion-icon {
+          color: color($colors, dark, base);
+        }
+      }
+    }
+    .level__monster {
+      min-height: $exercise-list-header-height;
+      height: $exercise-list-header-height;
+    }
+  }
+}

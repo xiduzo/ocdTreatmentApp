@@ -6,7 +6,17 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>{{ 'LANGUAGE' | translate }}</ion-label>
+      <ion-select [(ngModel)]="language" (ngModelChange)="updateAppLanguage()">
+        <ion-option *ngFor="let language of languages" value="{{language.code}}">
+          {{ language.name }}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
   profile
   <button (click)="logout()" ion-button block large>
     logout
