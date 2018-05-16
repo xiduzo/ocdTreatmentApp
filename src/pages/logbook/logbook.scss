@@ -2,15 +2,16 @@ logbook-page {
   ion-header {
     background: color($colors, secondary, base);
     color: color($colors, light, base);
+    min-height: 125px;
   }
 
   ion-content {
     ion-list {
       ion-card {
         ion-card-content.card-content {
-          h1 {
+          ion-card-title {
             font-size: 1em;
-            font-weight: bold;
+            // font-weight: bold;
           }
         }
       }

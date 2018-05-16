@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage';
+
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
 
 
@@ -26,7 +28,8 @@ export class ExerciseAfterModal {
   constructor(
     private params: NavParams,
     public viewCtrl: ViewController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private storage: Storage
   ) {
 
   }
@@ -45,11 +48,19 @@ export class ExerciseAfterModal {
     this.tracking.compulsiveBehaviour.rating = this.compulsiveBehaviour;
     this.tracking.compulsiveBehaviour.explanation = this.compulsiveBehaviourReason;
 
-    let successModal = this.modalCtrl.create(ExerciseSuccessModal, {level: this.level, exercise: this.exercise, tracking: this.tracking, dbLink: this.dbLink });
-    successModal.present();
+    this.tracking.end = new Date();
 
-    // console.table(this.tracking);
-    this.viewCtrl.dismiss();
+    this.storage.get('exercises').then((exercises) => {
+      exercises[exercises.length-1] = this.tracking;
+      this.storage.set('exercises', exercises);
+
+      console.log(exercises);
+
+      let successModal = this.modalCtrl.create(ExerciseSuccessModal, {level: this.level, exercise: this.exercise, tracking: this.tracking, dbLink: this.dbLink });
+      successModal.present();
+      this.viewCtrl.dismiss();
+    });
+
 
   }
 

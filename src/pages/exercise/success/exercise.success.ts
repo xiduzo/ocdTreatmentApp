@@ -22,8 +22,6 @@ export class ExerciseSuccessModal {
     this.exercise = this.params.get('exercise');
     this.level = this.params.get('level');
     this.tracking = this.params.get('tracking');
-
-    console.log(this.level);
   }
 
   ionViewWillEnter() {

@@ -1,5 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
+import { Storage } from '@ionic/storage';
+
 import { App, Content, NavParams, ModalController } from 'ionic-angular';
+
+import { UUID } from 'angular2-uuid';
 
 import { ExerciseMoodPage } from '../../exercise/mood/exercise.mood';
 
@@ -35,6 +39,10 @@ export class ExerciseListPage {
   };
 
   private tracking:any = {
+    id: null,
+    start: null,
+    end: null,
+    exercise: null,
     beforeMood: {
       mood: null,
       angle: null,
@@ -54,7 +62,7 @@ export class ExerciseListPage {
       rating: null,
       explanation: null
     },
-    exercise: {
+    erp: {
       start: null,
       end: null
     }
@@ -63,14 +71,14 @@ export class ExerciseListPage {
   constructor(
     private params: NavParams,
     private modalCtrl: ModalController,
-    private appCtrl: App
+    private appCtrl: App,
+    private storage: Storage
   ) {
 
   }
 
   ionViewWillEnter() {
     this.level = this.params.get('level');
-    console.log(this.level);
   }
 
   close() {
@@ -80,8 +88,21 @@ export class ExerciseListPage {
   selectExercise(exercise) {
     if(exercise.completed) return;
 
-    let exerciseMoodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.level, exercise: exercise, before: true, tracking: this.tracking});
-    exerciseMoodModal.present();
+
+    this.storage.get('exercises').then((exercises) => {
+      if(!exercises) exercises = []; // When it's the users' first time
+
+      this.tracking.id = UUID.UUID();
+      this.tracking.start = new Date();
+      this.tracking.exercise = exercise.plain();
+
+      exercises.push(this.tracking);
+      this.storage.set('exercises', exercises);
+
+      let exerciseMoodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.level, exercise: exercise, before: true, tracking: this.tracking});
+      exerciseMoodModal.present();
+    });
+
   }
 
 

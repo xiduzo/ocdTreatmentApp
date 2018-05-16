@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage';
+
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
 
 import { ExerciseMoodPage } from '../mood/exercise.mood';
@@ -17,7 +19,8 @@ export class ExerciseDuringModal {
   constructor(
     private params: NavParams,
     public viewCtrl: ViewController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private storage: Storage
   ) {
 
   }
@@ -30,17 +33,28 @@ export class ExerciseDuringModal {
   }
 
   ionViewWillEnter() {
-    this.tracking.exercise.start = new Date();
+    this.tracking.erp.start = new Date();
+
+    this.storage.get('exercises').then((exercises) => {
+      exercises[exercises.length - 1] = this.tracking;
+      this.storage.set('exercises', exercises);
+    });
   }
 
   finishExercise(succeed) {
     if(!succeed) this.tracking.gaveInToCompulsion = true;
 
-    this.tracking.exercise.end = new Date();
+    this.tracking.erp.end = new Date();
 
-    let moodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.level, exercise: this.exercise, before: false, tracking: this.tracking, dbLink: this.dbLink });
-    moodModal.present();
-    this.viewCtrl.dismiss();
+    this.storage.get('exercises').then((exercises) => {
+      exercises[exercises.length - 1] = this.tracking;
+      this.storage.set('exercises', exercises);
+
+      let moodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.level, exercise: this.exercise, before: false, tracking: this.tracking });
+      moodModal.present();
+      this.viewCtrl.dismiss();
+    });
+
   }
 
 }

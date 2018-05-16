@@ -7,7 +7,7 @@
     </ion-fab>
     <strong class="c-mood__mood">
         {{ 'MOOD_HEADER' | translate }}
-        <div class="mood__name">
+        <div class="mood__name" text-center>
           <span *ngIf="this.moodNumber === 1">{{ 'MOOD_CONTENT' | translate }}</span>
           <span *ngIf="this.moodNumber === 2">{{ 'MOOD_OK' | translate }}</span>
           <span *ngIf="this.moodNumber === 3">{{ 'MOOD_MEH' | translate }}</span>

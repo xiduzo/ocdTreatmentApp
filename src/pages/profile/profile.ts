@@ -5,9 +5,7 @@ import { TranslateService } from 'ng2-translate';
 
 import { AuthService, UserService } from '../../lib/services';
 
-import { LoginPage } from '../login/login';
-
-import { defaultLanguage, availableLanguages, sysOptions } from '../../lib/constants';
+import { availableLanguages, sysOptions } from '../../lib/constants';
 
 @Component({
   selector: 'page-profile',

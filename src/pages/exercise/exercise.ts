@@ -93,9 +93,6 @@ export class ExercisePage {
       // Get the level completion rate for the progress bar
       level.completion = level.done ? 100 : level.exercises.filter(exercise => exercise.completed === true).length * 100 / level.exercises.length;
 
-      // Make sure the level is open when it's finished
-      if(level.done) level.open = true;
-
       level.monster = 'assets/imgs/monsters/monster-0'+level.level+'.png';
       // TODO
       // fix monster icon based on completion
@@ -108,32 +105,18 @@ export class ExercisePage {
       // }
     });
 
-    // this.setActiveLevel();
   }
 
-  // setActiveLevel() {
-  //   const uncompletedLevels = this.levels.filter(level => level.done === false);
-  //
-  //   if(uncompletedLevels.length) {
-  //     this.activeLevel = uncompletedLevels[0];
-  //     this.activeLevel.completedExercises = this.activeLevel.exercises.filter(exercise => exercise.completed === true).length;
-  //
-  //     // Make sure to open the active level as well
-  //     this.activeLevel.open = true;
-  //   }
-  //
-  //   this.resizeContent();
-  // }
-
   goToLevel(level) {
-    // Don't open levels which you can't access yet
-    // if(!level.open) return;
+    // Dont need to go there if there are no exercises
+    if(!level.exercises.length) return;
+
+    // Also dont need to go there if the level is done
+    if(level.done) return;
+
     this.appCtrl.getRootNav().push(ExerciseListPage, {
       level: level
     });
-    // this.navCtrl.push(ExerciseListPage);
-    // this.isLevelSelected = 'yes';
-    // this.selectedLevel = level;
   }
 
 

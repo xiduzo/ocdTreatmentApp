@@ -6,23 +6,51 @@
 
 <ion-content>
   <ion-list>
-    <ion-card *ngFor="let x of [1,2,3,4,5,6,7,8,9,0,11,22,33,44,55,66,77,88,99,12,23,34,45,56,67,78,98,90]">
+    <ion-card *ngFor="let exercise of exercises.reverse()">
       <ion-item>
-      <ion-avatar item-start>
-        <div class="o-moodindicator">
-          <span class="before before--panic"></span>
-          <span class="after after--ok"></span>
-        </div>
-      </ion-avatar>
-        <h2>Task name over here</h2>
-        <p>November 5, 1955</p>
+        <ion-avatar item-start>
+          <div class="o-moodindicator">
+            <span class="before"
+            [class.before--content]="exercise.beforeMood.mood === 1"
+            [class.before--ok]="exercise.beforeMood.mood === 2"
+            [class.before--meh]="exercise.beforeMood.mood === 3"
+            [class.before--worried]="exercise.beforeMood.mood === 4"
+            [class.before--panic]="exercise.beforeMood.mood === 5"
+            ></span>
+
+            <span class="after"
+            [class.after--content]="exercise.afterMood.mood === 1"
+            [class.after--ok]="exercise.afterMood.mood === 2"
+            [class.after--meh]="exercise.afterMood.mood === 3"
+            [class.after--worried]="exercise.afterMood.mood === 4"
+            [class.after--panic]="exercise.afterMood.mood === 5"
+            ></span>
+          </div>
+        </ion-avatar>
+        <h2>
+          {{ exercise.exercise.situation }}
+        </h2>
+        <p>
+          {{ exercise.start | date : 'medium'}}
+        </p>
       </ion-item>
         <!-- Task name over here -->
       <ion-card-content>
-        <h1>
+        <ion-card-title>
           {{'NOTES' | translate }}:
-        </h1>
-        Scream for no reason at 4 am stand in front of the computer screen. Sleep everywhere, but not in my bed sun bathe fall asleep on the washing machine lick left leg for ninety minutes.
+        </ion-card-title>
+        <p *ngIf="exercise.beforeMood.explanation">
+          {{ exercise.beforeMood.explanation }}
+        </p>
+        <p *ngIf="exercise.afterMood.explanation">
+          {{ exercise.afterMood.explanation }}
+        </p>
+        <p *ngIf="exercise.compulsiveBehaviour.explanation">
+          {{ exercise.compulsiveBehaviour.explanation }}
+        </p>
+        <p *ngIf="exercise.obsessiveThoughts.explanation">
+          {{ exercise.obsessiveThoughts.explanation }}
+        </p>
       </ion-card-content>
     </ion-card>
   </ion-list>

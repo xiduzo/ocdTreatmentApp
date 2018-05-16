@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 
+import { databaseHost } from '../lib/constants';
+
 @Injectable()
 export class AuthService {
 
-  private baseUrl:string = 'http://localhost:8000/';
-  // private baseUrl:string = 'https://mdd-ocd.herokuapp.com/';
+  private baseUrl:string = databaseHost;
   private token:string;
 
   constructor(

@@ -49,10 +49,11 @@ import { TranslateModule } from 'ng2-translate/ng2-translate';
 import { TranslateLoader, TranslateStaticLoader } from 'ng2-translate/src/translate.service';
 import { Globalization } from '@ionic-native/globalization';
 
+import { databaseHost } from '../lib/constants';
+
 // Function for setting the default restangular configuration
 export function RestangularConfigFactory(RestangularProvider, authService) {
-  RestangularProvider.setBaseUrl('http://localhost:8000/');
-  // RestangularProvider.setBaseUrl('https://mdd-ocd.herokuapp.com/');
+  RestangularProvider.setBaseUrl(databaseHost);
   RestangularProvider.setRequestSuffix('/');
   RestangularProvider.setFullResponse(true);
 

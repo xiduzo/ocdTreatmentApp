@@ -10,6 +10,7 @@ $o-moodindicator-size: 40px;
 
   .before,
   .after {
+    background: lighten(color($colors, dark, base), 50);
     width: $o-moodindicator-size / 2;
     height: $o-moodindicator-size;
     &--content { background: color($moods, content, base); }
@@ -18,7 +19,7 @@ $o-moodindicator-size: 40px;
     &--meh { background: color($moods, meh, base); }
     &--ok { background: color($moods, ok, base); }
   }
-  
+
   .before {
     border-bottom-left-radius: $o-moodindicator-size * 2;
     border-top-left-radius: $o-moodindicator-size * 2;

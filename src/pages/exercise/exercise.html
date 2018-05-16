@@ -1,12 +1,15 @@
 <ion-content>
   <ion-list no-lines class="c-exercise__levels" [@showList]>
     <ion-item *ngFor="let level of levels; let last = last">
-      <section class="level" [ngClass]="{ 'inactive': !level.open }">
-        <div class="level__monster" (click)="goToLevel(level)">
-          <div class="monster__icon" [@showLevelMonster]>
-            <div class="monster" [style.backgroundImage]="'url('+ level.monster +')'"></div>
+      <section class="level" [class.inactive]="level.exercises.length === 0" [class.completed]="level.done">
+        <div class="level__monster" (click)="goToLevel(level)" [@showLevelMonster]>
+          <div class="monster__icon" *ngIf="!level.exercises.length || (level.exercises.length && !level.done)">
+            <div class="monster" [style.backgroundImage]="'url(' + level.monster + ')'"></div>
           </div>
-          <round-progress [current]="level.completion" [max]="100" [radius]="60" [stroke]="5" [duration]="1" [@showLevelProgress]></round-progress>
+          <div class="level__icon" *ngIf="level.exercises.length && level.done">
+            <div class="level" [style.backgroundImage]="'url(assets/imgs/levels/level-0' + level.level + '.png)'"></div>
+          </div>
+          <round-progress *ngIf="level.exercises.length && !level.done" [current]="level.completion" [max]="100" [radius]="60" [stroke]="5" [duration]="1" [@showLevelProgress]></round-progress>
         </div>
         <span *ngIf="!last" class="level__seperator" [@showSeperator]></span>
       </section>

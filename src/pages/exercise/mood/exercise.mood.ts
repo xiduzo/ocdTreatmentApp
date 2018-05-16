@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage';
+
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
 
 import { Restangular } from 'ngx-restangular';
@@ -42,7 +44,7 @@ export class ExerciseMoodPage {
   public mood:string = 'content';
   private moodNumber:number = 1;
   public moodReason:string;
-  public moodAngle:number;
+  public moodAngle:number = 0;
 
   public level:any;
   public exercise:any;
@@ -60,6 +62,7 @@ export class ExerciseMoodPage {
     public viewCtrl: ViewController,
     private modalCtrl: ModalController,
     private restangular: Restangular,
+    private storage: Storage
   ) {
 
   }
@@ -76,15 +79,12 @@ export class ExerciseMoodPage {
     // Hacking a number into the graph
     // TODO:
     // Implement this in the library itself (maybe make pull request)
-    document.querySelectorAll('ngx-cs-slider g g')[0].innerHTML += '<text text-anchor="middle" font-weight="bold" fill="#222" dy=".35em">0</text>'
+    document.querySelectorAll('ngx-cs-slider g g')[0].innerHTML += '<text text-anchor="middle" font-weight="bold" fill="#222" dy=".35em">'+this.moodNumber+'</text>'
     this.moodAngleElement = document.querySelectorAll('ngx-cs-slider g g text')[0];
   }
 
   setMood(event) {
     this.moodAngle = event.angleLength;
-
-    // Set moodAngle in graph
-    if(this.moodAngleElement) this.moodAngleElement.innerHTML = parseFloat(this.moodAngle.toFixed(0));
 
     if(event.angleLength <= (Math.PI*2 / this.props.segments * 1)) {
       this.mood = 'content';
@@ -102,6 +102,9 @@ export class ExerciseMoodPage {
       this.mood = 'panic';
       this.moodNumber = 5;
     }
+
+    // Set moodAngle in graph
+    if(this.moodAngleElement) this.moodAngleElement.innerHTML = this.moodNumber;
   }
 
   startExercise() {
@@ -136,20 +139,39 @@ export class ExerciseMoodPage {
     //   console.log(err);
     // });
 
-    let duringModal = this.modalCtrl.create(ExerciseDuringModal, {level: this.level, exercise: this.exercise, tracking: this.tracking });
-    duringModal.present();
-    this.viewCtrl.dismiss();
+    this.tracking.beforeMood.mood = this.moodNumber;
+    this.tracking.beforeMood.angle = Math.floor(this.moodAngle * 100);
+    this.tracking.beforeMood.explanation = this.moodReason;
+
+
+    this.storage.get('exercises').then((exercises) => {
+      // The last exercise is allways the exercise we are working with
+      // So lets overwrite the last entry
+      exercises[exercises.length-1] = this.tracking;
+      this.storage.set('exercises', exercises);
+
+      let duringModal = this.modalCtrl.create(ExerciseDuringModal, {level: this.level, exercise: this.exercise, tracking: this.tracking });
+      duringModal.present();
+      this.viewCtrl.dismiss();
+    });
 
   }
 
   finishExercise() {
-    this.tracking.afterMood.mood = this.mood;
+    this.tracking.afterMood.mood = this.moodNumber;
     this.tracking.afterMood.angle = this.moodAngle;
     this.tracking.afterMood.explanation = this.moodReason;
 
-    let afterModal = this.modalCtrl.create(ExerciseAfterModal, {level: this.level, exercise: this.exercise, tracking: this.tracking, dbLink: this.dbLink });
-    afterModal.present();
-    this.viewCtrl.dismiss();
+    this.storage.get('exercises').then((exercises) => {
+      // The last exercise is allways the exercise we are working with
+      // So lets overwrite the last entry
+      exercises[exercises.length-1] = this.tracking;
+      this.storage.set('exercises', exercises);
+
+      let afterModal = this.modalCtrl.create(ExerciseAfterModal, {level: this.level, exercise: this.exercise, tracking: this.tracking });
+      afterModal.present();
+      this.viewCtrl.dismiss();
+    });
   }
 
   stopExercise() {
