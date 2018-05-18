@@ -19,9 +19,9 @@
       flex-direction: column;
       align-items: center;
 
-      &.inactive {
-        filter: grayscale(100%);
-      }
+      // &.inactive {
+      //   filter: grayscale(100%);
+      // }
 
       .level__seperator {
         content: '';

@@ -3,7 +3,7 @@ import { NavParams, Tabs } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 import { ExercisePage } from '../exercise/exercise';
-import { HomePage } from '../home/home';
+import { ProgressPage } from '../progress/progress';
 import { ProfilePage } from '../profile/profile';
 import { LogbookPage } from '../logbook/logbook';
 
@@ -16,8 +16,8 @@ export class TabsPage {
   loaded:boolean = false;
   tabIndex:number = 0;
 
-  HomePageRoot = HomePage;
   ExercisePageRoot = ExercisePage;
+  ProgressPageRoot = ProgressPage;
   ProfilePageRoot = ProfilePage;
   LogbookPageRoot = LogbookPage;
 

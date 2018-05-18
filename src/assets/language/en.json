@@ -1,6 +1,6 @@
 {
-  "NAV_HOME": "Home",
-  "NAV_EXERCISE": "Exercise",
+  "NAV_EXERCISE": "Home",
+  "NAV_PROGRESS": "Progress",
   "NAV_LOGBOOK": "Logbook",
   "NAV_PROFILE": "Profile",
 

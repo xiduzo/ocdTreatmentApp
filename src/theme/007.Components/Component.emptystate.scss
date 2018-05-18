@@ -1,0 +1,16 @@
+.c-emptystate {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-height: 100%;
+  h1 {
+    font-weight: 400;
+    margin-top: 2em;
+  }
+  p {
+    max-width: 70%;
+    margin-bottom: 2em;
+  }
+}

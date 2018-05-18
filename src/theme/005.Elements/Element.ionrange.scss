@@ -1,0 +1,30 @@
+ion-range.show-pin {
+  .range-slider {
+    .range-ios .range-knob-handle,
+    .range-md .range-knob-handle,
+    .range-knob-handle {
+      .range-pin {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      
+      .range-pin,
+      .range-knob,
+      .range-pin:before {
+        background: color($colors, primary, base);
+        border: none;
+      }
+    }
+  }
+
+  &[color="secondary"] {
+    .range-slider {
+      .range-knob-handle {
+        .range-pin,
+        .range-knob,
+        .range-pin:before {
+          background: color($colors, secondary, base);
+        }
+      }
+    }
+  }
+}

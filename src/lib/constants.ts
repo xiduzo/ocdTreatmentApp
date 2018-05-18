@@ -15,5 +15,5 @@ export const sysOptions = {
   systemLanguage: defaultLanguage
 };
 
-// export const databaseHost = 'http://localhost:8000/';
-export const databaseHost = 'https://mdd-ocd.herokuapp.com/';
+export const databaseHost = 'http://localhost:8000/';
+// export const databaseHost = 'https://mdd-ocd.herokuapp.com/';

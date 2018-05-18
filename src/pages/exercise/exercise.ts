@@ -1,47 +1,16 @@
 import { Component } from '@angular/core';
 import { App } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 import { Restangular } from 'ngx-restangular';
 
 import { ExerciseListPage } from '../exercise/list/exercise.list';
 
-import {
-  animateChild,
-  query,
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from '@angular/animations';
-
 import { UserService } from '../../lib/services';
 
 @Component({
   selector: 'page-exercise',
-  templateUrl: 'exercise.html',
-  animations: [
-    trigger('showLevelMonster', [
-      state('void', style({transform: 'scale(0)'})),
-      state('*', style({transform: 'scale(1)'})),
-      transition('void => *', animate('300ms 200ms ease-in'))
-    ]),
-    trigger('showList', [
-      transition(':enter, :leave', [
-        query('@*', animateChild(), { optional: true })
-      ])
-    ]),
-    trigger('showLevelProgress', [
-      state('void', style({opacity: '0'})),
-      state('*', style({opacity: '1'})),
-      transition('void => *', animate('100ms 400ms ease-in'))
-    ]),
-    trigger('showSeperator', [
-      state('void', style({opacity: 0})),
-      state('*', style({opacity: 1})),
-      transition('void => *', animate('750ms 200ms ease-in'))
-    ]),
-  ]
+  templateUrl: 'exercise.html'
 })
 export class ExercisePage {
 
@@ -64,7 +33,8 @@ export class ExercisePage {
   constructor(
     public appCtrl: App,
     private restangular: Restangular,
-    private userService: UserService
+    private userService: UserService,
+    private storage: Storage
   ) {
 
   }
@@ -75,14 +45,26 @@ export class ExercisePage {
   }
 
   getExersises() {
-    const filters = {
-      patient: this.profile
-    };
-    this.restangular.all('ladders/exercise').getList(filters).subscribe((resp) => {
-      resp.data.forEach(exercise => {
-        this.levels.find(item => item.level === exercise.fear_rating).exercises.push(exercise);
-      });
-      this.setLevelsMonsterAndCompletion();
+    // const filters = {
+    //   patient: this.profile
+    // };
+    // this.restangular.all('ladders/exercise').getList(filters).subscribe((resp) => {
+    //   resp.data.forEach(exercise => {
+    //     this.levels.find(item => item.level === exercise.fear_rating).exercises.push(exercise);
+    //   });
+    //
+    //   // We dont need to see the levels which has no exercises
+    //   this.levels = this.levels.filter((level) => {
+    //     return level.exercises.length > 0;
+    //   });
+    //
+    //   this.setLevelsMonsterAndCompletion();
+    // });
+    this.storage.get('fearLadder').then((fearLadder) => {
+      console.log(fearLadder);
+
+      // We don't need to see the levels which has no exercises
+      this.levels = this.levels.filter(level => { return level.exercises.length > 0 });
     });
   }
 

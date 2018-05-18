@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <button clear ion-button color="light" (click)="changeWeek(-1)">
+      <ion-icon name="arrow-dropleft"></ion-icon>
+    </button>
+    <ion-title text-center>
+      <!-- TODO look at this, maybe it is nice to select the date -->
+      <!-- <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="startWeek"></ion-datetime> -->
+      {{ startWeek | date : 'dd/MM'}} - {{ endWeek | date : 'dd/MM' }}
+    </ion-title>
+    <button clear ion-button color="light" (click)="changeWeek(1)" [disabled]="!canSelectNextWeek">
+      <ion-icon name="arrow-dropright"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <chart [options]="_chartOptions" style="display: block" (load)="setChart($event.context)" type="chart"></chart>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>{{ 'FILTER' | translate }}</ion-label>
+      <ion-select [(ngModel)]="filter" *ngIf="exercises">
+        <ion-option value="all">all</ion-option>
+        <ion-option *ngFor="let group of exercises | groupBy : 'exerciseId'" value="{{exerciseId}}">
+          {{ group.list[0].exercise.situation }}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <h2>
+        Exercises done
+      </h2>
+      <p item-end>
+        {{ exercises?.length }} (+15%)
+      </p>
+    </ion-item>
+    <ion-item>
+      <h2>
+        Total exercise time
+      </h2>
+      <p item-end>
+        01:25:57 hours (-12%)
+      </p>
+    </ion-item>
+    <ion-item>
+      <h2>
+        Average exercise time
+      </h2>
+      <p item-end>
+        00:05:21 hours (-8%)
+      </p>
+    </ion-item>
+  </ion-list>
+</ion-content>

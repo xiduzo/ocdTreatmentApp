@@ -5,7 +5,22 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <section *ngIf="!exercises.length" padding text-center>
+
+  </section>
+  <section *ngIf="!exercises?.length" class="c-emptystate">
+    <img src="assets/imgs/monsters/all.png" alt="">
+    <h1>
+      Oops
+    </h1>
+    <p>
+      It seens like you have not logged any exercises
+    </p>
+    <!-- <button color="secondary" ion-button large block>
+      Add fears and compulsions
+    </button> -->
+  </section>
+  <ion-list *ngIf="exercises?.length">
     <ion-card *ngFor="let exercise of exercises.reverse()">
       <ion-item>
         <ion-avatar item-start>

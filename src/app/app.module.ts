@@ -9,7 +9,7 @@ import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { ProfilePage } from '../pages/profile/profile';
-import { HomePage } from '../pages/home/home';
+import { ProgressPage } from '../pages/progress/progress';
 
 import { ExercisePage } from '../pages/exercise/exercise';
 import { ExerciseMoodPage } from '../pages/exercise/mood/exercise.mood';
@@ -50,6 +50,7 @@ import { TranslateLoader, TranslateStaticLoader } from 'ng2-translate/src/transl
 import { Globalization } from '@ionic-native/globalization';
 
 import { databaseHost } from '../lib/constants';
+import { GroupByPipe } from '../lib/pipes';
 
 // Function for setting the default restangular configuration
 export function RestangularConfigFactory(RestangularProvider, authService) {
@@ -78,7 +79,7 @@ export function createTranslateLoader(http: Http) {
   declarations: [
     MyApp,
     ProfilePage,
-    HomePage,
+    ProgressPage,
     TabsPage,
     OnboardingPage,
     ExercisePage,
@@ -90,7 +91,8 @@ export function createTranslateLoader(http: Http) {
     YbocsModal,
     LoginPage,
     SignUpPage,
-    LogbookPage
+    LogbookPage,
+    GroupByPipe
   ],
   imports: [
     BrowserModule,
@@ -112,7 +114,7 @@ export function createTranslateLoader(http: Http) {
   entryComponents: [
     MyApp,
     ProfilePage,
-    HomePage,
+    ProgressPage,
     TabsPage,
     OnboardingPage,
     ExercisePage,

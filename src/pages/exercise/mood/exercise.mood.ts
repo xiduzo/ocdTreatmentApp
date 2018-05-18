@@ -5,6 +5,8 @@ import { NavParams, ViewController, ModalController } from 'ionic-angular';
 
 import { Restangular } from 'ngx-restangular';
 
+import { map } from '../../../lib/helpers';
+
 import {
   trigger,
   state,
@@ -26,7 +28,7 @@ import { ExerciseAfterModal } from '../after/exercise.after';
       state('meh', style({background: 'rgb(214, 217, 204)'})),
       state('panic', style({background: 'rgb(240,120,121)'})),
       state('worried', style({background: 'rgb(82, 156, 204)'})),
-      transition('* => *', animate('450ms ease-in'))
+      transition('* => *', animate('350ms ease-in'))
     ])
   ]
 })
@@ -42,9 +44,9 @@ export class ExerciseMoodPage {
   }
 
   public mood:string = 'content';
-  private moodNumber:number = 1;
+  public moodNumber:number = 1;
+  public moodTrack:number = 0;
   public moodReason:string;
-  public moodAngle:number = 0;
 
   public level:any;
   public exercise:any;
@@ -54,8 +56,6 @@ export class ExerciseMoodPage {
   private tracking:any;
 
   private dbLink:string;
-
-  private moodAngleElement:any;
 
   constructor(
     private params: NavParams,
@@ -75,36 +75,28 @@ export class ExerciseMoodPage {
     this.dbLink = this.params.get('dbLink');
   }
 
-  ionViewDidEnter() {
-    // Hacking a number into the graph
-    // TODO:
-    // Implement this in the library itself (maybe make pull request)
-    document.querySelectorAll('ngx-cs-slider g g')[0].innerHTML += '<text text-anchor="middle" font-weight="bold" fill="#222" dy=".35em">'+this.moodNumber+'</text>'
-    this.moodAngleElement = document.querySelectorAll('ngx-cs-slider g g text')[0];
-  }
+  setMood(number) {
+    // We want to have a more accurate tracking for the therapist
+    // But for the user we use a 1-5 scale
+    this.moodNumber = Math.round(map(this.moodTrack, 0, 500, 1, 5));
 
-  setMood(event) {
-    this.moodAngle = event.angleLength;
-
-    if(event.angleLength <= (Math.PI*2 / this.props.segments * 1)) {
-      this.mood = 'content';
-      this.moodNumber = 1;
-    } else if(event.angleLength <= (Math.PI*2 / this.props.segments * 2)) {
-      this.mood = 'ok';
-      this.moodNumber = 2;
-    } else if(event.angleLength <= (Math.PI*2 / this.props.segments * 3)) {
-      this.mood = 'meh';
-      this.moodNumber = 3;
-    } else if(event.angleLength <= (Math.PI*2 / this.props.segments * 4)) {
-      this.mood = 'worried';
-      this.moodNumber = 4;
-    } else if(event.angleLength <= (Math.PI*2 / this.props.segments * 5)) {
-      this.mood = 'panic';
-      this.moodNumber = 5;
+    switch(this.moodNumber) {
+      default:
+        this.mood = 'content';
+        break;
+      case 2:
+        this.mood = 'ok';
+        break;
+      case 3:
+        this.mood = 'meh';
+        break;
+      case 4:
+        this.mood = 'worried';
+        break;
+      case 5:
+        this.mood = 'panic';
+        break;
     }
-
-    // Set moodAngle in graph
-    if(this.moodAngleElement) this.moodAngleElement.innerHTML = this.moodNumber;
   }
 
   startExercise() {
@@ -139,8 +131,7 @@ export class ExerciseMoodPage {
     //   console.log(err);
     // });
 
-    this.tracking.beforeMood.mood = this.moodNumber;
-    this.tracking.beforeMood.angle = Math.floor(this.moodAngle * 100);
+    this.tracking.beforeMood.mood = this.moodTrack;
     this.tracking.beforeMood.explanation = this.moodReason;
 
 
@@ -148,6 +139,7 @@ export class ExerciseMoodPage {
       // The last exercise is allways the exercise we are working with
       // So lets overwrite the last entry
       exercises[exercises.length-1] = this.tracking;
+
       this.storage.set('exercises', exercises);
 
       let duringModal = this.modalCtrl.create(ExerciseDuringModal, {level: this.level, exercise: this.exercise, tracking: this.tracking });
@@ -158,8 +150,7 @@ export class ExerciseMoodPage {
   }
 
   finishExercise() {
-    this.tracking.afterMood.mood = this.moodNumber;
-    this.tracking.afterMood.angle = this.moodAngle;
+    this.tracking.afterMood.mood = this.moodTrack;
     this.tracking.afterMood.explanation = this.moodReason;
 
     this.storage.get('exercises').then((exercises) => {

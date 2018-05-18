@@ -45,12 +45,10 @@ export class ExerciseListPage {
     exercise: null,
     beforeMood: {
       mood: null,
-      angle: null,
       explanation: null
     },
     afterMood: {
       mood: null,
-      angle: null,
       explanation: null
     },
     gaveInToCompulsion: false,

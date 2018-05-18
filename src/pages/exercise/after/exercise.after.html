@@ -13,7 +13,7 @@
         <ion-label stacked>
           {{ 'INTENSITY_OBSESSIVE_THOUGHTS' | translate }}
         </ion-label>
-        <ion-range min="{{range.min}}" max="{{range.max}}" [(ngModel)]="obsessiveThoughts" pin="true">
+        <ion-range class="show-pin" min="{{range.min}}" max="{{range.max}}" [(ngModel)]="obsessiveThoughts" pin="true">
           <ion-label range-left>{{range.min}}</ion-label>
           <ion-label range-right>{{range.max}}</ion-label>
         </ion-range>
@@ -28,7 +28,7 @@
         <ion-label stacked>
           {{ 'INTENSITY_COMPULSIVE_BEHAVIOUR' | translate }}
         </ion-label>
-        <ion-range min="{{range.min}}" max="{{range.max}}" [(ngModel)]="compulsiveBehaviour" pin="true">
+        <ion-range class="show-pin" min="{{range.min}}" max="{{range.max}}" [(ngModel)]="compulsiveBehaviour" pin="true">
           <ion-label range-left>{{range.min}}</ion-label>
           <ion-label range-right>{{range.max}}</ion-label>
         </ion-range>

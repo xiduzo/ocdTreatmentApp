@@ -17,10 +17,6 @@
     </strong>
 
     <section class="c-mood__circle">
-        <ngx-cs-slider [className]="mood"
-        (update)="setMood($event)"
-        [props]="props">
-        </ngx-cs-slider>
         <section [className]="mood">
             <div class="c-mood__face">
                 <section class="face__attributes">
@@ -48,6 +44,9 @@
     </section>
 
     <form>
+      <ion-item class="transparent">
+        <ion-range class="show-pin" color="secondary" [(ngModel)]="moodTrack" name="moodNumber" (ngModelChange)="setMood()" min="0" max="500"></ion-range>
+      </ion-item>
       <ion-item>
         <ion-label floating>
           {{ 'MOOD_EXPLENATION' | translate }}

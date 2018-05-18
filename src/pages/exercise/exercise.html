@@ -1,17 +1,29 @@
 <ion-content>
-  <ion-list no-lines class="c-exercise__levels" [@showList]>
+  <section *ngIf="!exercises?.length" class="c-emptystate">
+    <img src="assets/imgs/monsters/all.png" alt="">
+    <h1>
+      Oops
+    </h1>
+    <p>
+      Before you can start, you must describe your fears and compulsions
+    </p>
+    <button color="secondary" ion-button large block>
+      Add fears and compulsions
+    </button>
+  </section>
+  <ion-list no-lines class="c-exercise__levels" *ngIf="exercises?.length">
     <ion-item *ngFor="let level of levels; let last = last">
-      <section class="level" [class.inactive]="level.exercises.length === 0" [class.completed]="level.done">
-        <div class="level__monster" (click)="goToLevel(level)" [@showLevelMonster]>
-          <div class="monster__icon" *ngIf="!level.exercises.length || (level.exercises.length && !level.done)">
+      <section class="level" [class.completed]="level.done">
+        <div class="level__monster" (click)="goToLevel(level)">
+          <div class="monster__icon" *ngIf="!level.done">
             <div class="monster" [style.backgroundImage]="'url(' + level.monster + ')'"></div>
           </div>
-          <div class="level__icon" *ngIf="level.exercises.length && level.done">
+          <div class="level__icon" *ngIf="level.done">
             <div class="level" [style.backgroundImage]="'url(assets/imgs/levels/level-0' + level.level + '.png)'"></div>
           </div>
-          <round-progress *ngIf="level.exercises.length && !level.done" [current]="level.completion" [max]="100" [radius]="60" [stroke]="5" [duration]="1" [@showLevelProgress]></round-progress>
+          <round-progress *ngIf="!level.done" [current]="level.completion" [max]="100" [radius]="60" [stroke]="5" [duration]="1"></round-progress>
         </div>
-        <span *ngIf="!last" class="level__seperator" [@showSeperator]></span>
+        <span *ngIf="!last" class="level__seperator"></span>
       </section>
     </ion-item>
   </ion-list>
