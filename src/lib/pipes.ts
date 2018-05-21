@@ -1,30 +1,23 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-// https://stackoverflow.com/a/47998708
-@Pipe({
-  name: 'groupBy',
-})
+// http://www.competa.com/blog/custom-groupby-pipe-angular-4/
+@Pipe({name: 'groupBy'})
 export class GroupByPipe implements PipeTransform {
-  transform(value: any, groupByKey: string) {
-    const events: any[] = [];
-    const groupedElements: any = {};
-    if(!value) return;
-    value.forEach((obj: any) => {
-      if (!(obj[groupByKey] in groupedElements)) {
-        groupedElements[obj[groupByKey]] = [];
-      }
-      groupedElements[obj[groupByKey]].push(obj);
-    });
+  transform(collection: Array<any>, property: string): Array<any> {
+    // prevents the application from breaking if the array of objects doesn't exist yet
+    if(!collection) return;
 
-    for (let prop in groupedElements) {
-      if (groupedElements.hasOwnProperty(prop)) {
-        events.push({
-          key: prop,
-          list: groupedElements[prop]
-        });
+    const groupedCollection = collection.reduce((previous, current)=> {
+      if(!previous[current[property]]) {
+        previous[current[property]] = [current];
+      } else {
+        previous[current[property]].push(current);
       }
-    }
 
-    return events;
+      return previous;
+    }, {});
+
+    // this will return an array of objects, each object containing a group of objects
+    return Object.keys(groupedCollection).map(key => ({ key, items: groupedCollection[key] }));
   }
 }

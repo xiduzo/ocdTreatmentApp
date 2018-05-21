@@ -82,6 +82,8 @@ export class ProgressPage {
 
   addPointsToGraph() {
     this.storage.get('exercises').then((exercises) => {
+      if(!exercises) return;
+
       exercises
       // We can only use exercises with a before and after mood track
       .filter((exercise) => {

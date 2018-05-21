@@ -1,0 +1,12 @@
+fearladder-modal {
+  ion-content {
+    .c-emptystate {
+      height: 100%;
+    }
+  }
+  ion-footer {
+    button[ion-button] {
+      margin: 0;
+    }
+  }
+}

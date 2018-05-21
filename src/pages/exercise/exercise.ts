@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App } from 'ionic-angular';
+import { App, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { Restangular } from 'ngx-restangular';
@@ -8,35 +8,31 @@ import { ExerciseListPage } from '../exercise/list/exercise.list';
 
 import { UserService } from '../../lib/services';
 
+import { ToastController } from 'ionic-angular';
+
+import { FearladderModal } from '../fearladder/fearladder';
+
 @Component({
   selector: 'page-exercise',
   templateUrl: 'exercise.html'
 })
 export class ExercisePage {
 
-  public isLevelSelected:string = 'no';
-  public selectedLevel:any = null;
   private profile:string;
-  public activeLevel:any;
-
-  public levels:Array<any> = [
-    { level: 1, exercises: [] },
-    { level: 2, exercises: [] },
-    { level: 3, exercises: [] },
-    { level: 4, exercises: [] },
-    { level: 5, exercises: [] },
-    { level: 6, exercises: [] },
-    { level: 7, exercises: [] },
-    { level: 8, exercises: [] },
-  ];
+  public levels:Array<any> = [];
 
   constructor(
     public appCtrl: App,
     private restangular: Restangular,
     private userService: UserService,
-    private storage: Storage
+    private storage: Storage,
+    public toastCtrl: ToastController,
+    private modalCtrl: ModalController
   ) {
-
+    // Build the levels array
+    for(let i = 1; i <= 8; i++) {
+      this.levels.push({ level: i, exercises: [] });
+    }
   }
 
   ionViewDidLoad() {
@@ -69,6 +65,7 @@ export class ExercisePage {
   }
 
   setLevelsMonsterAndCompletion() {
+    if(!this.levels) return;
     this.levels.forEach(level => {
       level.done = level.exercises.find(exercise => exercise.completed === false) ? false : true;
 
@@ -87,6 +84,26 @@ export class ExercisePage {
       // }
     });
 
+  }
+
+  addFearsAndCompulsions() {
+    let modal = this.modalCtrl.create(FearladderModal);
+
+    modal.onDidDismiss(data => {
+      // this.levels.push(data);
+      // this.setLevelsMonsterAndCompletion();
+
+      let toast = this.toastCtrl.create({
+        message: 'You can allways change your fear ladder on your profile page',
+        position: 'bottom',
+        showCloseButton: true,
+        closeButtonText: 'Ok',
+        dismissOnPageChange: true
+      });
+      toast.present();
+    });
+
+    modal.present();
   }
 
   goToLevel(level) {

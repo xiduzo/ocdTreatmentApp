@@ -33,6 +33,7 @@ export class LoginPage {
   }
 
   login() {
+    this.err = { text: 'logging in'};
     const data = {
       username: this.username,
       password: this.password
@@ -42,6 +43,7 @@ export class LoginPage {
         this.userService.setUser(response.data.plain()[0].profile);
         this.authService.getJwtToken(data)
         .then((resp:any) => {
+          this.err = resp;
           this.authService.setLocalToken(resp.token);
           this.appCtrl.getRootNav().push(OnboardingPage);
         })

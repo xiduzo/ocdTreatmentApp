@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      {{ headerText }}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="light" (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-group>
+    <ion-item-divider color="light">
+      Exercise
+    </ion-item-divider>
+    <ion-item>
+      <ion-label floating>
+        I want to
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="step.exercise.situation"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>
+        Without
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="step.exercise.without"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>
+        Fear rating
+      </ion-label>
+      <ion-range [(ngModel)]="step.fearRating" min="1" max="8" pin="true" snaps="true">
+        <ion-label range-left>1</ion-label>
+        <ion-label range-right>8</ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider color="light">
+      Triggers
+    </ion-item-divider>
+    <ion-item>
+      <ion-label>This triggers obsessive thoughts</ion-label>
+      <ion-checkbox [(ngModel)]="step.triggers.obsessieThoughts"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>This triggers compulsive behaviour</ion-label>
+      <ion-checkbox [(ngModel)]="step.triggers.compulsieBehaiour"></ion-checkbox>
+    </ion-item>
+  </ion-item-group>
+</ion-content>
+
+<ion-footer>
+  <button ion-button large block (click)="addFear()" [disabled]="!step.exercise.situation || !step.exercise.without">
+    {{ buttonText }}
+  </button>
+</ion-footer>

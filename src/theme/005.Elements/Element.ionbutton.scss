@@ -1,3 +1,11 @@
 [ion-button][large] {
   border-radius: 0;
 }
+
+ion-fab button[color="light"] {
+  background: none;
+  box-shadow: none;
+  ion-icon {
+    color: color($colors, dark, base);
+  }
+}

@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      My Fear ladder
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="light" (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <section *ngIf="!fearLadder?.length" class="c-emptystate">
+    <img src="assets/imgs/monsters/all.png" alt="">
+    <h1>
+      Oops
+    </h1>
+    <p>
+      It looks like you have not added any fears!
+    </p>
+  </section>
+  <ion-item-group *ngFor="let step of fearLadder | groupBy : 'fearRating'; let i = index">
+    <ion-item-divider color="light">
+      Level {{ step.key }}
+    </ion-item-divider>
+    <ion-list>
+      <ion-item-sliding *ngFor="let item of step.items">
+        <ion-item>
+          <h2>{{ item.exercise?.situation }}</h2>
+          <p>Without: {{ item.exercise?.without }}</p>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="primary" (click)="editStep(item)">
+            <!-- <ion-icon name="text"></ion-icon> -->
+            Edit
+          </button>
+          <button ion-button color="danger">
+            <!-- <ion-icon name="text"></ion-icon> -->
+            Remove
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+    <!-- <button ion-item  (click)="editStep(item)">
+    </button> -->
+  </ion-item-group>
+</ion-content>
+
+<ion-footer>
+  <button ion-button large block (click)="addStep()">
+    Add new fear
+  </button>
+</ion-footer>

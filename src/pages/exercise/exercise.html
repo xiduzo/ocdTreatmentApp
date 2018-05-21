@@ -1,17 +1,17 @@
 <ion-content>
-  <section *ngIf="!exercises?.length" class="c-emptystate">
+  <section *ngIf="!levels?.length" class="c-emptystate">
     <img src="assets/imgs/monsters/all.png" alt="">
     <h1>
       Oops
     </h1>
     <p>
-      Before you can start, you must describe your fears and compulsions
+      Before you can start, you must describe your fear ladder.
     </p>
-    <button color="secondary" ion-button large block>
-      Add fears and compulsions
+    <button color="secondary" ion-button large block (click)="addFearsAndCompulsions()">
+      My fear ladder
     </button>
   </section>
-  <ion-list no-lines class="c-exercise__levels" *ngIf="exercises?.length">
+  <ion-list no-lines class="c-exercise__levels" *ngIf="levels?.length">
     <ion-item *ngFor="let level of levels; let last = last">
       <section class="level" [class.completed]="level.done">
         <div class="level__monster" (click)="goToLevel(level)">
