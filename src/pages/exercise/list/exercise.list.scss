@@ -16,4 +16,17 @@ exercise-list-page {
       height: $exercise-list-header-height;
     }
   }
+
+  ion-content {
+    ion-list {
+      button[ion-item] {
+        ion-avatar {
+          ion-icon {
+            font-size: 1.5em;
+            line-height: 40px;
+          }
+        }
+      }
+    }
+  }
 }

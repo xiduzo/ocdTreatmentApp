@@ -13,7 +13,7 @@ import { ExerciseSuccessModal } from '../success/exercise.success';
 export class ExerciseAfterModal {
 
   public level:any;
-  public exercise:any;
+  public tracking:any;
 
   public range:any = { min: 0, max: 5 };
 
@@ -21,9 +21,6 @@ export class ExerciseAfterModal {
   public obsessiveThoughtsReason:string;
   public compulsiveBehaviour:number = 0;
   public compulsiveBehaviourReason:string;
-
-  public tracking:any;
-  private dbLink:string;
 
   constructor(
     private params: NavParams,
@@ -35,14 +32,19 @@ export class ExerciseAfterModal {
   }
 
   ionViewDidLoad() {
-    this.exercise = this.params.get('exercise');
     this.level = this.params.get('level');
     this.tracking = this.params.get('tracking');
-    this.dbLink = this.params.get('dbLink');
+    // TODO show only triggers the user selected
   }
 
 
   done() {
+    this.tracking.triggers = [];
+
+    // TODO use only the triggers the user selected
+    this.tracking.step.triggers.forEach(trigger => {
+        console.log(trigger);
+    });
     this.tracking.obsessiveThoughts.rating = this.obsessiveThoughts;
     this.tracking.obsessiveThoughts.explanation = this.obsessiveThoughtsReason;
     this.tracking.compulsiveBehaviour.rating = this.compulsiveBehaviour;
@@ -56,7 +58,7 @@ export class ExerciseAfterModal {
 
       console.log(exercises);
 
-      let successModal = this.modalCtrl.create(ExerciseSuccessModal, {level: this.level, exercise: this.exercise, tracking: this.tracking, dbLink: this.dbLink });
+      let successModal = this.modalCtrl.create(ExerciseSuccessModal, {level: this.level, tracking: this.tracking });
       successModal.present();
       this.viewCtrl.dismiss();
     });

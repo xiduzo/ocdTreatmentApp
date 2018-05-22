@@ -14,11 +14,12 @@ export class FearladderStepModal {
     fearRating: 1,
     exercise: {
       situation: null,
-      without: null
+      without: null,
+      completion: 0
     },
     triggers: {
-      obsessieThoughts: false,
-      compulsieBehaiour: false
+      obsessiveThoughts: false,
+      compulsiveBehaviour: false
     }
   };
   public buttonText:string = 'add';

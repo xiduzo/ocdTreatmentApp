@@ -18,32 +18,32 @@
     </button> -->
   </section>
   <ion-list *ngIf="exercises?.length">
-    <ion-card *ngFor="let exercise of exercises.reverse()">
+    <ion-card *ngFor="let item of exercises.reverse()">
       <ion-item>
         <ion-avatar item-start>
           <div class="o-moodindicator">
             <span class="before"
-            [class.before--content]="exercise.beforeMood.mood === 1"
-            [class.before--ok]="exercise.beforeMood.mood === 2"
-            [class.before--meh]="exercise.beforeMood.mood === 3"
-            [class.before--worried]="exercise.beforeMood.mood === 4"
-            [class.before--panic]="exercise.beforeMood.mood === 5"
+            [class.before--content]="item.beforeMood.mood === 1"
+            [class.before--ok]="item.beforeMood.mood === 2"
+            [class.before--meh]="item.beforeMood.mood === 3"
+            [class.before--worried]="item.beforeMood.mood === 4"
+            [class.before--panic]="item.beforeMood.mood === 5"
             ></span>
 
             <span class="after"
-            [class.after--content]="exercise.afterMood.mood === 1"
-            [class.after--ok]="exercise.afterMood.mood === 2"
-            [class.after--meh]="exercise.afterMood.mood === 3"
-            [class.after--worried]="exercise.afterMood.mood === 4"
-            [class.after--panic]="exercise.afterMood.mood === 5"
+            [class.after--content]="item.afterMood.mood === 1"
+            [class.after--ok]="item.afterMood.mood === 2"
+            [class.after--meh]="item.afterMood.mood === 3"
+            [class.after--worried]="item.afterMood.mood === 4"
+            [class.after--panic]="item.afterMood.mood === 5"
             ></span>
           </div>
         </ion-avatar>
         <h2>
-          {{ exercise.exercise.situation }}
+          {{ item.step | json }}
         </h2>
         <p>
-          {{ exercise.start | date : 'medium'}}
+          {{ item.start | date : 'medium'}}
         </p>
       </ion-item>
         <!-- Task name over here -->
@@ -51,7 +51,7 @@
         <ion-card-title>
           {{'NOTES' | translate }}:
         </ion-card-title>
-        <p *ngIf="exercise.beforeMood.explanation">
+        <!-- <p *ngIf="exercise.beforeMood.explanation">
           {{ exercise.beforeMood.explanation }}
         </p>
         <p *ngIf="exercise.afterMood.explanation">
@@ -62,7 +62,7 @@
         </p>
         <p *ngIf="exercise.obsessiveThoughts.explanation">
           {{ exercise.obsessiveThoughts.explanation }}
-        </p>
+        </p> -->
       </ion-card-content>
     </ion-card>
   </ion-list>

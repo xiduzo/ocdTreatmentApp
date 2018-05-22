@@ -19,7 +19,7 @@ import { FearladderModal } from '../fearladder/fearladder';
 export class ExercisePage {
 
   private profile:string;
-  public levels:Array<any> = [];
+  public levels:Array<any>;
 
   constructor(
     public appCtrl: App,
@@ -29,50 +29,45 @@ export class ExercisePage {
     public toastCtrl: ToastController,
     private modalCtrl: ModalController
   ) {
-    // Build the levels array
-    for(let i = 1; i <= 8; i++) {
-      this.levels.push({ level: i, exercises: [] });
-    }
+
   }
 
   ionViewDidLoad() {
     this.profile = this.userService.getUser();
+  }
+
+  ionViewWillEnter() {
+    this.levels = [];
+    // Build the levels array
+    for(let i = 1; i <= 8; i++) {
+      this.levels.push({ level: i, exercises: [] });
+    }
     this.getExersises();
   }
 
   getExersises() {
-    // const filters = {
-    //   patient: this.profile
-    // };
-    // this.restangular.all('ladders/exercise').getList(filters).subscribe((resp) => {
-    //   resp.data.forEach(exercise => {
-    //     this.levels.find(item => item.level === exercise.fear_rating).exercises.push(exercise);
-    //   });
-    //
-    //   // We dont need to see the levels which has no exercises
-    //   this.levels = this.levels.filter((level) => {
-    //     return level.exercises.length > 0;
-    //   });
-    //
-    //   this.setLevelsMonsterAndCompletion();
-    // });
     this.storage.get('fearLadder').then((fearLadder) => {
-      console.log(fearLadder);
-
-      // We don't need to see the levels which has no exercises
-      this.levels = this.levels.filter(level => { return level.exercises.length > 0 });
+      fearLadder.forEach(step => {
+        this.levels.find(level => level.level === step.fearRating).exercises.push(step);
+      });
     });
+
+    // We don't need to see the levels which has no exercises
+    this.levels = this.levels.filter(level => { return level.exercises.length > 0 });
+
+    this.setLevelsMonsterAndCompletion();
   }
 
   setLevelsMonsterAndCompletion() {
     if(!this.levels) return;
     this.levels.forEach(level => {
-      level.done = level.exercises.find(exercise => exercise.completed === false) ? false : true;
+      level.done = level.exercises.find(item => item.exercise.completion < 100) ? false : true;
 
       // Get the level completion rate for the progress bar
-      level.completion = level.done ? 100 : level.exercises.filter(exercise => exercise.completed === true).length * 100 / level.exercises.length;
+      level.completion = level.done ? 100 : level.exercises.filter(item => item.exercise.completion >= 100).length * 100 / level.exercises.length;
 
       level.monster = 'assets/imgs/monsters/monster-0'+level.level+'.png';
+
       // TODO
       // fix monster icon based on completion
       // if(level.completion === 100) {

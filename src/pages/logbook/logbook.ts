@@ -33,7 +33,9 @@ export class LogbookPage {
         exercise.afterMood.mood = Math.round(map(exercise.afterMood.mood, 0, 500, 1, 5));
 
         // console.log(exercise.moodBefore.explanation || exercise.moodAfter.explanation || exercise.obsessiveThoughts.explanation || exercise.compulsiveBehaviour.explanation)
-        return exercise.beforeMood.explanation || exercise.afterMood.explanation || exercise.obsessiveThoughts.explanation || exercise.compulsiveBehaviour.explanation;
+        // return exercise.beforeMood.explanation || exercise.afterMood.explanation || exercise.obsessiveThoughts.explanation || exercise.compulsiveBehaviour.explanation;
+        // TODO only show exercises with comments
+        return exercise.beforeMood && exercise.afterMood;
       });
     });
   }

@@ -1,10 +1,10 @@
-<ion-content *ngIf="exercise && level">
+<ion-content>
   <div ion-fixed text-center>
     <h1>
-      {{ exercise.situation }}
+      {{ tracking?.step.exercise.situation }}
     </h1>
     <div class="monster">
-      <div class="monster__illustration" [style.backgroundImage]="'url('+ level.monster +')'"></div>
+      <div class="monster__illustration" [style.backgroundImage]="'url('+ level?.monster +')'"></div>
       <div class="monster__rings"></div>
     </div>
     <div>
@@ -12,7 +12,7 @@
         {{ 'WITHOUT' | translate }}
       </h2>
       <div>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit
+        {{ tracking?.step.exercise.without }}
       </div>
     </div>
   </div>

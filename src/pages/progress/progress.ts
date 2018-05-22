@@ -87,8 +87,7 @@ export class ProgressPage {
       exercises
       // We can only use exercises with a before and after mood track
       .filter((exercise) => {
-        exercise.exerciseId = exercise.exercise.id; // For grouping
-        return (exercise.beforeMood.mood >= 0 && exercise.afterMood.mood >= 0);
+        return (exercise.beforeMood.mood && exercise.afterMood.mood);
       })
       // To prevent doubles we filter out ones not found in the chart yet
       .filter((exercise) => {

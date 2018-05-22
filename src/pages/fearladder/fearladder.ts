@@ -18,10 +18,6 @@ export class FearladderModal {
     private modalCtrl: ModalController,
     private toastCtrl: ToastController
   ) {
-
-  }
-
-  ionViewDidEnter() {
     this.storage.get('fearLadder').then((fearLadder) => {
       if(!fearLadder) return;
 
@@ -33,14 +29,19 @@ export class FearladderModal {
     this.viewCtrl.dismiss();
   }
 
+  updateLocalFearLadder() {
+    // Update fearladder
+    this.storage.set('fearLadder', this.fearLadder);
+  }
+
   addStep() {
     let modal = this.modalCtrl.create(FearladderStepModal);
 
     modal.onDidDismiss((data) => {
       if(!data) return; // Modal has been closed
 
-      // Use concat instead of push to hack array update for 'groupBy' pipe
-      this.fearLadder = this.fearLadder.concat([data.step])
+      this.fearLadder.push(data.step);
+      this.updateLocalFearLadder();
 
       let toast = this.toastCtrl.create({
         message: 'Fear added successfully',
@@ -54,20 +55,19 @@ export class FearladderModal {
     modal.present();
   }
 
+  removeStep(step) {
+    this.fearLadder.splice(this.fearLadder.indexOf(step), 1);
+    this.updateLocalFearLadder();
+  }
+
   editStep(step) {
     let modal = this.modalCtrl.create(FearladderStepModal, {step: step});
 
     modal.onDidDismiss((data) => {
       if(!data) return; // Modal has been closed
 
-      // There must be a better way to update the angular2 pipes...
-      // right...
-      // ??
-      // B/c this is bullshit
-      let fearLadderClone = Object.assign([], this.fearLadder);
-      fearLadderClone[fearLadderClone.indexOf(step)] = data.step;
-      this.fearLadder = [];
-      this.fearLadder = this.fearLadder.concat(fearLadderClone);
+      this.fearLadder[this.fearLadder.indexOf(step)] = data.step;
+      this.updateLocalFearLadder();
 
       let toast = this.toastCtrl.create({
         message: 'Fear edited successfully',

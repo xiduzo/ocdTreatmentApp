@@ -15,13 +15,18 @@
 </ion-header>
 
 <ion-content>
-  <ion-list class="c-level__exercises">
-    <ion-item (click)="selectExercise(exercise)" text-wrap *ngFor="let exercise of level?.exercises" [ngClass]="{ 'completed': exercise.completed === true }">
-      <ion-icon name="radio-button-off" *ngIf="!exercise.completed"></ion-icon>
-      <ion-icon name="checkmark-circle" *ngIf="exercise.completed"></ion-icon>
-      <span class="exercise__text">
-        {{ exercise.situation }}
-      </span>
-    </ion-item>
+  <ion-list>
+    <button ion-item (click)="selectExercise(item)" text-wrap *ngFor="let item of level?.exercises">
+      <ion-avatar item-start text-center>
+        <ion-icon name="radio-button-off" *ngIf="item.exercise.completion < 100"></ion-icon>
+        <ion-icon name="checkmark-circle" *ngIf="item.exercise.completion >= 100"></ion-icon>
+      </ion-avatar>
+      <h2 capitalize>
+        {{ item.exercise.situation }}
+      </h2>
+      <p>
+        Without: {{ item.exercise.without }}
+      </p>
+    </button>
   </ion-list>
 </ion-content>

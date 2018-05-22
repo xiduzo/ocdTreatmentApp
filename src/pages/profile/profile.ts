@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { LocalNotifications } from '@ionic-native/local-notifications';
@@ -9,6 +9,8 @@ import moment from 'moment';
 
 import { AuthService, UserService } from '../../lib/services';
 import { availableLanguages, sysOptions } from '../../lib/constants';
+
+import { FearladderModal } from '../fearladder/fearladder';
 
 @Component({
   selector: 'page-profile',
@@ -27,7 +29,8 @@ export class ProfilePage {
     private storage: Storage,
     private translate: TranslateService,
     private emailComposer: EmailComposer,
-    private notifications: LocalNotifications
+    private notifications: LocalNotifications,
+    private modalCtrl: ModalController
   ) {
     this.languages = availableLanguages;
     this.storage.get('language').then((val) => {
@@ -69,6 +72,11 @@ export class ProfilePage {
     // Because we initiate with the login page we can pop the current app to
     // return to the login page
     this.appCtrl.getRootNav().pop();
+  }
+
+  editFearLadder() {
+    let modal = this.modalCtrl.create(FearladderModal);
+    modal.present();
   }
 
 }

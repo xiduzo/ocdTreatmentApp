@@ -42,28 +42,35 @@ export class ExerciseListPage {
     id: null,
     start: null,
     end: null,
-    exercise: null,
-    beforeMood: {
-      mood: null,
-      explanation: null
-    },
-    afterMood: {
-      mood: null,
-      explanation: null
-    },
-    gaveInToCompulsion: false,
-    obsessiveThoughts: {
-      rating: null,
-      explanation: null
-    },
-    compulsiveBehaviour: {
-      rating: null,
-      explanation: null
-    },
-    erp: {
-      start: null,
-      end: null
-    }
+    step: null,
+    // erp: {
+    //   start: null,
+    //   end: null
+    // },
+    // beforeTriggers: [],
+    // afterTriggers: [],
+    // beforeMood: {
+    //   mood: null,
+    //   explanation: null
+    // },
+    // afterMood: {
+    //   mood: null,
+    //   explanation: null
+    // }
+    // exercise: null,
+    // gaveInToCompulsion: false,
+    // obsessiveThoughts: {
+    //   rating: null,
+    //   explanation: null
+    // },
+    // compulsiveBehaviour: {
+    //   rating: null,
+    //   explanation: null
+    // },
+    // erp: {
+    //   start: null,
+    //   end: null
+    // }
   };
 
   constructor(
@@ -83,21 +90,20 @@ export class ExerciseListPage {
     this.appCtrl.getRootNav().pop()
   }
 
-  selectExercise(exercise) {
-    if(exercise.completed) return;
-
+  selectExercise(step) {
+    if(step.exercise.completion >= 100) return;
 
     this.storage.get('exercises').then((exercises) => {
       if(!exercises) exercises = []; // When it's the users' first time
 
       this.tracking.id = UUID.UUID();
       this.tracking.start = new Date();
-      this.tracking.exercise = exercise.plain();
+      this.tracking.step = step;
 
-      exercises.push(this.tracking);
+      // exercises.push(this.tracking);
       this.storage.set('exercises', exercises);
 
-      let exerciseMoodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.level, exercise: exercise, before: true, tracking: this.tracking});
+      let exerciseMoodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.level, tracking: this.tracking, before: true});
       exerciseMoodModal.present();
     });
 

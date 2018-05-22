@@ -39,7 +39,9 @@ export class LoginPage {
       password: this.password
     };
     this.restangular.one('users/validate').get(data).subscribe((response) => {
+      this.err = { text: 'validated'};
       if(response.data.plain().length === 1) {
+        this.err = { text: 'user found' };
         this.userService.setUser(response.data.plain()[0].profile);
         this.authService.getJwtToken(data)
         .then((resp:any) => {
@@ -56,6 +58,7 @@ export class LoginPage {
           // }).present();
         });
       } else {
+        this.err = { text: 'user doesnt exist' };
         console.log("user doesnt exist");
       }
     });

@@ -26,13 +26,12 @@ export class ExerciseDuringModal {
   }
 
   ionViewDidLoad() {
-    this.exercise = this.params.get('exercise');
     this.level = this.params.get('level');
     this.tracking = this.params.get('tracking');
-    this.dbLink = this.params.get('dbLink');
   }
 
   ionViewWillEnter() {
+    this.tracking.erp = {};
     this.tracking.erp.start = new Date();
 
     this.storage.get('exercises').then((exercises) => {
@@ -42,7 +41,8 @@ export class ExerciseDuringModal {
   }
 
   finishExercise(succeed) {
-    if(!succeed) this.tracking.gaveInToCompulsion = true;
+    // Check if the user gave in to his compulsion
+    this.tracking.gaveInToCompulsion = succeed ? false : true;
 
     this.tracking.erp.end = new Date();
 
@@ -50,7 +50,7 @@ export class ExerciseDuringModal {
       exercises[exercises.length - 1] = this.tracking;
       this.storage.set('exercises', exercises);
 
-      let moodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.level, exercise: this.exercise, before: false, tracking: this.tracking });
+      let moodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.level, tracking: this.tracking, before: false });
       moodModal.present();
       this.viewCtrl.dismiss();
     });
