@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { App, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { Storage } from '@ionic/storage';
 
@@ -14,6 +15,7 @@ import { AuthService, UserService } from '../lib/services';
 import { TranslateService } from 'ng2-translate';
 import { Globalization } from '@ionic-native/globalization';
 import { defaultLanguage, availableLanguages, sysOptions } from '../lib/constants';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -30,9 +32,14 @@ export class MyApp {
     protected authService: AuthService,
     protected userService: UserService,
     protected translate: TranslateService,
-    protected globalization: Globalization
+    protected globalization: Globalization,
+    protected screenOrientation: ScreenOrientation
     ) {
     platform.ready().then(() => {
+      // We only let the users use the app in portrait, bc its fucked up in landscape (sorry not sorry)
+      if(platform.platforms().find(platform => { return platform === 'core' })) screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
+
+      // Set the language for the app
       this.setLanguage();
 
       // Okay, so the platform is ready and our plugins are available.

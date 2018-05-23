@@ -1,28 +1,61 @@
-ion-range.show-pin {
-  .range-slider {
-    .range-ios .range-knob-handle,
-    .range-md .range-knob-handle,
-    .range-knob-handle {
-      .range-pin {
-        transform: translate3d(0, 0, 0) scale(1);
+ion-range {
+  &.show-pin {
+    .range-slider {
+      .range-ios .range-knob-handle,
+      .range-md .range-knob-handle,
+      .range-knob-handle {
+        .range-pin {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+
+        .range-pin,
+        .range-knob,
+        .range-pin:before {
+          background: color($colors, primary, base);
+          border: none;
+        }
       }
-      
-      .range-pin,
-      .range-knob,
-      .range-pin:before {
-        background: color($colors, primary, base);
-        border: none;
+
+    }
+
+    &[color="secondary"] {
+      .range-slider {
+        .range-knob-handle {
+          .range-pin,
+          .range-knob,
+          .range-pin:before {
+            background: color($colors, secondary, base);
+          }
+        }
+      }
+    }
+    &[color="light"] {
+      .range-bar {
+        background: color($colors, light, base);
       }
     }
   }
 
-  &[color="secondary"] {
+  &.big-slider {
     .range-slider {
+      height: 48px;
+      .range-tick,
+      .range-bar {
+        height: 8px;
+      }
+      .range-bar {
+        border-radius: 6px;
+      }
       .range-knob-handle {
-        .range-pin,
-        .range-knob,
-        .range-pin:before {
-          background: color($colors, secondary, base);
+        .range-pin {
+          left: -3px;
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        .range-knob {
+          width: 36px;
+          height: 36px;
+          top: 7px;
+          left: -1px;
         }
       }
     }

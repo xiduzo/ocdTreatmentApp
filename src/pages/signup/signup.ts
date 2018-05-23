@@ -37,15 +37,6 @@ import { Restangular } from 'ngx-restangular';
 })
 export class SignUpPage {
 
-  // private username:string;
-  // private password:string;
-  // private password_repeat:string;
-  // private email:string;
-  // public errors:any = {
-  //   email: '',
-  //   username: 'test'
-  // };
-
   private registerForm:FormGroup;
   private username:AbstractControl;
   private email:AbstractControl;

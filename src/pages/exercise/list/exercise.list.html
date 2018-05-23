@@ -16,7 +16,7 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item (click)="selectExercise(item)" text-wrap *ngFor="let item of level?.exercises">
+    <button ion-item (click)="selectExercise(item)" text-wrap *ngFor="let item of level?.exercises" [class.completed]="item.exercise.completion >= 100" [disabled]="item.exercise.completion >= 100">
       <ion-avatar item-start text-center>
         <ion-icon name="radio-button-off" *ngIf="item.exercise.completion < 100"></ion-icon>
         <ion-icon name="checkmark-circle" *ngIf="item.exercise.completion >= 100"></ion-icon>

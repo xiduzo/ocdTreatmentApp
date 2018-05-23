@@ -20,6 +20,9 @@ exercise-list-page {
   ion-content {
     ion-list {
       button[ion-item] {
+
+        &.completed { text-decoration: line-through; }
+
         ion-avatar {
           ion-icon {
             font-size: 1.5em;

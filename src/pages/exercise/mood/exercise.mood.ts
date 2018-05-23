@@ -16,7 +16,7 @@ import {
 } from '@angular/animations';
 
 import { ExerciseDuringModal } from '../during/exercise.during';
-import { ExerciseAfterModal } from '../after/exercise.after';
+import { ExerciseTriggerModal } from '../trigger/exercise.trigger';
 
 @Component({
   selector: 'page-exercise-mood',
@@ -102,7 +102,6 @@ export class ExerciseMoodPage {
     this.tracking.beforeMood.mood = this.moodTrack;
     this.tracking.beforeMood.explanation = this.moodReason;
 
-
     this.storage.get('exercises').then((exercises) => {
       // The last exercise is allways the exercise we are working with
       // So lets overwrite the last entry
@@ -128,8 +127,8 @@ export class ExerciseMoodPage {
       exercises[exercises.length-1] = this.tracking;
       this.storage.set('exercises', exercises);
 
-      let afterModal = this.modalCtrl.create(ExerciseAfterModal, {level: this.level, tracking: this.tracking });
-      afterModal.present();
+      let triggerModal = this.modalCtrl.create(ExerciseTriggerModal, {level: this.level, tracking: this.tracking });
+      triggerModal.present();
       this.viewCtrl.dismiss();
     });
   }

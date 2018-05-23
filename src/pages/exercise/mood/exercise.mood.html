@@ -38,14 +38,13 @@
                     <div class="mouth__lips"></div>
                     <div class="mouth__inside"></div>
                 </section>
-                <!-- {{ mood }} -->
             </div>
         </section>
     </section>
 
     <form>
       <ion-item class="transparent">
-        <ion-range class="show-pin" color="secondary" [(ngModel)]="moodTrack" name="moodNumber" (ngModelChange)="setMood()" min="0" max="500"></ion-range>
+        <ion-range class="show-pin big-slider" color="light" [(ngModel)]="moodTrack" name="moodNumber" (ngModelChange)="setMood()" min="0" max="500"></ion-range>
       </ion-item>
       <ion-item>
         <ion-label floating>

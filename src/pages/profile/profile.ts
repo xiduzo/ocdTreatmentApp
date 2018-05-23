@@ -47,12 +47,20 @@ export class ProfilePage {
   download() {
     this.emailComposer.isAvailable().then((available: boolean) =>{
       alert(available);
+      let email = {
+      to: 'mail@sanderboer.nl',
+      attachments: [
+      'file://img/logo.png',
+      'res://icon.png',
+      'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
+      'file://README.pdf'
+      ],
+      subject: 'Test mail ionic',
+      body: 'Whattttttt',
+      isHtml: true
+      };
+      this.emailComposer.open(email);
     });
-    // this.storage.get('exercises').then((exercises) => {
-    //   var blob = new Blob([JSON.stringify(exercises)], { type: 'application/json' });
-    //   var url= window.URL.createObjectURL(blob);
-    //   window.open(url);
-    // });
   }
 
   showNotification() {
@@ -60,8 +68,10 @@ export class ProfilePage {
       id: 1,
       title: 'test notification title',
       text: 'test notification text',
-      trigger: { in: 1000 }
-    })
+      launch: true,
+      priority: 2,
+      trigger: { at: new Date(new Date().getTime() + 3600) }
+    });
   }
 
   logout() {

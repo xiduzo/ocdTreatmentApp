@@ -9,14 +9,27 @@
 <ion-content>
   <div ion-fixed>
     <ion-list>
-      <ion-item>
+      <div *ngFor="let trigger of triggers">
+        <ion-item>
+          <ion-label stacked>
+            {{ trigger.verbose }}
+          </ion-label>
+          <ion-range class="show-pin" min="{{range.min}}" max="{{range.max}}" [(ngModel)]="trigger.range" pin="true">
+            <ion-label range-left>{{range.min}}</ion-label>
+            <ion-label range-right>{{range.max}}</ion-label>
+          </ion-range>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>
+            {{ 'INTENSITY_WHY' | translate }}
+          </ion-label>
+          <ion-textarea [(ngModel)]="trigger.explanation" name="trigger.verbose"></ion-textarea>
+        </ion-item>
+      </div>
+      <!-- <ion-item>
         <ion-label stacked>
           {{ 'INTENSITY_OBSESSIVE_THOUGHTS' | translate }}
         </ion-label>
-        <ion-range class="show-pin" min="{{range.min}}" max="{{range.max}}" [(ngModel)]="obsessiveThoughts" pin="true">
-          <ion-label range-left>{{range.min}}</ion-label>
-          <ion-label range-right>{{range.max}}</ion-label>
-        </ion-range>
       </ion-item>
       <ion-item>
         <ion-label floating>
@@ -38,7 +51,7 @@
           {{ 'INTENSITY_WHY' | translate}}
         </ion-label>
         <ion-textarea [(ngModel)]="compulsiveBehaviourReason" name="compulsiveBehaviourReason"></ion-textarea>
-      </ion-item>
+      </ion-item> -->
     </ion-list>
   </div>
 </ion-content>

@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { App, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-import { Restangular } from 'ngx-restangular';
-
 import { ExerciseListPage } from '../exercise/list/exercise.list';
 
 import { UserService } from '../../lib/services';
@@ -23,7 +21,6 @@ export class ExercisePage {
 
   constructor(
     public appCtrl: App,
-    private restangular: Restangular,
     private userService: UserService,
     private storage: Storage,
     public toastCtrl: ToastController,
@@ -37,6 +34,10 @@ export class ExercisePage {
   }
 
   ionViewWillEnter() {
+    this.resetLevels();
+  }
+
+  resetLevels() {
     this.levels = [];
     // Build the levels array
     for(let i = 1; i <= 8; i++) {
@@ -47,15 +48,17 @@ export class ExercisePage {
 
   getExersises() {
     this.storage.get('fearLadder').then((fearLadder) => {
-      fearLadder.forEach(step => {
-        this.levels.find(level => level.level === step.fearRating).exercises.push(step);
-      });
+      if(fearLadder) {
+        fearLadder.forEach(step => {
+          this.levels.find(level => level.level === step.fearRating).exercises.push(step);
+        });
+      }
+
+      // We don't need to see the levels which has no exercises
+      this.levels = this.levels.filter(level => { return level.exercises.length > 0 });
+      this.setLevelsMonsterAndCompletion();
     });
 
-    // We don't need to see the levels which has no exercises
-    this.levels = this.levels.filter(level => { return level.exercises.length > 0 });
-
-    this.setLevelsMonsterAndCompletion();
   }
 
   setLevelsMonsterAndCompletion() {

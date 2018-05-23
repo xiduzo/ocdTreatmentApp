@@ -27,14 +27,16 @@ export class ProgressPage {
   public canSelectNextWeek:boolean = false;
 
   public chart:any;
-  public exercises:any;
+  public exercises:any = [];
+  public thisWeeksExercises:any = [];
+  public previousWeeksExercises:any = [];
 
   constructor(
     private storage: Storage
   ) {
     this._chartOptions = {
       chart: {
-        height: 250,
+        height: 350,
         animation: false
       },
       title: { text: ''},
@@ -73,40 +75,73 @@ export class ProgressPage {
 
   ionViewDidEnter() {
     // Every time the view entered, try to update the graph
-    this.addPointsToGraph();
+    this.getExercises();
   }
 
   setChart(chart) {
     this.chart = chart;
   }
 
-  addPointsToGraph() {
+  getExercises() {
+    this.exercises = [];
     this.storage.get('exercises').then((exercises) => {
       if(!exercises) return;
 
-      exercises
-      // We can only use exercises with a before and after mood track
-      .filter((exercise) => {
-        return (exercise.beforeMood.mood && exercise.afterMood.mood);
-      })
-      // To prevent doubles we filter out ones not found in the chart yet
-      .filter((exercise) => {
-        // If there is nothing to compare with yet just return
-        if(!this.exercises) return exercise;
+      this.exercises = exercises;
 
-        // Only return the new exercises
-        return !this.exercises.find(point => point.id === exercise.id);
-      })
-      .forEach(exercise => {
+      // Now update the graph
+      this.addPointsToGraph(exercises, moment(this.endWeek).week());
+    });
+  }
+
+  clearPoints() {
+    const length = this.chart.series[1].data.length;
+    for(let i = 0; i < length; i++) {
+      this.chart.series[1].removePoint(0);
+    }
+    // Update the graph again
+    this.addPointsToGraph(this.exercises, moment(this.endWeek).week());
+  }
+
+  addPointsToGraph(exercises:any, weekNumber:number) {
+    this.thisWeeksExercises = exercises
+    // Get the exercises for this week
+    .filter((exercise) => {
+      if(moment(exercise.start).week() == weekNumber) {
+        return exercise;
+      }
+    })
+    .forEach(exercise => {
+      // Check if there is a before and aftermood registered
+      if((exercise.hasOwnProperty('beforeMood') && exercise.hasOwnProperty('afterMood'))) {
         this.chart.series[1].addPoint([
           map(exercise.beforeMood.mood, 0, 500, 1, 5),
           map(exercise.afterMood.mood, 0, 500, 1, 5)
         ]);
-      });
-
-      // Now we can update the stored exercises for the page
-      this.exercises = exercises;
+      }
     });
+
+    this.updateStats(exercises, weekNumber);
+  }
+
+  updateStats(exercises:any, weekNumber:number) {
+    this.thisWeeksExercises = exercises
+    // Get the exercises for this week
+    .filter((exercise) => {
+      if(moment(exercise.start).week() == weekNumber) {
+        return exercise;
+      }
+    });
+
+    this.previousWeeksExercises = exercises
+    // Get the exercises for this week
+    .filter((exercise) => {
+      if(moment(exercise.start).week() == weekNumber - 1) {
+        return exercise;
+      }
+    });
+
+    console.log(this.thisWeeksExercises, this.previousWeeksExercises);
   }
 
   changeWeek(direction:number) {
@@ -116,6 +151,8 @@ export class ProgressPage {
 
     // Cant go further than this week
     this.canSelectNextWeek = moment(this.endWeek).week() === moment(moment.now()).week() ? false : true;
+
+    this.clearPoints();
   }
 
 }

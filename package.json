@@ -34,7 +34,6 @@
     "angular2-highcharts": "^0.5.5",
     "angular2-uuid": "^1.1.1",
     "com.telerik.plugins.nativepagetransitions": "^0.6.5",
-    "cordova-android": "~7.0.0",
     "cordova-browser": "~5.0.3",
     "cordova-plugin-badge": "^0.8.7",
     "cordova-plugin-device": "^2.0.1",
@@ -58,7 +57,9 @@
     "rxjs": "5.5.2",
     "sw-toolbox": "3.6.0",
     "web-animations-js": "^2.3.1",
-    "zone.js": "0.8.18"
+    "zone.js": "0.8.18",
+    "cordova-plugin-file": "^6.0.1",
+    "cordova-android": "~7.0.0"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.8",
@@ -78,11 +79,12 @@
       "cordova-plugin-screen-orientation": {},
       "cordova-plugin-globalization": {},
       "cordova-plugin-email-composer": {},
-      "cordova-plugin-local-notification": {}
+      "cordova-plugin-local-notification": {},
+      "cordova-plugin-file": {}
     },
     "platforms": [
-      "android",
-      "browser"
+      "browser",
+      "android"
     ]
   }
 }

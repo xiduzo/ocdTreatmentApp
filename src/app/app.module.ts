@@ -34,7 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ExercisePage } from '../pages/exercise/exercise';
 import { ExerciseMoodPage } from '../pages/exercise/mood/exercise.mood';
 import { ExerciseDuringModal } from '../pages/exercise/during/exercise.during';
-import { ExerciseAfterModal } from '../pages/exercise/after/exercise.after';
+import { ExerciseTriggerModal } from '../pages/exercise/trigger/exercise.trigger';
 import { ExerciseSuccessModal } from '../pages/exercise/success/exercise.success';
 import { ExerciseListPage } from '../pages/exercise/list/exercise.list';
 // Auth
@@ -97,6 +97,7 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
 
   RestangularProvider.addFullRequestInterceptor((element, operation, path, url, headers, params) => {
     let jwtToken = authService.getLocalToken();
+    alert(jwtToken);
     if(!jwtToken) return;
 
     return {
@@ -120,7 +121,7 @@ export function createTranslateLoader(http: Http) {
     ExercisePage,
     ExerciseMoodPage,
     ExerciseDuringModal,
-    ExerciseAfterModal,
+    ExerciseTriggerModal,
     ExerciseSuccessModal,
     ExerciseListPage,
     FearladderModal,
@@ -157,7 +158,7 @@ export function createTranslateLoader(http: Http) {
     ExercisePage,
     ExerciseMoodPage,
     ExerciseDuringModal,
-    ExerciseAfterModal,
+    ExerciseTriggerModal,
     ExerciseSuccessModal,
     ExerciseListPage,
     FearladderModal,

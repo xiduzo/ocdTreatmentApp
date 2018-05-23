@@ -18,7 +18,7 @@
     </button> -->
   </section>
   <ion-list *ngIf="exercises?.length">
-    <ion-card *ngFor="let item of exercises.reverse()">
+    <ion-card *ngFor="let item of exercises">
       <ion-item>
         <ion-avatar item-start>
           <div class="o-moodindicator">
@@ -40,7 +40,7 @@
           </div>
         </ion-avatar>
         <h2>
-          {{ item.step | json }}
+          {{ item.step.exercise.situation }}
         </h2>
         <p>
           {{ item.start | date : 'medium'}}
@@ -48,21 +48,20 @@
       </ion-item>
         <!-- Task name over here -->
       <ion-card-content>
-        <ion-card-title>
+        <!-- <ion-card-title>
           {{'NOTES' | translate }}:
-        </ion-card-title>
-        <!-- <p *ngIf="exercise.beforeMood.explanation">
-          {{ exercise.beforeMood.explanation }}
+        </ion-card-title> -->
+        <p *ngIf="item.beforeMood?.explanation">
+          Before: {{ item.beforeMood.explanation }}
         </p>
-        <p *ngIf="exercise.afterMood.explanation">
-          {{ exercise.afterMood.explanation }}
+        <p *ngIf="item.afterMood?.explanation">
+          After: {{ item.beforeMood.explanation }}
         </p>
-        <p *ngIf="exercise.compulsiveBehaviour.explanation">
-          {{ exercise.compulsiveBehaviour.explanation }}
-        </p>
-        <p *ngIf="exercise.obsessiveThoughts.explanation">
-          {{ exercise.obsessiveThoughts.explanation }}
-        </p> -->
+        <div *ngFor="let trigger of item.step.triggers">
+          <p *ngIf="trigger.reason">
+            {{trigger.verbose}}: {{ trigger.reason }}
+          </p>
+        </div>
       </ion-card-content>
     </ion-card>
   </ion-list>

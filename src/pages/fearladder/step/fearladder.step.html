@@ -42,13 +42,9 @@
     <ion-item-divider color="light">
       Triggers
     </ion-item-divider>
-    <ion-item>
-      <ion-label>This triggers obsessive thoughts</ion-label>
-      <ion-checkbox [(ngModel)]="step.triggers.obsessiveThoughts"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>This triggers compulsive behaviour</ion-label>
-      <ion-checkbox [(ngModel)]="step.triggers.compulsiveBehaviour"></ion-checkbox>
+    <ion-item *ngFor="let trigger of step.triggers">
+      <ion-label>This triggers {{ trigger.verbose }}</ion-label>
+      <ion-checkbox [(ngModel)]="trigger.enabled"></ion-checkbox>
     </ion-item>
   </ion-item-group>
 </ion-content>

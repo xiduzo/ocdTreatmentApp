@@ -29,7 +29,7 @@ export class OnboardingPage {
   }
 
   done() {
-    this.appCtrl.getRootNav().pop(); // Remove the onboarding from the stack
+    // this.appCtrl.getRootNav().pop(); // Remove the onboarding from the stack
     this.appCtrl.getRootNav().push(TabsPage);
     this.storage.set('onboardingCompleted', true);
   }

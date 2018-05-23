@@ -17,10 +17,16 @@ export class FearladderStepModal {
       without: null,
       completion: 0
     },
-    triggers: {
-      obsessiveThoughts: false,
-      compulsiveBehaviour: false
-    }
+    triggers: [
+      {
+        verbose: 'obsessive thoughts',
+        enabled: false,
+      },
+      {
+        verbose: 'compulsive behaviour',
+        enabled: false
+      }
+    ]
   };
   public buttonText:string = 'add';
   public headerText:string = 'Add new fear';

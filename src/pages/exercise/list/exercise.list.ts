@@ -43,34 +43,6 @@ export class ExerciseListPage {
     start: null,
     end: null,
     step: null,
-    // erp: {
-    //   start: null,
-    //   end: null
-    // },
-    // beforeTriggers: [],
-    // afterTriggers: [],
-    // beforeMood: {
-    //   mood: null,
-    //   explanation: null
-    // },
-    // afterMood: {
-    //   mood: null,
-    //   explanation: null
-    // }
-    // exercise: null,
-    // gaveInToCompulsion: false,
-    // obsessiveThoughts: {
-    //   rating: null,
-    //   explanation: null
-    // },
-    // compulsiveBehaviour: {
-    //   rating: null,
-    //   explanation: null
-    // },
-    // erp: {
-    //   start: null,
-    //   end: null
-    // }
   };
 
   constructor(
@@ -100,7 +72,7 @@ export class ExerciseListPage {
       this.tracking.start = new Date();
       this.tracking.step = step;
 
-      // exercises.push(this.tracking);
+      exercises.push(this.tracking);
       this.storage.set('exercises', exercises);
 
       let exerciseMoodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.level, tracking: this.tracking, before: true});

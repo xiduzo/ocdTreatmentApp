@@ -27,11 +27,6 @@ export class LoginPage {
   ) {
   }
 
-
-  ngOnInit() {
-
-  }
-
   login() {
     this.err = { text: 'logging in'};
     const data = {
@@ -61,6 +56,8 @@ export class LoginPage {
         this.err = { text: 'user doesnt exist' };
         console.log("user doesnt exist");
       }
+    }, (err) => {
+      this.err = err;
     });
   }
 

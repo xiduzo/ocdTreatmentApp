@@ -11,40 +11,6 @@ page-exercise-mood {
       form {
         ion-item.transparent {
           background: transparent;
-
-          ion-range {
-            .range-slider {
-              .range-tick,
-              .range-bar {
-                height: 8px;
-              }
-              .range-tick {
-                background: lighten(color($colors, dark, base), 25);
-                // TODO
-                // make &:last-of-type work
-                // &:nth-of-type(5) is just a dirty fix
-                &:first-of-type,
-                &:nth-of-type(5) {
-                  display: none;
-                }
-              }
-              .range-bar {
-                border-radius: 6px;
-              }
-              .range-knob-handle {
-                .range-pin {
-                  left: -3px;
-                  transform: translate3d(0, 0, 0) scale(1);
-                }
-                .range-knob {
-                  width: 36px;
-                  height: 36px;
-                  top: 7px;
-                  left: 0;
-                }
-              }
-            }
-          }
         }
       }
     }

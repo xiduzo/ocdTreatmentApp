@@ -18,22 +18,12 @@
   <chart [options]="_chartOptions" style="display: block" (load)="setChart($event.context)" type="chart"></chart>
 
   <ion-list>
-    <!-- <ion-item>
-      <ion-label>{{ 'FILTER' | translate }}</ion-label>
-      <ion-select [(ngModel)]="filter" *ngIf="exercises">
-        <ion-option value="all">all</ion-option>
-        <ion-option *ngFor="let group of exercises | groupBy : 'exerciseId'" value="{{exerciseId}}">
-          {{ group.list[0].exercise.situation }}
-        </ion-option>
-      </ion-select>
-    </ion-item> -->
-
     <ion-item>
       <h2>
         Exercises done
       </h2>
       <p item-end>
-        {{ exercises?.length }} (+15%)
+        {{ thisWeeksExercises?.length }} (+15%)
       </p>
     </ion-item>
     <ion-item>
