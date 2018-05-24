@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 import moment from 'moment';
+import regression from 'regression';
 
 import { map } from '../../lib/helpers';
 
@@ -36,6 +37,7 @@ export class ProgressPage {
   ) {
     this._chartOptions = {
       chart: {
+        type: 'scatter',
         height: 350,
         animation: false
       },
@@ -52,22 +54,62 @@ export class ProgressPage {
       },
       legend: { enabled: false },
       series: [
-          {
-            type: 'line',
-            name: 'Regression Line',
-            data: [
-              [1, 1.11], [5, 4.51]
-            ],
-            color: '#FCD28A',
-            marker: { enabled: false },
-            states: { hover: { lineWidth: 0 } },
-            enableMouseTracking: false
-        }, {
-            type: 'scatter',
-            name: 'Observations',
-            data: [],
-            marker: { symbol: 'round', radius: 4 }
-        }
+        {
+          type: 'arearange',
+          name: 'Prefered line',
+          color: '#FCD28A',
+          lineColor: '#f9c367',
+          lineWidth: 2,
+          marker: { enabled: false },
+          enableMouseTracking: false,
+          data: [
+            [1, 3.5, 5],
+            [1.25, 3.48, 4.99],
+            [1.5, 3.45, 4.98],
+            [1.75, 3.4, 4.965],
+            [2, 3.35, 4.95],
+            [2.25, 3.3, 4.9],
+            [2.5, 3.2, 4.83],
+            [2.75, 3.1, 4.75],
+            [3, 3, 4.6],
+            [3.25, 2.9, 4.44],
+            [3.5, 2.75, 4.25],
+            [3.75, 2.55, 4],
+            [4, 2.3, 3.75],
+            [4.25, 2, 3.5],
+            [4.5, 1.7, 3.1],
+            [4.75, 1.4, 2.3],
+            [5, 1, 1]
+            // [1, 4, 10],
+            // [2, 3, 5],
+            // [4, 1, 3],
+            // [5, -10, 2]
+          ]
+        },
+        {
+          // https://github.com/virtualstaticvoid/highcharts_trendline
+          type: 'line',
+          dashStyle: 'Dash',
+          name: 'Regression Line',
+          data: [],
+          color: '#F17879',
+          marker: { enabled: false },
+          states: { hover: { lineWidth: 0 } },
+          enableMouseTracking: false,
+        },
+        {
+          name: 'Observations',
+          data: [],
+          enableMouseTracking: false,
+          marker: { symbol: 'round', radius: 6 },
+          regression: true,
+          regressionSettings: {
+            name : 'Type any name of the series..',
+            type: 'polynomial',
+            color: 'rgba(223, 83, 83, 0.9)',
+            dashStyle: 'dash'
+          },
+        },
       ],
       credits: { href: null, text: '' }
     }
@@ -78,6 +120,7 @@ export class ProgressPage {
     this.getExercises();
   }
 
+  // Use this for editing the chart dynamicly later on
   setChart(chart) {
     this.chart = chart;
   }
@@ -95,10 +138,18 @@ export class ProgressPage {
   }
 
   clearPoints() {
-    const length = this.chart.series[1].data.length;
-    for(let i = 0; i < length; i++) {
-      this.chart.series[1].removePoint(0);
+    // Clear the observations
+    const observations = this.chart.series[this.chart.series.length-1].data.length;
+    for(let i = 0; i < observations; i++) {
+      this.chart.series[this.chart.series.length-1].removePoint(0);
     }
+
+    // Clear the regression line
+    const regression = this.chart.series[this.chart.series.length-2].data.length;
+    for(let i = 0; i < regression; i++) {
+      this.chart.series[this.chart.series.length-2].removePoint(0);
+    }
+
     // Update the graph again
     this.addPointsToGraph(this.exercises, moment(this.endWeek).week());
   }
@@ -106,42 +157,41 @@ export class ProgressPage {
   addPointsToGraph(exercises:any, weekNumber:number) {
     this.thisWeeksExercises = exercises
     // Get the exercises for this week
-    .filter((exercise) => {
-      if(moment(exercise.start).week() == weekNumber) {
-        return exercise;
-      }
-    })
+    .filter((exercise) => { return moment(exercise.start).week() === weekNumber})
     .forEach(exercise => {
       // Check if there is a before and aftermood registered
       if((exercise.hasOwnProperty('beforeMood') && exercise.hasOwnProperty('afterMood'))) {
-        this.chart.series[1].addPoint([
+        this.chart.series[this.chart.series.length-1].addPoint([
           map(exercise.beforeMood.mood, 0, 500, 1, 5),
           map(exercise.afterMood.mood, 0, 500, 1, 5)
         ]);
       }
     });
 
+    // Update the regression line
+    regression
+    .logarithmic(this.chart.series[this.chart.series.length-1].data
+    // Only need the mapped x and y values
+    .map(point => { return [point.x, point.y]})).points
+    // Sort in order to for a smooth line
+    .sort()
+    .forEach(point => {
+      // Add the points to the graph
+      this.chart.series[this.chart.series.length-2].addPoint(point);
+    });
+
+    // Update the stats
     this.updateStats(exercises, weekNumber);
   }
 
   updateStats(exercises:any, weekNumber:number) {
     this.thisWeeksExercises = exercises
     // Get the exercises for this week
-    .filter((exercise) => {
-      if(moment(exercise.start).week() == weekNumber) {
-        return exercise;
-      }
-    });
+    .filter((exercise) => { return moment(exercise.start).week() === weekNumber})
 
     this.previousWeeksExercises = exercises
     // Get the exercises for this week
-    .filter((exercise) => {
-      if(moment(exercise.start).week() == weekNumber - 1) {
-        return exercise;
-      }
-    });
-
-    console.log(this.thisWeeksExercises, this.previousWeeksExercises);
+    .filter((exercise) => { return moment(exercise.start).week() === weekNumber - 1})
   }
 
   changeWeek(direction:number) {

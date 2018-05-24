@@ -23,7 +23,10 @@
         Exercises done
       </h2>
       <p item-end>
-        {{ thisWeeksExercises?.length }} (+15%)
+        {{ thisWeeksExercises?.length }}
+        <span *ngIf="previousWeeksExercises?.length">
+          ({{ previousWeeksExercises.length * 100 / thisWeeksExercises.length}}%)
+        </span>
       </p>
     </ion-item>
     <ion-item>
@@ -31,7 +34,10 @@
         Total exercise time
       </h2>
       <p item-end>
-        01:25:57 hours (-12%)
+        {{ (thisWeeksExercises | accumulateTime | msToTime) || '00:00:00' }}
+        <span *ngIf="previousWeeksExercises?.length">
+          ({{ (previousWeeksExercises | accumulateTime) * 100 / (thisWeeksExercises.accumulateTime) }}%)
+        </span>
       </p>
     </ion-item>
     <ion-item>
@@ -39,7 +45,10 @@
         Average exercise time
       </h2>
       <p item-end>
-        00:05:21 hours (-8%)
+        {{ (((thisWeeksExercises | accumulateTime) / thisWeeksExercises.length) | msToTime) || '00:00:00' }}
+        <span *ngIf="previousWeeksExercises?.length">
+          ({{ ((previousWeeksExercises | accumulateTime) / previousWeeksExercises.length) * 100 / ((thisWeeksExercises | accumulateTime) / thisWeeksExercises.length) }}%)
+        </span>
       </p>
     </ion-item>
   </ion-list>

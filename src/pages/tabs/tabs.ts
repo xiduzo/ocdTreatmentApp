@@ -54,10 +54,4 @@ export class TabsPage {
 
     this.nativePageTransitions.slide(options);
   }
-
-  ionViewWillEnter() {
-    if(this.navParams.get('opentab')) {
-      this.tabRef.select(this.navParams.get('opentab'));
-    }
-  }
 }

@@ -61,7 +61,7 @@ import { FearladderStepModal } from '../pages/fearladder/step/fearladder.step';
   Lib
 ------------------------------*/
 import { databaseHost } from '../lib/constants';
-import { GroupByPipe } from '../lib/pipes';
+import { GroupByPipe, accumulateTimePipe, msToTimePipe } from '../lib/pipes';
 import { AuthService, UserService } from '../lib/services';
 
 /*------------------------------
@@ -80,6 +80,7 @@ import { RestangularModule } from 'ngx-restangular';
 ------------------------------*/
 import { ChartModule } from 'angular2-highcharts';
 import * as highcharts from 'highcharts';
+import Highmore from 'highcharts/highcharts-more';
 
 /*------------------------------
   Components
@@ -130,14 +131,16 @@ export function createTranslateLoader(http: Http) {
     LoginPage,
     SignUpPage,
     LogbookPage,
-    GroupByPipe
+    GroupByPipe,
+    accumulateTimePipe,
+    msToTimePipe
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    ChartModule.forRoot(highcharts),
+    ChartModule.forRoot(highcharts, Highmore),
     HttpClientModule,
     RoundProgressModule,
     NgxCircularSliderModule,
