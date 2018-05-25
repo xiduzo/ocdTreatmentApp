@@ -7,4 +7,28 @@ progress-home {
       }
     }
   }
+
+  chart {
+    svg, span {
+      text {
+        vertical-align: bottom;
+      }
+      tspan, span {
+        &.graphMood {
+          font-size: 5em;
+
+          &--content { fill: color($moods, content, base); color: color($moods, content, base); }
+          &--ok { fill: color($moods, ok, base); color: color($moods, ok, base); }
+          &--meh { fill: color($moods, meh, base); color: color($moods, meh, base); }
+          &--worried { fill: color($moods, worried, base); color: color($moods, worried, base); }
+          &--panic { fill: color($moods, panic, base); color: color($moods, panic, base); }
+
+        }
+      }
+    }
+
+    span, span {
+      line-height: 0.7em;
+    }
+  }
 }

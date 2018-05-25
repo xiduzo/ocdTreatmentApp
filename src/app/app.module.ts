@@ -138,7 +138,7 @@ export function createTranslateLoader(http: Http) {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {tabsPlacement: 'bottom'}),
     IonicStorageModule.forRoot(),
     ChartModule.forRoot(highcharts, Highmore),
     HttpClientModule,

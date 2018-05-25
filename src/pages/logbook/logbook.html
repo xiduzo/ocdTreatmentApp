@@ -1,5 +1,5 @@
 <ion-header color="secondary">
-  <ion-navbar color="secondary" text-center>
+  <ion-navbar color="secondary" text-center padding>
     <img src="assets/imgs/logbook_illustration.png" alt="logbook illustration" class="o-illustration header__illustation">
   </ion-navbar>
 </ion-header>
@@ -48,18 +48,24 @@
       </ion-item>
         <!-- Task name over here -->
       <ion-card-content>
-        <!-- <ion-card-title>
+        <ion-card-title>
           {{'NOTES' | translate }}:
-        </ion-card-title> -->
+        </ion-card-title>
         <p *ngIf="item.beforeMood?.explanation">
-          Before: {{ item.beforeMood.explanation }}
+          <i>
+            {{ item.beforeMood.explanation }}
+          </i>
         </p>
         <p *ngIf="item.afterMood?.explanation">
-          After: {{ item.beforeMood.explanation }}
+          <i>
+            {{ item.beforeMood.explanation }}
+          </i>
         </p>
         <div *ngFor="let trigger of item.step.triggers">
           <p *ngIf="trigger.reason">
-            {{trigger.verbose}}: {{ trigger.reason }}
+            <i>
+              {{trigger.verbose}}: {{ trigger.reason }}
+            </i>
           </p>
         </div>
       </ion-card-content>

@@ -7,8 +7,9 @@ logbook-page {
     ion-list {
       ion-card {
         ion-card-content.card-content {
-          p:not(:last-of-type) {
-            margin-bottom: 0.5em;
+          ion-card-title {
+            font-size: 1em;
+            font-weight: bold;
           }
         }
       }

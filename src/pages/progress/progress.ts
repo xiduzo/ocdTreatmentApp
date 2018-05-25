@@ -39,18 +39,51 @@ export class ProgressPage {
       chart: {
         type: 'scatter',
         height: 350,
-        animation: false
+        animation: false,
+        marginBottom: 35
       },
       title: { text: ''},
       xAxis: {
+        title: {
+          text: '', // after
+        },
         min: 1,
         max: 5,
-        title: { text: 'BEFORE' }
+        categories: [
+          '',
+          '<span class="graphMood graphMood--content">\u2022</span>',
+          '<span class="graphMood graphMood--ok">\u2022</span>',
+          '<span class="graphMood graphMood--meh">\u2022</span>',
+          '<span class="graphMood graphMood--worried">\u2022</span>',
+          '<span class="graphMood graphMood--panic">\u2022</span>',
+        ],
+        labels: {
+          userHTML: true,
+          padding: 0,
+          y: 40
+        },
+        tickWidth: 0,
+        lineWidth: 2
+
       },
       yAxis: {
+        title: { text: '' }, // after
         min: 1,
         max: 5,
-        title: { text: 'AFTER' }
+        categories: [
+          '',
+          '<span class="graphMood graphMood--content">\u2022</span>',
+          '<span class="graphMood graphMood--ok">\u2022</span>',
+          '<span class="graphMood graphMood--meh">\u2022</span>',
+          '<span class="graphMood graphMood--worried">\u2022</span>',
+          '<span class="graphMood graphMood--panic">\u2022</span>',
+        ],
+        labels: {
+          useHTML: true,
+          // x: 10
+        },
+        gridLineWidth: 0,
+        lineWidth: 2
       },
       legend: { enabled: false },
       series: [
@@ -58,32 +91,31 @@ export class ProgressPage {
           type: 'arearange',
           name: 'Prefered line',
           color: '#FCD28A',
-          lineColor: '#f9c367',
+          fillOpacity: 0.4,
+          lineColor: '#FCD28A',
           lineWidth: 2,
           marker: { enabled: false },
           enableMouseTracking: false,
           data: [
-            [1, 3.5, 5],
-            [1.25, 3.48, 4.99],
-            [1.5, 3.45, 4.98],
-            [1.75, 3.4, 4.965],
-            [2, 3.35, 4.95],
-            [2.25, 3.3, 4.9],
-            [2.5, 3.2, 4.83],
-            [2.75, 3.1, 4.75],
-            [3, 3, 4.6],
-            [3.25, 2.9, 4.44],
-            [3.5, 2.75, 4.25],
-            [3.75, 2.55, 4],
-            [4, 2.3, 3.75],
-            [4.25, 2, 3.5],
-            [4.5, 1.7, 3.1],
-            [4.75, 1.4, 2.3],
-            [5, 1, 1]
-            // [1, 4, 10],
-            // [2, 3, 5],
-            // [4, 1, 3],
-            // [5, -10, 2]
+            // [1, 3.5, 5],
+            // [1.25, 3.48, 4.99],
+            // [1.5, 3.45, 4.98],
+            // [1.75, 3.4, 4.965],
+            // [2, 3.35, 4.95],
+            // [2.25, 3.3, 4.9],
+            // [2.5, 3.2, 4.83],
+            // [2.75, 3.1, 4.75],
+            // [3, 3, 4.6],
+            // [3.25, 2.9, 4.44],
+            // [3.5, 2.75, 4.25],
+            // [3.75, 2.55, 4],
+            // [4, 2.3, 3.75],
+            // [4.25, 2, 3.5],
+            // [4.5, 1.7, 3.1],
+            // [4.75, 1.4, 2.3],
+            // [5, 1, 1]
+            // [1, 3.5, 5],
+            // [5, 1, 2.5]
           ]
         },
         {
@@ -100,15 +132,9 @@ export class ProgressPage {
         {
           name: 'Observations',
           data: [],
-          enableMouseTracking: false,
-          marker: { symbol: 'round', radius: 6 },
-          regression: true,
-          regressionSettings: {
-            name : 'Type any name of the series..',
-            type: 'polynomial',
-            color: 'rgba(223, 83, 83, 0.9)',
-            dashStyle: 'dash'
-          },
+          color: '#7D8CA9',
+          // enableMouseTracking: false,
+          marker: { symbol: 'round', radius: 6 }
         },
       ],
       credits: { href: null, text: '' }
@@ -162,15 +188,16 @@ export class ProgressPage {
       // Check if there is a before and aftermood registered
       if((exercise.hasOwnProperty('beforeMood') && exercise.hasOwnProperty('afterMood'))) {
         this.chart.series[this.chart.series.length-1].addPoint([
-          map(exercise.beforeMood.mood, 0, 500, 1, 5),
-          map(exercise.afterMood.mood, 0, 500, 1, 5)
+          map(exercise.afterMood.mood, 0, 500, 1, 5),
+          map(exercise.beforeMood.mood, 0, 500, 1, 5)
         ]);
       }
     });
 
     // Update the regression line
+    // https://github.com/Tom-Alexander/regression-js
     regression
-    .logarithmic(this.chart.series[this.chart.series.length-1].data
+    .linear(this.chart.series[this.chart.series.length-1].data
     // Only need the mapped x and y values
     .map(point => { return [point.x, point.y]})).points
     // Sort in order to for a smooth line

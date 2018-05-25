@@ -1,0 +1,28 @@
+.o-badge {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .badge__progress {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 75px;
+    round-progress {
+      position: absolute;
+    }
+    img {
+      width: 60%;
+    }
+  }
+  .badge__progress__numbers {
+    padding: 0.25em 0 1em 0;
+  }
+
+  .badge__name {
+    text-transform: uppercase;
+    padding: 0 0 0.5em 0;
+    font-weight: lighter;
+  }
+}
