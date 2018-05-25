@@ -5,7 +5,6 @@ import { EmailComposer } from '@ionic-native/email-composer';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { TranslateService } from 'ng2-translate';
-import moment from 'moment';
 
 import { AuthService, UserService } from '../../lib/services';
 import { availableLanguages, sysOptions } from '../../lib/constants';
@@ -44,20 +43,21 @@ export class ProfilePage {
     this.storage.set('language', this.language);
   }
 
-  download() {
+  sendFearLadder() {
     this.emailComposer.isAvailable().then((available: boolean) =>{
+      // TODO https://forum.ionicframework.com/t/how-to-create-a-json-file-ionic-3/105939/3
       alert(available);
       let email = {
-      to: 'mail@sanderboer.nl',
-      attachments: [
-      'file://img/logo.png',
-      'res://icon.png',
-      'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
-      'file://README.pdf'
-      ],
-      subject: 'Test mail ionic',
-      body: 'Whattttttt',
-      isHtml: true
+        to: 'mail@sanderboer.nl',
+        attachments: [
+        'file://img/logo.png',
+        'res://icon.png',
+        'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
+        'file://README.pdf'
+        ],
+        subject: 'Test mail ionic',
+        body: 'Whattttttt',
+        isHtml: true
       };
       this.emailComposer.open(email);
     });

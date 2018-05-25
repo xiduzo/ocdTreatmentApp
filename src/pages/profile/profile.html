@@ -23,6 +23,12 @@
         </ion-option>
       </ion-select>
     </ion-item>
+    <ion-item>
+      <ion-label>Logout</ion-label>
+      <div item-end>
+        <button ion-button (click)="logout()">logout</button>
+      </div>
+    </ion-item>
     <ion-list-header>
       [header]
     </ion-list-header>
@@ -30,6 +36,12 @@
       <ion-label>My fearladder</ion-label>
       <div item-end>
         <button ion-button (click)="editFearLadder()">change</button>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label>Send progress</ion-label>
+      <div item-end>
+        <button ion-button (click)="sendFearLadder()">send</button>
       </div>
     </ion-item>
     <ion-list-header>
