@@ -54,7 +54,6 @@ export class LoginPage {
         });
       } else {
         this.err = { text: 'user doesnt exist' };
-        console.log("user doesnt exist");
       }
     }, (err) => {
       this.err = err;

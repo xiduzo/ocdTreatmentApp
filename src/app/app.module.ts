@@ -56,6 +56,8 @@ import { YbocsModal } from '../pages/ybocs/ybocs';
 // Fearladder
 import { FearladderModal } from '../pages/fearladder/fearladder';
 import { FearladderStepModal } from '../pages/fearladder/step/fearladder.step';
+// Badges
+import { BadgeModal } from '../pages/badge/badge';
 
 /*------------------------------
   Lib
@@ -131,6 +133,7 @@ export function createTranslateLoader(http: Http) {
     LoginPage,
     SignUpPage,
     LogbookPage,
+    BadgeModal,
     GroupByPipe,
     accumulateTimePipe,
     msToTimePipe
@@ -169,7 +172,8 @@ export function createTranslateLoader(http: Http) {
     YbocsModal,
     LoginPage,
     SignUpPage,
-    LogbookPage
+    LogbookPage,
+    BadgeModal
   ],
   providers: [
     StatusBar,

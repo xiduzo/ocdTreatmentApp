@@ -59,8 +59,8 @@ export class MyApp {
       storage.get('jwtToken')
       .then((val) => {
         const localToken = val;
-        // If there is no token present
-        if(!localToken) { this.rootPage = LoginPage; } else {
+
+        if(localToken) {
           // Try to verify the token
           authService.verifyJwtToken({token: localToken})
           .then((resp) => {

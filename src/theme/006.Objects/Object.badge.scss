@@ -26,3 +26,18 @@
     font-weight: lighter;
   }
 }
+
+.o-badge--big {
+  .badge__progress {
+    height: 250px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .badge__progress__numbers,
+  .badge__name {
+    font-size: 2em;
+  }
+}

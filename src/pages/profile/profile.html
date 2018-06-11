@@ -30,7 +30,7 @@
       </div>
     </ion-item>
     <ion-list-header>
-      [header]
+      My obsessions
     </ion-list-header>
     <ion-item>
       <ion-label>My fearladder</ion-label>
@@ -49,13 +49,13 @@
     </ion-list-header>
     <ion-grid>
       <ion-row>
-        <ion-col col-3 *ngFor="let x of [1,2,3,4,5,6,7,8]">
+        <ion-col col-3 *ngFor="let x of [1,2,3,4,5,6,7,8]" (click)=showBadge(x)>
           <div class="o-badge">
             <span class="badge__name">
-              adadasd
+              Level {{ x }}
             </span>
             <div class="badge__progress">
-              <img src="assets/imgs/levels/level-01.png" alt="">
+              <img src="assets/imgs/levels/badge__level-0{{x}}.png" alt="">
               <round-progress [current]="30" [max]="100" [radius]="37.5" [stroke]="4" [duration]="1"></round-progress>
             </div>
             <span class="badge__progress__numbers">
@@ -68,11 +68,5 @@
   </ion-list>
   <!-- <button (click)="showNotification()" ion-button block large>
     notification test
-  </button>
-  <button (click)="download()" ion-button block large>
-    download exercises
-  </button>
-  <button (click)="logout()" ion-button block large>
-    logout
   </button> -->
 </ion-content>

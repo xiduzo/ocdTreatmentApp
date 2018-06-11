@@ -11,6 +11,8 @@ import { availableLanguages, sysOptions } from '../../lib/constants';
 
 import { FearladderModal } from '../fearladder/fearladder';
 
+import { BadgeModal } from '../badge/badge';
+
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html'
@@ -85,8 +87,13 @@ export class ProfilePage {
   }
 
   editFearLadder() {
-    let modal = this.modalCtrl.create(FearladderModal);
-    modal.present();
+    let fearLadderModal = this.modalCtrl.create(FearladderModal);
+    fearLadderModal.present();
+  }
+
+  showBadge(badge) {
+    let badgeModal = this.modalCtrl.create(BadgeModal);
+    badgeModal.present();
   }
 
 }

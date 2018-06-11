@@ -18,7 +18,7 @@
     </button> -->
   </section>
   <ion-list *ngIf="exercises?.length">
-    <ion-card *ngFor="let item of exercises">
+    <ion-card *ngFor="let item of exercises?.reverse()">
       <ion-item>
         <ion-avatar item-start>
           <div class="o-moodindicator">
@@ -62,9 +62,9 @@
           </i>
         </p>
         <div *ngFor="let trigger of item.step.triggers">
-          <p *ngIf="trigger.reason">
+          <p *ngIf="trigger.explanation">
             <i>
-              {{trigger.verbose}}: {{ trigger.reason }}
+              {{trigger.verbose}}: {{ trigger.explanation }}
             </i>
           </p>
         </div>

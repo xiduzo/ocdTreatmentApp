@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      [badge name here]
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section padding>
+    <div class="o-badge o-badge--big">
+      <span class="badge__name">
+        Level 1
+      </span>
+      <div class="badge__progress">
+        <img src="assets/imgs/levels/badge__level-01.png" alt="">
+        <round-progress [current]="30" [max]="100" [radius]="125" [stroke]="4" [duration]="1"></round-progress>
+      </div>
+      <span class="badge__progress__numbers">
+        <strong>2</strong> / 10
+      </span>
+    </div>
+    <article>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+    </article>
+  </section>
+</ion-content>
