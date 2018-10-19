@@ -21,6 +21,7 @@ export class ProfilePage {
 
   public language:string;
   public languages:any;
+  public personalGoal:string;
 
   constructor(
     private appCtrl: App,
@@ -36,6 +37,12 @@ export class ProfilePage {
     this.languages = availableLanguages;
     this.storage.get('language').then((val) => {
       this.language = val;
+    });
+
+    this.storage.get('personalGoal').then((goal) => {
+      if(!goal) return;
+
+      this.personalGoal = goal;
     });
   }
 
@@ -74,6 +81,10 @@ export class ProfilePage {
       priority: 2,
       trigger: { at: new Date(new Date().getTime() + 3600) }
     });
+  }
+
+  safePersonalGoal() {
+    this.storage.set('personalGoal', this.personalGoal);
   }
 
   logout() {
