@@ -21,7 +21,7 @@ import { defaultLanguage, availableLanguages, sysOptions } from '../lib/constant
   templateUrl: 'app.html'
 })
 export class MyApp {
-  private rootPage:any = LoginPage; // Always start the app with the LoginPage to be sure
+  // private rootPage:any = LoginPage; // Always start the app with the LoginPage to be sure
   // TODO: Fix some sort of secure login for users (finger print / passcode / etc) if user want to have protection of data
   private rootPage:any;
 
