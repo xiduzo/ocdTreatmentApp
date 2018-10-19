@@ -59,7 +59,7 @@ export class ExerciseListPage {
   }
 
   close() {
-    this.appCtrl.getRootNav().pop()
+    this.appCtrl.getRootNav().pop();
   }
 
   selectExercise(step) {
