@@ -1,18 +1,22 @@
 <ion-content>
   <div ion-fixed text-center>
-    <h1>
+    <h1 padding>
+      <small>&quot;</small>
       {{ tracking?.step.exercise.situation }}
+      <small>&quot;</small>
     </h1>
     <div class="monster">
       <div class="monster__illustration" [style.backgroundImage]="'url('+ level?.monster +')'"></div>
       <div class="monster__rings"></div>
     </div>
-    <div>
+    <div *ngIf="tracking?.step.exercise.without">
       <h2>
         {{ 'WITHOUT' | translate }}
       </h2>
       <div>
+        <small>&quot;</small>
         {{ tracking?.step.exercise.without }}
+        <small>&quot;</small>
       </div>
     </div>
   </div>
