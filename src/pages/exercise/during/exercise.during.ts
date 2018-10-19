@@ -14,7 +14,6 @@ export class ExerciseDuringModal {
   public level:any;
   public exercise:any;
   private tracking:any;
-  private dbLink:string;
 
   constructor(
     private params: NavParams,
