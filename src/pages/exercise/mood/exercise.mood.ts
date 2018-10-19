@@ -3,8 +3,6 @@ import { Storage } from '@ionic/storage';
 
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
 
-import { Restangular } from 'ngx-restangular';
-
 import { map } from '../../../lib/helpers';
 
 import {
@@ -55,13 +53,10 @@ export class ExerciseMoodPage {
 
   private tracking:any;
 
-  private dbLink:string;
-
   constructor(
     private params: NavParams,
     public viewCtrl: ViewController,
     private modalCtrl: ModalController,
-    private restangular: Restangular,
     private storage: Storage
   ) {
 

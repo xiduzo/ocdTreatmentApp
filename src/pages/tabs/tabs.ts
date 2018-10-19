@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavParams, Tabs } from 'ionic-angular';
+import { Tabs } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 import { ExercisePage } from '../exercise/exercise';
@@ -22,8 +22,7 @@ export class TabsPage {
   LogbookPageRoot = LogbookPage;
 
   constructor(
-    private nativePageTransitions: NativePageTransitions,
-    private navParams: NavParams
+    private nativePageTransitions: NativePageTransitions
   ) {
   }
 

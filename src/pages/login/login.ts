@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { App } from 'ionic-angular';
-import { ToastController } from 'ionic-angular';
+//import { ToastController } from 'ionic-angular';
 
 
 import { AuthService, UserService } from '../../lib/services';
@@ -22,7 +22,7 @@ export class LoginPage {
     private appCtrl: App,
     private restangular: Restangular,
     private authService: AuthService,
-    private toastCtrl: ToastController,
+    //private toastCtrl: ToastController,
     private userService: UserService
   ) {
   }
