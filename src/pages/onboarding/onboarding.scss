@@ -1,3 +1,13 @@
+page-onboarding {
+  ion-content {
+    &.content,
+    &.content-md {
+      background: color($colors, light, base);
+    }
+
+  }
+}
+
 .c-onboarding {
   .swiper-pagination {
     bottom: 12%;
@@ -24,6 +34,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: color($colors, light, base);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;

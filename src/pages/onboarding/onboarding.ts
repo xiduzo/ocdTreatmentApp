@@ -28,6 +28,11 @@ export class OnboardingPage {
   ) {
   }
 
+  ionViewDidEnter() {
+    // Prevent the user from swiping into the void
+    this.slides.lockSwipeToPrev(true);
+  }
+
   done() {
     // this.appCtrl.getRootNav().pop(); // Remove the onboarding from the stack
     this.appCtrl.getRootNav().push(TabsPage);
@@ -35,6 +40,10 @@ export class OnboardingPage {
   }
 
   slideChanged() {
+    // Prevent users from 'overswiping'
+    this.slides.lockSwipeToNext(this.slides.isEnd());
+    this.slides.lockSwipeToPrev(this.slides.isBeginning());
+
     this.buttonText = this.slides.isEnd() ? "ONBOARDING_GOT_IT" : "ONBOARDING_SKIP";
   }
 
