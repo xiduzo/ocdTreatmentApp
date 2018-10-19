@@ -5,6 +5,8 @@ import { App, Content, NavParams, ModalController } from 'ionic-angular';
 
 import { UUID } from 'angular2-uuid';
 
+import * as _ from 'lodash';
+
 import { ExerciseMoodPage } from '../../exercise/mood/exercise.mood';
 
 import {
@@ -78,7 +80,23 @@ export class ExerciseListPage {
       let exerciseMoodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.level, tracking: this.tracking, before: true});
       exerciseMoodModal.present();
     });
+  }
 
+  finishExercise(step) {
+    this.storage.get('fearLadder').then((fearLadder) => {
+      if(!fearLadder) return;
+
+      _.forEach(fearLadder, (ladderStep) => {
+        if(ladderStep.id == step.id) {
+          step.exercise.completion = step.exercise.completion < 100 ? 100 : 0;
+
+          ladderStep.exercise = step.exercise;
+        }
+      });
+
+      this.storage.set('fearLadder', fearLadder);
+
+    });
   }
 
 

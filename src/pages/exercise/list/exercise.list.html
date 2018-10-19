@@ -16,17 +16,27 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item (click)="selectExercise(item)" text-wrap *ngFor="let item of level?.exercises" [class.completed]="item.exercise.completion >= 100" [disabled]="item.exercise.completion >= 100">
-      <ion-avatar item-start text-center>
-        <ion-icon name="radio-button-off" *ngIf="item.exercise.completion < 100"></ion-icon>
-        <ion-icon name="checkmark-circle" *ngIf="item.exercise.completion >= 100"></ion-icon>
-      </ion-avatar>
-      <h2 capitalize>
-        {{ item.exercise.situation }}
-      </h2>
-      <p>
-        Without: {{ item.exercise.without }}
-      </p>
-    </button>
+    <ion-item-sliding *ngFor="let item of level?.exercises">
+      <button ion-item (click)="selectExercise(item)" text-wrap  [class.completed]="item.exercise.completion >= 100" [disabled]="item.exercise.completion >= 100">
+          <ion-avatar item-start text-center>
+            <ion-icon name="radio-button-off" *ngIf="item.exercise.completion < 100"></ion-icon>
+            <ion-icon name="checkmark-circle" *ngIf="item.exercise.completion >= 100"></ion-icon>
+          </ion-avatar>
+          <h2 capitalize>
+            {{ item.exercise.situation }}
+          </h2>
+          <p *ngIf="item.exercise.without">
+            {{ 'WITHOUT' | translate }}: {{ item.exercise.without }}
+          </p>
+      </button>
+      <ion-item-options side="left">
+        <button ion-button (click)="finishExercise(item)" *ngIf="item.exercise.completion >= 100">
+          Uncomplete
+        </button>
+        <button ion-button (click)="finishExercise(item)" *ngIf="item.exercise.completion < 100">
+          complete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>
