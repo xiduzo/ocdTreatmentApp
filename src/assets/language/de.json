@@ -21,11 +21,10 @@
   "MOOD_EXPLENATION": "Wordurch wird dieses Gefühl verursacht (optional)",
   "MOOD_SUCCESS": "Erfolg",
   "MOOD_1": "Entspannt",
-  "MOOD_2": "Ein bisschen ängstlich",
-  "MOOD_3": "Etwas ängstlich",
-  "MOOD_4": "Sehr ängstlich",
-  "MOOD_5": "Wahnsinnig ängstlich",
-  "MOOD_CAUSE": "Wodurch wird dieses Gefühl verursacht? (optional)",
+  "MOOD_2": "Ein bisschen angespannt",
+  "MOOD_3": "Etwas angespannt",
+  "MOOD_4": "Sehr angespannt",
+  "MOOD_5": "Wahnsinnig angespannt",
 
 
   "MY_OBSESSIONS": "Meine Obsessionen",
