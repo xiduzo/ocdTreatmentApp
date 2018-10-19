@@ -7,7 +7,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { Storage } from '@ionic/storage';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { OnboardingPage } from '../pages/onboarding/onboarding';
+//import { OnboardingPage } from '../pages/onboarding/onboarding';
 //import { LoginPage } from '../pages/login/login';
 
 import { AuthService, UserService } from '../lib/services';
@@ -21,10 +21,7 @@ import { defaultLanguage, availableLanguages, sysOptions } from '../lib/constant
   templateUrl: 'app.html'
 })
 export class MyApp {
-  // private rootPage:any = LoginPage; // Always start the app with the LoginPage to be sure
-  // TODO:
-  // Create a way for new users to set up a passcode oid
-  private rootPage:any;
+  private rootPage:any = TabsPage; // Always start the app with the LoginPage to be sure
 
   constructor(
     protected appCtrl: App,
@@ -45,16 +42,6 @@ export class MyApp {
 
         // Set the language for the app
         this.setLanguage();
-
-        // storage.clear();
-
-        storage.get('onboardingCompleted')
-        .then((val) => {
-          // Based on the 'onboardingCompleted' we guide the user to the next page
-          val === true ? this.appCtrl.getRootNav().push(TabsPage) : this.appCtrl.getRootNav().push(OnboardingPage);
-        })
-        // Something went wrong getting the 'onboardingCompleted'
-        .catch((err) => { console.log(err); });
 
         // Okay, so the platform is ready and our plugins are available.
         // Here you can do any higher level native things you might need.

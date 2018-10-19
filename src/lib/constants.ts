@@ -1,15 +1,11 @@
 export const availableLanguages = [
   {
-    code: 'nl',
-    name: 'Nederlands (nl)'
-  },
-  {
     code: 'en',
-    name: 'English (en)'
+    name: 'English'
   },
   {
     code: 'de',
-    name: 'Deutsch (de)'
+    name: 'German'
   }
 ];
 
