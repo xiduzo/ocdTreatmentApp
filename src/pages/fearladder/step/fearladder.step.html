@@ -14,23 +14,23 @@
 <ion-content>
   <ion-item-group>
     <ion-item-divider color="light">
-      Exercise
+      {{ 'EXERCISE' | translate }}
     </ion-item-divider>
     <ion-item>
       <ion-label floating>
-        I want to
+        {{ 'FEARLADDER_STEP_I_WANT_TO' | translate }}
       </ion-label>
       <ion-input type="text" [(ngModel)]="step.exercise.situation"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>
-        Without
+        {{ 'WITHOUT' | translate }}
       </ion-label>
       <ion-input type="text" [(ngModel)]="step.exercise.without"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>
-        Fear rating
+        {{ 'FEARLADDER_STEP_FEAR_RATING' | translate }}
       </ion-label>
       <ion-range [(ngModel)]="step.fearRating" min="1" max="8" pin="true" snaps="true">
         <ion-label range-left>1</ion-label>
@@ -40,10 +40,12 @@
   </ion-item-group>
   <ion-item-group>
     <ion-item-divider color="light">
-      Triggers
+      {{ 'TRIGGERS' | translate }}
     </ion-item-divider>
     <ion-item *ngFor="let trigger of step.triggers">
-      <ion-label>This triggers {{ trigger.verbose }}</ion-label>
+      <ion-label>
+        {{ 'FEARLADDER_STEP_THIS_TRIGGERS' | translate }} {{ trigger.verbose }}
+      </ion-label>
       <ion-checkbox [(ngModel)]="trigger.enabled"></ion-checkbox>
     </ion-item>
   </ion-item-group>

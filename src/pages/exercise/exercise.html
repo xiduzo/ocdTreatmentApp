@@ -2,13 +2,13 @@
   <section *ngIf="!levels?.length" class="c-emptystate">
     <img src="assets/imgs/monsters/all.png" alt="">
     <h1>
-      Oops
+      {{ 'OOPS' | translate }}
     </h1>
     <p>
-      Before you can start, you must describe your fear ladder.
+      {{ 'WARNING_BEFORE_YOU_CAN_START' | translate }}
     </p>
     <button color="secondary" ion-button large block (click)="addFearsAndCompulsions()">
-      My fear ladder
+      {{ 'MY_FEAR_LADDER' | translate }}
     </button>
   </section>
   <ion-list no-lines class="c-exercise__levels" *ngIf="levels?.length">

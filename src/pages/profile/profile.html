@@ -2,10 +2,10 @@
   <ion-navbar color="secondary" text-center padding>
     <img  src="assets/imgs/logbook_illustration.png" alt="logbook illustration" class="o-illustration header__illustation">
     <ion-title>
-      My personal goal
+      {{ 'MY_PERSONAL_GOAL' | translate }}
     </ion-title>
     <ion-item>
-      <ion-input type="textarea" value=""></ion-input>
+      <ion-input type="textarea" value="" (change)="safePersonalGoal()"></ion-input>
     </ion-item>
   </ion-navbar>
 </ion-header>
@@ -13,7 +13,7 @@
 <ion-content>
   <ion-list>
     <ion-list-header>
-      Settings
+      {{ 'SETTINGS' | translate }}
     </ion-list-header>
     <ion-item>
       <ion-label>{{ 'LANGUAGE' | translate }}</ion-label>
@@ -24,35 +24,57 @@
       </ion-select>
     </ion-item>
     <ion-item>
+      <ion-label>{{ 'PROFILE_RESET_MOCK_DATA' | translate }}</ion-label>
+      <div item-end>
+        <button ion-button (click)="resetMockData()">
+          {{ 'RESET' | translate }}
+        </button>
+      </div>
+    </ion-item>
+    <!-- <ion-item>
       <ion-label>Logout</ion-label>
       <div item-end>
         <button ion-button (click)="logout()">logout</button>
       </div>
-    </ion-item>
+    </ion-item> -->
     <ion-list-header>
-      My obsessions
+      {{ 'MY_OBSESSIONS' | translate }}
     </ion-list-header>
     <ion-item>
-      <ion-label>My fearladder</ion-label>
+      <ion-label>
+        {{ 'MY_FEAR_LADDER' | translate }}
+      </ion-label>
       <div item-end>
-        <button ion-button (click)="editFearLadder()">change</button>
+        <button ion-button (click)="editFearLadder()">
+          {{ 'CHANGE' | translate }}
+        </button>
       </div>
     </ion-item>
-    <ion-item>
+    <!-- <ion-item>
       <ion-label>Send progress</ion-label>
       <div item-end>
         <button ion-button (click)="sendFearLadder()">send</button>
       </div>
-    </ion-item>
+    </ion-item> -->
     <ion-list-header>
-      My badges
+      {{ 'LEVELS' | translate }}
+    </ion-list-header>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-3 *ngFor="let x of [1,2,3,4,5,6,7,8]" padding>
+          <img src="assets/imgs/levels/badge__level-0{{x}}.png" alt="">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-list-header>
+      {{ 'MY_BADGES' | translate }}
     </ion-list-header>
     <ion-grid>
       <ion-row>
         <ion-col col-3 *ngFor="let x of [1,2,3,4,5,6,7,8]" (click)=showBadge(x)>
           <div class="o-badge">
             <span class="badge__name">
-              Level {{ x }}
+              {{ 'LEVEL' | translate }} {{ x }}
             </span>
             <div class="badge__progress">
               <img src="assets/imgs/levels/badge__level-0{{x}}.png" alt="">

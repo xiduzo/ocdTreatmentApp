@@ -8,17 +8,18 @@
   <section *ngIf="!exercises?.length" class="c-emptystate">
     <img src="assets/imgs/monsters/all.png" alt="">
     <h1>
-      Oops
+      {{ 'OOPS' | translate }}
     </h1>
     <p>
-      It seens like you have not logged any exercises
+      {{ 'WARNING_NO_LOGGED_EXERCISES' | translate }}
     </p>
     <!-- <button color="secondary" ion-button large block>
       Add fears and compulsions
     </button> -->
   </section>
   <ion-list *ngIf="exercises?.length">
-    <ion-card *ngFor="let item of exercises?.reverse()">
+    <ion-card *ngFor="let item of exercises">
+    <!-- <ion-card *ngFor="let item of exercises?.reverse()"> -->
       <ion-item>
         <ion-avatar item-start>
           <div class="o-moodindicator">
@@ -53,16 +54,16 @@
         </ion-card-title>
         <p *ngIf="item.beforeMood?.explanation">
           <i>
-            {{ item.beforeMood.explanation }}
+            {{ 'BEFORE' | translate }}: {{ item.beforeMood.explanation }}
           </i>
         </p>
         <p *ngIf="item.afterMood?.explanation">
           <i>
-            {{ item.beforeMood.explanation }}
+            {{ 'AFTER' | translate }}: {{ item.afterMood.explanation }}
           </i>
         </p>
         <div *ngFor="let trigger of item.step.triggers">
-          <p *ngIf="trigger.explanation">
+          <p *ngIf="trigger?.explanation">
             <i>
               {{trigger.verbose}}: {{ trigger.explanation }}
             </i>

@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage';
 export class OnboardingPage {
   @ViewChild(Slides) slides: Slides;
 
-  public buttonText:string = "skip";
+  public buttonText:string = "ONBOARDING_SKIP";
 
   public _slides:any = [
     'ONBOARDING_SLIDE_1',

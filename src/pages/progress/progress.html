@@ -20,35 +20,35 @@
   <ion-list>
     <ion-item>
       <h2>
-        Exercises done
+        {{ 'PROGRESS_EXERCISES_DONE' | translate }}
       </h2>
       <p item-end>
         {{ thisWeeksExercises?.length }}
-        <span *ngIf="previousWeeksExercises?.length">
+        <!-- <span *ngIf="previousWeeksExercises?.length">
           ({{ previousWeeksExercises.length * 100 / thisWeeksExercises.length}}%)
-        </span>
+        </span> -->
       </p>
     </ion-item>
     <ion-item>
       <h2>
-        Total exercise time
+        {{ 'PROGRESS_TOTAL_EXERCISE_TIME' | translate }}
       </h2>
       <p item-end>
         {{ (thisWeeksExercises | accumulateTime | msToTime) || '00:00:00' }}
-        <span *ngIf="previousWeeksExercises?.length">
+        <!-- <span *ngIf="previousWeeksExercises?.length">
           ({{ (previousWeeksExercises | accumulateTime) * 100 / (thisWeeksExercises.accumulateTime) }}%)
-        </span>
+        </span> -->
       </p>
     </ion-item>
     <ion-item>
       <h2>
-        Average exercise time
+        {{ 'PROGRESS_AVERAGE_EXERCISE_TIME' | translate }}
       </h2>
       <p item-end>
         {{ (((thisWeeksExercises | accumulateTime) / thisWeeksExercises.length) | msToTime) || '00:00:00' }}
-        <span *ngIf="previousWeeksExercises?.length">
+        <!-- <span *ngIf="previousWeeksExercises?.length">
           ({{ ((previousWeeksExercises | accumulateTime) / previousWeeksExercises.length) * 100 / ((thisWeeksExercises | accumulateTime) / thisWeeksExercises.length) }}%)
-        </span>
+        </span> -->
       </p>
     </ion-item>
   </ion-list>
