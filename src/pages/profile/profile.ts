@@ -13,6 +13,12 @@ import { FearladderModal } from '../fearladder/fearladder';
 
 import { BadgeModal } from '../badge/badge';
 
+import { UUID } from 'angular2-uuid';
+
+import * as _ from 'lodash';
+
+import moment from 'moment';
+
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html'
@@ -95,6 +101,250 @@ export class ProfilePage {
     // Because we initiate with the login page we can pop the current app to
     // return to the login page
     this.appCtrl.getRootNav().pop();
+  }
+
+  resetMockData() {
+    var fearLadder = [
+      {
+        "id": UUID.UUID(),
+        "fearRating": 1,
+        "triggers": [
+          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+        ],
+        "exercise": {
+          "completion": 100,
+          "situation": "Walk around public places, such as the mall",
+          "without": ""
+        }
+      },
+      {
+        "id": UUID.UUID(),
+        "fearRating": 1,
+        "triggers": [
+          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+        ],
+        "exercise": {
+          "completion": 0,
+          "situation": "Sit on bench at the mall",
+          "without": ""
+        }
+      },
+      {
+        "id": UUID.UUID(),
+        "fearRating": 2,
+        "triggers": [
+          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+        ],
+        "exercise": {
+          "completion": 100,
+          "situation": "Touch items in a store",
+          "without": ""
+        }
+      },
+      {
+        "id": UUID.UUID(),
+        "fearRating": 2,
+        "triggers": [
+          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+        ],
+        "exercise": {
+          "completion": 0,
+          "situation": "Touch a railing at the mall",
+          "without": ""
+        }
+      },
+      {
+        "id": UUID.UUID(),
+        "fearRating": 2,
+        "triggers": [
+          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+        ],
+        "exercise": {
+          "completion": 0,
+          "situation": "Sit on a bench at the mall and touch bench with hands",
+          "without": ""
+        }
+      },
+      {
+        "id": UUID.UUID(),
+        "fearRating": 3,
+        "triggers": [
+          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+        ],
+        "exercise": {
+          "completion": 0,
+          "situation": "Touch table in the food court",
+          "without": ""
+        }
+      },
+      {
+        "id": UUID.UUID(),
+        "fearRating": 4,
+        "triggers": [
+          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+        ],
+        "exercise": {
+          "completion": 0,
+          "situation": "Use hands to push open doors to mall entrance",
+          "without": ""
+        }
+      },
+      {
+        "id": UUID.UUID(),
+        "fearRating": 5,
+        "triggers": [
+          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+        ],
+        "exercise": {
+          "completion": 0,
+          "situation": "Use public phone at mall",
+          "without": ""
+        }
+      },
+      {
+        "id": UUID.UUID(),
+        "fearRating": 5,
+        "triggers": [
+          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+        ],
+        "exercise": {
+          "completion": 0,
+          "situation": "Touch garbage can in the mall",
+          "without": ""
+        }
+      },
+      {
+        "id": UUID.UUID(),
+        "fearRating": 6,
+        "triggers": [
+          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+        ],
+        "exercise": {
+          "completion": 0,
+          "situation": "Touch knob on mall bathroom door",
+          "without": ""
+        }
+      },
+      {
+        "id": UUID.UUID(),
+        "fearRating": 7,
+        "triggers": [
+          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+        ],
+        "exercise": {
+          "completion": 0,
+          "situation": "Touch counter and taps in mall bathroom",
+          "without": ""
+        }
+      },
+      {
+        "id": UUID.UUID(),
+        "fearRating": 7,
+        "triggers": [
+          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+        ],
+        "exercise": {
+          "completion": 0,
+          "situation": "Use hands to open and close stall door",
+          "without": ""
+        }
+      },
+      {
+        "id": UUID.UUID(),
+        "fearRating": 8,
+        "triggers": [
+          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+        ],
+        "exercise": {
+          "completion": 0,
+          "situation": "Use toilet at mall",
+          "without": ""
+        }
+      },
+    ];
+
+    this.storage.set('fearLadder', fearLadder);
+
+    var exercises = [];
+    for(var i = 0; i < 250; i++) {
+      var begin = moment(moment.now())
+        .subtract(Math.round(Math.random() * 90), "days")
+        .subtract(Math.round(Math.random() * 12), "hours")
+        .subtract(Math.round(Math.random() * 50), "minutes")
+        .subtract(Math.round(Math.random() * 50), "seconds");
+
+      var beforeMoods = [
+        "I'm feeling a bit anxtious",
+        "I don't want to do this exercise",
+        "I have a hard week",
+        "I am feeling good",
+        "I think I can handle this exercise today!",
+        "I have a good feeling about this"
+      ];
+
+      var afterMoods = [
+        "This was scarier than expected",
+        "I do not have this under control",
+        "I failed completely",
+        "This went better than expected",
+        "It could have been way worse",
+        "I think I got this exercise under control!"
+      ];
+
+      var tempObj = {
+        id: UUID.UUID(),
+        afterMood: {
+          mood: Math.floor(Math.random() * 500),
+          explanation: Math.random() > 0.75 ? _.sample(afterMoods) : null
+        },
+        beforeMood: {
+          mood: Math.floor(Math.random() * 500),
+          explanation: Math.random() > 0.75 ? _.sample(beforeMoods) : null
+        },
+        gaveInToCompulsion: Math.random() > 0.5 ? true : false,
+        step: _.sample(fearLadder),
+        start: begin.format(),
+        end: moment(begin)
+          .add(Math.round(Math.random() * 20), "minutes")
+          .add(Math.round(Math.random() * 50), "seconds")
+          .format(),
+        erp: {
+          begin: moment(begin)
+            .add(Math.round(Math.random() * 2), "minutes")
+            .add(Math.round(Math.random() * 50), "seconds")
+            .format(),
+          end: moment(begin)
+            .add(Math.round(Math.random() * 2) + 2, "minutes")
+            .add(Math.round(Math.random() * 50), "seconds")
+            .format(),
+        }
+      };
+
+      _.forEach(tempObj.step.triggers, (trigger) => {
+        if(trigger.enabled == true) {
+          trigger.range = Math.round(Math.random() * 5);
+          trigger.explanation = "";
+        }
+      })
+
+      exercises.push(tempObj);
+    }
+
+    exercises = _.orderBy(exercises, 'start');
+    this.storage.set('exercises', exercises);
   }
 
   editFearLadder() {
