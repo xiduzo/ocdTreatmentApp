@@ -20,7 +20,7 @@
               <div class="monster" [style.backgroundImage]="'url(' + level.monster + ')'"></div>
             </div>
             <div class="level__icon" *ngIf="level.done">
-              <div class="level" [style.backgroundImage]="'url(assets/imgs/levels/level-0' + level.level + '.png)'"></div>
+              <div class="level" [style.backgroundImage]="'url(assets/imgs/levels/badge__level-0' + level.level + '.png)'"></div>
             </div>
             <round-progress *ngIf="!level.done" [current]="level.completion" [max]="100" [radius]="60" [stroke]="5" [duration]="1"></round-progress>
           </div>
