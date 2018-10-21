@@ -45,6 +45,8 @@ export class MyApp {
         // Set the language for the app
         this.setLanguage();
 
+        // storage.clear();
+
         // See if the users completed their onboarding
         storage.get('onboardingCompleted')
         .then((val) => {
