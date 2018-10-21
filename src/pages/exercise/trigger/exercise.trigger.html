@@ -12,7 +12,7 @@
       <div *ngFor="let trigger of triggers">
         <ion-item>
           <ion-label stacked>
-            {{ trigger.verbose }} ({{trigger.range || 0}})
+            {{ trigger.verbose | translate }} ({{trigger.range || 0}})
           </ion-label>
           <ion-range min="{{range.min}}" max="{{range.max}}" [(ngModel)]="trigger.range" pin="true" snaps="true">
             <ion-label range-left>{{range.min}}</ion-label>
