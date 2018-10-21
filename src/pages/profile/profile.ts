@@ -109,8 +109,8 @@ export class ProfilePage {
         "id": UUID.UUID(),
         "fearRating": 1,
         "triggers": [
-          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
         "exercise": {
           "completion": 100,
@@ -122,8 +122,8 @@ export class ProfilePage {
         "id": UUID.UUID(),
         "fearRating": 1,
         "triggers": [
-          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
         "exercise": {
           "completion": 0,
@@ -135,8 +135,8 @@ export class ProfilePage {
         "id": UUID.UUID(),
         "fearRating": 2,
         "triggers": [
-          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
         "exercise": {
           "completion": 100,
@@ -148,8 +148,8 @@ export class ProfilePage {
         "id": UUID.UUID(),
         "fearRating": 2,
         "triggers": [
-          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
         "exercise": {
           "completion": 0,
@@ -161,8 +161,8 @@ export class ProfilePage {
         "id": UUID.UUID(),
         "fearRating": 2,
         "triggers": [
-          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
         "exercise": {
           "completion": 0,
@@ -174,8 +174,8 @@ export class ProfilePage {
         "id": UUID.UUID(),
         "fearRating": 3,
         "triggers": [
-          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
         "exercise": {
           "completion": 0,
@@ -187,8 +187,8 @@ export class ProfilePage {
         "id": UUID.UUID(),
         "fearRating": 4,
         "triggers": [
-          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
         "exercise": {
           "completion": 0,
@@ -200,8 +200,8 @@ export class ProfilePage {
         "id": UUID.UUID(),
         "fearRating": 5,
         "triggers": [
-          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
         "exercise": {
           "completion": 0,
@@ -213,8 +213,8 @@ export class ProfilePage {
         "id": UUID.UUID(),
         "fearRating": 5,
         "triggers": [
-          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
         "exercise": {
           "completion": 0,
@@ -226,8 +226,8 @@ export class ProfilePage {
         "id": UUID.UUID(),
         "fearRating": 6,
         "triggers": [
-          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
         "exercise": {
           "completion": 0,
@@ -239,8 +239,8 @@ export class ProfilePage {
         "id": UUID.UUID(),
         "fearRating": 7,
         "triggers": [
-          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
         "exercise": {
           "completion": 0,
@@ -252,8 +252,8 @@ export class ProfilePage {
         "id": UUID.UUID(),
         "fearRating": 7,
         "triggers": [
-          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
         "exercise": {
           "completion": 0,
@@ -265,8 +265,8 @@ export class ProfilePage {
         "id": UUID.UUID(),
         "fearRating": 8,
         "triggers": [
-          { "verbose": "Obsessive thoughts", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "Compulsive behaviour", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
+          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
         "exercise": {
           "completion": 0,
