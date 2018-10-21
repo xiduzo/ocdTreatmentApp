@@ -19,17 +19,17 @@ export class FearladderStepModal {
     },
     triggers: [
       {
-        verbose: 'obsessive thoughts',
+        verbose: 'INTENSITY_OBSESSIVE_THOUGHTS',
         enabled: false,
       },
       {
-        verbose: 'compulsive behaviour',
+        verbose: 'INTENSITY_COMPULSIVE_BEHAVIOUR',
         enabled: false
       }
     ]
   };
-  public buttonText:string = 'add';
-  public headerText:string = 'Add new fear';
+  public buttonText:string = 'ADD';
+  public headerText:string = 'FEARLADDER_STEP_HEADER_ADD';
 
   constructor(
     public viewCtrl: ViewController,
@@ -42,8 +42,8 @@ export class FearladderStepModal {
     // For when we edit a step
     if(this.params.get('step')) {
       this.step = this.params.get('step');
-      this.buttonText = 'Save';
-      this.headerText = 'Edit fear';
+      this.buttonText = 'SAVE';
+      this.headerText = 'FEARLADDER_STEP_HEADER_EDIT';
     };
   }
 
