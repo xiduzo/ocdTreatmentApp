@@ -10,10 +10,13 @@ import { ToastController } from 'ionic-angular';
 
 import { FearladderModal } from '../fearladder/fearladder';
 
+import { Badge } from '../../lib/badges';
+
 @Component({
   selector: 'page-exercise',
   templateUrl: 'exercise.html'
 })
+
 export class ExercisePage {
 
   private profile:string;
@@ -31,6 +34,14 @@ export class ExercisePage {
 
   ionViewDidLoad() {
     this.profile = this.userService.getUser();
+    // const testBadge = new Badge(
+    //   "test",
+    //   "test description",
+    //   0,
+    //   0
+    // );
+    // console.log(testBadge);
+    // console.log(testBadge.getProgress());
   }
 
   ionViewWillEnter() {
