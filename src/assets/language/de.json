@@ -1,4 +1,5 @@
 {
+  "ADD": "Hinzufügen",
   "AFTER": "Nachher",
   "BEFORE": "Vorher",
   "CHANGE": "Bearbeiten",
@@ -12,6 +13,7 @@
   "OOPS": "Oops",
   "REMOVE": "Entfernen",
   "RESET": "Zurücksetzen",
+  "SAVE": "Speichern",
   "SETTINGS": "Einstellungen",
   "TRIGGERS": "Auslöser",
   "WITHOUT": "Ohne",
@@ -48,6 +50,9 @@
   "FEARLADDER_STEP_I_WANT_TO": "Ich möchte",
   "FEARLADDER_STEP_THIS_TRIGGERS": "Dies löst aus",
   "FEARLADDER_STEP_FEAR_RATING": "Angstbewertung",
+
+  "FEARLADDER_STEP_HEADER_ADD": "Füge eine neue Angst hinzu ",
+  "FEARLADDER_STEP_HEADER_EDIT": "Oefening aanpassen",
 
 
   "ONBOARDING_SKIP": "Überspringen",

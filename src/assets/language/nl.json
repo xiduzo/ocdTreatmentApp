@@ -1,4 +1,5 @@
 {
+  "ADD": "Toevoegen",
   "AFTER": "Voor",
   "BEFORE": "Na",
   "CHANGE": "Verander",
@@ -12,6 +13,7 @@
   "OOPS": "Oops",
   "REMOVE": "Verwijder",
   "RESET": "Reset",
+  "SAVE": "Opslaan",
   "SETTINGS": "Instellingen",
   "TRIGGERS": "Triggers",
   "WITHOUT": "Zonder",
@@ -48,6 +50,9 @@
   "FEARLADDER_STEP_I_WANT_TO": "Ik wil graag",
   "FEARLADDER_STEP_THIS_TRIGGERS": "Dit triggert",
   "FEARLADDER_STEP_FEAR_RATING": "Angst rating",
+
+  "FEARLADDER_STEP_HEADER_ADD": "Nieuwe oefening toevoegen",
+  "FEARLADDER_STEP_HEADER_EDIT": "Oefening aanpassen",
 
 
   "ONBOARDING_SKIP": "Overslaan",

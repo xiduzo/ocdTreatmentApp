@@ -1,4 +1,5 @@
 {
+  "ADD": "Add",
   "AFTER": "After",
   "BEFORE": "Before",
   "CHANGE": "Change",
@@ -12,6 +13,7 @@
   "OOPS": "Oops",
   "REMOVE": "Remove",
   "RESET": "Reset",
+  "SAVE": "Save",
   "SETTINGS": "Settings",
   "TRIGGERS": "Triggers",
   "WITHOUT": "Without",
@@ -48,6 +50,9 @@
   "FEARLADDER_STEP_I_WANT_TO": "I want to",
   "FEARLADDER_STEP_THIS_TRIGGERS": "This triggers",
   "FEARLADDER_STEP_FEAR_RATING": "Fear rating",
+
+  "FEARLAADDER_STEP_HEADER": "Add new exercise",
+  "FEARLADDER_STEP_HEADER_EDIT": "Edit exercise",
 
 
   "ONBOARDING_SKIP": "Skip",
