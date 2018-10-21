@@ -7,9 +7,9 @@
   "FILTER": "Filter",
   "LANGUAGE": "Sprache",
   "LEVEL": "Ebene",
-  "LEVELS": "Stufen",
+  "LEVELS": "Levels",
   "NOTES": "Notiz",
-  "OOPS": "Hoppla",
+  "OOPS": "Oops",
   "REMOVE": "Entfernen",
   "RESET": "Zurücksetzen",
   "SETTINGS": "Einstellungen",
@@ -27,22 +27,22 @@
   "MOOD_5": "Wahnsinnig angespannt",
 
 
-  "MY_OBSESSIONS": "Meine Obsessionen",
+  "MY_OBSESSIONS": "Meine Zwänge",
   "MY_FEAR_LADDER": "Meine Angstleiter",
   "MY_BADGES": "Meine Abzeichen",
   "MY_PERSONAL_GOAL": "Mein persönliches Ziel",
-  "MY_LOGBOOK_ENTRIES": "Meine Logbucheinträge",
+  "MY_LOGBOOK_ENTRIES": "Logbucheinträge",
 
 
   "BUTTON_GAVE_IN": "Der Zwangshandlung nachgeben",
   "BUTTON_SUCCEED_EXERCISE": "Ohne Zwangshandlung",
-  "BUTTON_ADD_FEAR": "Füge neue Angst hinzu",
+  "BUTTON_ADD_FEAR": "Neue Angst hinzufügen",
 
 
   "INTENSITY_HEADER": "Wie stark ist dein drang",
   "INTENSITY_OBSESSIVE_THOUGHTS": "Zwangsgedanken",
   "INTENSITY_COMPULSIVE_BEHAVIOUR": "Zwangshandlungen",
-  "INTENSITY_WHY": "Bescheibe deinen Gedanken (optional)",
+  "INTENSITY_WHY": "Beschreibe deinen Stress und deine Angst bei dem Gedanken  (Optional)",
 
 
   "FEARLADDER_STEP_I_WANT_TO": "Ich möchte",
@@ -52,12 +52,12 @@
 
   "ONBOARDING_SKIP": "Überspringen",
   "ONBOARDING_GOT_IT": "Fertig",
-  "ONBOARDING_SLIDE_1": "Zwangsvorstellungen sind wie Monster, die sich in dein Gehrin eingeschlichen haben. Die Monster besetzen manchmal deine Gedanken und bestimmen deine Handlungen.",
-  "ONBOARDING_SLIDE_2": "Du hast bereits herausgefunden, welche Monster sich in deinem Kopf herumtreiben, einige davon beängstigen dich mehr als andere.",
-  "ONBOARDING_SLIDE_3": "Je mehr Platz du denk Monstern einrämst umso mehr breiten sie sich aus un bestimmen deine Gedanken und Handlungen.",
-  "ONBOARDING_SLIDE_4": "Sobald du eine Übung erfolgreich durchgeführt und das Monster besiegt hast, kannst du es in eine Käfig einsperren.",
-  "ONBOARDING_SLIDE_5": "Durch das Durchführen der Übungen engst du den Raum der Monster ein un verschaffst dir selbst Freiheit.",
-  "ONBOARDING_SLIDE_6": "Sobald du alle Übungen einer Schwierigkeitsstufe erfolgreich durchgeführt hast, wird das entsprechende Monster im Käftig schrumpfen.",
+  "ONBOARDING_SLIDE_1": "Zwangsvorstellungen sind wie Monster, die sich in dein Gehirn eingeschlichen haben. Die Monster besetzen manchmal deine Gedanken und bestimmen deine Handlungen.",
+  "ONBOARDING_SLIDE_2": "Finde heraus, welche Monster sich in deinem Kopf herumtreiben. Einige davon beängstigen dich mehr als andere.",
+  "ONBOARDING_SLIDE_3": "Je mehr Platz du den Monstern einräumst umso mehr breiten sie sich aus und bestimmen deine Gedanken und Handlungen.",
+  "ONBOARDING_SLIDE_4": "Sobald du eine Übung erfolgreich durchgeführt und das Monster besiegt  hast,  kannst du es in einen Käfig einsperren.",
+  "ONBOARDING_SLIDE_5": "Durch das Durchführen der Übungen  engst du den Raum der Monster ein und verschaffst dir selbst Freiheit.",
+  "ONBOARDING_SLIDE_6": "Sobald du alle Übungen einer Schwierigkeitsstufe erfolgreich durchgeführt hast, wird das entsprechende  Monster im Käfig schrumpfen.",
 
 
   "PROGRESS_EXERCISES_DONE": "Übungen erledigt",
@@ -68,7 +68,7 @@
   "PROFILE_RESET_MOCK_DATA": "Daten zurücksetzen",
 
 
-  "WARNING_NO_LOGGED_EXERCISES": "Es scheint, als ob du keine Übungen aufgezeichnet hast.",
+  "WARNING_NO_LOGGED_EXERCISES": "Es sieht so aus als hättest du noch keine EInträge zu deinen Übungen gemacht.",
   "WARNING_NO_FEARS": "Es sieht so aus, als hättest du keine Ängste hinzugefügt!",
-  "WARNING_BEFORE_YOU_CAN_START": "Bevor du anfangen kannst, musst du deine Angstleiter beschreiben."
+  "WARNING_BEFORE_YOU_CAN_START": "Bevor du starten kannst, musst du deine Ängste und Zwangshandlungen in der Angstleiter beschreiben."
 }
