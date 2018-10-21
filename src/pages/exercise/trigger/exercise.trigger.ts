@@ -32,7 +32,7 @@ export class ExerciseTriggerModal {
     this.tracking = this.params.get('tracking');
 
     // Only use triggers the user selected
-    this.triggers = this.tracking.step.triggers.filter(trigger => { return trigger.enabled});
+    this.triggers = this.tracking.step.triggers.filter(trigger => { return trigger.enabled; });
 
     // Skip screen if we didn't set any triggers
     if(this.triggers.length < 1) {
