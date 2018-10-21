@@ -115,7 +115,7 @@ export class ProfilePage {
         "exercise": {
           "completion": 100,
           "situation": "Walk around public places, such as the mall",
-          "without": "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+          "without": "Washing my hands"
         }
       },
       {
@@ -128,7 +128,7 @@ export class ProfilePage {
         "exercise": {
           "completion": 0,
           "situation": "Sit on bench at the mall",
-          "without": "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+          "without": "Washing my hands"
         }
       },
       {
@@ -141,7 +141,7 @@ export class ProfilePage {
         "exercise": {
           "completion": 100,
           "situation": "Touch items in a store",
-          "without": "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+          "without": "Washing my hands"
         }
       },
       {
@@ -154,7 +154,7 @@ export class ProfilePage {
         "exercise": {
           "completion": 0,
           "situation": "Touch a railing at the mall",
-          "without": "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+          "without": "Washing my hands"
         }
       },
       {
@@ -167,7 +167,7 @@ export class ProfilePage {
         "exercise": {
           "completion": 0,
           "situation": "Sit on a bench at the mall and touch bench with hands",
-          "without": "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+          "without": "Washing my hands"
         }
       },
       {
@@ -180,7 +180,7 @@ export class ProfilePage {
         "exercise": {
           "completion": 0,
           "situation": "Touch table in the food court",
-          "without": "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+          "without": "Washing my hands"
         }
       },
       {
@@ -193,7 +193,7 @@ export class ProfilePage {
         "exercise": {
           "completion": 0,
           "situation": "Use hands to push open doors to mall entrance",
-          "without": "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+          "without": "Washing my hands"
         }
       },
       {
@@ -206,7 +206,7 @@ export class ProfilePage {
         "exercise": {
           "completion": 0,
           "situation": "Use public phone at mall",
-          "without": "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+          "without": "Washing my hands"
         }
       },
       {
@@ -219,7 +219,7 @@ export class ProfilePage {
         "exercise": {
           "completion": 0,
           "situation": "Touch garbage can in the mall",
-          "without": "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+          "without": "Washing my hands"
         }
       },
       {
@@ -232,7 +232,7 @@ export class ProfilePage {
         "exercise": {
           "completion": 0,
           "situation": "Touch knob on mall bathroom door",
-          "without": "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+          "without": "Washing my hands"
         }
       },
       {
@@ -245,7 +245,7 @@ export class ProfilePage {
         "exercise": {
           "completion": 0,
           "situation": "Touch counter and taps in mall bathroom",
-          "without": "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+          "without": "Washing my hands"
         }
       },
       {
@@ -258,7 +258,7 @@ export class ProfilePage {
         "exercise": {
           "completion": 0,
           "situation": "Use hands to open and close stall door",
-          "without": "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+          "without": "Washing my hands"
         }
       },
       {
@@ -271,7 +271,7 @@ export class ProfilePage {
         "exercise": {
           "completion": 0,
           "situation": "Use toilet at mall",
-          "without": "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+          "without": "Washing my hands"
         }
       },
     ];
