@@ -7,7 +7,7 @@
   "EXERCISE": "Übung",
   "FILTER": "Filter",
   "LANGUAGE": "Sprache",
-  "LEVEL": "Ebene",
+  "LEVEL": "Level",
   "LEVELS": "Levels",
   "NOTES": "Notiz",
   "OOPS": "Oops",
@@ -20,7 +20,7 @@
 
 
   "MOOD_HEADER": "Ich fühle mich",
-  "MOOD_EXPLENATION": "Wordurch wird dieses Gefühl verursacht (optional)",
+  "MOOD_EXPLENATION": "Wodurch wird dieses Gefühl verursacht (optional)",
   "MOOD_SUCCESS": "Erfolg",
   "MOOD_1": "Entspannt",
   "MOOD_2": "Ein bisschen angespannt",
@@ -38,17 +38,17 @@
 
   "BUTTON_GAVE_IN": "Der Zwangshandlung nachgeben",
   "BUTTON_SUCCEED_EXERCISE": "Ohne Zwangshandlung",
-  "BUTTON_ADD_FEAR": "Neue Angst hinzufügen",
+  "BUTTON_ADD_FEAR": "Neue Übung hinzufügen",
 
 
   "INTENSITY_HEADER": "Wie stark ist dein drang",
   "INTENSITY_OBSESSIVE_THOUGHTS": "Zwangsgedanken",
   "INTENSITY_COMPULSIVE_BEHAVIOUR": "Zwangshandlungen",
-  "INTENSITY_WHY": "Beschreibe deinen Stress und deine Angst bei dem Gedanken  (Optional)",
+  "INTENSITY_WHY": "Beschreibe deine angstauslösenden Gedankengänge (Optional)",
 
 
   "FEARLADDER_STEP_I_WANT_TO": "Ich möchte",
-  "FEARLADDER_STEP_THIS_TRIGGERS": "Dies löst aus",
+  "FEARLADDER_STEP_THIS_TRIGGERS": "Diese Übung verursacht",
   "FEARLADDER_STEP_FEAR_RATING": "Angstbewertung",
 
   "FEARLADDER_STEP_HEADER_ADD": "Füge eine neue Angst hinzu ",
@@ -74,6 +74,6 @@
 
 
   "WARNING_NO_LOGGED_EXERCISES": "Es sieht so aus als hättest du noch keine EInträge zu deinen Übungen gemacht.",
-  "WARNING_NO_FEARS": "Es sieht so aus, als hättest du keine Ängste hinzugefügt!",
+  "WARNING_NO_FEARS": "Es sieht so aus, als hättest du noch keine Übungen zur Angstkonfrontation hinzugefügt.",
   "WARNING_BEFORE_YOU_CAN_START": "Bevor du starten kannst, musst du deine Ängste und Zwangshandlungen in der Angstleiter beschreiben."
 }
