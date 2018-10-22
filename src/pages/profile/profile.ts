@@ -41,6 +41,9 @@ export class ProfilePage {
     private modalCtrl: ModalController
   ) {
     this.languages = availableLanguages;
+  }
+
+  ionViewDidLoad() {
     this.storage.get('language').then((val) => {
       this.language = val;
     });
