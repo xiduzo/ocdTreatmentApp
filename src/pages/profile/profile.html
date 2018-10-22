@@ -5,7 +5,7 @@
       {{ 'MY_PERSONAL_GOAL' | translate }}
     </ion-title>
     <ion-item>
-      <ion-input type="textarea" value="" (change)="safePersonalGoal()"></ion-input>
+      <ion-input type="textarea" value="" [(ngModel)]="personalGoal" (change)="safePersonalGoal()"></ion-input>
     </ion-item>
   </ion-navbar>
 </ion-header>
