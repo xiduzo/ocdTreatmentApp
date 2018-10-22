@@ -75,7 +75,7 @@ export class ExercisePage {
   setLevelsMonsterAndCompletion() {
     if(!this.levels) return;
     this.levels.forEach(level => {
-      level.done = level.exercises.find(item => item.exercise.completion < 100) ? false : true;
+      level.done = Boolean(level.exercises.find(item => item.exercise.completion < 100));
 
       // Get the level completion rate for the progress bar
       level.completion = level.done ? 100 : level.exercises.filter(item => item.exercise.completion >= 100).length * 100 / level.exercises.length;
