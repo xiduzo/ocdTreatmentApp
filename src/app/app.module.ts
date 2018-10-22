@@ -24,6 +24,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { IonicStorageModule } from '@ionic/storage';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
+import { Broadcaster } from '@ionic-native/broadcaster';
 // Other
 import { HttpClientModule } from '@angular/common/http';
 
@@ -185,6 +186,7 @@ export function createTranslateLoader(http: Http) {
     UserService,
     LocalNotifications,
     Globalization,
+    Broadcaster,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
