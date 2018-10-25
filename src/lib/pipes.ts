@@ -45,7 +45,7 @@ export class accumulateTimePipe implements PipeTransform {
 
 @Pipe({name: 'msToTime'})
 export class msToTimePipe implements PipeTransform {
-  transform(miliseconds:number) {
+  transform(miliseconds:number, format:string) {
     if(!miliseconds) return;
 
     let ms = miliseconds % 1000;
@@ -55,7 +55,16 @@ export class msToTimePipe implements PipeTransform {
     let mins = miliseconds % 60;
     let hrs = (miliseconds - mins) / 60;
 
-    return zeroPad(hrs, 2) + ':' + zeroPad(mins, 2) + ':' + zeroPad(secs, 2);
+
+    switch(format) {
+      case 'hours':
+        return zeroPad(hrs, 1);
+      case 'minutes':
+        return zeroPad(mins, 1);
+      default:
+        return zeroPad(hrs, 2) + ':' + zeroPad(mins, 2) + ':' + zeroPad(secs, 2);
+        breakl
+    }
   }
 }
 
