@@ -80,44 +80,12 @@ export class ProgressPage {
         ],
         labels: {
           useHTML: true,
-          // x: 10
         },
         gridLineWidth: 0,
         lineWidth: 2
       },
       legend: { enabled: false },
       series: [
-        {
-          type: 'arearange',
-          name: 'Prefered line',
-          color: '#FCD28A',
-          fillOpacity: 0.4,
-          lineColor: '#FCD28A',
-          lineWidth: 2,
-          marker: { enabled: false },
-          enableMouseTracking: false,
-          data: [
-            // [1, 3.5, 5],
-            // [1.25, 3.48, 4.99],
-            // [1.5, 3.45, 4.98],
-            // [1.75, 3.4, 4.965],
-            // [2, 3.35, 4.95],
-            // [2.25, 3.3, 4.9],
-            // [2.5, 3.2, 4.83],
-            // [2.75, 3.1, 4.75],
-            // [3, 3, 4.6],
-            // [3.25, 2.9, 4.44],
-            // [3.5, 2.75, 4.25],
-            // [3.75, 2.55, 4],
-            // [4, 2.3, 3.75],
-            // [4.25, 2, 3.5],
-            // [4.5, 1.7, 3.1],
-            // [4.75, 1.4, 2.3],
-            // [5, 1, 1]
-            // [1, 3.5, 5],
-            // [5, 1, 2.5]
-          ]
-        },
         {
           // https://github.com/virtualstaticvoid/highcharts_trendline
           type: 'line',
@@ -165,15 +133,15 @@ export class ProgressPage {
 
   clearPoints() {
     // Clear the observations
-    const observations = this.chart.series[this.chart.series.length-1].data.length;
+    const observations = this.chart.series[1].data.length;
     for(let i = 0; i < observations; i++) {
-      this.chart.series[this.chart.series.length-1].removePoint(0);
+      this.chart.series[1].removePoint(0);
     }
 
     // Clear the regression line
     const regression = this.chart.series[this.chart.series.length-2].data.length;
     for(let i = 0; i < regression; i++) {
-      this.chart.series[this.chart.series.length-2].removePoint(0);
+      this.chart.series[0].removePoint(0);
     }
 
     // Update the graph again
@@ -187,7 +155,7 @@ export class ProgressPage {
     .forEach(exercise => {
       // Check if there is a before and aftermood registered
       if((exercise.hasOwnProperty('beforeMood') && exercise.hasOwnProperty('afterMood'))) {
-        this.chart.series[this.chart.series.length-1].addPoint([
+        this.chart.series[1].addPoint([
           map(exercise.afterMood.mood, 0, 500, 1, 5),
           map(exercise.beforeMood.mood, 0, 500, 1, 5)
         ]);
@@ -197,14 +165,15 @@ export class ProgressPage {
     // Update the regression line
     // https://github.com/Tom-Alexander/regression-js
     regression
-    .linear(this.chart.series[this.chart.series.length-1].data
+    .polynomial(this.chart.series[1].data
+    // .linear(this.chart.series[this.chart.series.length-1].data
     // Only need the mapped x and y values
     .map(point => { return [point.x, point.y]})).points
     // Sort in order to for a smooth line
     .sort()
     .forEach(point => {
       // Add the points to the graph
-      this.chart.series[this.chart.series.length-2].addPoint(point);
+      this.chart.series[0].addPoint(point);
     });
 
     // Update the stats
@@ -212,13 +181,13 @@ export class ProgressPage {
   }
 
   updateStats(exercises:any, weekNumber:number) {
+    // Get the exercises for this week
     this.thisWeeksExercises = exercises
-    // Get the exercises for this week
-    .filter((exercise) => { return moment(exercise.start).week() === weekNumber})
+    .filter((exercise) => { return moment(exercise.start).week() === weekNumber});
 
+    // Get the exercises for previous week
     this.previousWeeksExercises = exercises
-    // Get the exercises for this week
-    .filter((exercise) => { return moment(exercise.start).week() === weekNumber - 1})
+    .filter((exercise) => { return moment(exercise.start).week() === weekNumber - 1});
   }
 
   changeWeek(direction:number) {
@@ -227,7 +196,7 @@ export class ProgressPage {
     this.startWeek = moment(this.startWeek).add((direction > 0 ? 7 : - 7), 'days');
 
     // Cant go further than this week
-    this.canSelectNextWeek = moment(this.endWeek).week() === moment(moment.now()).week() ? false : true;
+    this.canSelectNextWeek = !Boolean(moment(this.endWeek).week() === moment(moment.now()).week());
 
     this.clearPoints();
   }
