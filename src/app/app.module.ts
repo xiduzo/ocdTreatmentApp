@@ -59,12 +59,14 @@ import { FearladderModal } from '../pages/fearladder/fearladder';
 import { FearladderStepModal } from '../pages/fearladder/step/fearladder.step';
 // Badges
 import { BadgeModal } from '../pages/badge/badge';
+//Settings
+import { SettingsPage } from '../pages/settings/settings';
 
 /*------------------------------
   Lib
 ------------------------------*/
 import { databaseHost } from '../lib/constants';
-import { GroupByPipe, accumulateTimePipe, msToTimePipe } from '../lib/pipes';
+import { groupByPipe, accumulateTimePipe, msToTimePipe } from '../lib/pipes';
 import { AuthService, UserService } from '../lib/services';
 
 /*------------------------------
@@ -135,7 +137,8 @@ export function createTranslateLoader(http: Http) {
     SignUpPage,
     LogbookPage,
     BadgeModal,
-    GroupByPipe,
+    SettingsPage,
+    groupByPipe,
     accumulateTimePipe,
     msToTimePipe
   ],
@@ -174,7 +177,8 @@ export function createTranslateLoader(http: Http) {
     LoginPage,
     SignUpPage,
     LogbookPage,
-    BadgeModal
+    BadgeModal,
+    SettingsPage
   ],
   providers: [
     StatusBar,
