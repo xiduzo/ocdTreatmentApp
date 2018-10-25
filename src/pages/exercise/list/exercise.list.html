@@ -23,7 +23,7 @@
             <ion-icon name="checkmark-circle" *ngIf="item.exercise.completion >= 100"></ion-icon>
           </ion-avatar>
           <h2 capitalize>
-            {{ item.exercise.situation }}
+            {{ item?.exercise.situation }}
           </h2>
           <p *ngIf="item.exercise.without">
             {{ 'WITHOUT' | translate }}: {{ item.exercise.without }}
