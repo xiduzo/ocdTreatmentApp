@@ -17,39 +17,57 @@
 <ion-content>
   <chart [options]="_chartOptions" style="display: block" (load)="setChart($event.context)" type="chart"></chart>
 
-  <ion-list>
-    <ion-item>
-      <h2>
-        {{ 'PROGRESS_EXERCISES_DONE' | translate }}
-      </h2>
-      <p item-end>
-        {{ thisWeeksExercises?.length }}
-        <!-- <span *ngIf="previousWeeksExercises?.length">
-          ({{ previousWeeksExercises.length * 100 / thisWeeksExercises.length}}%)
-        </span> -->
-      </p>
-    </ion-item>
-    <ion-item>
-      <h2>
-        {{ 'PROGRESS_TOTAL_EXERCISE_TIME' | translate }}
-      </h2>
-      <p item-end>
-        {{ (thisWeeksExercises | accumulateTime | msToTime) || '00:00:00' }}
-        <!-- <span *ngIf="previousWeeksExercises?.length">
-          ({{ (previousWeeksExercises | accumulateTime) * 100 / (thisWeeksExercises.accumulateTime) }}%)
-        </span> -->
-      </p>
-    </ion-item>
-    <ion-item>
-      <h2>
-        {{ 'PROGRESS_AVERAGE_EXERCISE_TIME' | translate }}
-      </h2>
-      <p item-end>
-        {{ (((thisWeeksExercises | accumulateTime) / thisWeeksExercises?.length) | msToTime) || '00:00:00' }}
-        <!-- <span *ngIf="previousWeeksExercises?.length">
-          ({{ ((previousWeeksExercises | accumulateTime) / previousWeeksExercises.length) * 100 / ((thisWeeksExercises | accumulateTime) / thisWeeksExercises.length) }}%)
-        </span> -->
-      </p>
-    </ion-item>
-  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <!-- <ion-icon name="cube"></ion-icon> -->
+        <ion-icon name="ribbon"></ion-icon>
+        <span>
+          {{ 'PROGRESS_EXERCISES_DONE' | translate }}
+        </span>
+      </ion-col>
+      <ion-col col-12>
+        <h1 color="primary">
+          {{ thisWeeksExercises?.length }}
+        </h1>
+        <span>
+          exercises
+        </span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12>
+        <ion-icon name="timer"></ion-icon>
+        <span>
+          {{ 'PROGRESS_TOTAL_EXERCISE_TIME' | translate }}
+        </span>
+      </ion-col>
+      <ion-col col-12>
+        <h1 color="primary">
+          {{ (thisWeeksExercises | accumulateTime | msToTime : 'hours') || '0' }}
+        </h1>
+        <span>
+          hours
+        </span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12>
+        <ion-icon name="md-stopwatch"></ion-icon>
+        <span>
+          {{ 'PROGRESS_AVERAGE_EXERCISE_TIME' | translate }}
+        </span>
+      </ion-col>
+      <ion-col col-12>
+        <h1 color="primary">
+          {{ (((thisWeeksExercises | accumulateTime) / thisWeeksExercises?.length) | msToTime : 'minutes') || '0' }}
+        </h1>
+        <span>
+          minutes
+        </span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

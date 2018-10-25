@@ -31,4 +31,42 @@ progress-home {
       line-height: 0.7em;
     }
   }
+
+  ion-grid.grid {
+    padding: 32px 64px;
+    ion-row {
+      &:not(:last-of-type) {
+        margin-bottom: 32px;
+      }
+      ion-col {
+        padding: 0;
+        display: flex;
+        align-items: center;
+
+        &:nth-of-type(1) {
+          span {
+            font-weight: 300;
+            text-transform: uppercase;
+          }
+        }
+        &:nth-of-type(2) {
+          align-items: baseline;
+        }
+
+        h1 {
+          margin: 0;
+          font-weight: 900;
+          font-size: 3.25em;
+          color: color($colors, secondary, base);
+        }
+        ion-icon {
+          font-size: 2em;
+          color: color($colors, contrast, base);
+        }
+        span {
+          margin-left: 1em;
+        }
+      }
+    }
+  }
 }
