@@ -6,7 +6,7 @@ import { zeroPad } from '../lib/helpers';
 
 // http://www.competa.com/blog/custom-groupby-pipe-angular-4/
 @Pipe({name: 'groupBy', pure: false})
-export class GroupByPipe implements PipeTransform {
+export class groupByPipe implements PipeTransform {
   transform(collection: Array<any>, property: string): Array<any> {
     // prevents the application from breaking if the array of objects doesn't exist yet
     if(!collection) return;
