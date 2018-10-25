@@ -92,7 +92,7 @@ export class ProgressPage {
           dashStyle: 'Dash',
           name: 'Regression Line',
           data: [],
-          color: '#F17879',
+          color: '#F07879',
           marker: { enabled: false },
           states: { hover: { lineWidth: 0 } },
           enableMouseTracking: false,
