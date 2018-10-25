@@ -37,23 +37,23 @@ export class Badge {
     });
 
     // Create trigger events
-    _.forEach(this.triggers, (trigger) => {
-      this.broadcaster.addEventListener(trigger).subscribe(event => {
-        console.log(event);
-        let modal;
+    if ((<any>window).cordova) {
+      _.forEach(this.triggers, (trigger) => {
+        this.broadcaster.addEventListener(trigger).subscribe(event => {
+          let modal;
 
-        switch(event.type) {
-          case 'badge_points_updated':
-            console.log(true);
+          switch(event.type) {
+            case 'badge_points_updated':
             modal = this.modalCtrl.create(FearladderModal);
             break;
-          default:
+            default:
             break;
-        }
+          }
 
-        modal.present();
+          modal.present();
+        });
       });
-    });
+    }
   }
 
   getProgress():number {
