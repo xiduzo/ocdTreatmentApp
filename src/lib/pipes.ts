@@ -59,11 +59,13 @@ export class msToTimePipe implements PipeTransform {
     switch(format) {
       case 'hours':
         return zeroPad(hrs, 1);
+        break;
       case 'minutes':
         return zeroPad(mins, 1);
+        break;
       default:
         return zeroPad(hrs, 2) + ':' + zeroPad(mins, 2) + ':' + zeroPad(secs, 2);
-        breakl
+        break;
     }
   }
 }
