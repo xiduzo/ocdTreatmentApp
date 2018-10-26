@@ -1,10 +1,10 @@
 page-profile {
-  ion-header {
-    ion-item.item {
-      background: transparent;
-    }
-  }
 
+  .scroll-content {
+    display: flex;
+    flex-direction: column;
+  }
+    
   ion-textarea {
     height: 9vh;
     background: color($colors, light, base);
@@ -14,5 +14,13 @@ page-profile {
       height: inherit;
       margin: 0;
     }
+  }
+
+  ion-segment {
+    flex: inherit;
+  }
+
+  ion-scroll {
+    flex-grow: 1;
   }
 }

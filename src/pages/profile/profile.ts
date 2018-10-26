@@ -18,6 +18,7 @@ export class ProfilePage {
 
   public personalGoal:string;
   public editGoal:boolean = false;
+  public view:string = 'achievements';
 
   constructor(
     private appCtrl: App,
