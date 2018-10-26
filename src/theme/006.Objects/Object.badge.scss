@@ -1,3 +1,5 @@
+$o-badge-size: 75px;
+
 .o-badge {
   display: flex;
   align-items: center;
@@ -8,12 +10,13 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    height: 75px;
+    height: $o-badge-size;
     round-progress {
       position: absolute;
     }
     img {
-      width: 60%;
+      width: $o-badge-size;
+      height: $o-badge-size;
     }
   }
   .badge__progress__numbers {
