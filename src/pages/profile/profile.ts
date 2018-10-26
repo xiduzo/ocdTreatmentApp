@@ -17,6 +17,7 @@ import { SettingsPage } from '../settings/settings';
 export class ProfilePage {
 
   public personalGoal:string;
+  public editGoal:boolean = false;
 
   constructor(
     private appCtrl: App,

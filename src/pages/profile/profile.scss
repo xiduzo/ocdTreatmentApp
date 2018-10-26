@@ -4,4 +4,15 @@ page-profile {
       background: transparent;
     }
   }
+
+  ion-textarea {
+    height: 9vh;
+    background: color($colors, light, base);
+
+    textarea {
+      padding: 8px;
+      height: inherit;
+      margin: 0;
+    }
+  }
 }

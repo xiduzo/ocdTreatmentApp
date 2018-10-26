@@ -15,22 +15,27 @@
         {{ 'MY_PERSONAL_GOAL' | translate}}
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col>
-        <h1 margin>
+    <!-- TODO: fix this inline styling, to lazy for now -->
+    <ion-row style="width: 100%;">
+      <ion-col col-12>
+        <h1 margin *ngIf="!editGoal" text-center>
           {{ personalGoal || "No goal specified yet" }}
         </h1>
+        <ion-textarea *ngIf="editGoal" [(ngModel)]="personalGoal" (change)="safePersonalGoal()" placeholder="No goal specified yet"></ion-textarea>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <button ion-button color="dark" small clear>
+        <button ion-button color="dark" small clear *ngIf="!editGoal" (click)="editGoal = true;">
           {{ 'EDIT' | translate }}
+        </button>
+        <button ion-button color="dark" small clear *ngIf="editGoal" (click)="editGoal = false;">
+          {{ 'SAVE' | translate }}
         </button>
       </ion-col>
     </ion-row>
   </ion-grid>
-  
+
   <ion-list-header>
     {{ 'MY_BADGES' | translate }}
   </ion-list-header>
