@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
+import { Step }  from '../../../lib/exercise';
+
 import { UUID } from 'angular2-uuid';
 
 @Component({
@@ -8,26 +10,8 @@ import { UUID } from 'angular2-uuid';
   templateUrl: 'fearladder.step.html'
 })
 export class FearladderStepModal {
+  public step:Step = new Step();
 
-  public step:any = {
-    id: UUID.UUID(),
-    fearRating: 1,
-    exercise: {
-      situation: null,
-      without: null,
-      completion: 0
-    },
-    triggers: [
-      {
-        verbose: 'INTENSITY_OBSESSIVE_THOUGHTS',
-        enabled: false,
-      },
-      {
-        verbose: 'INTENSITY_COMPULSIVE_BEHAVIOUR',
-        enabled: false
-      }
-    ]
-  };
   public buttonText:string = 'ADD';
   public headerText:string = 'FEARLADDER_STEP_HEADER_ADD';
 
@@ -35,7 +19,6 @@ export class FearladderStepModal {
     public viewCtrl: ViewController,
     private params: NavParams
   ) {
-
   }
 
   ionViewDidEnter() {

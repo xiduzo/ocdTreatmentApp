@@ -20,13 +20,13 @@
       <ion-label floating>
         {{ 'FEARLADDER_STEP_I_WANT_TO' | translate }}
       </ion-label>
-      <ion-input type="text" [(ngModel)]="step.exercise.situation"></ion-input>
+      <ion-input type="text" [(ngModel)]="step.fear.situation"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>
         {{ 'WITHOUT' | translate }}
       </ion-label>
-      <ion-input type="text" [(ngModel)]="step.exercise.without"></ion-input>
+      <ion-input type="text" [(ngModel)]="step.fear.without"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>
@@ -44,7 +44,7 @@
     </ion-item-divider>
     <ion-item *ngFor="let trigger of step.triggers">
       <ion-label>
-        {{ 'FEARLADDER_STEP_THIS_TRIGGERS' | translate }} {{ trigger.verbose }}
+        {{ 'FEARLADDER_STEP_THIS_TRIGGERS' | translate }} {{ trigger.verbose | translate }}
       </ion-label>
       <ion-checkbox [(ngModel)]="trigger.enabled"></ion-checkbox>
     </ion-item>
@@ -52,7 +52,7 @@
 </ion-content>
 
 <ion-footer>
-  <button ion-button large block (click)="addFear()" [disabled]="!step.exercise.situation || !step.exercise.without">
+  <button ion-button large block (click)="addFear()" [disabled]="!step.fear.situation || !step.fear.without">
     {{ buttonText | translate }}
   </button>
 </ion-footer>
