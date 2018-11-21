@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
-import { Step }  from '../../../lib/exercise';
-
-import { UUID } from 'angular2-uuid';
+import { Step, Fear }  from '../../../lib/exercise';
 
 @Component({
   selector: 'fearladder-step-modal',
@@ -25,9 +23,13 @@ export class FearladderStepModal {
     // For when we edit a step
     if(this.params.get('step')) {
       this.step = this.params.get('step');
+      console.log(this.params.get('step'), this.step);
       this.buttonText = 'SAVE';
       this.headerText = 'FEARLADDER_STEP_HEADER_EDIT';
-    };
+    } else {
+      this.step.addEmptyTriggers();
+      this.step.fear = new Fear();
+    }
   }
 
   close() {

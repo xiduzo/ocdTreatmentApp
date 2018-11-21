@@ -52,7 +52,7 @@ export class SettingsPage {
   }
 
   resetMockData() {
-    var fearLadder = [
+    let fearLadder = [
       {
         "id": UUID.UUID(),
         "fearRating": 1,
@@ -60,7 +60,7 @@ export class SettingsPage {
           { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
           { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
-        "exercise": {
+        "fear": {
           "completion": 100,
           "situation": "Walk around public places, such as the mall",
           "without": "Washing my hands"
@@ -73,7 +73,7 @@ export class SettingsPage {
           { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
           { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
-        "exercise": {
+        "fear": {
           "completion": 0,
           "situation": "Sit on bench at the mall",
           "without": "Washing my hands"
@@ -86,7 +86,7 @@ export class SettingsPage {
           { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
           { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
-        "exercise": {
+        "fear": {
           "completion": 100,
           "situation": "Touch items in a store",
           "without": "Washing my hands"
@@ -99,7 +99,7 @@ export class SettingsPage {
           { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
           { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
-        "exercise": {
+        "fear": {
           "completion": 0,
           "situation": "Touch a railing at the mall",
           "without": "Washing my hands"
@@ -112,7 +112,7 @@ export class SettingsPage {
           { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
           { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
-        "exercise": {
+        "fear": {
           "completion": 0,
           "situation": "Sit on a bench at the mall and touch bench with hands",
           "without": "Washing my hands"
@@ -125,7 +125,7 @@ export class SettingsPage {
           { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
           { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
-        "exercise": {
+        "fear": {
           "completion": 0,
           "situation": "Touch table in the food court",
           "without": "Washing my hands"
@@ -138,7 +138,7 @@ export class SettingsPage {
           { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
           { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
-        "exercise": {
+        "fear": {
           "completion": 0,
           "situation": "Use hands to push open doors to mall entrance",
           "without": "Washing my hands"
@@ -151,7 +151,7 @@ export class SettingsPage {
           { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
           { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
-        "exercise": {
+        "fear": {
           "completion": 0,
           "situation": "Use public phone at mall",
           "without": "Washing my hands"
@@ -164,7 +164,7 @@ export class SettingsPage {
           { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
           { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
-        "exercise": {
+        "fear": {
           "completion": 0,
           "situation": "Touch garbage can in the mall",
           "without": "Washing my hands"
@@ -177,7 +177,7 @@ export class SettingsPage {
           { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
           { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
-        "exercise": {
+        "fear": {
           "completion": 0,
           "situation": "Touch knob on mall bathroom door",
           "without": "Washing my hands"
@@ -190,7 +190,7 @@ export class SettingsPage {
           { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
           { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
-        "exercise": {
+        "fear": {
           "completion": 0,
           "situation": "Touch counter and taps in mall bathroom",
           "without": "Washing my hands"
@@ -203,7 +203,7 @@ export class SettingsPage {
           { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
           { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
-        "exercise": {
+        "fear": {
           "completion": 0,
           "situation": "Use hands to open and close stall door",
           "without": "Washing my hands"
@@ -216,7 +216,7 @@ export class SettingsPage {
           { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
           { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
         ],
-        "exercise": {
+        "fear": {
           "completion": 0,
           "situation": "Use toilet at mall",
           "without": "Washing my hands"
@@ -226,24 +226,24 @@ export class SettingsPage {
 
     this.storage.set('fearLadder', fearLadder);
 
-    var exercises = [];
-    for(var i = 0; i < 250; i++) {
-      var begin = moment(moment.now())
+    let exercises = [];
+    for(let i = 0; i < 250; i++) {
+      let begin = moment(moment.now())
         .subtract(Math.round(Math.random() * 90), "days")
         .subtract(Math.round(Math.random() * 12), "hours")
         .subtract(Math.round(Math.random() * 50), "minutes")
         .subtract(Math.round(Math.random() * 50), "seconds");
 
-      var beforeMoods = [
+      let beforeMoods = [
         "I'm feeling a bit anxtious",
-        "I don't want to do this exercise",
+        "I don't want to do this fear",
         "I have a hard week",
         "I am feeling good",
         "I think I can handle this exercise today!",
         "I have a good feeling about this"
       ];
 
-      var afterMoods = [
+      let afterMoods = [
         "This was scarier than expected",
         "I do not have this under control",
         "I failed completely",
@@ -252,7 +252,7 @@ export class SettingsPage {
         "I think I got this exercise under control!"
       ];
 
-      var tempObj = {
+      let tempObj = {
         id: UUID.UUID(),
         afterMood: {
           mood: Math.floor(Math.random() * 500),

@@ -3,8 +3,9 @@ import { Storage } from '@ionic/storage';
 
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
 
-
 import { ExerciseSuccessModal } from '../success/exercise.success';
+
+import { Trigger, Exercise } from '../../../lib/exercise';
 
 @Component({
   selector: 'page-exercise-trigger',
@@ -13,8 +14,8 @@ import { ExerciseSuccessModal } from '../success/exercise.success';
 export class ExerciseTriggerModal {
 
   public level:any;
-  public tracking:any;
-  public triggers:any;
+  public exercise:Exercise;
+  public triggers:Array<Trigger>;
 
   public range:any = { min: 0, max: 5 };
 
@@ -29,10 +30,12 @@ export class ExerciseTriggerModal {
 
   ionViewWillEnter() {
     this.level = this.params.get('level');
-    this.tracking = this.params.get('tracking');
+    this.exercise = this.params.get('exercise');
 
     // Only use triggers the user selected
-    this.triggers = this.tracking.step.triggers.filter(trigger => { return trigger.enabled; });
+    this.triggers = this.exercise.step.triggers.filter(trigger => {
+      return trigger.enabled;
+    });
 
     // Skip screen if we didn't set any triggers
     if(this.triggers.length < 1) {
@@ -41,19 +44,20 @@ export class ExerciseTriggerModal {
   }
 
   done() {
-    this.tracking.step.triggers = this.triggers;
-    this.tracking.end = new Date();
+    this.exercise.end = new Date();
 
     this.storage.get('exercises').then((exercises) => {
-      exercises[exercises.length-1] = this.tracking;
+      exercises[exercises.length-1] = this.exercise;
       this.storage.set('exercises', exercises);
 
-      let successModal = this.modalCtrl.create(ExerciseSuccessModal, {level: this.level, tracking: this.tracking });
+      let successModal = this.modalCtrl.create(ExerciseSuccessModal, {
+        level: this.level,
+        exercise: this.exercise
+      });
+
       successModal.present();
       this.viewCtrl.dismiss();
     });
-
-
   }
 
 }

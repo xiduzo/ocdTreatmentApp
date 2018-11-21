@@ -1,4 +1,4 @@
-<ion-content [@trackMood]='mood'>
+<ion-content [@trackMood]='moodClass'>
   <div ion-fixed>
     <ion-fab top right *ngIf="beforeMeasure">
       <button ion-fab mini color="light" (click)="stopExercise()">
@@ -8,16 +8,16 @@
     <strong class="c-mood__mood">
         {{ 'MOOD_HEADER' | translate }}
         <div class="mood__name" text-center>
-          <span *ngIf="this.moodNumber === 1">{{ 'MOOD_1' | translate }}</span>
-          <span *ngIf="this.moodNumber === 2">{{ 'MOOD_2' | translate }}</span>
-          <span *ngIf="this.moodNumber === 3">{{ 'MOOD_3' | translate }}</span>
-          <span *ngIf="this.moodNumber === 4">{{ 'MOOD_4' | translate }}</span>
-          <span *ngIf="this.moodNumber === 5">{{ 'MOOD_5' | translate }}</span>
+          <span *ngIf="moodNumber === 1">{{ 'MOOD_1' | translate }}</span>
+          <span *ngIf="moodNumber === 2">{{ 'MOOD_2' | translate }}</span>
+          <span *ngIf="moodNumber === 3">{{ 'MOOD_3' | translate }}</span>
+          <span *ngIf="moodNumber === 4">{{ 'MOOD_4' | translate }}</span>
+          <span *ngIf="moodNumber === 5">{{ 'MOOD_5' | translate }}</span>
         </div>
     </strong>
 
     <section class="c-mood__circle">
-        <section [className]="mood">
+        <section [className]="moodClass">
             <div class="c-mood__face">
                 <section class="face__attributes">
                     <section class="face__eyebrows">
@@ -44,13 +44,20 @@
 
     <form>
       <ion-item class="transparent">
-        <ion-range class="show-pin big-slider" color="light" [(ngModel)]="moodTrack" name="moodNumber" (ngModelChange)="setMood()" min="0" max="500"></ion-range>
+        <ion-range class="show-pin big-slider"
+          color="light"
+          [(ngModel)]="mood.mood"
+          name="moodNumber"
+          (ngModelChange)="setMood()"
+          min="0"
+          max="500">
+        </ion-range>
       </ion-item>
       <ion-item>
         <ion-label floating>
           {{ 'MOOD_EXPLENATION' | translate }}
         </ion-label>
-        <ion-textarea [(ngModel)]="moodReason" name="moodReason"></ion-textarea>
+        <ion-textarea [(ngModel)]="mood.explanation" name="moodExplanation"></ion-textarea>
       </ion-item>
     </form>
 

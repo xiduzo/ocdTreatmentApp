@@ -5,15 +5,17 @@ import { NavParams, ViewController, ModalController } from 'ionic-angular';
 
 import { ExerciseMoodPage } from '../mood/exercise.mood';
 
+import { Exercise } from '../../../lib/exercise';
+
 @Component({
   selector: 'page-exercise-during',
   templateUrl: 'exercise.during.html'
 })
 export class ExerciseDuringModal {
 
-  public level:any;
-  public exercise:any;
-  private tracking:any;
+  private level:any;
+  private exercise:Exercise;
+
 
   constructor(
     private params: NavParams,
@@ -26,30 +28,34 @@ export class ExerciseDuringModal {
 
   ionViewDidLoad() {
     this.level = this.params.get('level');
-    this.tracking = this.params.get('tracking');
+    this.exercise = this.params.get('exercise');
   }
 
   ionViewWillEnter() {
-    this.tracking.erp = {};
-    this.tracking.erp.start = new Date();
+    this.exercise.erp.start = new Date();
 
     this.storage.get('exercises').then((exercises) => {
-      exercises[exercises.length - 1] = this.tracking;
+      exercises[exercises.length - 1] = this.exercise;
       this.storage.set('exercises', exercises);
     });
   }
 
   finishExercise(succeed) {
     // Check if the user gave in to his compulsion
-    this.tracking.gaveInToCompulsion = succeed ? false : true;
+    this.exercise.erp.gaveInToCompulsion = succeed;
 
-    this.tracking.erp.end = new Date();
+    this.exercise.erp.end = new Date();
 
     this.storage.get('exercises').then((exercises) => {
-      exercises[exercises.length - 1] = this.tracking;
+      exercises[exercises.length - 1] = this.exercise;
       this.storage.set('exercises', exercises);
 
-      let moodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.level, tracking: this.tracking, before: false });
+      let moodModal = this.modalCtrl.create(ExerciseMoodPage, {
+        level: this.level,
+        exercise: this.exercise,
+        before: false }
+      );
+
       moodModal.present();
       this.viewCtrl.dismiss();
     });

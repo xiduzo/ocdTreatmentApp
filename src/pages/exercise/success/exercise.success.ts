@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
+import { Exercise } from '../../../lib/exercise';
+
 @Component({
   selector: 'page-exercise-success',
   templateUrl: 'exercise.success.html'
@@ -8,8 +10,7 @@ import { NavParams, ViewController } from 'ionic-angular';
 export class ExerciseSuccessModal {
 
   public level:any;
-  public exercise:any;
-  private tracking:any;
+  public exercise:Exercise;
 
   constructor(
     private params: NavParams,
@@ -18,14 +19,15 @@ export class ExerciseSuccessModal {
 
   }
 
-  ionViewDidLoad() {
-    this.exercise = this.params.get('exercise');
+  ionViewWillEnter() {
     this.level = this.params.get('level');
-    this.tracking = this.params.get('tracking');
+    this.exercise = this.params.get('exercise');
+    console.log(this.exercise);
   }
 
-  ionViewWillEnter() {
+  ionViewDidLoad() {
   }
+
 
   close() {
     this.viewCtrl.dismiss();

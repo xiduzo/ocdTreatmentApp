@@ -27,7 +27,7 @@ export class TabsPage {
   }
 
   private getAnimationDirection(index):string {
-    var currentIndex = this.tabIndex;
+    let currentIndex = this.tabIndex;
 
     this.tabIndex = index;
 

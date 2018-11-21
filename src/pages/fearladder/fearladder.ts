@@ -2,15 +2,16 @@ import { Component } from '@angular/core';
 import { ViewController, ModalController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-import { FearladderStepModal } from '../fearladder/step/fearladder.step'
+import { FearladderStepModal } from '../fearladder/step/fearladder.step';
+
+import { Step }  from '../../lib/exercise';
 
 @Component({
   selector: 'fearladder-modal',
   templateUrl: 'fearladder.html'
 })
 export class FearladderModal {
-
-  public fearLadder:Array<any> = [];
+  public fearLadder:Array<Step> = [];
 
   constructor(
     private viewCtrl: ViewController,
@@ -19,9 +20,14 @@ export class FearladderModal {
     private toastCtrl: ToastController
   ) {
     this.storage.get('fearLadder').then((fearLadder) => {
-      if(!fearLadder) return;
-
-      this.fearLadder = fearLadder;
+      fearLadder.forEach(step => {
+        this.fearLadder.push(new Step(
+          step.id,
+          step.fearRating,
+          step.triggers,
+          step.fear
+        ));
+      });
     });
   }
 
@@ -61,6 +67,7 @@ export class FearladderModal {
   }
 
   editStep(step) {
+    console.log(step);
     let modal = this.modalCtrl.create(FearladderStepModal, {step: step});
 
     modal.onDidDismiss((data) => {

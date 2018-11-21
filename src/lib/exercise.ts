@@ -1,31 +1,46 @@
 import { UUID } from 'angular2-uuid';
 
 export class Step {
-  constructor(
-    public id:string = UUID.UUID(),
-    public fearRating:number = 1,
-    public triggers:Array<Trigger> = [],
-    public fear:Fear = null
-  ) {
+  public id:string;
+  public fearRating:number;
+  public triggers:Array<Trigger>;
+  public fear:Fear;
+
+  constructor({
+    id = UUID.UUID(),
+    fearRating = 0,
+    triggers = [
+      new Trigger({verbose:'INTENSITY_OBSESSIVE_THOUGHTS'}),
+      new Trigger({verbose:'INTENSITY_COMPULSIVE_BEHAVIOUR'})
+    ],
+    fear = new Fear()
+  } = {}) {
     this.id = id;
     this.fearRating = fearRating;
-    this.triggers = triggers;
-    this.fear = fear;
+    this.triggers = triggers.map(trigger => {
+      return new Trigger(trigger);
+    });
+    this.fear = new Fear(fear);
   }
 
   addEmptyTriggers() {
-    this.triggers.push(new Trigger('INTENSITY_OBSESSIVE_THOUGHTS'));
-    this.triggers.push(new Trigger('INTENSITY_COMPULSIVE_BEHAVIOUR'));
+    this.triggers.push(new Trigger({verbose:'INTENSITY_OBSESSIVE_THOUGHTS'}));
+    this.triggers.push(new Trigger({verbose:'INTENSITY_COMPULSIVE_BEHAVIOUR'}));
   }
 }
 
 export class Trigger {
-  constructor(
-    public verbose:string,
-    public range:number = 0,
-    public explanation:string = null,
-    public enabled:boolean = false
-  ) {
+  public verbose:string;
+  public range:number;
+  public explanation:string;
+  public enabled:boolean;
+
+  constructor({
+    verbose = '',
+    range = 0,
+    explanation = '',
+    enabled = false
+  } = {}) {
     this.verbose = verbose;
     this.range = range;
     this.explanation = explanation;
@@ -34,11 +49,15 @@ export class Trigger {
 }
 
 export class Fear {
-  constructor(
-    public completion:number = 0,
-    public situation:string = null,
-    public without:string = null
-  ) {
+  public completion:number;
+  public situation:string;
+  public without:string;
+
+  constructor({
+    completion = 0,
+    situation = '',
+    without = ''
+  } = {}) {
     this.completion = completion;
     this.situation = situation;
     this.without = without;
@@ -46,41 +65,56 @@ export class Fear {
 }
 
 export class Exercise {
-  constructor(
-    public id:string = UUID.UUID(),
-    public afterMood:Mood,
-    public beforeMood:Mood,
-    public step:Step,
-    public start:string, // moment
-    public end:string, // moment
-    public erp:Erp
-  ) {
+  public id:string;
+  public afterMood:Mood;
+  public beforeMood:Mood;
+  public step:Step;
+  public start:string;
+  public end:string;
+  public erp:Erp;
+
+  constructor({
+    id = UUID.UUID(),
+    afterMood = new Mood(),
+    beforeMood = new Mood(),
+    step = new Step(),
+    start = new Date(), // moment
+    end = null, // moment
+    erp = new Erp()
+  } = {}) {
     this.id = id;
-    this.afterMood = afterMood;
-    this.beforeMood = beforeMood;
-    this.step = step;
+    this.afterMood = new Mood(afterMood);
+    this.beforeMood = new Mood(beforeMood);
+    this.step = new Step(step);
     this.start = start;
     this.end = end;
-    this.erp = erp;
+    this.erp = new Erp(erp);
   }
 }
 
 export class Mood {
-  constructor(
-    public mood:number,
-    public explanation:string
-  ) {
+  public mood:number;
+  public explanation:string;
+
+  constructor({
+    mood = 0,
+    explanation = ''
+  } = {}) {
     this.mood = mood;
     this.explanation = explanation;
   }
 }
 
 export class Erp {
-  constructor(
-    public gaveInToCompulsion:boolean,
-    public start:string, // moment
-    public end:string // moment
-  ) {
+  public gaveInToCompulsion:boolean;
+  public start:string;
+  public end:string;
+
+  constructor({
+    gaveInToCompulsion = false,
+    start = null, // moment
+    end = null// moment
+  } = {}) {
     this.gaveInToCompulsion = gaveInToCompulsion;
     this.start = start;
     this.end = end;

@@ -8,29 +8,40 @@
 .c-exercise__levels {
   padding: 32px 0;
 
-  ion-item {
+  .level {
 
-    .item-inner {
-      ion-label { margin: 0 8px 0 0; }
-    }
-
-    .level {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      // &.inactive {
-      //   filter: grayscale(100%);
-      // }
-
-      .level__seperator {
+    &:not(:last-of-type) {
+      &:after {
         content: '';
         border-left: 1px dotted lighten(color($colors, dark, base), 60);
         height: 6vh;
-        margin: 8px 0;
+        margin: 8px auto;
+        display: block;
+        width: 1px;
+      }
+    }
+
+    ion-item {
+
+      .item-inner {
+        ion-label { margin: 0 8px 0 0; }
+      }
+
+      section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .level__seperator {
+          content: '';
+          border-left: 1px dotted lighten(color($colors, dark, base), 60);
+          height: 6vh;
+          margin: 8px 0;
+        }
       }
     }
   }
+
 }
 
 .level__monster {
@@ -44,7 +55,7 @@
     border-radius: 50%;
     .monster,
     .level {
-        width: inherit;
+      width: inherit;
       height: inherit;
       background-size: cover;
     }

@@ -10,8 +10,6 @@ import { ToastController } from 'ionic-angular';
 
 import { FearladderModal } from '../fearladder/fearladder';
 
-import { Badge } from '../../lib/badges';
-
 @Component({
   selector: 'page-exercise',
   templateUrl: 'exercise.html'
@@ -21,6 +19,7 @@ export class ExercisePage {
 
   private profile:string;
   public levels:Array<any>;
+  public test:string;
 
   constructor(
     public appCtrl: App,
@@ -29,19 +28,10 @@ export class ExercisePage {
     public toastCtrl: ToastController,
     private modalCtrl: ModalController
   ) {
-
   }
 
   ionViewDidLoad() {
     this.profile = this.userService.getUser();
-    // const testBadge = new Badge(
-    //   "test",
-    //   "test description",
-    //   0,
-    //   0
-    // );
-    // console.log(testBadge);
-    // console.log(testBadge.getProgress());
   }
 
   ionViewWillEnter() {
@@ -52,45 +42,28 @@ export class ExercisePage {
     this.levels = [];
     // Build the levels array
     for(let i = 1; i <= 8; i++) {
-      this.levels.push({ level: i, exercises: [] });
+      this.levels.push({ level: i, steps: [], completion: 0 });
     }
     this.getExersises();
   }
 
   getExersises() {
     this.storage.get('fearLadder').then((fearLadder) => {
-      if(fearLadder) {
-        fearLadder.forEach(step => {
-          this.levels.find(level => level.level === step.fearRating).exercises.push(step);
-        });
-      }
+      fearLadder.forEach(step => {
+        this.levels.find(level => level.level === step.fearRating).steps.push(step);
+      });
 
-      // We don't need to see the levels which has no exercises
-      this.levels = this.levels.filter(level => { return level.exercises.length > 0 });
+      // We don't need to see the levels which has no steps
+      this.levels = this.levels.filter(level => { return level.steps.length > 0 });
       this.setLevelsMonsterAndCompletion();
     });
 
   }
 
   setLevelsMonsterAndCompletion() {
-    if(!this.levels) return;
     this.levels.forEach(level => {
-      level.done = !Boolean(level.exercises.find(item => item.exercise.completion < 100));
-
-      // Get the level completion rate for the progress bar
-      level.completion = level.done ? 100 : level.exercises.filter(item => item.exercise.completion >= 100).length * 100 / level.exercises.length;
-
+      level.completion = level.steps.filter(steps => { return steps.fear.completion >= 100;}).length * 100 / level.steps.length;
       level.monster = 'assets/imgs/monsters/monster-0'+level.level+'.png';
-
-      // TODO
-      // fix monster icon based on completion
-      // if(level.completion === 100) {
-      //   level.monster = 'assets/imgs/monsters/level'+level.level+'_100.png';
-      // } else if(level.completion > 49) {
-      //   level.monster = 'assets/imgs/monsters/level'+level.level+'_50.png';
-      // } else {
-      //   level.monster = 'assets/imgs/monsters/level'+level.level+'_0.png';
-      // }
     });
 
   }
@@ -99,8 +72,7 @@ export class ExercisePage {
     let modal = this.modalCtrl.create(FearladderModal);
 
     modal.onDidDismiss(data => {
-      // this.levels.push(data);
-      // this.setLevelsMonsterAndCompletion();
+      this.setLevelsMonsterAndCompletion();
 
       let toast = this.toastCtrl.create({
         message: 'You can allways change your fear ladder on your profile page',
@@ -117,7 +89,7 @@ export class ExercisePage {
 
   goToLevel(level) {
     // Dont need to go there if there are no exercises
-    if(!level.exercises.length) return;
+    if(!level.steps.length) return;
 
     // Also dont need to go there if the level is done
     if(level.done) return;

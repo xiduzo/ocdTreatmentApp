@@ -9,31 +9,39 @@
       <div class="monster__icon">
         <div class="monster" [style.backgroundImage]="'url('+ level?.monster +')'"></div>
       </div>
-      <round-progress [current]="level?.completion" [max]="100" [radius]="60" [stroke]="5" [duration]="1"></round-progress>
+      <round-progress
+        [current]="level?.completion"
+        [max]="100"
+        [radius]="60"
+        [stroke]="5"
+        [duration]="1">
+      </round-progress>
     </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let item of level?.exercises">
-      <button ion-item (click)="selectExercise(item)" text-wrap  [class.completed]="item.exercise.completion >= 100" [disabled]="item.exercise.completion >= 100">
+    <ion-item-sliding *ngFor="let step of level?.steps">
+      <button ion-item (click)="selectStep(step)" text-wrap
+        [class.completed]="step.fear.completion >= 100"
+        [disabled]="step.fear.completion >= 100">
           <ion-avatar item-start text-center>
-            <ion-icon name="radio-button-off" *ngIf="item.exercise.completion < 100"></ion-icon>
-            <ion-icon name="checkmark-circle" *ngIf="item.exercise.completion >= 100"></ion-icon>
+            <ion-icon name="radio-button-off" *ngIf="step.fear.completion < 100"></ion-icon>
+            <ion-icon name="checkmark-circle" *ngIf="step.fear.completion >= 100"></ion-icon>
           </ion-avatar>
           <h2 capitalize>
-            {{ item?.exercise.situation }}
+            {{ step?.fear.situation }}
           </h2>
-          <p *ngIf="item.exercise.without">
-            {{ 'WITHOUT' | translate }}: {{ item.exercise.without }}
-          </p>
+          <!-- <p *ngIf="step?.fear.without">
+            {{ 'WITHOUT' | translate }}: {{ item.fear.without }}
+          </p> -->
       </button>
       <ion-item-options side="left">
-        <button ion-button (click)="finishExercise(item)" *ngIf="item.exercise.completion >= 100">
+        <button ion-button (click)="finishExercise(step)" *ngIf="step.fear.completion >= 100">
           Uncomplete
         </button>
-        <button ion-button (click)="finishExercise(item)" *ngIf="item.exercise.completion < 100">
+        <button ion-button (click)="finishExercise(step)" *ngIf="step.fear.completion < 100">
           complete
         </button>
       </ion-item-options>

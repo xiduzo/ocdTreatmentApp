@@ -11,10 +11,10 @@
       {{ 'MY_FEAR_LADDER' | translate }}
     </button>
   </section>
-  <ion-list no-lines class="c-exercise__levels" *ngIf="levels?.length">
-    <div *ngFor="let level of levels; let last = last">
-      <ion-item *ngIf="level?.exercises.length">
-        <section class="level" [class.completed]="level.done">
+  <ion-list no-lines class="c-exercise__levels">
+    <div *ngFor="let level of levels; index as i" class="level">
+      <ion-item>
+        <section [class.completed]="level.done">
           <div class="level__monster" (click)="goToLevel(level)">
             <div class="monster__icon" *ngIf="!level.done">
               <div class="monster" [style.backgroundImage]="'url(' + level.monster + ')'"></div>
@@ -22,9 +22,15 @@
             <div class="level__icon" *ngIf="level.done">
               <div class="level" [style.backgroundImage]="'url(assets/imgs/levels/badge__level-0' + level.level + '.png)'"></div>
             </div>
-            <round-progress *ngIf="!level.done" [current]="level.completion" [max]="100" [radius]="60" [stroke]="5" [duration]="1"></round-progress>
+            <round-progress *ngIf="!level.done"
+              [current]="level.completion"
+              [max]="100"
+              [radius]="60"
+              [stroke]="5"
+              [rounded]
+              [animationDelay]="i*100">
+            </round-progress>
           </div>
-          <span *ngIf="!last" class="level__seperator"></span>
         </section>
       </ion-item>
     </div>

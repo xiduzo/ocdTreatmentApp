@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
 
 import { map } from '../../../lib/helpers';
+import { Mood, Exercise } from '../../../lib/exercise';
 
 import {
   trigger,
@@ -31,27 +32,14 @@ import { ExerciseTriggerModal } from '../trigger/exercise.trigger';
   ]
 })
 export class ExerciseMoodPage {
-  public props:any = {
-    segments: 5,
-    strokeWidth: 40,
-    radius: 150,
-    gradientColorFrom: '#F2EAD7',
-    gradientColorTo: '#F2EAD7',
-    bgCircleColor: '#F2EAD7',
-    showClockFace: false
-  }
+  public mood:Mood = new Mood();
 
-  public mood:string = 'content';
+  public moodClass:string = 'content';
   public moodNumber:number = 1;
-  public moodTrack:number = 0;
-  public moodReason:string;
 
-  public level:any;
-  public exercise:any;
-
-  public beforeMeasure:boolean = false;
-
-  private tracking:any;
+  private level:any;
+  private exercise:Exercise;
+  private beforeMeasure:boolean = false;
 
   constructor(
     private params: NavParams,
@@ -64,47 +52,48 @@ export class ExerciseMoodPage {
 
   ionViewWillEnter() {
     this.level = this.params.get('level');
-    this.tracking = this.params.get('tracking');
+    this.exercise = this.params.get('exercise');
     this.beforeMeasure = this.params.get('before');
   }
 
-  setMood(number) {
+  setMood() {
     // We want to have a more accurate tracking for the therapist
     // But for the user we use a 1-5 scale
-    this.moodNumber = Math.round(map(this.moodTrack, 0, 500, 1, 5));
+    this.moodNumber = Math.round(map(this.mood.mood, 0, 500, 1, 5));
 
     switch(this.moodNumber) {
-      default:
-        this.mood = 'content';
+      case 1:
+        this.moodClass = 'content';
         break;
       case 2:
-        this.mood = 'ok';
+        this.moodClass = 'ok';
         break;
       case 3:
-        this.mood = 'meh';
+        this.moodClass = 'meh';
         break;
       case 4:
-        this.mood = 'worried';
+        this.moodClass = 'worried';
         break;
       case 5:
-        this.mood = 'panic';
+        this.moodClass = 'panic';
         break;
     }
   }
 
   startExercise() {
-    this.tracking.beforeMood = {};
-    this.tracking.beforeMood.mood = this.moodTrack;
-    this.tracking.beforeMood.explanation = this.moodReason;
+    this.exercise.beforeMood = this.mood;
 
     this.storage.get('exercises').then((exercises) => {
       // The last exercise is allways the exercise we are working with
       // So lets overwrite the last entry
-      exercises[exercises.length-1] = this.tracking;
+      exercises[exercises.length-1] = this.exercise;
 
       this.storage.set('exercises', exercises);
 
-      let duringModal = this.modalCtrl.create(ExerciseDuringModal, {level: this.level, tracking: this.tracking });
+      let duringModal = this.modalCtrl.create(ExerciseDuringModal, {
+        level: this.level,
+        exercise: this.exercise
+      });
       duringModal.present();
       this.viewCtrl.dismiss();
     });
@@ -112,17 +101,19 @@ export class ExerciseMoodPage {
   }
 
   finishExercise() {
-    this.tracking.afterMood = {};
-    this.tracking.afterMood.mood = this.moodTrack;
-    this.tracking.afterMood.explanation = this.moodReason;
+    this.exercise.afterMood = this.mood;
 
     this.storage.get('exercises').then((exercises) => {
       // The last exercise is allways the exercise we are working with
       // So lets overwrite the last entry
-      exercises[exercises.length-1] = this.tracking;
+      exercises[exercises.length-1] = this.exercise;
       this.storage.set('exercises', exercises);
 
-      let triggerModal = this.modalCtrl.create(ExerciseTriggerModal, {level: this.level, tracking: this.tracking });
+      let triggerModal = this.modalCtrl.create(ExerciseTriggerModal, {
+        level: this.level,
+        exercise: this.exercise
+      });
+      
       triggerModal.present();
       this.viewCtrl.dismiss();
     });

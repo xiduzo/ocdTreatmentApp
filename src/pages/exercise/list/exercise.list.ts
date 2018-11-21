@@ -9,43 +9,16 @@ import * as _ from 'lodash';
 
 import { ExerciseMoodPage } from '../../exercise/mood/exercise.mood';
 
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from '@angular/animations';
+import { Exercise } from '../../../lib/exercise';
 
 @Component({
   selector: 'exercise-list-page',
-  templateUrl: 'exercise.list.html',
-  animations: [
-    trigger('showLevelMonster', [
-      state('void', style({transform: 'scale(0)'})),
-      state('*', style({transform: 'scale(1)'})),
-      transition('void => *', animate('300ms 150ms ease-in'))
-    ]),
-    trigger('showListItem', [
-      state('void', style({opacity: '0'})),
-      state('*', style({opacity: '1'})),
-      transition('void => *', animate('100ms 400ms ease-in'))
-    ]),
-  ]
+  templateUrl: 'exercise.list.html'
 })
 export class ExerciseListPage {
   @ViewChild(Content) content: Content;
 
-  private level:any = {
-    exercises: []
-  };
-
-  private tracking:any = {
-    id: null,
-    start: null,
-    end: null,
-    step: null,
-  };
+  private level:any;
 
   constructor(
     private params: NavParams,
@@ -64,20 +37,27 @@ export class ExerciseListPage {
     this.appCtrl.getRootNav().pop();
   }
 
-  selectExercise(step) {
-    if(step.exercise.completion >= 100) return;
+  selectStep(step) {
+    if(step.fear.completion >= 100) return;
 
     this.storage.get('exercises').then((exercises) => {
       if(!exercises) exercises = []; // When it's the users' first time
 
-      this.tracking.id = UUID.UUID();
-      this.tracking.start = new Date();
-      this.tracking.step = step;
+      let exercise = new Exercise({
+        start: new Date(),
+        step: step
+      });
 
-      exercises.push(this.tracking);
+      exercises.push(exercise);
+
       this.storage.set('exercises', exercises);
 
-      let exerciseMoodModal = this.modalCtrl.create(ExerciseMoodPage, {level: this.level, tracking: this.tracking, before: true});
+      let exerciseMoodModal = this.modalCtrl.create(ExerciseMoodPage, {
+        level: this.level,
+        exercise: exercise,
+        before: true
+      });
+
       exerciseMoodModal.present();
     });
   }
