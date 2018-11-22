@@ -12,6 +12,8 @@ import { UUID } from 'angular2-uuid';
 import * as _ from 'lodash';
 import moment from 'moment';
 
+import { Fear, Trigger, Exercise, Mood, Step, Erp } from '../../lib/exercise';
+
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html'
@@ -52,177 +54,27 @@ export class SettingsPage {
   }
 
   resetMockData() {
-    let fearLadder = [
-      {
-        "id": UUID.UUID(),
-        "fearRating": 1,
-        "triggers": [
-          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
+    let fearLadder = [];
+    for(let i = 0; i < 50; i++) {
+      fearLadder.push(new Step({
+        fearRating: Math.ceil(Math.random() * 8),
+        triggers: [
+          new Trigger({
+            verbose: 'INTENSITY_OBSESSIVE_THOUGHTS',
+            enabled: Math.random() >= 0.4
+          }),
+          new Trigger({
+            verbose: 'INTENSITY_COMPULSIVE_BEHAVIOUR',
+            enabled: Math.random() >= 0.4
+          })
         ],
-        "fear": {
-          "completion": 100,
-          "situation": "Walk around public places, such as the mall",
-          "without": "Washing my hands"
-        }
-      },
-      {
-        "id": UUID.UUID(),
-        "fearRating": 1,
-        "triggers": [
-          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
-        ],
-        "fear": {
-          "completion": 0,
-          "situation": "Sit on bench at the mall",
-          "without": "Washing my hands"
-        }
-      },
-      {
-        "id": UUID.UUID(),
-        "fearRating": 2,
-        "triggers": [
-          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
-        ],
-        "fear": {
-          "completion": 100,
-          "situation": "Touch items in a store",
-          "without": "Washing my hands"
-        }
-      },
-      {
-        "id": UUID.UUID(),
-        "fearRating": 2,
-        "triggers": [
-          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
-        ],
-        "fear": {
-          "completion": 0,
-          "situation": "Touch a railing at the mall",
-          "without": "Washing my hands"
-        }
-      },
-      {
-        "id": UUID.UUID(),
-        "fearRating": 2,
-        "triggers": [
-          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
-        ],
-        "fear": {
-          "completion": 0,
-          "situation": "Sit on a bench at the mall and touch bench with hands",
-          "without": "Washing my hands"
-        }
-      },
-      {
-        "id": UUID.UUID(),
-        "fearRating": 3,
-        "triggers": [
-          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
-        ],
-        "fear": {
-          "completion": 0,
-          "situation": "Touch table in the food court",
-          "without": "Washing my hands"
-        }
-      },
-      {
-        "id": UUID.UUID(),
-        "fearRating": 4,
-        "triggers": [
-          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
-        ],
-        "fear": {
-          "completion": 0,
-          "situation": "Use hands to push open doors to mall entrance",
-          "without": "Washing my hands"
-        }
-      },
-      {
-        "id": UUID.UUID(),
-        "fearRating": 5,
-        "triggers": [
-          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
-        ],
-        "fear": {
-          "completion": 0,
-          "situation": "Use public phone at mall",
-          "without": "Washing my hands"
-        }
-      },
-      {
-        "id": UUID.UUID(),
-        "fearRating": 5,
-        "triggers": [
-          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
-        ],
-        "fear": {
-          "completion": 0,
-          "situation": "Touch garbage can in the mall",
-          "without": "Washing my hands"
-        }
-      },
-      {
-        "id": UUID.UUID(),
-        "fearRating": 6,
-        "triggers": [
-          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
-        ],
-        "fear": {
-          "completion": 0,
-          "situation": "Touch knob on mall bathroom door",
-          "without": "Washing my hands"
-        }
-      },
-      {
-        "id": UUID.UUID(),
-        "fearRating": 7,
-        "triggers": [
-          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
-        ],
-        "fear": {
-          "completion": 0,
-          "situation": "Touch counter and taps in mall bathroom",
-          "without": "Washing my hands"
-        }
-      },
-      {
-        "id": UUID.UUID(),
-        "fearRating": 7,
-        "triggers": [
-          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
-        ],
-        "fear": {
-          "completion": 0,
-          "situation": "Use hands to open and close stall door",
-          "without": "Washing my hands"
-        }
-      },
-      {
-        "id": UUID.UUID(),
-        "fearRating": 8,
-        "triggers": [
-          { "verbose": "INTENSITY_OBSESSIVE_THOUGHTS", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null },
-          { "verbose": "INTENSITY_COMPULSIVE_BEHAVIOUR", "enabled": Math.random() > 0.5 ? true : false, "range": 0, "explanation": null }
-        ],
-        "fear": {
-          "completion": 0,
-          "situation": "Use toilet at mall",
-          "without": "Washing my hands"
-        }
-      },
-    ];
+        fear: new Fear({
+          completion: Math.random() > 0.3 ? 100 : 0,
+          situation: 'Lorem ipsum dolor sit amet',
+          without: 'consectetur adipiscing'
+        })
+      }));
+    }
 
     this.storage.set('fearLadder', fearLadder);
 
@@ -234,64 +86,33 @@ export class SettingsPage {
         .subtract(Math.round(Math.random() * 50), "minutes")
         .subtract(Math.round(Math.random() * 50), "seconds");
 
-      let beforeMoods = [
-        "I'm feeling a bit anxtious",
-        "I don't want to do this fear",
-        "I have a hard week",
-        "I am feeling good",
-        "I think I can handle this exercise today!",
-        "I have a good feeling about this"
-      ];
-
-      let afterMoods = [
-        "This was scarier than expected",
-        "I do not have this under control",
-        "I failed completely",
-        "This went better than expected",
-        "It could have been way worse",
-        "I think I got this exercise under control!"
-      ];
-
-      let tempObj = {
-        id: UUID.UUID(),
-        afterMood: {
-          mood: Math.floor(Math.random() * 500),
-          explanation: Math.random() > 0.75 ? _.sample(afterMoods) : null
-        },
-        beforeMood: {
-          mood: Math.floor(Math.random() * 500),
-          explanation: Math.random() > 0.75 ? _.sample(beforeMoods) : null
-        },
-        gaveInToCompulsion: Math.random() > 0.5 ? true : false,
-        step: _.sample(fearLadder),
-        start: begin.format(),
-        end: moment(begin)
-          .add(Math.round(Math.random() * 20), "minutes")
-          .add(Math.round(Math.random() * 50), "seconds")
-          .format(),
-        erp: {
-          begin: moment(begin)
-            .add(Math.round(Math.random() * 2), "minutes")
-            .add(Math.round(Math.random() * 50), "seconds")
-            .format(),
+        exercises.push(new Exercise({
+          beforeMood: new Mood({
+            mood: Math.round(Math.random() * 500)
+          }),
+          afterMood: new Mood({
+            mood: Math.round(Math.random() * 500)
+          }),
+          start: begin.format(),
           end: moment(begin)
-            .add(Math.round(Math.random() * 2) + 2, "minutes")
+            .add(Math.round(Math.random() * 20), "minutes")
             .add(Math.round(Math.random() * 50), "seconds")
             .format(),
-        }
-      };
-
-      _.forEach(tempObj.step.triggers, (trigger) => {
-        if(trigger.enabled) {
-          trigger.range = Math.round(Math.random() * 5);
-          trigger.explanation = "";
-        }
-      })
-
-      exercises.push(tempObj);
+          erp: new Erp({
+            start: moment(begin)
+              .add(Math.round(Math.random() * 2), "minutes")
+              .add(Math.round(Math.random() * 50), "seconds")
+              .format(),
+            end: moment(begin)
+              .add(Math.round(Math.random() * 2) + 2, "minutes")
+              .add(Math.round(Math.random() * 50), "seconds")
+              .format()
+          })
+        }));
     }
 
-    exercises = _.orderBy(exercises, 'start');
+    console.log(exercises);
+
     this.storage.set('exercises', exercises);
   }
 }
