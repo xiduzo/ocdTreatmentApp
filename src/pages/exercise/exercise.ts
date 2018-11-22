@@ -63,6 +63,7 @@ export class ExercisePage {
   setLevelsMonsterAndCompletion() {
     this.levels.forEach(level => {
       level.completion = level.steps.filter(steps => { return steps.fear.completion >= 100;}).length * 100 / level.steps.length;
+      level.done = level.completion == 100;
       level.monster = 'assets/imgs/monsters/monster-0'+level.level+'.png';
     });
 
