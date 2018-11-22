@@ -23,8 +23,8 @@ export class ProgressPage {
     'MOOD_PANIC'
   ];
 
-  public endWeek:any = moment(moment.now()).endOf('week');
-  public startWeek:any = moment(moment.now()).startOf('week');
+  public endWeek:Date = moment(moment.now()).endOf('week');
+  public startWeek:Date = moment(moment.now()).startOf('week');
   public canSelectNextWeek:boolean = false;
 
   public chart:any;
