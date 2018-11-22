@@ -66,7 +66,7 @@ export class ExerciseListPage {
 
       _.forEach(fearLadder, (ladderStep) => {
         if(ladderStep.id == step.id) {
-          step.exercise.completion = step.exercise.completion < 100 ? 100 : 0;
+          step.fear.completion = step.fear.completion < 100 ? 100 : 0;
 
           ladderStep.exercise = step.exercise;
         }

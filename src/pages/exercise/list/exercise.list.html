@@ -31,11 +31,11 @@
             <ion-icon name="checkmark-circle" *ngIf="step.fear.completion >= 100"></ion-icon>
           </ion-avatar>
           <h2 capitalize>
-            {{ step?.fear.situation }}
+            {{ step.fear.situation }}
           </h2>
-          <!-- <p *ngIf="step?.fear.without">
-            {{ 'WITHOUT' | translate }}: {{ item.fear.without }}
-          </p> -->
+          <p *ngIf="step.fear.without">
+            {{ 'WITHOUT' | translate }}: {{ step.fear.without }}
+          </p>
       </button>
       <ion-item-options side="left">
         <button ion-button (click)="finishExercise(step)" *ngIf="step.fear.completion >= 100">
