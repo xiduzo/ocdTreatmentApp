@@ -14,7 +14,7 @@ import { AuthService, UserService } from '../lib/services';
 
 import { TranslateService } from 'ng2-translate';
 import { Globalization } from '@ionic-native/globalization';
-import { defaultLanguage, availableLanguages, sysOptions } from '../lib/constants';
+import { defaultLanguage, availableLanguages, sysOptions } from '../lib/language';
 
 
 @Component({

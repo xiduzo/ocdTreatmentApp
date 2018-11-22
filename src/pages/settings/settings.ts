@@ -6,7 +6,7 @@ import { ViewController, ModalController } from 'ionic-angular';
 import { FearladderModal } from '../fearladder/fearladder';
 
 import { TranslateService } from 'ng2-translate';
-import { availableLanguages, sysOptions } from '../../lib/constants';
+import { availableLanguages, sysOptions } from '../../lib/language';
 
 import { UUID } from 'angular2-uuid';
 import * as _ from 'lodash';
