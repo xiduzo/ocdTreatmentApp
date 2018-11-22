@@ -1,9 +1,22 @@
-<ion-header color="secondary">
+<!-- <ion-header>
   <ion-navbar color="secondary" text-center padding>
     <img src="assets/imgs/headers/logbook.png" alt="logbook illustration" class="o-illustration header__illustation">
     <ion-title>
       {{ 'MY_LOGBOOK_ENTRIES' | translate }}
     </ion-title>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      {{ 'MY_LOGBOOK_ENTRIES' | translate }}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="light" (click)=filterLogbook()>
+        <ion-icon name="funnel"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -44,7 +57,7 @@
           </div>
         </ion-avatar>
         <h2>
-          {{ item.step.exercise.situation }}
+          {{ item.step.fear.situation }}
         </h2>
         <p>
           {{ item.start | date : 'medium'}}
