@@ -69,8 +69,8 @@ export class Exercise {
   public afterMood:Mood;
   public beforeMood:Mood;
   public step:Step;
-  public start:string;
-  public end:string;
+  public start:Date;
+  public end:Date;
   public erp:Erp;
 
   constructor({
@@ -107,8 +107,8 @@ export class Mood {
 
 export class Erp {
   public gaveInToCompulsion:boolean;
-  public start:string;
-  public end:string;
+  public start:Date;
+  public end:Date;
 
   constructor({
     gaveInToCompulsion = false,
