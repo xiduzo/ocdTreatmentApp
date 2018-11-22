@@ -55,7 +55,7 @@ export class msToTimePipe implements PipeTransform {
     let mins = miliseconds % 60;
     let hrs = (miliseconds - mins) / 60;
 
-    var str;
+    let str;
     switch(format) {
       case 'hours':
         str = zeroPad(hrs, 1);
