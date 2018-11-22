@@ -3,8 +3,6 @@ import { Storage } from '@ionic/storage';
 
 import { App, Content, NavParams, ModalController } from 'ionic-angular';
 
-import { UUID } from 'angular2-uuid';
-
 import * as _ from 'lodash';
 
 import { ExerciseMoodPage } from '../../exercise/mood/exercise.mood';
