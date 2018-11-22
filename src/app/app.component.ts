@@ -129,14 +129,14 @@ export class MyApp {
 
       if ((<any>window).cordova) {
         this.globalization.getPreferredLanguage().then(result => {
-          var language = this.getSuitableLanguage(result.value);
+          let language = this.getSuitableLanguage(result.value);
           this.translate.use(language);
           sysOptions.systemLanguage = language;
           this.storage.set('language', language);
         });
       } else {
         let browserLanguage = this.translate.getBrowserLang() || defaultLanguage;
-        var language = this.getSuitableLanguage(browserLanguage);
+        let language = this.getSuitableLanguage(browserLanguage);
         this.translate.use(language);
         sysOptions.systemLanguage = language;
         this.storage.set('language', language);
