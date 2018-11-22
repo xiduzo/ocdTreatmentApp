@@ -5,6 +5,6 @@ export const map = (x, in_min, in_max, out_min, out_max) => {
 
 // https://stackoverflow.com/a/2998874
 export const zeroPad = (num, places) => {
-  var zero = places - num.toString().length + 1;
+  let zero = places - num.toString().length + 1;
   return Array(+(zero > 0 && zero)).join("0") + num;
 }
