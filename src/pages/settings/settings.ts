@@ -8,8 +8,6 @@ import { FearladderModal } from '../fearladder/fearladder';
 import { TranslateService } from 'ng2-translate';
 import { availableLanguages, sysOptions } from '../../lib/language';
 
-import { UUID } from 'angular2-uuid';
-import * as _ from 'lodash';
 import moment from 'moment';
 
 import { Fear, Trigger, Exercise, Mood, Step, Erp } from '../../lib/exercise';
