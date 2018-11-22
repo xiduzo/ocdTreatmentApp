@@ -21,12 +21,7 @@ export class FearladderModal {
   ) {
     this.storage.get('fearLadder').then((fearLadder) => {
       fearLadder.forEach(step => {
-        this.fearLadder.push(new Step(
-          step.id,
-          step.fearRating,
-          step.triggers,
-          step.fear
-        ));
+        this.fearLadder.push(new Step(step));
       });
     });
   }
