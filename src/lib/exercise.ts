@@ -112,8 +112,8 @@ export class Erp {
 
   constructor({
     gaveInToCompulsion = false,
-    start = null, // moment
-    end = null// moment
+    start = null,
+    end = null
   } = {}) {
     this.gaveInToCompulsion = gaveInToCompulsion;
     this.start = start;
