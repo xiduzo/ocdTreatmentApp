@@ -118,8 +118,6 @@ export class SettingsPage {
         }));
     }
 
-    console.log(exercises);
-
     this.storage.set('exercises', exercises);
   }
 }
