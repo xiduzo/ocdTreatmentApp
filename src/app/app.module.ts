@@ -11,6 +11,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { Http } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { HttpClientModule } from '@angular/common/http';
 
 /*------------------------------
   Ionic
@@ -25,8 +26,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { IonicStorageModule } from '@ionic/storage';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { Broadcaster } from '@ionic-native/broadcaster';
-// Other
-import { HttpClientModule } from '@angular/common/http';
+import { File } from '@ionic-native/file';
 
 /*------------------------------
   Pages
@@ -92,7 +92,6 @@ import Highmore from 'highcharts/highcharts-more';
 ------------------------------*/
 import { RoundProgressModule, RoundProgressConfig } from 'angular-svg-round-progressbar';
 import { NgxCircularSliderModule } from 'ngx-circular-slider';
-
 
 
 // Setting the default restangular configuration
@@ -191,6 +190,7 @@ export function createTranslateLoader(http: Http) {
     LocalNotifications,
     Globalization,
     Broadcaster,
+    File,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
