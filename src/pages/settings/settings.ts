@@ -100,20 +100,20 @@ export class SettingsPage {
           afterMood: new Mood({
             mood: Math.round(Math.random() * 500)
           }),
-          start: begin.format(),
+          start: begin.toDate(),
           end: moment(begin)
             .add(Math.round(Math.random() * 20), "minutes")
             .add(Math.round(Math.random() * 50), "seconds")
-            .format(),
+            .toDate(),
           erp: new Erp({
             start: moment(begin)
               .add(Math.round(Math.random() * 2), "minutes")
               .add(Math.round(Math.random() * 50), "seconds")
-              .format(),
+              .toDate(),
             end: moment(begin)
               .add(Math.round(Math.random() * 2) + 2, "minutes")
               .add(Math.round(Math.random() * 50), "seconds")
-              .format()
+              .toDate()
           })
         }));
     }
