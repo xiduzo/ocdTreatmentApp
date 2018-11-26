@@ -12,6 +12,8 @@ import moment from 'moment';
 
 import { Fear, Trigger, Exercise, Mood, Step, Erp } from '../../lib/exercise';
 
+import { File } from '@ionic-native/file';
+
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html'
@@ -25,7 +27,8 @@ export class SettingsPage {
     private viewCtrl: ViewController,
     private translate: TranslateService,
     private storage: Storage,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private file: File
   ) {
     this.languages = availableLanguages;
   }
@@ -49,6 +52,12 @@ export class SettingsPage {
 
   close() {
     this.viewCtrl.dismiss();
+  }
+
+  mailData() {
+    this.file.writeFile(this.file.dataDirectory, "testfile.json", {a: 2, b: 4}, {replace:true}).then(response => {
+      console.log(response);
+    });
   }
 
   resetMockData() {
