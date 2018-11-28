@@ -10,6 +10,8 @@ import { ToastController } from 'ionic-angular';
 
 import { FearladderModal } from '../fearladder/fearladder';
 
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+
 @Component({
   selector: 'page-exercise',
   templateUrl: 'exercise.html'
@@ -26,7 +28,8 @@ export class ExercisePage {
     private userService: UserService,
     private storage: Storage,
     public toastCtrl: ToastController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private nativePageTransitions: NativePageTransitions
   ) {
   }
 
@@ -94,6 +97,12 @@ export class ExercisePage {
 
     // Also dont need to go there if the level is done
     if(level.done) return;
+
+    let options:NativeTransitionOptions = {
+      direction: 'left'
+    };
+
+    this.nativePageTransitions.slide(options);
 
     this.appCtrl.getRootNav().push(ExerciseListPage, {
       level: level

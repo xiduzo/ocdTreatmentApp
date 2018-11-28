@@ -14,6 +14,8 @@ import { Fear, Trigger, Exercise, Mood, Step, Erp } from '../../lib/exercise';
 
 import { File } from '@ionic-native/file';
 
+declare let cordova: any;
+
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html'
