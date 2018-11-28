@@ -59,7 +59,6 @@
     "ionicons": "4.4.8",
     "moment": "^2.22.2",
     "ng2-translate": "^5.0.0",
-    "ngx-circular-slider": "^0.5.3",
     "ngx-restangular": "^2.0.2",
     "regression": "^2.0.1",
     "rxjs": "5.5.2",

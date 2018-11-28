@@ -91,8 +91,6 @@ import Highmore from 'highcharts/highcharts-more';
   Components
 ------------------------------*/
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
-import { NgxCircularSliderModule } from 'ngx-circular-slider';
-
 
 // Setting the default restangular configuration
 export function RestangularConfigFactory(RestangularProvider, authService) {
@@ -149,7 +147,6 @@ export function createTranslateLoader(http: Http) {
     ChartModule.forRoot(highcharts, Highmore),
     HttpClientModule,
     RoundProgressModule,
-    NgxCircularSliderModule,
     RestangularModule.forRoot([AuthService], RestangularConfigFactory),
     TranslateModule.forRoot({
       provide: TranslateLoader,
