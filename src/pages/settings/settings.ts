@@ -55,7 +55,7 @@ export class SettingsPage {
   }
 
   mailData() {
-    this.file.writeFile(this.file.dataDirectory, "testfile.json", {a: 2, b: 4}, {replace:true}).then(response => {
+    this.file.writeFile(this.file.dataDirectory, "testfile.json", JSON.stringify({a: 2, b: 4}), {replace:true}).then(response => {
       console.log(response);
     });
   }
