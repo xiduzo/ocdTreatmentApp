@@ -90,7 +90,7 @@ import Highmore from 'highcharts/highcharts-more';
 /*------------------------------
   Components
 ------------------------------*/
-import { RoundProgressModule, RoundProgressConfig } from 'angular-svg-round-progressbar';
+import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { NgxCircularSliderModule } from 'ngx-circular-slider';
 
 
@@ -196,7 +196,6 @@ export function createTranslateLoader(http: Http) {
 })
 
 export class AppModule {
-  constructor( private _progressConfig: RoundProgressConfig) {
-    this._progressConfig.setDefaults({ color: '#50D2C2' });
+  constructor() {
   }
 }
