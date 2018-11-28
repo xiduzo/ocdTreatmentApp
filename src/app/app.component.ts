@@ -39,13 +39,12 @@ export class MyApp {
     ) {
 
       platform.ready().then(() => {
+        // storage.clear();
         // We only let the users use the app in portrait, bc its fucked up in landscape (sorry not sorry)
         //if(platform.platforms().find(platform => { return platform === 'core' })) screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
 
         // Set the language for the app
         this.setLanguage();
-
-        // storage.clear();
 
         // See if the users completed their onboarding
         storage.get('onboardingCompleted')
