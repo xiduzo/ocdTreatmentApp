@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { ViewController, ModalController } from 'ionic-angular';
 
 import { FearladderModal } from '../fearladder/fearladder';
+import { RatingPage } from '../rating/rating';
 
 import { TranslateService } from 'ng2-translate';
 import { availableLanguages, sysOptions } from '../../lib/language';
@@ -62,6 +63,11 @@ export class SettingsPage {
     });
   }
 
+  openRatingPage() {
+    let ratingModal = this.modalCtrl.create(RatingPage);
+    ratingModal.present();
+  }
+
   resetMockData() {
     let fearLadder = [];
     for(let i = 0; i < 50; i++) {
@@ -70,11 +76,13 @@ export class SettingsPage {
         triggers: [
           new Trigger({
             verbose: 'INTENSITY_OBSESSIVE_THOUGHTS',
-            enabled: Math.random() >= 0.4
+            enabled: Math.random() >= 0.4,
+            range: Math.round(Math.random() * 5)
           }),
           new Trigger({
             verbose: 'INTENSITY_COMPULSIVE_BEHAVIOUR',
-            enabled: Math.random() >= 0.4
+            enabled: Math.random() >= 0.4,
+            range: Math.round(Math.random() * 5)
           })
         ],
         fear: new Fear({
@@ -102,6 +110,7 @@ export class SettingsPage {
           afterMood: new Mood({
             mood: Math.round(Math.random() * 500)
           }),
+          step: fearLadder[Math.round(Math.random() * fearLadder.length-1)],
           start: begin.toDate(),
           end: moment(begin)
             .add(Math.round(Math.random() * 20), "minutes")

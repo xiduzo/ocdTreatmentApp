@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      Ratings
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="light" (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      Moods
+    </ion-list-header>
+    <ion-item>
+      Before mood: {{ currentRating?.beforeMood.mood }}
+    </ion-item>
+    <ion-item>
+      After mood: {{ currentRating?.afterMood.mood }}
+    </ion-item>
+    <ion-list-header>
+      Step
+    </ion-list-header>
+    <ion-item>
+      fearRating: {{ currentRating?.step.fearRating }}
+    </ion-item>
+    <ion-item *ngFor="let trigger of currentRating?.step.triggers">
+      {{ trigger.verbose | translate}}: {{ trigger.range }}
+    </ion-item>
+    <ion-list-header>
+      Duration
+    </ion-list-header>
+    <ion-item>
+      Total duration: {{ currentRating?.timeDiff }} seconds
+    </ion-item>
+    <ion-item>
+      Erp duration: {{ currentRating?.erpDiff }} seconds
+    </ion-item>
+  </ion-list>
+  <!-- <button ion-button (click)="next()">next</button> -->
+</ion-content>
+
+<ion-footer>
+  <ion-item>
+    Rating: {{ rating }}
+  </ion-item>
+  <ion-range [(ngModel)]="rating" min="0" max="100">
+  </ion-range>
+  <button ion-button large block (click)="rate()">rate</button>
+</ion-footer>

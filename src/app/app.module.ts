@@ -38,6 +38,7 @@ import { ExerciseDuringModal } from '../pages/exercise/during/exercise.during';
 import { ExerciseTriggerModal } from '../pages/exercise/trigger/exercise.trigger';
 import { ExerciseSuccessModal } from '../pages/exercise/success/exercise.success';
 import { ExerciseListPage } from '../pages/exercise/list/exercise.list';
+import { RatingPage } from '../pages/rating/rating';
 // Auth
 import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/signup/signup';
@@ -127,6 +128,7 @@ export function createTranslateLoader(http: Http) {
     ExerciseTriggerModal,
     ExerciseSuccessModal,
     ExerciseListPage,
+    RatingPage,
     FearladderModal,
     FearladderStepModal,
     YbocsModal,
@@ -167,6 +169,7 @@ export function createTranslateLoader(http: Http) {
     ExerciseTriggerModal,
     ExerciseSuccessModal,
     ExerciseListPage,
+    RatingPage,
     FearladderModal,
     FearladderStepModal,
     YbocsModal,
