@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { FearladderStepModal } from '../fearladder/step/fearladder.step';
 
-import { Step }  from '../../lib/exercise';
+import { Step }  from '../../lib/Exercise';
 
 @Component({
   selector: 'fearladder-modal',

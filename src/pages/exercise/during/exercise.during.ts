@@ -5,7 +5,7 @@ import { NavParams, ViewController, ModalController } from 'ionic-angular';
 
 import { ExerciseMoodPage } from '../mood/exercise.mood';
 
-import { Exercise } from '../../../lib/exercise';
+import { Exercise } from '../../../lib/Exercise';
 
 @Component({
   selector: 'page-exercise-during',

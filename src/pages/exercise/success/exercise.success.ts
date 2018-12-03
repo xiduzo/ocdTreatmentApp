@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
-import { Exercise } from '../../../lib/exercise';
+import { Exercise } from '../../../lib/Exercise';
 
 @Component({
   selector: 'page-exercise-success',

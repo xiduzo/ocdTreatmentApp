@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
-import { Step, Fear }  from '../../../lib/exercise';
+import { Step, Fear }  from '../../../lib/Exercise';
 
 @Component({
   selector: 'fearladder-step-modal',

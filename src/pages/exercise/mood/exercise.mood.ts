@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
 
 import { map } from '../../../lib/helpers';
-import { Mood, Exercise } from '../../../lib/exercise';
+import { Mood, Exercise } from '../../../lib/Exercise';
 
 import {
   trigger,

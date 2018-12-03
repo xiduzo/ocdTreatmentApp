@@ -5,7 +5,7 @@ import { NavParams, ViewController, ModalController } from 'ionic-angular';
 
 import { ExerciseSuccessModal } from '../success/exercise.success';
 
-import { Trigger, Exercise } from '../../../lib/exercise';
+import { Trigger, Exercise } from '../../../lib/Exercise';
 
 @Component({
   selector: 'page-exercise-trigger',

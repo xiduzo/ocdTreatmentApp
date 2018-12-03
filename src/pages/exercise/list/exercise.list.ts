@@ -7,7 +7,7 @@ import * as _ from 'lodash';
 
 import { ExerciseMoodPage } from '../../exercise/mood/exercise.mood';
 
-import { Exercise } from '../../../lib/exercise';
+import { Exercise } from '../../../lib/Exercise';
 
 @Component({
   selector: 'exercise-list-page',

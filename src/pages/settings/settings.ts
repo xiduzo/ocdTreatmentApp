@@ -11,7 +11,7 @@ import { availableLanguages, sysOptions } from '../../lib/language';
 
 import moment from 'moment';
 
-import { Fear, Trigger, Exercise, Mood, Step, Erp } from '../../lib/exercise';
+import { Fear, Trigger, Exercise, Mood, Step, Erp } from '../../lib/Exercise';
 
 import { File } from '@ionic-native/file';
 
