@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="secondary">
     <ion-title>
-      Ratings
+      Ratings {{ currentRatingIndex + 1 }} / {{ exercises?.length || 0}}
     </ion-title>
     <ion-buttons end>
       <button ion-button icon-only color="light" (click)="close()">
@@ -41,7 +41,6 @@
       Erp duration: {{ currentRating?.erpDiff }} seconds
     </ion-item>
   </ion-list>
-  <!-- <button ion-button (click)="next()">next</button> -->
 </ion-content>
 
 <ion-footer>
@@ -50,5 +49,6 @@
   </ion-item>
   <ion-range [(ngModel)]="rating" min="0" max="100">
   </ion-range>
-  <button ion-button large block (click)="rate()">rate</button>
+  <button ion-button large block (click)="rate()" *ngIf="currentRatingIndex + 1 != exercises.length">rate</button>
+  <button ion-button large block (click)="save()" *ngIf="currentRatingIndex + 1 === exercises.length">save</button>
 </ion-footer>

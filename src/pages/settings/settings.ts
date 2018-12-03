@@ -15,8 +15,6 @@ import { Fear, Trigger, Exercise, Mood, Step, Erp } from '../../lib/Exercise';
 
 import { File } from '@ionic-native/file';
 
-declare let cordova: any;
-
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html'
@@ -96,7 +94,7 @@ export class SettingsPage {
     this.storage.set('fearLadder', fearLadder);
 
     let exercises = [];
-    for(let i = 0; i < 250; i++) {
+    for(let i = 0; i < 25; i++) {
       let begin = moment(moment.now())
         .subtract(Math.round(Math.random() * 90), "days")
         .subtract(Math.round(Math.random() * 12), "hours")
