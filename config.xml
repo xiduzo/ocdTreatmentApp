@@ -3,7 +3,7 @@
     <name>ocd</name>
     <description>OCD supportive treatment app.</description>
     <author email="mail@sanderboer.nl" href="http://sanderboer.nl">Sander Boer</author>
-    <content original-src="index.html" src="http://192.168.0.51:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -104,4 +104,5 @@
     <allow-navigation href="http://192.168.0.51:8100" sessionid="fe21fc8b" />
     <engine name="browser" spec="5.0.4" />
     <engine name="android" spec="7.1.4" />
+    <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
 </widget>
