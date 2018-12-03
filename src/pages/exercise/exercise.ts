@@ -97,7 +97,7 @@ export class ExercisePage {
     // Also dont need to go there if the level is done
     if(level.done) return;
 
-    this.appCtrl.getRootNav().push(ExerciseListPage, {
+    this.appCtrl.getRootNavById('n4').push(ExerciseListPage, {
       level: level
     });
   }
