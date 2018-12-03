@@ -52,6 +52,8 @@ export class ExercisePage {
 
   getExersises() {
     this.storage.get('fearLadder').then((fearLadder) => {
+      if(!fearLadder) return;
+
       fearLadder.forEach(step => {
         this.levels.find(level => level.level === step.fearRating).steps.push(step);
       });

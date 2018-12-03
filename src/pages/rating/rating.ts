@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { File } from '@ionic-native/file';
 
 import brain from 'brain.js';
 import moment from 'moment';
@@ -19,7 +20,8 @@ export class RatingPage {
 
   constructor(
     private viewCtrl: ViewController,
-    private storage: Storage
+    private storage: Storage,
+    private file: File
   ) {
 
   }
@@ -51,6 +53,17 @@ export class RatingPage {
     this.rating = 0;
     this.next();
   }
+
+  save() {
+    console.log(this.file.dataDirectory);
+    this.file.createDir(`${this.file.dataDirectory}`, 'ocd', false).then(response => {
+      console.log(response);
+      this.file.writeFile(`${this.file.dataDirectory}/ocd`, "ratings.json", JSON.stringify(this.exercises), {replace:true}).then(response => {
+        console.log(response);
+      });
+    })
+  }
+
 
   ionViewDidLoad() {
     this.storage.get('exercises').then(exercises => {
