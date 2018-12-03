@@ -3,7 +3,7 @@
     <name>ocd</name>
     <description>OCD supportive treatment app.</description>
     <author email="mail@sanderboer.nl" href="http://sanderboer.nl">Sander Boer</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.0.51:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -13,6 +13,7 @@
     <allow-intent href="geo:*" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="16" />
+    <preference name="android-targetSdkVersion" value="27" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="FadeSplashScreenDuration" value="300" />
@@ -100,6 +101,7 @@
     <allow-navigation href="http://100.72.63.114:8100" />
     <plugin name="cordova-sqlite-storage" spec="^2.4.0" />
     <plugin name="cordova-plugin-network-information" spec="2.0.1" />
+    <allow-navigation href="http://192.168.0.51:8100" sessionid="fe21fc8b" />
     <engine name="browser" spec="5.0.4" />
-    <engine name="android" spec="^7.1.4" />
+    <engine name="android" spec="7.1.4" />
 </widget>
