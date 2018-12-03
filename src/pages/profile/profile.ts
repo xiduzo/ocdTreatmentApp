@@ -7,6 +7,8 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 import { AuthService, UserService } from '../../lib/services';
 
 import { BadgeModal } from '../badge/badge';
+import { Badge } from '../../lib/badges/Badge';
+import { streakBadge } from '../../lib/badges/templates/streak';
 
 import { SettingsPage } from '../settings/settings';
 
@@ -38,6 +40,8 @@ export class ProfilePage {
 
       this.personalGoal = goal;
     });
+
+    console.log(Badge, streakBadge);
   }
 
   openSettings() {
