@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 import { map } from '../../../lib/helpers';
 import { Mood, Exercise } from '../../../lib/Exercise';
@@ -41,13 +42,18 @@ export class ExerciseMoodPage {
   private exercise:Exercise;
   private beforeMeasure:boolean = false;
 
+  private options:NativeTransitionOptions = {
+    direction: 'left'
+  };
+
   constructor(
     private params: NavParams,
     public viewCtrl: ViewController,
     private modalCtrl: ModalController,
-    private storage: Storage
+    private storage: Storage,
+    private nativePageTransitions: NativePageTransitions
   ) {
-
+    this.nativePageTransitions.slide(this.options);
   }
 
   ionViewWillEnter() {
@@ -90,10 +96,11 @@ export class ExerciseMoodPage {
 
       this.storage.set('exercises', exercises);
 
-      let duringModal = this.modalCtrl.create(ExerciseDuringModal, {
+      const duringModal = this.modalCtrl.create(ExerciseDuringModal, {
         level: this.level,
         exercise: this.exercise
       });
+
       duringModal.present();
       this.viewCtrl.dismiss();
     });
@@ -109,11 +116,11 @@ export class ExerciseMoodPage {
       exercises[exercises.length-1] = this.exercise;
       this.storage.set('exercises', exercises);
 
-      let triggerModal = this.modalCtrl.create(ExerciseTriggerModal, {
+      const triggerModal = this.modalCtrl.create(ExerciseTriggerModal, {
         level: this.level,
         exercise: this.exercise
       });
-      
+
       triggerModal.present();
       this.viewCtrl.dismiss();
     });

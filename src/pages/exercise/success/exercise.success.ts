@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 import { Exercise } from '../../../lib/Exercise';
 
@@ -12,11 +13,16 @@ export class ExerciseSuccessModal {
   public level:any;
   public exercise:Exercise;
 
+  private options:NativeTransitionOptions = {
+    direction: 'left'
+  };
+
   constructor(
     private params: NavParams,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    private nativePageTransitions: NativePageTransitions
   ) {
-
+    this.nativePageTransitions.slide(this.options);
   }
 
   ionViewWillEnter() {

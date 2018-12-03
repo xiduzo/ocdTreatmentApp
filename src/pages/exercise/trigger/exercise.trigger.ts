@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 import { ExerciseSuccessModal } from '../success/exercise.success';
 
@@ -19,13 +20,18 @@ export class ExerciseTriggerModal {
 
   public range:any = { min: 0, max: 5 };
 
+  private options:NativeTransitionOptions = {
+    direction: 'left'
+  };
+
   constructor(
     private params: NavParams,
     public viewCtrl: ViewController,
     private modalCtrl: ModalController,
-    private storage: Storage
+    private storage: Storage,
+    private nativePageTransitions: NativePageTransitions
   ) {
-
+    this.nativePageTransitions.slide(this.options);
   }
 
   ionViewWillEnter() {

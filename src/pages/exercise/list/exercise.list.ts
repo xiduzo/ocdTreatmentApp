@@ -5,6 +5,8 @@ import { App, Content, NavParams, ModalController } from 'ionic-angular';
 
 import * as _ from 'lodash';
 
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+
 import { ExerciseMoodPage } from '../../exercise/mood/exercise.mood';
 
 import { Exercise } from '../../../lib/Exercise';
@@ -18,13 +20,18 @@ export class ExerciseListPage {
 
   private level:any;
 
+  private options:NativeTransitionOptions = {
+    direction: 'left'
+  };
+
   constructor(
     private params: NavParams,
     private modalCtrl: ModalController,
     private appCtrl: App,
-    private storage: Storage
+    private storage: Storage,
+    private nativePageTransitions: NativePageTransitions
   ) {
-
+    this.nativePageTransitions.slide(this.options);
   }
 
   ionViewWillEnter() {
@@ -41,7 +48,7 @@ export class ExerciseListPage {
     this.storage.get('exercises').then((exercises) => {
       if(!exercises) exercises = []; // When it's the users' first time
 
-      let exercise = new Exercise({
+      const exercise = new Exercise({
         start: new Date(),
         step: step
       });
@@ -50,7 +57,7 @@ export class ExerciseListPage {
 
       this.storage.set('exercises', exercises);
 
-      let exerciseMoodModal = this.modalCtrl.create(ExerciseMoodPage, {
+      const exerciseMoodModal = this.modalCtrl.create(ExerciseMoodPage, {
         level: this.level,
         exercise: exercise,
         before: true
