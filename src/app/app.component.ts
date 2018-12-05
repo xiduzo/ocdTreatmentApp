@@ -36,84 +36,28 @@ export class MyApp {
     protected translate: TranslateService,
     protected globalization: Globalization,
     protected screenOrientation: ScreenOrientation
-    ) {
+  ) {
+    platform.ready().then(() => {
+      // storage.clear();
+      // We only let the users use the app in portrait, bc its fucked up in landscape (sorry not sorry)
+      screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
 
-      platform.ready().then(() => {
-        // storage.clear();
-        // We only let the users use the app in portrait, bc its fucked up in landscape (sorry not sorry)
-        //if(platform.platforms().find(platform => { return platform === 'core' })) screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
+      // Set the language for the app
+      this.setLanguage();
 
-        // Set the language for the app
-        this.setLanguage();
+      // See if the users completed their onboarding
+      storage.get('onboardingCompleted')
+      .then((val) => {
+        // Based on the 'onboardingCompleted' we guide the user to the next page
+        this.appCtrl.getRootNavById('n4').push((val ? TabsPage : OnboardingPage));
+      })
+      .catch((err) => { console.log(err); });
 
-        // See if the users completed their onboarding
-        storage.get('onboardingCompleted')
-        .then((val) => {
-          // Based on the 'onboardingCompleted' we guide the user to the next page
-          val === true ? this.appCtrl.getRootNav().push(TabsPage) : this.appCtrl.getRootNav().push(OnboardingPage);
-        })
-        .catch((err) => { console.log(err); });
-
-        // Okay, so the platform is ready and our plugins are available.
-        // Here you can do any higher level native things you might need.
-        statusBar.styleDefault();
-        splashScreen.hide();
-      });
-
-    // platform.ready().then(() => {
-    //   // We only let the users use the app in portrait, bc its fucked up in landscape (sorry not sorry)
-    //   //if(platform.platforms().find(platform => { return platform === 'core' })) screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
-    //
-    //   // Set the language for the app
-    //   this.setLanguage();
-    //
-    //   // Okay, so the platform is ready and our plugins are available.
-    //   // Here you can do any higher level native things you might need.
-    //   statusBar.styleDefault();
-    //   splashScreen.hide();
-    //
-    //   // Uncomment to start with fresh user
-    //   // storage.clear();
-    //
-    //   // Get the user
-    //   storage.get('user').then((user) => {
-    //     if(user) { userService.setUser(user); }
-    //   });
-    //
-    //   // Set rootPage based on storage 'jwtToken' and 'onboardingCompleted'
-    //   storage.get('jwtToken')
-    //   .then((val) => {
-    //     const localToken = val;
-    //
-    //     if(localToken) {
-    //       // Try to verify the token
-    //       authService.verifyJwtToken({token: localToken})
-    //       .then((resp) => {
-    //         // Token is verified --> refresh the token
-    //         authService.refreshJwtToken({token: localToken})
-    //         .then((resp:any) => {
-    //           // Set the token for the app
-    //           authService.setLocalToken(resp.token);
-    //           // Token is refreshed!
-    //           // Check if the user allready did the onboarding
-    //           storage.get('onboardingCompleted')
-    //           .then((val) => {
-    //             // Based on the 'onboardingCompleted' we guide the user to the next page
-    //             val === true ? this.appCtrl.getRootNav().push(TabsPage) : this.appCtrl.getRootNav().push(OnboardingPage);
-    //           })
-    //           // Something went wrong getting the 'onboardingCompleted'
-    //           .catch((err) => { console.log(err); });
-    //         })
-    //         // Error refreshing token
-    //         .catch((err) => { console.log(err); });
-    //       })
-    //       // Token expired
-    //       .catch((err) => { console.log(err); });
-    //     }
-    //   })
-    //   // Something went wrong getting the 'jwtToken'
-    //   .catch((err) => { console.log(err); });
-    // });
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      statusBar.styleDefault();
+      splashScreen.hide();
+    });
   }
 
   setLanguage() {

@@ -14,6 +14,7 @@ import moment from 'moment';
 import { Fear, Trigger, Exercise, Mood, Step, Erp } from '../../lib/Exercise';
 
 import { File } from '@ionic-native/file';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 @Component({
   selector: 'page-settings',
@@ -29,7 +30,8 @@ export class SettingsPage {
     private translate: TranslateService,
     private storage: Storage,
     private modalCtrl: ModalController,
-    private file: File
+    private file: File,
+    private emailComposer: EmailComposer
   ) {
     this.languages = availableLanguages;
   }
@@ -56,8 +58,17 @@ export class SettingsPage {
   }
 
   mailData() {
-    this.file.writeFile(this.file.dataDirectory, "testfile.json", JSON.stringify({a: 2, b: 4}), {replace:true}).then(response => {
-      console.log(response);
+    this.file.writeFile(this.file.externalDataDirectory, "testfile.json", JSON.stringify({a: 2, b: 4}), {replace:true}).then(response => {
+      let email = {
+        to: 'sanderboer_feyenoord@hotmail.com',
+        attachments: [
+          response.nativeURL
+        ],
+        subject: 'test',
+        body: 'How are you? Nice greetings from Leipzig',
+        isHtml: false
+      };
+      this.emailComposer.open(email);
     });
   }
 
@@ -94,7 +105,7 @@ export class SettingsPage {
     this.storage.set('fearLadder', fearLadder);
 
     let exercises = [];
-    for(let i = 0; i < 25; i++) {
+    for(let i = 0; i < 200; i++) {
       let begin = moment(moment.now())
         .subtract(Math.round(Math.random() * 90), "days")
         .subtract(Math.round(Math.random() * 12), "hours")
@@ -122,7 +133,8 @@ export class SettingsPage {
             end: moment(begin)
               .add(Math.round(Math.random() * 2) + 2, "minutes")
               .add(Math.round(Math.random() * 50), "seconds")
-              .toDate()
+              .toDate(),
+            gaveInToCompulsion: Math.random() > 0.5 ? true : false
           })
         }));
     }

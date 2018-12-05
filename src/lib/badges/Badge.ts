@@ -20,7 +20,7 @@ export class Badge {
     this.name = name;
     this.verbose = verbose;
     this.points = points;
-    this.states = stages;
+    this.stages = stages;
     // // Set properties from localstorage
     // this.storage.get(name).then((val) => {
     //   // We dont need to do things when it's not in local storage yet
@@ -45,28 +45,28 @@ export class Badge {
     return pointsLeftForStage;
   }
 
-  setPoints(amount) {
-    this.points = amount; // Update the badge itself
-    this.storage.set(this.name, this.points); // Put data into localstorage
-  }
+  // setPoints(amount) {
+  //   this.points = amount; // Update the badge itself
+  //   this.storage.set(this.name, this.points); // Put data into localstorage
+  // }
 }
 
-@Injectable()
-export class BadgeFactory {
-
-  constructor(
-    private storage:Storage,
-    private broadcaster: Broadcaster,
-    private modalCtrl: ModalController
-  ) {
-  }
-
-  public createBadge(
-    name: string,
-    description:string,
-    stages: Array<number>,
-    triggers: Array<string>
-  ) {
-    return new Badge(name, description, stages, triggers, this.storage, this.broadcaster, this.modalCtrl);
-  }
-}
+// @Injectable()
+// export class BadgeFactory {
+//
+//   constructor(
+//     private storage:Storage,
+//     private broadcaster: Broadcaster,
+//     private modalCtrl: ModalController
+//   ) {
+//   }
+//
+//   public createBadge(
+//     name: string,
+//     description:string,
+//     stages: Array<number>,
+//     triggers: Array<string>
+//   ) {
+//     return new Badge(name, description, stages, triggers, this.storage, this.broadcaster, this.modalCtrl);
+//   }
+// }
