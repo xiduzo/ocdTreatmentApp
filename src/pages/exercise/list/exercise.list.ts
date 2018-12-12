@@ -39,7 +39,7 @@ export class ExerciseListPage {
   }
 
   close() {
-    this.appCtrl.getRootNavById('n4').pop();
+    this.appCtrl.getRootNav().pop();
   }
 
   selectStep(step) {

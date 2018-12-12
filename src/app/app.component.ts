@@ -49,7 +49,7 @@ export class MyApp {
       storage.get('onboardingCompleted')
       .then((val) => {
         // Based on the 'onboardingCompleted' we guide the user to the next page
-        this.appCtrl.getRootNavById('n4').push((val ? TabsPage : OnboardingPage));
+        this.appCtrl.getRootNav().push((val ? TabsPage : OnboardingPage));
       })
       .catch((err) => { console.log(err); });
 

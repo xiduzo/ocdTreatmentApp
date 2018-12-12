@@ -42,7 +42,7 @@ export class LoginPage {
         .then((resp:any) => {
           this.err = resp;
           this.authService.setLocalToken(resp.token);
-          this.appCtrl.getRootNavById('n4').push(OnboardingPage);
+          this.appCtrl.getRootNav().push(OnboardingPage);
         })
         .catch((err) => {
           this.err = err;
@@ -61,7 +61,7 @@ export class LoginPage {
   }
 
   signUp() {
-    this.appCtrl.getRootNavById('n4').push(SignUpPage);
+    this.appCtrl.getRootNav().push(SignUpPage);
   }
 
 }

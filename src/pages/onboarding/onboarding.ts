@@ -35,7 +35,7 @@ export class OnboardingPage {
 
   done() {
     // this.appCtrl.getRootNav().pop(); // Remove the onboarding from the stack
-    this.appCtrl.getRootNavById('n4').push(TabsPage);
+    this.appCtrl.getRootNav().push(TabsPage);
     this.storage.set('onboardingCompleted', true);
   }
 

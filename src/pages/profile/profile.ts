@@ -91,7 +91,7 @@ export class ProfilePage {
 
     // Because we initiate with the login page we can pop the current app to
     // return to the login page
-    this.appCtrl.getRootNavById('n4').pop();
+    this.appCtrl.getRootNav().pop();
   }
 
   showBadge(badge) {
