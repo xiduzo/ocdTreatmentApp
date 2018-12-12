@@ -1,10 +1,11 @@
 ion-tabs.tabs {
   .tabbar {
-    a[aria-selected=true] {
-      background: color($colors, primary, base);
-      color: color($colors, dark, base);
-      .tab-button-icon {
-        color: color($colors, light, base);
+    a {
+      &[aria-selected=true] {
+        background: color($colors, primary, base);
+        .tab-button-icon {
+          color: color($colors, light, base);
+        }
       }
     }
   }

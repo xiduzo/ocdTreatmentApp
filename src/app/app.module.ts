@@ -102,10 +102,10 @@ export function RestangularConfigFactory(RestangularProvider, authService) {
   RestangularProvider.addFullRequestInterceptor((element, operation, path, url, headers, params) => {
     let jwtToken = authService.getLocalToken();
     alert(jwtToken);
-    if(!jwtToken) return;
+    if (!jwtToken) return;
 
     return {
-      headers: Object.assign({}, headers, {Authorization: `JWT ${jwtToken}`})
+      headers: Object.assign({}, headers, { Authorization: `JWT ${jwtToken}` })
     };
   });
 }
@@ -144,7 +144,7 @@ export function createTranslateLoader(http: Http) {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    IonicModule.forRoot(MyApp, {tabsPlacement: 'bottom'}),
+    IonicModule.forRoot(MyApp, { tabsPlacement: 'bottom' }),
     IonicStorageModule.forRoot(),
     ChartModule.forRoot(highcharts, Highmore),
     HttpClientModule,
@@ -191,7 +191,7 @@ export function createTranslateLoader(http: Http) {
     Globalization,
     Broadcaster,
     File,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
 

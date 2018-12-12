@@ -22,8 +22,8 @@ import { EmailComposer } from '@ionic-native/email-composer';
 })
 export class SettingsPage {
 
-  public language:string;
-  public languages:any;
+  public language: string;
+  public languages: any;
 
   constructor(
     private viewCtrl: ViewController,
@@ -58,7 +58,7 @@ export class SettingsPage {
   }
 
   mailData() {
-    this.file.writeFile(this.file.externalDataDirectory, "testfile.json", JSON.stringify({a: 2, b: 4}), {replace:true}).then(response => {
+    this.file.writeFile(this.file.externalDataDirectory, "testfile.json", JSON.stringify({ a: 2, b: 4 }), { replace: true }).then(response => {
       let email = {
         to: 'sanderboer_feyenoord@hotmail.com',
         attachments: [
@@ -79,7 +79,7 @@ export class SettingsPage {
 
   resetMockData() {
     let fearLadder = [];
-    for(let i = 0; i < 50; i++) {
+    for (let i = 0; i < 50; i++) {
       fearLadder.push(new Step({
         fearRating: Math.ceil(Math.random() * 8),
         triggers: [
@@ -105,38 +105,38 @@ export class SettingsPage {
     this.storage.set('fearLadder', fearLadder);
 
     let exercises = [];
-    for(let i = 0; i < 200; i++) {
+    for (let i = 0; i < 50; i++) {
       let begin = moment(moment.now())
         .subtract(Math.round(Math.random() * 90), "days")
         .subtract(Math.round(Math.random() * 12), "hours")
         .subtract(Math.round(Math.random() * 50), "minutes")
         .subtract(Math.round(Math.random() * 50), "seconds");
 
-        exercises.push(new Exercise({
-          beforeMood: new Mood({
-            mood: Math.round(Math.random() * 500)
-          }),
-          afterMood: new Mood({
-            mood: Math.round(Math.random() * 500)
-          }),
-          step: fearLadder[Math.round(Math.random() * fearLadder.length-1)],
-          start: begin.toDate(),
-          end: moment(begin)
-            .add(Math.round(Math.random() * 20), "minutes")
+      exercises.push(new Exercise({
+        beforeMood: new Mood({
+          mood: Math.round(Math.random() * 500)
+        }),
+        afterMood: new Mood({
+          mood: Math.round(Math.random() * 500)
+        }),
+        step: fearLadder[Math.round(Math.random() * fearLadder.length - 1)],
+        start: begin.toDate(),
+        end: moment(begin)
+          .add(Math.round(Math.random() * 20), "minutes")
+          .add(Math.round(Math.random() * 50), "seconds")
+          .toDate(),
+        erp: new Erp({
+          start: moment(begin)
+            .add(Math.round(Math.random() * 2), "minutes")
             .add(Math.round(Math.random() * 50), "seconds")
             .toDate(),
-          erp: new Erp({
-            start: moment(begin)
-              .add(Math.round(Math.random() * 2), "minutes")
-              .add(Math.round(Math.random() * 50), "seconds")
-              .toDate(),
-            end: moment(begin)
-              .add(Math.round(Math.random() * 2) + 2, "minutes")
-              .add(Math.round(Math.random() * 50), "seconds")
-              .toDate(),
-            gaveInToCompulsion: Math.random() > 0.5 ? true : false
-          })
-        }));
+          end: moment(begin)
+            .add(Math.round(Math.random() * 2) + 2, "minutes")
+            .add(Math.round(Math.random() * 50), "seconds")
+            .toDate(),
+          gaveInToCompulsion: Math.random() > 0.5 ? true : false
+        })
+      }));
     }
 
     this.storage.set('exercises', exercises);

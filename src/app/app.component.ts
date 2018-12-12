@@ -23,7 +23,7 @@ import { defaultLanguage, availableLanguages, sysOptions } from '../lib/language
 export class MyApp {
   // private rootPage:any = LoginPage; // Always start the app with the LoginPage to be sure
   // TODO: Fix some sort of secure login for users (finger print / passcode / etc) if user want to have protection of data
-  private rootPage:any;
+  private rootPage: any;
 
   constructor(
     protected appCtrl: App,
@@ -40,18 +40,18 @@ export class MyApp {
     platform.ready().then(() => {
       // storage.clear();
       // We only let the users use the app in portrait, bc its fucked up in landscape (sorry not sorry)
-      screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
+      // screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
 
       // Set the language for the app
       this.setLanguage();
 
       // See if the users completed their onboarding
       storage.get('onboardingCompleted')
-      .then((val) => {
-        // Based on the 'onboardingCompleted' we guide the user to the next page
-        this.appCtrl.getRootNav().push((val ? TabsPage : OnboardingPage));
-      })
-      .catch((err) => { console.log(err); });
+        .then((val) => {
+          // Based on the 'onboardingCompleted' we guide the user to the next page
+          this.appCtrl.getRootNav().push((val ? TabsPage : OnboardingPage));
+        })
+        .catch((err) => { console.log(err); });
 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -63,33 +63,33 @@ export class MyApp {
   setLanguage() {
     // See if we have set the language allready
     this.storage.get('language')
-    .then((val) => {
-      // return if we have set a language
-      if(val) return this.translate.setDefaultLang(val);
+      .then((val) => {
+        // return if we have set a language
+        if (val) return this.translate.setDefaultLang(val);
 
-      // Else try to find the best option
-      this.translate.setDefaultLang(defaultLanguage);
+        // Else try to find the best option
+        this.translate.setDefaultLang(defaultLanguage);
 
-      if ((<any>window).cordova) {
-        this.globalization.getPreferredLanguage().then(result => {
-          let language = this.getSuitableLanguage(result.value);
+        if ((<any>window).cordova) {
+          this.globalization.getPreferredLanguage().then(result => {
+            let language = this.getSuitableLanguage(result.value);
+            this.translate.use(language);
+            sysOptions.systemLanguage = language;
+            this.storage.set('language', language);
+          });
+        } else {
+          let browserLanguage = this.translate.getBrowserLang() || defaultLanguage;
+          let language = this.getSuitableLanguage(browserLanguage);
           this.translate.use(language);
           sysOptions.systemLanguage = language;
           this.storage.set('language', language);
-        });
-      } else {
-        let browserLanguage = this.translate.getBrowserLang() || defaultLanguage;
-        let language = this.getSuitableLanguage(browserLanguage);
-        this.translate.use(language);
-        sysOptions.systemLanguage = language;
-        this.storage.set('language', language);
-      }
-    })
+        }
+      })
 
   }
 
   getSuitableLanguage(language) {
     language = language.substring(0, 2).toLowerCase();
-		return availableLanguages.some(x => x.code == language) ? language : defaultLanguage;
+    return availableLanguages.some(x => x.code == language) ? language : defaultLanguage;
   }
 }

@@ -1,6 +1,4 @@
 // http://ionicframework.com/docs/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,7 +12,6 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-
 // Own styling
 @import "../theme/005.Elements/Element.iontabs";
 @import "../theme/005.Elements/Element.ioncontent";
@@ -24,15 +21,13 @@
 @import "../theme/005.Elements/Element.tooltip";
 @import "../theme/005.Elements/Element.ionheader";
 @import "../theme/005.Elements/Element.iontoolbar";
-
+@import "../theme/005.Elements/Element.ionnavbar";
 @import "../theme/006.Objects/Object.message";
 @import "../theme/006.Objects/Object.illustration";
 @import "../theme/006.Objects/Object.moodindicator";
 @import "../theme/006.Objects/Object.badge";
-
 @import "../theme/007.Components/Component.exercise";
 @import "../theme/007.Components/Component.mood";
 @import "../theme/007.Components/Component.emptystate";
 @import "../theme/007.Components/Component.bigheader";
-
 @import "../theme/008.Utilities/Utility.animations";

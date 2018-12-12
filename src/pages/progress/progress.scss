@@ -1,43 +1,68 @@
 progress-home {
   ion-header {
     ion-navbar {
-      .toolbar-content {
-        display: flex;
-        justify-content: space-between;
+      ion-buttons {
+        &:first-of-type {
+          order: 1;
+        }
       }
     }
   }
 
   chart {
-    svg, span {
+    span,
+    svg {
       text {
         vertical-align: bottom;
       }
-      tspan, span {
+
+      span,
+      tspan {
         &.graphMood {
           font-size: 5em;
 
-          &--content { fill: color($moods, content, base); color: color($moods, content, base); }
-          &--ok { fill: color($moods, ok, base); color: color($moods, ok, base); }
-          &--meh { fill: color($moods, meh, base); color: color($moods, meh, base); }
-          &--worried { fill: color($moods, worried, base); color: color($moods, worried, base); }
-          &--panic { fill: color($moods, panic, base); color: color($moods, panic, base); }
+          &--content {
+            fill: color($moods, content, base);
+            color: color($moods, content, base);
+          }
 
+          &--ok {
+            fill: color($moods, ok, base);
+            color: color($moods, ok, base);
+          }
+
+          &--meh {
+            fill: color($moods, meh, base);
+            color: color($moods, meh, base);
+          }
+
+          &--worried {
+            fill: color($moods, worried, base);
+            color: color($moods, worried, base);
+          }
+
+          &--panic {
+            fill: color($moods, panic, base);
+            color: color($moods, panic, base);
+          }
         }
       }
     }
 
-    span, span {
+    span,
+    span {
       line-height: 0.7em;
     }
   }
 
   ion-grid.grid {
     padding: 32px 64px;
+
     ion-row {
       &:not(:last-of-type) {
         margin-bottom: 32px;
       }
+
       ion-col {
         padding: 0;
         display: flex;
@@ -49,6 +74,7 @@ progress-home {
             text-transform: uppercase;
           }
         }
+
         &:nth-of-type(2) {
           align-items: baseline;
         }
@@ -59,10 +85,12 @@ progress-home {
           font-size: 3.25em;
           color: color($colors, secondary, base);
         }
+
         ion-icon {
           font-size: 2em;
           color: color($colors, contrast, base);
         }
+
         span {
           margin-left: 1em;
         }

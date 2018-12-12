@@ -5,14 +5,14 @@ import moment from 'moment';
 import { zeroPad } from '../lib/helpers';
 
 // http://www.competa.com/blog/custom-groupby-pipe-angular-4/
-@Pipe({name: 'groupBy', pure: false})
+@Pipe({ name: 'groupBy', pure: false })
 export class groupByPipe implements PipeTransform {
   transform(collection: Array<any>, property: string): Array<any> {
     // prevents the application from breaking if the array of objects doesn't exist yet
-    if(!collection) return;
+    if (!collection) return;
 
-    const groupedCollection = collection.reduce((previous, current)=> {
-      if(!previous[current[property]]) {
+    const groupedCollection = collection.reduce((previous, current) => {
+      if (!previous[current[property]]) {
         previous[current[property]] = [current];
       } else {
         previous[current[property]].push(current);
@@ -27,15 +27,15 @@ export class groupByPipe implements PipeTransform {
   }
 }
 
-@Pipe({name: 'accumulateTime'})
+@Pipe({ name: 'accumulateTime' })
 export class accumulateTimePipe implements PipeTransform {
   transform(exercises: Array<any>): number {
-    if(!exercises) return 0;
+    if (!exercises) return 0;
 
-    let time:number = 0;
+    let time: number = 0;
 
     exercises.forEach(exercise => {
-      if(!exercise.start || !exercise.end) return;
+      if (!exercise.start || !exercise.end) return;
       time += moment(exercise.end).diff(moment(exercise.start));
     });
 
@@ -43,10 +43,10 @@ export class accumulateTimePipe implements PipeTransform {
   }
 }
 
-@Pipe({name: 'msToTime'})
+@Pipe({ name: 'msToTime' })
 export class msToTimePipe implements PipeTransform {
-  transform(miliseconds:number, format:string) {
-    if(!miliseconds) return;
+  transform(miliseconds: number, format: string) {
+    if (!miliseconds) return;
 
     let ms = miliseconds % 1000;
     miliseconds = (miliseconds - ms) / 1000;
@@ -56,7 +56,7 @@ export class msToTimePipe implements PipeTransform {
     let hrs = (miliseconds - mins) / 60;
 
     let str;
-    switch(format) {
+    switch (format) {
       case 'hours':
         str = zeroPad(hrs, 1);
         break;
@@ -77,7 +77,7 @@ export class msToTimePipe implements PipeTransform {
   name: 'truncate'
 })
 export class TruncatePipe {
-  transform(value: string, args: string[]) : string {
+  transform(value: string, args: string[]): string {
     let limit = args.length > 0 ? parseInt(args[0], 10) : 10;
     let trail = args.length > 1 ? args[1] : '...';
 

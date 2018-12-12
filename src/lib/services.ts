@@ -8,19 +8,19 @@ import { databaseHost } from '../lib/constants';
 @Injectable()
 export class AuthService {
 
-  private baseUrl:string = databaseHost;
-  private token:string;
+  private baseUrl: string = databaseHost;
+  private token: string;
 
   constructor(
     protected http: HttpClient,
     protected storage: Storage
   ) { }
 
-  getLocalToken():string {
+  getLocalToken(): string {
     return this.token;
   }
 
-  setLocalToken(token:string) {
+  setLocalToken(token: string) {
     this.storage.set('jwtToken', token);
     this.token = token;
   }
@@ -32,25 +32,25 @@ export class AuthService {
   refreshJwtToken(tokenData) {
     return this.http.post(
       this.baseUrl + 'jwt-token-refresh/',
-      {token: tokenData.token}
+      { token: tokenData.token }
     )
-    .toPromise();
+      .toPromise();
   }
 
   verifyJwtToken(tokenData) {
     return this.http.post(
       this.baseUrl + 'jwt-token-verify/',
-      {token: tokenData.token}
+      { token: tokenData.token }
     )
-    .toPromise();
+      .toPromise();
   }
 
   getJwtToken(userData) {
     return this.http.post(
       this.baseUrl + 'jwt-token-auth/',
-      {username: userData.username, password: userData.password}
+      { username: userData.username, password: userData.password }
     )
-    .toPromise();
+      .toPromise();
   }
 
 }
@@ -58,13 +58,13 @@ export class AuthService {
 @Injectable()
 export class UserService {
 
-  private user:any;
+  private user: any;
 
   constructor(
     protected storage: Storage
   ) { }
 
-  setUser(user:string) {
+  setUser(user: string) {
     this.storage.set('user', user);
     this.user = user;
   }

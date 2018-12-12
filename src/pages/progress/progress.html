@@ -1,16 +1,20 @@
 <ion-header>
   <ion-navbar color="secondary">
-    <button clear ion-button color="light" (click)="changeWeek(-1)">
-      <ion-icon name="arrow-dropleft"></ion-icon>
-    </button>
+    <ion-buttons start>
+      <button ion-button icon-only color="light" color="light" (click)="changeWeek(-1)">
+        <ion-icon name="arrow-dropleft"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title text-center>
       <!-- TODO look at this, maybe it is nice to select the date -->
       <!-- <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="startWeek"></ion-datetime> -->
       {{ startWeek | date : 'dd/MM'}} - {{ endWeek | date : 'dd/MM' }}
     </ion-title>
-    <button clear ion-button color="light" (click)="changeWeek(1)" [disabled]="!canSelectNextWeek">
-      <ion-icon name="arrow-dropright"></ion-icon>
-    </button>
+    <ion-buttons end>
+      <button ion-button icon-only color="light" color="light" (click)="changeWeek(1)" [disabled]="!canSelectNextWeek">
+        <ion-icon name="arrow-dropright"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 

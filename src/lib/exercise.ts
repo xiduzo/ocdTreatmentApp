@@ -1,17 +1,17 @@
 import { UUID } from 'angular2-uuid';
 
 export class Step {
-  public id:string;
-  public fearRating:number;
-  public triggers:Array<Trigger>;
-  public fear:Fear;
+  public id: string;
+  public fearRating: number;
+  public triggers: Array<Trigger>;
+  public fear: Fear;
 
   constructor({
     id = UUID.UUID(),
     fearRating = 0,
     triggers = [
-      new Trigger({verbose:'INTENSITY_OBSESSIVE_THOUGHTS'}),
-      new Trigger({verbose:'INTENSITY_COMPULSIVE_BEHAVIOUR'})
+      new Trigger({ verbose: 'INTENSITY_OBSESSIVE_THOUGHTS' }),
+      new Trigger({ verbose: 'INTENSITY_COMPULSIVE_BEHAVIOUR' })
     ],
     fear = new Fear()
   } = {}) {
@@ -24,16 +24,16 @@ export class Step {
   }
 
   addEmptyTriggers() {
-    this.triggers.push(new Trigger({verbose:'INTENSITY_OBSESSIVE_THOUGHTS'}));
-    this.triggers.push(new Trigger({verbose:'INTENSITY_COMPULSIVE_BEHAVIOUR'}));
+    this.triggers.push(new Trigger({ verbose: 'INTENSITY_OBSESSIVE_THOUGHTS' }));
+    this.triggers.push(new Trigger({ verbose: 'INTENSITY_COMPULSIVE_BEHAVIOUR' }));
   }
 }
 
 export class Trigger {
-  public verbose:string;
-  public range:number;
-  public explanation:string;
-  public enabled:boolean;
+  public verbose: string;
+  public range: number;
+  public explanation: string;
+  public enabled: boolean;
 
   constructor({
     verbose = '',
@@ -49,9 +49,9 @@ export class Trigger {
 }
 
 export class Fear {
-  public completion:number;
-  public situation:string;
-  public without:string;
+  public completion: number;
+  public situation: string;
+  public without: string;
 
   constructor({
     completion = 0,
@@ -65,13 +65,13 @@ export class Fear {
 }
 
 export class Exercise {
-  public id:string;
-  public afterMood:Mood;
-  public beforeMood:Mood;
-  public step:Step;
-  public start:Date;
-  public end:Date;
-  public erp:Erp;
+  public id: string;
+  public afterMood: Mood;
+  public beforeMood: Mood;
+  public step: Step;
+  public start: Date;
+  public end: Date;
+  public erp: Erp;
 
   constructor({
     id = UUID.UUID(),
@@ -93,8 +93,8 @@ export class Exercise {
 }
 
 export class Mood {
-  public mood:number;
-  public explanation:string;
+  public mood: number;
+  public explanation: string;
 
   constructor({
     mood = 0,
@@ -106,9 +106,9 @@ export class Mood {
 }
 
 export class Erp {
-  public gaveInToCompulsion:boolean;
-  public start:Date;
-  public end:Date;
+  public gaveInToCompulsion: boolean;
+  public start: Date;
+  public end: Date;
 
   constructor({
     gaveInToCompulsion = false,
