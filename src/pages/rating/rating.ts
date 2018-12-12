@@ -80,7 +80,7 @@ export class RatingPage {
   }
 
   save() {
-    this.file.writeFile(this.file.externalDataDirectory, "ratings.json", this.ratings, {replace:true}).then(response => {
+    this.file.writeFile(this.file.externalDataDirectory, "ratings.json", JSON.stringify(this.ratings), {replace:true}).then(response => {
       let email = {
         to: 'sanderboer_feyenoord@hotmail.com',
         attachments: [
