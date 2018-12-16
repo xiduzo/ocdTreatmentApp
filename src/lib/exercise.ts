@@ -17,15 +17,8 @@ export class Step {
   } = {}) {
     this.id = id;
     this.fearRating = fearRating;
-    this.triggers = triggers.map(trigger => {
-      return new Trigger(trigger);
-    });
+    this.triggers = triggers.map(trigger => new Trigger(trigger));
     this.fear = new Fear(fear);
-  }
-
-  addEmptyTriggers() {
-    this.triggers.push(new Trigger({ verbose: 'INTENSITY_OBSESSIVE_THOUGHTS' }));
-    this.triggers.push(new Trigger({ verbose: 'INTENSITY_COMPULSIVE_BEHAVIOUR' }));
   }
 }
 
