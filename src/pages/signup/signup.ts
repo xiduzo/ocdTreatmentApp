@@ -29,19 +29,19 @@ import { Restangular } from 'ngx-restangular';
       ])
     ]),
     trigger('showError', [
-      state('void', style({transform: 'translateX(-100%)'})),
-      state('*', style({transform: 'translateX(0)'})),
+      state('void', style({ transform: 'translateX(-100%)' })),
+      state('*', style({ transform: 'translateX(0)' })),
       transition('void => *', animate('300ms ease-in'))
     ])
   ]
 })
 export class SignUpPage {
 
-  private registerForm:FormGroup;
-  private username:AbstractControl;
-  private email:AbstractControl;
-  private password:AbstractControl;
-  private password_repeat:AbstractControl;
+  private registerForm: FormGroup;
+  private username: AbstractControl;
+  private email: AbstractControl;
+  private password: AbstractControl;
+  private password_repeat: AbstractControl;
 
   constructor(
     private restangular: Restangular,
@@ -51,7 +51,7 @@ export class SignUpPage {
 
   matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
     // TODO maybe use this https://github.com/yuyang041060120/ng2-validation#notequalto-1
-    return (group: FormGroup): {[key: string]: any} => {
+    return (group: FormGroup): { [key: string]: any } => {
       let password = group.controls[passwordKey];
       let confirmPassword = group.controls[confirmPasswordKey];
 
@@ -64,13 +64,12 @@ export class SignUpPage {
   }
 
   ngOnInit() {
-    // console.log(this.password.value());
     this.registerForm = this.formBuilder.group({
-      username:['', [Validators.required]],
-      email:['', [Validators.required, Validators.email]],
-      password:['', [Validators.required]],
-      password_repeat:['', [Validators.required]],
-    }, { validator: this.matchingPasswords('password', 'password_repeat')});
+      username: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+      password_repeat: ['', [Validators.required]],
+    }, { validator: this.matchingPasswords('password', 'password_repeat') });
 
     this.username = this.registerForm.controls['username'];
     this.email = this.registerForm.controls['email'];
@@ -79,21 +78,20 @@ export class SignUpPage {
   }
 
   signUp() {
-    console.log(this.registerForm);
     this.restangular.all('users/create').post({
       username: this.registerForm.controls.username.value,
       password: this.registerForm.controls.password.value,
       email: this.registerForm.controls.email.value
     })
-    .subscribe((resp) => {
-      console.log(resp)
-    }, (err) => {
-      console.log(err);
-      if(err.data.email) {
-      }
-      if(err.data.username) {
-      }
-    });
+      .subscribe((resp) => {
+        console.log(resp)
+      }, (err) => {
+        console.log(err);
+        if (err.data.email) {
+        }
+        if (err.data.username) {
+        }
+      });
   }
 
 }

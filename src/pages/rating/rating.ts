@@ -54,13 +54,11 @@ export class RatingPage {
   }
 
   rate() {
-    console.log(JSON.stringify(this.exercises[this.currentRatingIndex]));
-    const exercise = this.exercises[this.currentRatingIndex];
     let output = {};
-    if(this.rating > 0) {
-      output = { positive: this.rating / 100}
+    if (this.rating > 0) {
+      output = { positive: this.rating / 100 }
     } else {
-      output = { negative: this.rating/100}
+      output = { negative: this.rating / 100 }
     }
     let input = {
       beforeMood: this.currentRating.beforeMood.mood,
@@ -79,8 +77,15 @@ export class RatingPage {
     this.next();
   }
 
+  checkOrCreateDir() {
+    this.file.checkDir(this.file.dataDirectory, "ratings").then(response => {
+      alert(response);
+    });
+  }
+
   save() {
-    this.file.writeFile(this.file.externalDataDirectory, "ratings.json", JSON.stringify(this.ratings), {replace:true}).then(response => {
+    this.checkOrCreateDir();
+    this.file.writeFile(this.file.dataDirectory, "ratings.json", JSON.stringify(this.ratings), { replace: true }).then(response => {
       let email = {
         to: 'sanderboer_feyenoord@hotmail.com',
         attachments: [
