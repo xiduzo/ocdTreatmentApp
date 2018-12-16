@@ -68,8 +68,9 @@ import { SettingsPage } from '../pages/settings/settings';
 ------------------------------*/
 import { databaseHost } from '../lib/constants';
 import { groupByPipe, accumulateTimePipe, msToTimePipe } from '../lib/pipes';
+// injectables
 import { AuthService, UserService } from '../lib/services';
-
+import { BadgeFactory } from '../lib/badges/Badge';
 /*------------------------------
   Translation
 ------------------------------*/
@@ -191,6 +192,7 @@ export function createTranslateLoader(http: Http) {
     Globalization,
     Broadcaster,
     File,
+    BadgeFactory,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

@@ -1,15 +1,16 @@
-export const streakBadge = {
+export const STREAK_BADGE = {
   name: "streakBadge",
   verbose: "Streak badge",
-  points: 0,
   stages: [
     {
       amountNeeded: 50,
-      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      verbose: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+      image: "assets/imgs/levels/badge__level-01.png"
     },
     {
       amountNeeded: 100,
-      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+      verbose: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+      image: "assets/imgs/levels/badge__level-02.png"
     },
   ]
 };
