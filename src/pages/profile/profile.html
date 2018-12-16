@@ -52,14 +52,14 @@
       </ion-list-header>
       <ion-grid>
         <ion-row>
-          <ion-col col-3 *ngFor="let x of [1,2,3,4,5,6,7,8]" (click)=showBadge(x)>
+          <ion-col col-3 *ngFor="let badge of badges" (click)=showBadge(x)>
             <div class="o-badge">
               <span class="badge__name">
-                {{ 'LEVEL' | translate }} {{ x }}
+               {{ badge.verbose }}
               </span>
               <div class="badge__progress">
-                <img src="assets/imgs/levels/badge__level-0{{x}}.png" alt="">
-                <round-progress [current]="30" [max]="100" [radius]="37.5" [stroke]="4" [duration]="1"></round-progress>
+                <img src={{badge.currentStage.image}} alt={{badge.verbose}}>
+                <round-progress [current]="badge.points" [max]="badge.currentStage.amountNeeded" [radius]="37.5" [stroke]="4" [duration]="1"></round-progress>
               </div>
               <span class="badge__progress__numbers">
                 <strong>2</strong> / 10
