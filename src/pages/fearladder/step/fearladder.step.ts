@@ -23,11 +23,9 @@ export class FearladderStepModal {
     // For when we edit a step
     if(this.params.get('step')) {
       this.step = this.params.get('step');
-      console.log(this.params.get('step'), this.step);
       this.buttonText = 'SAVE';
       this.headerText = 'FEARLADDER_STEP_HEADER_EDIT';
     } else {
-      this.step.addEmptyTriggers();
       this.step.fear = new Fear();
     }
   }

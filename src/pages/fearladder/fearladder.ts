@@ -62,7 +62,6 @@ export class FearladderModal {
   }
 
   editStep(step) {
-    console.log(step);
     let modal = this.modalCtrl.create(FearladderStepModal, {step: step});
 
     modal.onDidDismiss((data) => {

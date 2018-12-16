@@ -21,7 +21,6 @@ export class groupByPipe implements PipeTransform {
       return previous;
     }, {});
 
-    // console.log(Object.keys(groupedCollection).map(key => ({ key, items: groupedCollection[key] })));
     // this will return an array of objects, each object containing a group of objects
     return Object.keys(groupedCollection).map(key => ({ key, items: groupedCollection[key] }));
   }
