@@ -1,6 +1,8 @@
 import { Storage } from '@ionic/storage';
 import { Injectable } from '@angular/core';
 import { ModalController } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
+
 
 import * as _ from 'lodash';
 
@@ -39,7 +41,7 @@ export class Badge {
     else return this.stages[this.stages.length - 1];
   }
 
-  async getProgress(): Promise {
+  async getProgress(): Promise<any> {
     await this.storage.get(this.name).then(response => {
       response = parseInt(response);
       // Make sure we get a number as a response fo sho
@@ -60,8 +62,8 @@ export class Badge {
 
 class Stage {
   public amountNeeded: number;
-  private verbose: string;
-  private image: string;
+  public verbose: string;
+  public image: string;
 
   constructor({
     amountNeeded = 0,

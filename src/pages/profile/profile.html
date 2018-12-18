@@ -62,7 +62,7 @@
                 <round-progress [current]="badge.points" [max]="badge.currentStage.amountNeeded" [radius]="37.5" [stroke]="4" [duration]="1"></round-progress>
               </div>
               <span class="badge__progress__numbers">
-                <strong>2</strong> / 10
+                <strong>{{badge.points}}</strong> / {{badge.currentStage.amountNeeded}}
               </span>
             </div>
           </ion-col>

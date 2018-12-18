@@ -1,6 +1,6 @@
 export const STREAK_BADGE = {
   name: "streakBadge",
-  verbose: "Streak badge",
+  verbose: "Streak",
   stages: [
     {
       amountNeeded: 50,
