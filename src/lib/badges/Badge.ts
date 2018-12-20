@@ -1,12 +1,8 @@
 import { Storage } from '@ionic/storage';
 import { Injectable } from '@angular/core';
 import { ModalController } from 'ionic-angular';
-import { Observable } from 'rxjs/Observable';
 
 import { BadgeModal } from '../../pages/badge/badge';
-
-
-import * as _ from 'lodash';
 
 export class Badge {
   private name: string;
