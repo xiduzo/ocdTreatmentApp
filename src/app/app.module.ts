@@ -86,7 +86,8 @@ import { RestangularModule } from 'ngx-restangular';
   Datavisualizations
 ------------------------------*/
 import { ChartModule } from 'angular2-highcharts';
-import * as highcharts from 'highcharts';
+import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
+import * as highcharts from 'highcharts/highcharts';
 import Highmore from 'highcharts/highcharts-more';
 
 /*------------------------------
@@ -147,7 +148,7 @@ export function createTranslateLoader(http: Http) {
     BrowserAnimationsModule,
     IonicModule.forRoot(MyApp, { tabsPlacement: 'bottom' }),
     IonicStorageModule.forRoot(),
-    ChartModule.forRoot(highcharts, Highmore),
+    ChartModule,
     HttpClientModule,
     RoundProgressModule,
     RestangularModule.forRoot([AuthService], RestangularConfigFactory),
@@ -193,11 +194,27 @@ export function createTranslateLoader(http: Http) {
     Broadcaster,
     File,
     BadgeFactory,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    { provide: HighchartsStatic, useFactory: highchartsFactory }
   ]
 })
 
 export class AppModule {
   constructor() {
   }
+}
+
+//https://github.com/gevgeny/angular2-highcharts/issues/163#issuecomment-383855550
+export function highchartsFactory() {
+  // Default options.
+  highcharts.setOptions({
+    global: {
+      useUTC: false
+    }
+  });
+
+  // Initialize addons.
+  // Highmore(highcharts);
+
+  return highcharts;
 }
