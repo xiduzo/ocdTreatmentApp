@@ -8,6 +8,7 @@ import { AuthService, UserService } from '../../lib/services';
 import { BadgeModal } from '../badge/badge';
 import { Badge, BadgeFactory } from '../../lib/badges/Badge';
 import { STREAK_BADGE } from '../../lib/badges/templates/streak';
+import { EXERCISE_BADGE } from '../../lib/badges/templates/exercise';
 
 import { SettingsPage } from '../settings/settings';
 
@@ -23,6 +24,10 @@ export class ProfilePage {
   public editGoal: boolean = false;
   public view: string = 'achievements';
   public badges: Array<Badge> = [];
+  private badgeTemplates: Array<any> = [
+    STREAK_BADGE,
+    EXERCISE_BADGE
+  ];
 
   constructor(
     private appCtrl: App,
@@ -34,8 +39,9 @@ export class ProfilePage {
     private modalCtrl: ModalController,
     private badgeFctry: BadgeFactory,
   ) {
-    const badge = this.badgeFctry.createBadge(STREAK_BADGE);
-    this.badges.push(badge);
+    this.badgeTemplates.forEach(badge => {
+      this.badges.push(this.badgeFctry.createBadge(badge));
+    });
   }
 
   ionViewDidLoad() {
