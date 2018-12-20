@@ -3,10 +3,9 @@ import { Storage } from '@ionic/storage';
 import { File } from '@ionic-native/file';
 import { EmailComposer } from '@ionic-native/email-composer';
 
-import brain from 'brain.js';
-import moment from 'moment';
-
 import { ViewController } from 'ionic-angular';
+
+import moment from 'moment';
 
 @Component({
   selector: 'rating',
@@ -19,7 +18,6 @@ export class RatingPage {
   public exercises = [];
   public ratings = []
   public rating = 0;
-  private net = new brain.NeuralNetwork();
 
   constructor(
     private viewCtrl: ViewController,
@@ -27,7 +25,6 @@ export class RatingPage {
     private file: File,
     private emailComposer: EmailComposer
   ) {
-
   }
 
   close() {
@@ -77,26 +74,21 @@ export class RatingPage {
     this.next();
   }
 
-  checkOrCreateDir() {
-    this.file.checkDir(this.file.dataDirectory, "ratings").then(response => {
-      alert(response);
-    });
-  }
-
   save() {
-    this.checkOrCreateDir();
-    this.file.writeFile(this.file.dataDirectory, "ratings.json", JSON.stringify(this.ratings), { replace: true }).then(response => {
-      let email = {
-        to: 'sanderboer_feyenoord@hotmail.com',
-        attachments: [
-          response.nativeURL
-        ],
-        subject: 'ratings',
-        body: 'ratings file',
-        isHtml: false
-      };
-      this.emailComposer.open(email);
-    });
+    console.log(this.ratings);
+    console.log(JSON.stringify(this.ratings));
+    // this.file.writeFile(this.file.dataDirectory, "ratings.json", JSON.stringify(this.ratings), { replace: true }).then(response => {
+    //   let email = {
+    //     to: 'sanderboer_feyenoord@hotmail.com',
+    //     attachments: [
+    //       response.nativeURL
+    //     ],
+    //     subject: 'ratings',
+    //     body: 'ratings file',
+    //     isHtml: false
+    //   };
+    //   this.emailComposer.open(email);
+    // });
   }
 
 
