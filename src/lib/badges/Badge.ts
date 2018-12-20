@@ -11,6 +11,7 @@ import * as _ from 'lodash';
 export class Badge {
   private name: string;
   private verbose: string;
+  private description: string;
   private points: number = 0;
   private stages: Array<Stage>;
   private currentStage: Stage = new Stage();
@@ -20,12 +21,14 @@ export class Badge {
   constructor({
     name = '',
     verbose = '',
+    description = '',
     stages = [new Stage()],
     storage = undefined,
     modalCtrl = undefined
   } = {}) {
     this.name = name;
     this.verbose = verbose;
+    this.description = description;
     this.stages = stages.map(stage => new Stage(stage));
     this.storage = storage;
     this.modalCtrl = modalCtrl;
@@ -49,7 +52,8 @@ export class Badge {
   }
 
   async getProgress(): Promise<any> {
-    console.log(this.storage);
+    if (!this.name) return;
+
     await this.storage.get(this.name).then(response => {
       response = parseInt(response);
       // Make sure we get a number as a response fo sho
@@ -57,7 +61,7 @@ export class Badge {
         this.storage.set(this.name, 0);
         this.getProgress(); // Call again bc we know we have a number in storage now
       }
-      this.points = response;
+      this.points = response || 0;
     });
 
     return new Promise((resolve, reject) => {
@@ -69,16 +73,16 @@ export class Badge {
 
 class Stage {
   public amountNeeded: number;
-  public verbose: string;
+  public description: string;
   public image: string;
 
   constructor({
     amountNeeded = 0,
-    verbose = '',
+    description = '',
     image = ''
   } = {}) {
     this.amountNeeded = amountNeeded;
-    this.verbose = verbose;
+    this.description = description;
     this.image = image;
   }
 }
@@ -96,6 +100,7 @@ export class BadgeFactory {
     return new Badge({
       name: badge.name,
       verbose: badge.verbose,
+      description: badge.description,
       stages: badge.stages,
       storage: this.storage,
       modalCtrl: this.modalCtrl

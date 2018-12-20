@@ -1,31 +1,32 @@
 export const STREAK_BADGE = {
   name: "streakBadge",
   verbose: "Streak",
+  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
   stages: [
     {
       amountNeeded: 1,
-      verbose: "Hard work pays off! Keep on going.",
+      description: "Hard work pays off! Keep on going.",
       image: "assets/imgs/levels/badge__level-01.png"
     },
     {
       amountNeeded: 7,
-      verbose: "An exercise a day keeps the doctor away!",
+      description: "An exercise a day keeps the doctor away!",
       image: "assets/imgs/levels/badge__level-02.png"
     },
     {
       amountNeeded: 30,
-      verbose: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
-      image: "assets/imgs/levels/badge__level-02.png"
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+      image: "assets/imgs/levels/badge__level-03.png"
     },
     {
       amountNeeded: 90,
-      verbose: "Three month streak, wonderfull",
-      image: "assets/imgs/levels/badge__level-02.png"
+      description: "Three month streak, wonderfull",
+      image: "assets/imgs/levels/badge__level-04.png"
     },
     {
       amountNeeded: 365,
-      verbose: "For the commited ones.",
-      image: "assets/imgs/levels/badge__level-02.png"
+      description: "For the commited ones.",
+      image: "assets/imgs/levels/badge__level-05.png"
     },
   ]
 };
