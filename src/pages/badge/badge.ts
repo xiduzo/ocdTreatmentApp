@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { ViewController} from 'ionic-angular';
+import { NavParams, ViewController } from 'ionic-angular';
+
+import { Badge } from '../../lib/badges/Badge';
 
 @Component({
   selector: 'badge',
@@ -7,10 +9,14 @@ import { ViewController} from 'ionic-angular';
 })
 export class BadgeModal {
 
-  constructor(
-    public viewCtrl: ViewController
-  ) {
+  public badge: Badge = new Badge();
 
+  constructor(
+    public viewCtrl: ViewController,
+    public params: NavParams
+  ) {
+    this.badge = this.params.get('badge');
+    console.log(this.badge);
   }
 
   close() {

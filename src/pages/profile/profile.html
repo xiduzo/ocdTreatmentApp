@@ -52,7 +52,7 @@
       </ion-list-header>
       <ion-grid>
         <ion-row>
-          <ion-col col-3 *ngFor="let badge of badges" (click)=showBadge(x)>
+          <ion-col col-3 *ngFor="let badge of badges" (click)=showBadge(badge)>
             <div class="o-badge">
               <span class="badge__name">
                {{ badge.verbose }}

@@ -53,37 +53,6 @@ export class ProfilePage {
     settingsModal.present();
   }
 
-  sendFearLadder() {
-    this.emailComposer.isAvailable().then((available: boolean) => {
-      // TODO https://forum.ionicframework.com/t/how-to-create-a-json-file-ionic-3/105939/3
-      alert(available);
-      let email = {
-        to: 'mail@sanderboer.nl',
-        attachments: [
-          'file://img/logo.png',
-          'res://icon.png',
-          'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
-          'file://README.pdf'
-        ],
-        subject: 'Test mail ionic',
-        body: 'Whattttttt',
-        isHtml: true
-      };
-      this.emailComposer.open(email);
-    });
-  }
-
-  showNotification() {
-    this.notifications.schedule({
-      id: 1,
-      title: 'test notification title',
-      text: 'test notification text',
-      launch: true,
-      priority: 2,
-      trigger: { at: new Date(new Date().getTime() + 3600) }
-    });
-  }
-
   safePersonalGoal() {
     this.storage.set('personalGoal', this.personalGoal);
   }
@@ -99,8 +68,7 @@ export class ProfilePage {
   }
 
   showBadge(badge) {
-    let badgeModal = this.modalCtrl.create(BadgeModal);
-    badgeModal.present();
+    badge.showModal();
   }
 
 }

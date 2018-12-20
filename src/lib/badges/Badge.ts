@@ -3,13 +3,15 @@ import { Injectable } from '@angular/core';
 import { ModalController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 
+import { BadgeModal } from '../../pages/badge/badge';
+
 
 import * as _ from 'lodash';
 
 export class Badge {
   private name: string;
   private verbose: string;
-  private points: number;
+  private points: number = 0;
   private stages: Array<Stage>;
   private currentStage: Stage = new Stage();
   private storage: Storage;
@@ -35,6 +37,11 @@ export class Badge {
       });
   }
 
+  showModal(): void {
+    const badgeModal = this.modalCtrl.create(BadgeModal, { badge: this });
+    badgeModal.present();
+  }
+
   setCurrentStage(): Stage {
     const stage = this.stages.filter(stage => this.points < stage.amountNeeded)[0];
     if (stage) return stage;
@@ -42,6 +49,7 @@ export class Badge {
   }
 
   async getProgress(): Promise<any> {
+    console.log(this.storage);
     await this.storage.get(this.name).then(response => {
       response = parseInt(response);
       // Make sure we get a number as a response fo sho
@@ -50,7 +58,6 @@ export class Badge {
         this.getProgress(); // Call again bc we know we have a number in storage now
       }
       this.points = response;
-      this.points = 53;
     });
 
     return new Promise((resolve, reject) => {
