@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { App, NavController, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { EmailComposer } from '@ionic-native/email-composer';
-import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { AuthService, UserService } from '../../lib/services';
 
@@ -32,7 +31,6 @@ export class ProfilePage {
     private userService: UserService,
     private storage: Storage,
     private emailComposer: EmailComposer,
-    private notifications: LocalNotifications,
     private modalCtrl: ModalController,
     private badgeFctry: BadgeFactory,
   ) {
