@@ -52,9 +52,6 @@ import { ProfilePage } from '../pages/profile/profile';
 import { ProgressPage } from '../pages/progress/progress';
 // Tabs (navigation)
 import { TabsPage } from '../pages/tabs/tabs';
-// YBOCS
-// TODO: implement this page
-import { YbocsModal } from '../pages/ybocs/ybocs';
 // Fearladder
 import { FearladderModal } from '../pages/fearladder/fearladder';
 import { FearladderStepModal } from '../pages/fearladder/step/fearladder.step';
@@ -133,7 +130,6 @@ export function createTranslateLoader(http: Http) {
     RatingPage,
     FearladderModal,
     FearladderStepModal,
-    YbocsModal,
     LoginPage,
     SignUpPage,
     LogbookPage,
@@ -174,7 +170,6 @@ export function createTranslateLoader(http: Http) {
     RatingPage,
     FearladderModal,
     FearladderStepModal,
-    YbocsModal,
     LoginPage,
     SignUpPage,
     LogbookPage,
