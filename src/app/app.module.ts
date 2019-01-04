@@ -62,7 +62,11 @@ import { SettingsPage } from '../pages/settings/settings';
   Lib
 ------------------------------*/
 import { databaseHost } from '../lib/constants';
-import { groupByPipe, accumulateTimePipe, msToTimePipe } from '../lib/pipes';
+// pipes
+import { groupByPipe } from '../lib/pipes/groupBy';
+import { msToTimePipe } from '../lib/pipes/msToTime';
+import { accumulateTimePipe } from '../lib/pipes/accumulateTime';
+
 // injectables
 import { AuthService, UserService } from '../lib/services';
 // - badge
