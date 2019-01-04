@@ -90,7 +90,7 @@ import { RestangularModule } from 'ngx-restangular';
 import { ChartModule } from 'angular2-highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import * as highcharts from 'highcharts/highcharts';
-import Highmore from 'highcharts/highcharts-more';
+// import Highmore from 'highcharts/highcharts-more';
 
 /*------------------------------
   Components
