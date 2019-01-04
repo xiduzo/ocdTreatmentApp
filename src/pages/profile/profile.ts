@@ -5,7 +5,6 @@ import { EmailComposer } from '@ionic-native/email-composer';
 
 import { AuthService, UserService } from '../../lib/services';
 
-import { BadgeModal } from '../badge/badge';
 import { Badge, BadgeFactory } from '../../lib/badges/Badge';
 import { STREAK_BADGE } from '../../lib/badges/templates/streak';
 import { EXERCISE_BADGE } from '../../lib/badges/templates/exercise';
