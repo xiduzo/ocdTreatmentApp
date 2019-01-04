@@ -7,6 +7,8 @@ import { ViewController } from 'ionic-angular';
 
 import moment from 'moment';
 
+import brain from 'brain.js';
+
 @Component({
   selector: 'rating',
   templateUrl: 'rating.html'
@@ -51,11 +53,12 @@ export class RatingPage {
   }
 
   rate() {
+    console.log(brain);
     let output = {};
     if (this.rating > 0) {
-      output = { positive: this.rating / 100 }
+      output = { positive: Math.abs(this.rating / 100) }
     } else {
-      output = { negative: this.rating / 100 }
+      output = { negative: Math.abs(this.rating / 100) }
     }
     let input = {
       beforeMood: this.currentRating.beforeMood.mood,
@@ -75,8 +78,36 @@ export class RatingPage {
   }
 
   save() {
-    console.log(this.ratings);
-    console.log(JSON.stringify(this.ratings));
+    // console.log(this.ratings);
+    // console.log(JSON.stringify(this.ratings));
+    console.log("ttrained model");
+    const config = {
+      binaryThresh: 0.5,
+      hiddenLayers: [20,20,20],
+      iterations: 200000,
+      errorThresh: 0.001,
+      log: true,
+      learningRate: 0.2
+    };
+    const net = new brain.NeuralNetwork(config);
+
+    net.train(this.ratings);
+    const trained = net.toJSON();
+    console.log("model");
+    console.log("=======================");
+    console.log(JSON.stringify(trained));
+
+    const output = net.run({
+      "beforeMood": 444,
+      "afterMood": 77,
+      "duration": 1126,
+      "erpDuration": 155,
+      "fearRating": 4,
+      "gaveInToCompulsion": false
+    });
+    console.log("output");
+    console.log("=======================");
+    console.log(output);
     // this.file.writeFile(this.file.dataDirectory, "ratings.json", JSON.stringify(this.ratings), { replace: true }).then(response => {
     //   let email = {
     //     to: 'sanderboer_feyenoord@hotmail.com',
