@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
-import { Badge } from '../../lib/badges/Badge';
+import { Badge } from '../Badge';
 
 @Component({
   selector: 'badge',

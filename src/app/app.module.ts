@@ -55,8 +55,6 @@ import { TabsPage } from '../pages/tabs/tabs';
 // Fearladder
 import { FearladderModal } from '../pages/fearladder/fearladder';
 import { FearladderStepModal } from '../pages/fearladder/step/fearladder.step';
-// Badges
-import { BadgeModal } from '../pages/badge/badge';
 //Settings
 import { SettingsPage } from '../pages/settings/settings';
 
@@ -67,7 +65,10 @@ import { databaseHost } from '../lib/constants';
 import { groupByPipe, accumulateTimePipe, msToTimePipe } from '../lib/pipes';
 // injectables
 import { AuthService, UserService } from '../lib/services';
+// - badge
+import { BadgeModal } from '../lib/badges/modal/badge';
 import { BadgeFactory } from '../lib/badges/Badge';
+
 /*------------------------------
   Translation
 ------------------------------*/

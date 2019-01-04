@@ -2,17 +2,19 @@ import { Storage } from '@ionic/storage';
 import { Injectable } from '@angular/core';
 import { ModalController } from 'ionic-angular';
 
-import { BadgeModal } from '../../pages/badge/badge';
+import { BadgeModal } from './modal/badge';
 
 export class Badge {
   private name: string;
   private verbose: string;
   private description: string;
-  private points: number = 0;
   private stages: Array<Stage>;
-  private currentStage: Stage = new Stage();
   private storage: Storage;
   private modalCtrl: ModalController;
+
+  private currentStage: Stage = new Stage();
+  private totalPointsGained: number = 0;
+  private pointsProgressToNextStage: number = 0;
 
   constructor({
     name = '',
@@ -42,9 +44,22 @@ export class Badge {
   }
 
   setCurrentStage(): Stage {
-    const stage = this.stages.filter(stage => this.points < stage.amountNeeded)[0];
-    if (stage) return stage;
-    else return this.stages[this.stages.length - 1];
+    // always return a stage
+    if (this.totalPointsGained === 0) return this.stages[0];
+
+    let tempPoints: number = this.totalPointsGained;
+    let returnedStage: Stage;
+
+    return this.stages.map(stage => {
+      if (tempPoints >= stage.amountNeeded) tempPoints -= amountNeeded;
+      if (tempPoints === 0) return stage;
+      // TODO: set the pointsProgressToNextStage
+      if (tempPoints < stage.amountNeeded) return stage;
+      // TODO: return stage if its the last one
+    });
+    // const stage = this.stages.filter(stage => this.points < stage.amountNeeded)[0];
+    // if (stage) return stage;
+    // else return this.stages[this.stages.length - 1];
   }
 
   async getProgress(): Promise<any> {
@@ -57,11 +72,11 @@ export class Badge {
         this.storage.set(this.name, 0);
         this.getProgress(); // Call again bc we know we have a number in storage now
       }
-      this.points = response || 0;
+      this.totalPointsGained = response || 0;
     });
 
     return new Promise((resolve, reject) => {
-      if (isNaN(this.points)) reject("Points is not a number");
+      if (isNaN(this.totalPointsGained)) reject("Points is not a number");
       else resolve();
     });
   }
