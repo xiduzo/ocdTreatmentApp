@@ -10,17 +10,17 @@ import { Exercise } from '../../../lib/Exercise';
 })
 export class ExerciseSuccessModal {
 
-  public level:any;
-  public exercise:Exercise;
+  public level: any;
+  public exercise: Exercise;
 
-  private options:NativeTransitionOptions = {
+  private options: NativeTransitionOptions = {
     direction: 'left'
   };
 
   constructor(
     private params: NavParams,
     public viewCtrl: ViewController,
-    private nativePageTransitions: NativePageTransitions
+    private nativePageTransitions: NativePageTransitions,
   ) {
     this.nativePageTransitions.slide(this.options);
   }
