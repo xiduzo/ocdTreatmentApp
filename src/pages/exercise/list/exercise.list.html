@@ -27,8 +27,8 @@
         [class.completed]="step.fear.completion >= 100"
         [disabled]="step.fear.completion >= 100">
           <ion-avatar item-start text-center>
-            <ion-icon name="radio-button-off" *ngIf="step.fear.completion < 1000"></ion-icon>
-            <ion-icon name="checkmark-circle" *ngIf="step.fear.completion >= 1000"></ion-icon>
+            <ion-icon name="radio-button-off" *ngIf="step.fear.completion < FEAR_COMPLETION_POSITIVE_LIMIT"></ion-icon>
+            <ion-icon name="checkmark-circle" *ngIf="step.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT"></ion-icon>
           </ion-avatar>
           <h2 capitalize>
             {{ step.fear.situation }}

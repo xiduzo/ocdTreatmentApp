@@ -11,6 +11,8 @@ import { ExerciseMoodPage } from '../../exercise/mood/exercise.mood';
 
 import { Exercise } from '../../../lib/Exercise';
 
+import { FEAR_COMPLETION_POSITIVE_LIMIT } from '../../../lib/constants';
+
 @Component({
   selector: 'exercise-list-page',
   templateUrl: 'exercise.list.html'
@@ -43,7 +45,7 @@ export class ExerciseListPage {
   }
 
   selectStep(step) {
-    if (step.fear.completion >= 1000) return;
+    if (step.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT) return;
 
     this.storage.get('exercises').then((exercises) => {
       if (!exercises) exercises = []; // When it's the users' first time
@@ -73,8 +75,7 @@ export class ExerciseListPage {
 
       _.forEach(fearLadder, (ladderStep) => {
         if (ladderStep.id == step.id) {
-          step.fear.completion = step.fear.completion < 1000 ? 1000 : 0;
-
+          step.fear.completion = step.fear.completion < FEAR_COMPLETION_POSITIVE_LIMIT ? FEAR_COMPLETION_POSITIVE_LIMIT : 0;
           ladderStep.exercise = step.exercise;
         }
       });
