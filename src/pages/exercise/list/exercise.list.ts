@@ -43,7 +43,7 @@ export class ExerciseListPage {
   }
 
   selectStep(step) {
-    if(step.fear.completion >= 100) return;
+    if (step.fear.completion >= 1000) return;
 
     this.storage.get('exercises').then((exercises) => {
       if (!exercises) exercises = []; // When it's the users' first time
@@ -73,7 +73,7 @@ export class ExerciseListPage {
 
       _.forEach(fearLadder, (ladderStep) => {
         if (ladderStep.id == step.id) {
-          step.fear.completion = step.fear.completion < 100 ? 100 : 0;
+          step.fear.completion = step.fear.completion < 1000 ? 1000 : 0;
 
           ladderStep.exercise = step.exercise;
         }
