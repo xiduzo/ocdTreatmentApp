@@ -18,9 +18,9 @@ import { Exercise } from '../../../lib/Exercise';
 export class ExerciseListPage {
   @ViewChild(Content) content: Content;
 
-  private level:any;
+  private level: any;
 
-  private options:NativeTransitionOptions = {
+  private options: NativeTransitionOptions = {
     direction: 'left'
   };
 
@@ -46,7 +46,7 @@ export class ExerciseListPage {
     if(step.fear.completion >= 100) return;
 
     this.storage.get('exercises').then((exercises) => {
-      if(!exercises) exercises = []; // When it's the users' first time
+      if (!exercises) exercises = []; // When it's the users' first time
 
       const exercise = new Exercise({
         start: new Date(),
@@ -69,10 +69,10 @@ export class ExerciseListPage {
 
   finishExercise(step) {
     this.storage.get('fearLadder').then((fearLadder) => {
-      if(!fearLadder) return;
+      if (!fearLadder) return;
 
       _.forEach(fearLadder, (ladderStep) => {
-        if(ladderStep.id == step.id) {
+        if (ladderStep.id == step.id) {
           step.fear.completion = step.fear.completion < 100 ? 100 : 0;
 
           ladderStep.exercise = step.exercise;
