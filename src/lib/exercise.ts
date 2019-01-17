@@ -1,4 +1,5 @@
 import { UUID } from 'angular2-uuid';
+import moment from 'moment';
 
 export class Step {
   public id: string;
@@ -82,6 +83,25 @@ export class Exercise {
     this.start = start;
     this.end = end;
     this.erp = new Erp(erp);
+  }
+
+  getErpTimeDifference(): number {
+    if (!this.start || !this.end) return null;
+    return moment.duration(
+      moment(this.end).diff(
+        moment(this.start)
+      )
+    ).asSeconds();
+  }
+
+  getTotalTimeDifference(): number {
+    if (!this.erp) return null;
+    if (!this.erp.start || !this.erp.end) return null;
+    return moment.duration(
+      moment(this.erp.end).diff(
+        moment(this.erp.start)
+      )
+    ).asSeconds();
   }
 }
 
