@@ -17,9 +17,9 @@ import { FearladderModal } from '../fearladder/fearladder';
 
 export class ExercisePage {
 
-  private profile:string;
-  public levels:Array<any>;
-  public test:string;
+  private profile: string;
+  public levels: Array<any>;
+  public test: string;
 
   constructor(
     public appCtrl: App,
@@ -41,7 +41,7 @@ export class ExercisePage {
   resetLevels() {
     this.levels = [];
     // Build the levels array
-    for(let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= 8; i++) {
       this.levels.push({ level: i, steps: [], completion: 0 });
     }
     this.getExersises();
@@ -49,7 +49,7 @@ export class ExercisePage {
 
   getExersises() {
     this.storage.get('fearLadder').then((fearLadder) => {
-      if(!fearLadder) return;
+      if (!fearLadder) return;
 
       fearLadder.forEach(step => {
         this.levels.find(level => level.level === step.fearRating).steps.push(step);
@@ -64,9 +64,9 @@ export class ExercisePage {
 
   setLevelsMonsterAndCompletion() {
     this.levels.forEach(level => {
-      level.completion = level.steps.filter(steps => { return steps.fear.completion >= 100;}).length * 100 / level.steps.length;
+      level.completion = level.steps.filter(steps => { return steps.fear.completion >= 100; }).length * 100 / level.steps.length;
       level.done = level.completion == 100;
-      level.monster = 'assets/imgs/monsters/monster-0'+level.level+'.png';
+      level.monster = 'assets/imgs/monsters/monster-0' + level.level + '.png';
     });
 
   }
@@ -92,10 +92,10 @@ export class ExercisePage {
 
   goToLevel(level) {
     // Dont need to go there if there are no exercises
-    if(!level.steps.length) return;
+    if (!level.steps.length) return;
 
     // Also dont need to go there if the level is done
-    if(level.done) return;
+    if (level.done) return;
 
     this.appCtrl.getRootNav().push(ExerciseListPage, {
       level: level
