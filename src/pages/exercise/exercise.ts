@@ -48,7 +48,7 @@ export class ExercisePage {
   }
 
   getExersises() {
-    this.storage.get('fearLadder').then((fearLadder) => {
+    this.storage.get('fearLadder').then(fearLadder => {
       if (!fearLadder) return;
 
       fearLadder.forEach(step => {
@@ -56,7 +56,7 @@ export class ExercisePage {
       });
 
       // We don't need to see the levels which has no steps
-      this.levels = this.levels.filter(level => { return level.steps.length > 0 });
+      this.levels = this.levels.filter(level => level.steps.length > 0);
       this.setLevelsMonsterAndCompletion();
     });
 

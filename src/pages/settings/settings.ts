@@ -79,7 +79,7 @@ export class SettingsPage {
 
   resetMockData() {
     let fearLadder = [];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 15; i++) {
       fearLadder.push(new Step({
         fearRating: Math.ceil(Math.random() * 8),
         triggers: [
@@ -105,7 +105,7 @@ export class SettingsPage {
     this.storage.set('fearLadder', fearLadder);
 
     let exercises = [];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 15; i++) {
       let begin = moment(moment.now())
         .subtract(Math.round(Math.random() * 90), "days")
         .subtract(Math.round(Math.random() * 12), "hours")
@@ -134,7 +134,7 @@ export class SettingsPage {
             .add(Math.round(Math.random() * 2) + 2, "minutes")
             .add(Math.round(Math.random() * 50), "seconds")
             .toDate(),
-          gaveInToCompulsion: Math.random() > 0.5 ? true : false
+          gaveInToCompulsion: Math.random() > 0.5
         })
       }));
     }
