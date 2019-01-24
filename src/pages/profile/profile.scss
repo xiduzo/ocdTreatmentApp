@@ -1,12 +1,11 @@
 page-profile {
-
   .scroll-content {
     display: flex;
     flex-direction: column;
   }
-    
+
   ion-textarea {
-    height: 9vh;
+    min-height: 9vh;
     background: color($colors, light, base);
 
     textarea {

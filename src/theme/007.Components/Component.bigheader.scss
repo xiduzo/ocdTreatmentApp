@@ -1,6 +1,19 @@
 .c-big-header {
   background: color($colors, contrast, base);
   min-height: 30vh;
-  align-items: center;
   justify-content: space-between;
+  text-align: center;
+
+  .title {
+    padding-top: 16px;
+  }
+
+  h1 {
+    margin: 0 16px;
+  }
+
+  button {
+    float: right;
+    font-size: 1em;
+  }
 }

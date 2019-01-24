@@ -1,4 +1,4 @@
-$o-badge-size: 75px;
+$o-badge-size: 70px;
 
 .o-badge {
   display: flex;
@@ -10,22 +10,24 @@ $o-badge-size: 75px;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    height: $o-badge-size;
+
     round-progress {
       position: absolute;
     }
+
     img {
       width: $o-badge-size;
       height: $o-badge-size;
     }
   }
+
   .badge__progress__numbers {
-    padding: 0.25em 0 1em 0;
+    padding: 1em 0;
   }
 
   .badge__name {
     text-transform: uppercase;
-    padding: 0 0 0.5em 0;
+    padding: 0 0 1em;
     font-weight: lighter;
     text-align: center;
     font-size: 0.8em;
@@ -42,8 +44,8 @@ $o-badge-size: 75px;
     }
   }
 
-  .badge__progress__numbers,
-  .badge__name {
+  .badge__name,
+  .badge__progress__numbers {
     font-size: 2em;
   }
 }

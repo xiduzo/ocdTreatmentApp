@@ -3,13 +3,14 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin: 32px 0 0 0;
+  margin: 48px 0 0;
+
   .mood__name {
     color: color($colors, light, base);
     font-size: 2.5em;
     font-weight: 500;
     text-transform: uppercase;
-    padding: 0.25em 0 0 0;
+    padding: 0.25em 0 0;
   }
 }
 
@@ -17,9 +18,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   ngx-cs-slider {
     position: relative;
   }
+
   > section {
     position: absolute;
   }
@@ -30,18 +33,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   .face__attributes {
     position: absolute;
     width: 150px;
+
     .face__blush,
     .face__drop,
     .face__eyebrows {
       display: none;
     }
   }
+
   .face__eyes {
     display: flex;
     justify-content: center;
+
     .eye {
       width: 75px;
       height: 75px;
@@ -52,6 +59,7 @@
       align-items: center;
       margin: 4px;
       transition: all 550ms;
+
       &:after {
         transition: all 350ms;
         content: ' ';
@@ -63,6 +71,7 @@
       }
     }
   }
+
   .face__mouth {
     transition: width 550ms, height 150ms, margin 200ms;
     border-radius: 50px;
@@ -79,6 +88,7 @@
           display: flex;
           justify-content: space-between;
           width: 100%;
+
           .blush {
             width: 40px;
             height: 40px;
@@ -88,15 +98,18 @@
           }
         }
       }
+
       .face__eyes {
         .eye {
           border-bottom: 8px solid lighten(color($colors, dark, base), 15);
           background: none;
+
           &:after {
             display: none;
           }
         }
       }
+
       .face__mouth {
         border-bottom: 8px solid lighten(color($colors, dark, base), 15);
         width: 60px;
@@ -105,11 +118,13 @@
       }
     }
   }
+
   .panic {
     .c-mood__face {
       .face__eyes {
         .eye {
           margin: 0;
+
           &:after {
             width: 20px;
             height: 20px;
@@ -117,12 +132,14 @@
           }
         }
       }
+
       .face__mouth {
         margin: 4px 0;
         border: 10px solid color($colors, primary, base);
         height: 125px;
         width: 75px;
         border-radius: 50% 50% 25% 25% / 60% 60% 30% 30%;
+
         &:before {
           content: ' ';
           background: color($colors, dark, base);
@@ -133,6 +150,7 @@
           z-index: -2;
           margin: -10px 0 0 -10px;
         }
+
         &:after {
           content: ' ';
           background: #F07879;
@@ -146,30 +164,45 @@
       }
     }
   }
+
   .worried {
     .c-mood__face {
+      .face__eyes {
+        .eye {
+          &:after {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+
       .face__attributes {
         position: relative;
+
         .face__eyebrows {
           display: flex;
           justify-content: space-between;
           width: 100%;
+
           .eyebrow {
             width: 70px;
             background: lighten(color($colors, dark, base), 15);
             border-radius: 50px;
             height: 12px;
             position: absolute;
+
             &--left {
               margin: 3px 0 0 -10px;
               transform: rotate(-12deg);
             }
+
             &--right {
               margin: 0 0 0 85px;
               transform: rotate(6deg);
             }
           }
         }
+
         .face__drop {
           display: block;
           width: 50px;
@@ -179,6 +212,7 @@
           margin: 40px 0 0 150px;
           border-radius: 0 90px 90px 90px;
           transform: rotate(45deg);
+
           &:after {
             content: ' ';
             display: block;
@@ -192,6 +226,7 @@
           }
         }
       }
+
       .face__mouth {
         width: 100px;
         height: 25px;
@@ -199,8 +234,18 @@
       }
     }
   }
+
   .meh {
     .c-mood__face {
+      .face__eyes {
+        .eye {
+          &:after {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+
       .face__mouth {
         border-bottom: 8px solid lighten(color($colors, dark, base), 15);
         width: 100px;
@@ -210,6 +255,7 @@
       }
     }
   }
+
   .ok {
     .c-mood__face {
       .face__mouth {
