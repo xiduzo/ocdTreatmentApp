@@ -1,36 +1,32 @@
 <ion-content>
-  <div ion-fixed text-center>
-    <h1 padding>
-      <small>&quot;</small>
-      {{ exercise?.step.fear.situation }}
-      <small>&quot;</small>
-    </h1>
-    <div class="monster">
+  <div ion-fixed padding>
+    <section class="monster">
       <div class="monster__illustration"
-      [style.backgroundImage]="'url('+ level?.monster +')'">
-    </div>
+        [style.backgroundImage]="'url('+ level?.monster +')'">
+      </div>
       <div class="monster__rings"></div>
-    </div>
-    <h2>
-      {{ 'WITHOUT' | translate }}
-    </h2>
-    <div>
-      <small>&quot;</small>
-      {{ exercise?.step.fear.without }}
-      <small>&quot;</small>
-    </div>
+    </section>
+    <section class="exercise">
+      <h1 class="situation">
+        {{ exercise?.step.fear.situation }}
+      </h1>
+      <div class="between__text">
+        {{ 'WITHOUT' | translate }}
+      </div>
+      <h2 class="without">
+        {{ exercise?.step.fear.without }}
+      </h2>
+    </section>
   </div>
 </ion-content>
 
 <ion-footer>
     <button no-margin ion-button large color="danger" block icon-left
       (click)="finishExercise(false)">
-      <ion-icon name="close"></ion-icon>
         {{ 'BUTTON_GAVE_IN' | translate }}
     </button>
     <button no-margin ion-button large block icon-left
       (click)="finishExercise(true)">
-      <ion-icon name="checkmark"></ion-icon>
         {{ 'BUTTON_SUCCEED_EXERCISE' | translate}}
     </button>
 </ion-footer>
