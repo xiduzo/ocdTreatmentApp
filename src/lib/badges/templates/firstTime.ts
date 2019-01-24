@@ -1,12 +1,12 @@
-export const STREAK_BADGE = {
-  name: "streakBadge",
-  verbose: "Streak",
+export const FIRST_TIME_BADGE = {
+  name: "firstTimeBadge",
+  verbose: "First time",
   description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
   stages: [
     {
       amountNeeded: 1,
       description: "Hard work pays off! Keep on going.",
-      image: "assets/imgs/badges/exercise_streak_dayly_1.png"
-    },
+      image: "assets/imgs/badges/first_time_exercise.png"
+    }
   ]
 };
