@@ -4,29 +4,39 @@ export const EXERCISE_BADGE = {
   description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
   stages: [
     {
-      amountNeeded: 1,
+      amountNeeded: 50,
       description: "Hard work pays off! Keep on going.",
-      image: "assets/imgs/levels/badge__level-01.png"
+      image: "assets/imgs/badges/exercise_total_50.png"
     },
     {
-      amountNeeded: 7,
+      amountNeeded: 100,
       description: "An exercise a day keeps the doctor away!",
-      image: "assets/imgs/levels/badge__level-02.png"
+      image: "assets/imgs/badges/exercise_total_100.png"
     },
     {
-      amountNeeded: 30,
+      amountNeeded: 150,
       description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
-      image: "assets/imgs/levels/badge__level-03.png"
+      image: "assets/imgs/badges/exercise_total_150.png"
     },
     {
-      amountNeeded: 90,
+      amountNeeded: 200,
       description: "Three month streak, wonderfull",
-      image: "assets/imgs/levels/badge__level-04.png"
+      image: "assets/imgs/badges/exercise_total_200.png"
     },
     {
-      amountNeeded: 365,
+      amountNeeded: 250,
       description: "For the commited ones.",
-      image: "assets/imgs/levels/badge__level-05.png"
+      image: "assets/imgs/badges/exercise_total_250.png"
+    },
+    {
+      amountNeeded: 300,
+      description: "For the commited ones.",
+      image: "assets/imgs/badges/exercise_total_300.png"
+    },
+    {
+      amountNeeded: 350,
+      description: "For the commited ones.",
+      image: "assets/imgs/badges/exercise_total_350.png"
     },
   ]
 };
