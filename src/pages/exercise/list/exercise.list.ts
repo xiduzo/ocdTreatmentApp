@@ -26,6 +26,8 @@ export class ExerciseListPage {
     direction: 'left'
   };
 
+  public fearCompletionPositiveLimit = FEAR_COMPLETION_POSITIVE_LIMIT;
+
   constructor(
     private params: NavParams,
     private modalCtrl: ModalController,
@@ -38,6 +40,7 @@ export class ExerciseListPage {
 
   ionViewWillEnter() {
     this.level = this.params.get('level');
+    console.log(this.level);
   }
 
   close() {
