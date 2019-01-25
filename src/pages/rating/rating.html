@@ -49,6 +49,6 @@
   </ion-item>
   <ion-range [(ngModel)]="rating" min="-100" max="100">
   </ion-range>
-  <button ion-button large block (click)="rate()" *ngIf="currentRatingIndex + 1 != exercises.length">rate</button>
+  <button ion-button large block (click)="calculateRating()" *ngIf="currentRatingIndex + 1 != exercises.length">rate</button>
   <button ion-button large block (click)="save()" *ngIf="currentRatingIndex + 1 === exercises.length">save</button>
 </ion-footer>

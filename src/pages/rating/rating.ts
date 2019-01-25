@@ -52,24 +52,48 @@ export class RatingPage {
     this.getDiff();
   }
 
+  calculateRating() {
+    console.log(this.currentRating);
+    const moodDiff = this.currentRating.beforeMood.mood - this.currentRating.afterMood.mood;
+
+    let points = 0;
+
+    // Mood diff
+    points += moodDiff * 0.25;
+
+    // fearRating
+    points += this.currentRating.step.fearRating * 5;
+
+    // triggers
+    this.currentRating.step.triggers.forEach(trigger => {
+      points += trigger.range * -7.5;
+    });
+
+    // duration
+    points += this.currentRating.erpDiff / this.currentRating.timeDiff * 25;
+
+    console.log(`
+      moodDiff: ${moodDiff},
+      fearRating: ${this.currentRating.step.fearRating},
+      erpDuration: ${this.currentRating.erpDiff},
+      totalDuration: ${this.currentRating.timeDiff},
+      obsessive_thoughts: ${this.currentRating.step.triggers[0].range},
+      compulsive behaviour: ${this.currentRating.step.triggers[1].range},
+      points: ${points}
+      `);
+    this.next();
+  }
+
   rate() {
-    console.log(brain);
     let output = {};
     if (this.rating > 0) {
       output = { positive: Math.abs(this.rating / 100) }
     } else {
       output = { negative: Math.abs(this.rating / 100) }
     }
-    let input = {
-      beforeMood: this.currentRating.beforeMood.mood,
-      afterMood: this.currentRating.afterMood.mood,
-      duration: this.currentRating.timeDiff,
-      erpDuration: this.currentRating.erpDiff,
-      fearRating: this.currentRating.step.fearRating,
-      gaveInToCompulsion: this.currentRating.erp.gaveInToCompulsion
-    }
+
     const tempObj = {
-      input: input,
+      input: this.currentRating,
       output: output
     }
     this.ratings.push(tempObj);
@@ -80,10 +104,10 @@ export class RatingPage {
   save() {
     // console.log(this.ratings);
     // console.log(JSON.stringify(this.ratings));
-    console.log("ttrained model");
+    console.log("trained model");
     const config = {
       binaryThresh: 0.5,
-      hiddenLayers: [20,20,20],
+      hiddenLayers: [20, 20, 20],
       iterations: 200000,
       errorThresh: 0.001,
       log: true,
@@ -97,17 +121,16 @@ export class RatingPage {
     console.log("=======================");
     console.log(JSON.stringify(trained));
 
-    const output = net.run({
-      "beforeMood": 444,
-      "afterMood": 77,
-      "duration": 1126,
-      "erpDuration": 155,
-      "fearRating": 4,
-      "gaveInToCompulsion": false
-    });
+    const outputExercise = this.exercises[Math.random() * this.exercises.length - 1];
+    const output = net.run(outputExercise);
     console.log("output");
     console.log("=======================");
-    console.log(output);
+    console.log(outputExercise, output);
+    const outputExercise2 = this.exercises[Math.random() * this.exercises.length - 1];
+    const output2 = net.run(outputExercise2);
+    console.log("output2");
+    console.log("=======================");
+    console.log(outputExercise2, output2);
     // this.file.writeFile(this.file.dataDirectory, "ratings.json", JSON.stringify(this.ratings), { replace: true }).then(response => {
     //   let email = {
     //     to: 'sanderboer_feyenoord@hotmail.com',
