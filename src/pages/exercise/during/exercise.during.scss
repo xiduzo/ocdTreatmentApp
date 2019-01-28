@@ -1,5 +1,5 @@
-$monster-oversize: 5vw;
 $monster-size: 50vw;
+$monster-oversize: 10vw;
 
 page-exercise-during {
   div[ion-fixed] {
@@ -38,12 +38,13 @@ page-exercise-during {
     margin: 12vh auto;
 
     .monster__illustration {
-      width: $monster-size - $monster-oversize;
-      height: $monster-size - $monster-oversize;
-      margin: 3vh $monster-oversize/2 0;
+      width: $monster-size + $monster-oversize;
+      height: $monster-size + $monster-oversize;
       background-size: contain;
       background-repeat: no-repeat;
       position: absolute;
+      margin-left: -$monster-oversize / 2;
+      margin-top: -$monster-oversize / 2;
     }
 
     .monster__rings {
