@@ -15,8 +15,12 @@ export class BadgeModal {
     public viewCtrl: ViewController,
     public params: NavParams
   ) {
-    this.badge = this.params.get('badge');
+    this.badge = new Badge(this.params.get('badge'));
     console.log(this.badge);
+  }
+
+  addProgress() {
+    this.badge.addProgress(1);
   }
 
   close() {

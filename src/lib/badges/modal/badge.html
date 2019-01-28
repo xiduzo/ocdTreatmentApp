@@ -1,28 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      {{ badge.verbose }}
-    </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="close()">
-        <ion-icon name="close"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-fab top right>
+    <button ion-fab mini color="light" (click)="close()">
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-fab>
   <section padding>
     <div class="o-badge o-badge--big">
       <span class="badge__name">
-        {{ 'LEVEL' | translate }} 1
+        {{ badge.verbose }}
       </span>
-      <div class="badge__progress">
-        <img src="assets/imgs/levels/badge__level-01.png" alt="">
-        <round-progress [current]="badge.points" [max]="badge.currentStage.amountNeeded" [radius]="125" [stroke]="6" [duration]="1"></round-progress>
+      <div class="badge__progress" (click)="addProgress()">
+        <img src="{{badge.currentStage.image}}" alt="">
+        <round-progress [current]="badge.finishedStages ? badge.currentStage.amountNeeded : badge.pointsProgressToNextStage" [max]="badge.currentStage.amountNeeded" [radius]="125" [stroke]="6" [duration]="1"></round-progress>
       </div>
-      <span class="badge__progress__numbers">
-        <strong>{{ badge.points }}</strong> / {{ badge.currentStage.amountNeeded }}
+      <span class="badge__progress__numbers" *ngIf="!badge.finishedStages">
+        <strong>{{badge.pointsProgressToNextStage}}</strong> / {{badge.currentStage.amountNeeded}}
+      </span>
+      <span class="badge__progress__numbers" *ngIf="badge.finishedStages">
+        <strong>{{badge.currentStage.amountNeeded}}</strong> / {{badge.currentStage.amountNeeded}}
       </span>
     </div>
     <article>
