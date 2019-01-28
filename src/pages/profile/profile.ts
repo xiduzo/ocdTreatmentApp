@@ -26,7 +26,7 @@ export class ProfilePage {
 
   public personalGoal: string;
   public editGoal: boolean = false;
-  public view: string = 'achievements';
+  public view: string = 'journey';
   public badges: Array<Badge> = [];
   private badgeTemplates: Array<any> = [
     STREAK_BADGE,

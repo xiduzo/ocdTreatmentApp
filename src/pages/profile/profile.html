@@ -36,16 +36,16 @@
     </ion-row>
   </ion-grid>
 
-  <ion-segment [(ngModel)]="view">
+  <!-- <ion-segment [(ngModel)]="view">
     <ion-segment-button value="achievements">
       Achievements
     </ion-segment-button>
     <ion-segment-button value="journey">
       Journey
     </ion-segment-button>
-  </ion-segment>
+  </ion-segment> -->
 
-  <ion-scroll scrollY="true" [ngSwitch]="view">
+  <!-- <ion-scroll scrollY="true" [ngSwitch]="view">
     <section *ngSwitchCase="'achievements'">
       <ion-list-header>
         {{ 'MY_BADGES' | translate }}
@@ -68,20 +68,50 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <!-- <ion-list-header>
-        {{ 'LEVELS' | translate }}
-      </ion-list-header>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-3 *ngFor="let x of [1,2,3,4,5,6,7,8]" padding>
-            <img src="assets/imgs/levels/badge__level-0{{x}}.png" alt="">
-          </ion-col>
-        </ion-row>
-      </ion-grid> -->
     </section>
-    <section  *ngSwitchCase="'journey'">
-      journey
+    <section  *ngSwitchCase="'journey'" class="c-journey">
+      <ion-list no-lines>
+        <ion-item *ngFor="let x of [1,2,3,4,5,6,7,8,9,11,22,33,44,55,66,77]">
+          <ion-avatar item-start>
+            <div>
+            </div>
+          </ion-avatar>
+          <ion-card>
+            <ion-card-header>
+              testing
+            </ion-card-header>
+            <ion-card-content>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+      </ion-list>
     </section>
+  </ion-scroll> -->
+  <ion-scroll>
+    <ion-list-header>
+      {{ 'MY_BADGES' | translate }}
+    </ion-list-header>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4 *ngFor="let badge of badges" (click)=showBadge(badge)>
+          <div class="o-badge">
+            <span class="badge__name">
+             {{ badge.verbose }}
+            </span>
+            <div class="badge__progress">
+              <img src={{badge.currentStage.image}} alt={{badge.verbose}}>
+              <round-progress [current]="badge.finishedStages ? badge.currentStage.amountNeeded : badge.pointsProgressToNextStage" [max]="badge.currentStage.amountNeeded" [radius]="45" [stroke]="4" [duration]="1"></round-progress>
+            </div>
+            <span class="badge__progress__numbers" *ngIf="!badge.finishedStages">
+              <strong>{{badge.pointsProgressToNextStage}}</strong> / {{badge.currentStage.amountNeeded}}
+            </span>
+            <span class="badge__progress__numbers" *ngIf="badge.finishedStages">
+              <strong>{{badge.currentStage.amountNeeded}}</strong> / {{badge.currentStage.amountNeeded}}
+            </span>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-scroll>
 
 
