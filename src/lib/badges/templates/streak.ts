@@ -6,7 +6,7 @@ export const STREAK_BADGE = {
     {
       amountNeeded: 1,
       description: "Hard work pays off! Keep on going.",
-      image: "assets/imgs/badges/exercise_streak_dayly_1.png"
+      image: "assets/imgs/badges/exercise_streak_dayly_1.svg"
     },
   ]
 };

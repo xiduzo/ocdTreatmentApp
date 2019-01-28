@@ -6,7 +6,7 @@ export const FIRST_TIME_BADGE = {
     {
       amountNeeded: 1,
       description: "Hard work pays off! Keep on going.",
-      image: "assets/imgs/badges/first_time_exercise.png"
+      image: "assets/imgs/badges/first_time_exercise.svg"
     }
   ]
 };

@@ -6,7 +6,7 @@ export const TEST_ONE_BADGE = {
     {
       amountNeeded: 1,
       description: "Hard work pays off! Keep on going.",
-      image: "assets/imgs/badges/panic.png"
+      image: "assets/imgs/badges/panic.svg"
     },
   ]
 };
