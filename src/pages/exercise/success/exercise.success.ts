@@ -3,6 +3,8 @@ import { NavParams, ViewController } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { Storage } from '@ionic/storage';
 
+import "confetti-js";
+
 import { Exercise } from '../../../lib/Exercise';
 
 @Component({
@@ -34,6 +36,15 @@ export class ExerciseSuccessModal {
   }
 
   ionViewDidLoad() {
+    const confettiSettings = {
+      target: 'confetti',
+      clock: 10,
+      max: 50,
+    };
+    const confetti = new ConfettiGenerator(confettiSettings);
+    if(Math.random() > 0.7) {
+      confetti.render();
+    }
   }
 
   calculateRating() {
