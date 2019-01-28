@@ -55,17 +55,17 @@
             Notes
           </strong>
           <p *ngIf="exercise.beforeMood.explanation">
-            <em>Before</em>
-            {{ exercise.beforeMood.explanation }}
+            Voor:
+            <em>{{ exercise.beforeMood.explanation }}</em>
           </p>
           <p *ngIf="exercise.afterMood.explanation">
-            <em>After</em>
-            {{ exercise.afterMood.explanation }}
+            Na:
+            <em>{{ exercise.afterMood.explanation }}</em>
           </p>
           <p *ngFor="let trigger of exercise.step.triggers">
             <span *ngIf="trigger.explanation">
-              <em>{{ trigger.verbose | translate }}</em>
-              {{ trigger.explanation }}
+              {{ trigger.verbose | translate }}:
+              <em>{{ trigger.explanation }}</em>
             </span>
           </p>
         </ion-card-content>
