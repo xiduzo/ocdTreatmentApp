@@ -17,6 +17,7 @@ import {
 
 import { ExerciseDuringModal } from '../during/exercise.during';
 import { ExerciseTriggerModal } from '../trigger/exercise.trigger';
+import { ExerciseSuccessModal } from '../success/exercise.success';
 
 @Component({
   selector: 'page-exercise-mood',
@@ -111,17 +112,22 @@ export class ExerciseMoodPage {
     this.exercise.afterMood = this.mood;
 
     this.storage.get('exercises').then((exercises) => {
+      const hasATriggerEnabled = this.exercise.step.triggers.find(trigger => {return trigger.enabled});
+      const modal = this.modalCtrl.create(hasATriggerEnabled ? ExerciseTriggerModal : ExerciseSuccessModal, {
+        level: this.level,
+        exercise: this.exercise
+      });
+
+      if(!hasATriggerEnabled) {
+        this.exercise.end = new Date();
+      }
+
       // The last exercise is allways the exercise we are working with
       // So lets overwrite the last entry
       exercises[exercises.length-1] = this.exercise;
       this.storage.set('exercises', exercises);
 
-      const triggerModal = this.modalCtrl.create(ExerciseTriggerModal, {
-        level: this.level,
-        exercise: this.exercise
-      });
-
-      triggerModal.present();
+      modal.present();
       this.viewCtrl.dismiss();
     });
   }
