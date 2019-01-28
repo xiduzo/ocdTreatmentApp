@@ -10,6 +10,8 @@ import { ToastController } from 'ionic-angular';
 
 import { FearladderModal } from '../fearladder/fearladder';
 
+import { FEAR_COMPLETION_POSITIVE_LIMIT } from '../../lib/constants';
+
 @Component({
   selector: 'page-exercise',
   templateUrl: 'exercise.html'
@@ -64,7 +66,7 @@ export class ExercisePage {
 
   setLevelsMonsterAndCompletion() {
     this.levels.forEach(level => {
-      level.completion = level.steps.filter(steps => { return steps.fear.completion >= 100; }).length * 100 / level.steps.length;
+      level.completion = level.steps.filter(steps => { return steps.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT; }).length * 100 / level.steps.length;
       level.done = level.completion == 100;
       level.monster = `assets/imgs/monsters/monster-0${level.level}.svg`;
       level.monster_sized = `assets/imgs/monsters/monster-0${level.level}_sized.svg`;
