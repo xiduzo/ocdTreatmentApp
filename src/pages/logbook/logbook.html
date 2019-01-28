@@ -1,22 +1,13 @@
-<!-- <ion-header>
-  <ion-navbar color="secondary" text-center padding>
-    <img src="assets/imgs/headers/logbook.png" alt="logbook illustration" class="o-illustration header__illustation">
-    <ion-title>
-      {{ 'MY_LOGBOOK_ENTRIES' | translate }}
-    </ion-title>
-  </ion-navbar>
-</ion-header> -->
-
 <ion-header>
   <ion-navbar color="secondary">
     <ion-title>
       {{ 'MY_LOGBOOK_ENTRIES' | translate }}
     </ion-title>
-    <ion-buttons end>
+    <!-- <ion-buttons end>
       <button ion-button icon-only color="light" (click)=filterLogbook()>
         <ion-icon name="funnel"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-navbar>
 </ion-header>
 
@@ -29,63 +20,56 @@
     <p>
       {{ 'WARNING_NO_LOGGED_EXERCISES' | translate }}
     </p>
-    <!-- <button color="secondary" ion-button large block>
-      Add fears and compulsions
-    </button> -->
   </section>
-  <ion-list>
-    <ion-card *ngFor="let item of exercises">
-    <!-- <ion-card *ngFor="let item of exercises?.reverse()"> -->
-      <ion-item>
-        <ion-avatar item-start>
-          <div class="o-moodindicator">
-            <span class="before"
-            [class.before--content]="item.beforeMood.mood === 1"
-            [class.before--ok]="item.beforeMood.mood === 2"
-            [class.before--meh]="item.beforeMood.mood === 3"
-            [class.before--worried]="item.beforeMood.mood === 4"
-            [class.before--panic]="item.beforeMood.mood === 5"
-            ></span>
+  <section no-lines class="c-logbook">
+    <div *ngFor="let exercise of exercises" class="c-logbook__item">
+      <section class="c-logbook__timeline">
+        <div class="o-moodindicator">
+          <span class="before"
+          [class.before--content]="exercise.beforeMood.mood === 1"
+          [class.before--ok]="exercise.beforeMood.mood === 2"
+          [class.before--meh]="exercise.beforeMood.mood === 3"
+          [class.before--worried]="exercise.beforeMood.mood === 4"
+          [class.before--panic]="exercise.beforeMood.mood === 5"
+          ></span>
 
-            <span class="after"
-            [class.after--content]="item.afterMood.mood === 1"
-            [class.after--ok]="item.afterMood.mood === 2"
-            [class.after--meh]="item.afterMood.mood === 3"
-            [class.after--worried]="item.afterMood.mood === 4"
-            [class.after--panic]="item.afterMood.mood === 5"
-            ></span>
-          </div>
-        </ion-avatar>
-        <h2>
-          {{ item.step.fear.situation }}
-        </h2>
-        <p>
-          {{ item.start | date : 'medium'}}
-        </p>
-      </ion-item>
-        <!-- Task name over here -->
-      <ion-card-content>
-        <ion-card-title>
-          {{'NOTES' | translate }}:
-        </ion-card-title>
-        <p *ngIf="item.beforeMood?.explanation">
-          <i>
-            {{ 'BEFORE' | translate }}: {{ item.beforeMood.explanation }}
-          </i>
-        </p>
-        <p *ngIf="item.afterMood?.explanation">
-          <i>
-            {{ 'AFTER' | translate }}: {{ item.afterMood.explanation }}
-          </i>
-        </p>
-        <div *ngFor="let trigger of item.step.triggers">
-          <p *ngIf="trigger?.explanation">
-            <i>
-              {{trigger.verbose}}: {{ trigger.explanation }}
-            </i>
-          </p>
+          <span class="after"
+          [class.after--content]="exercise.afterMood.mood === 1"
+          [class.after--ok]="exercise.afterMood.mood === 2"
+          [class.after--meh]="exercise.afterMood.mood === 3"
+          [class.after--worried]="exercise.afterMood.mood === 4"
+          [class.after--panic]="exercise.afterMood.mood === 5"
+          ></span>
         </div>
-      </ion-card-content>
-    </ion-card>
-  </ion-list>
+        <div class="timeline__extender"></div>
+      </section>
+      <ion-card>
+        <div class="start">
+          {{ exercise.start | date : 'dd MMM' }}
+        </div>
+        <ion-card-header>
+          {{ exercise.step.fear.situation }}
+        </ion-card-header>
+        <ion-card-content>
+          <strong>
+            Notes
+          </strong>
+          <p *ngIf="exercise.beforeMood.explanation">
+            <em>Before</em>
+            {{ exercise.beforeMood.explanation }}
+          </p>
+          <p *ngIf="exercise.afterMood.explanation">
+            <em>After</em>
+            {{ exercise.afterMood.explanation }}
+          </p>
+          <p *ngFor="let trigger of exercise.step.triggers">
+            <span *ngIf="trigger.explanation">
+              <em>{{ trigger.verbose | translate }}</em>
+              {{ trigger.explanation }}
+            </span>
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </section>
 </ion-content>

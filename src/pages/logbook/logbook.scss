@@ -1,11 +1,50 @@
 logbook-page {
   ion-content {
-    ion-list {
-      ion-card {
-        ion-card-content.card-content {
-          ion-card-title {
-            font-size: 1em;
-            font-weight: bold;
+    .c-logbook {
+      padding: 16px 0;
+
+      .c-logbook__item {
+        display: flex;
+        align-items: flex-start;
+        position: relative;
+
+        &:last-of-type {
+          .timeline__extender {
+            opacity: 0;
+          }
+        }
+
+        .c-logbook__timeline {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin: 0 0 0 8px;
+          position: absolute;
+          height: 100%;
+
+          .o-moodindicator {}
+
+          .timeline__extender {
+            width: 2px;
+            height: 100%;
+            background: color($colors, light, base);
+            margin: 12px 0 8px -2px;
+          }
+        }
+
+        ion-card {
+          margin-left: 36px;
+
+          .start {
+            float: right;
+            padding: 6px 6px 0 0;
+            font-size: 11px;
+            color: lighten(color($colors, dark, base), 50);
+            font-weight: 100;
+          }
+
+          ion-card-header {
+            padding: 16px 7px 16px 16px;
           }
         }
       }
