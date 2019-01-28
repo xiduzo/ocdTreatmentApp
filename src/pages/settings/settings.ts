@@ -79,7 +79,7 @@ export class SettingsPage {
 
   resetMockData() {
     let fearLadder = [];
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 50; i++) {
       fearLadder.push(new Step({
         fearRating: Math.ceil(Math.random() * 8),
         triggers: [
@@ -95,7 +95,7 @@ export class SettingsPage {
           })
         ],
         fear: new Fear({
-          completion: Math.random() > 0.3 ? 100 : 0,
+          completion: Math.random() > 0.2 ? 100 : 0,
           situation: 'Lorem ipsum dolor sit amet',
           without: 'consectetur adipiscing'
         })
