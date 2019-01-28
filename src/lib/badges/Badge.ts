@@ -15,6 +15,7 @@ export class Badge {
   private currentStage: Stage = new Stage();
   private totalPointsGained: number = 0;
   private pointsProgressToNextStage: number = 0;
+  private finishedStages: boolean = false;
 
   constructor({
     name = '',
@@ -44,22 +45,26 @@ export class Badge {
   }
 
   setCurrentStage(): Stage {
-    // always return a stage
-    if (this.totalPointsGained === 0) return this.stages[0];
+    let pickedStage = null;
+    let points = this.totalPointsGained;
 
-    let tempPoints: number = this.totalPointsGained;
-    let returnedStage: Stage;
+    this.stages.forEach(stage => {
+      if(pickedStage) return;
 
-    return this.stages.map(stage => {
-      if (tempPoints >= stage.amountNeeded) tempPoints -= amountNeeded;
-      if (tempPoints === 0) return stage;
-      // TODO: set the pointsProgressToNextStage
-      if (tempPoints < stage.amountNeeded) return stage;
-      // TODO: return stage if its the last one
+      if(stage.amountNeeded > points) {
+        pickedStage = stage;
+        this.pointsProgressToNextStage = points;
+      } else {
+        points -= stage.amountNeeded;
+      }
     });
-    // const stage = this.stages.filter(stage => this.points < stage.amountNeeded)[0];
-    // if (stage) return stage;
-    // else return this.stages[this.stages.length - 1];
+
+    if(!pickedStage) {
+      this.finishedStages = true;
+      pickedStage = this.stages[this.stages.length - 1];
+    }
+
+    return pickedStage;
   }
 
   async getProgress(): Promise<any> {
@@ -78,6 +83,17 @@ export class Badge {
     return new Promise((resolve, reject) => {
       if (isNaN(this.totalPointsGained)) reject("Points is not a number");
       else resolve();
+    });
+  }
+
+  addProgress(amount: number) {
+    this.storage.get(this.name).then(response => {
+      response = parseInt(response);
+
+      this.totalPointsGained += amount;
+      this.storage.set(this.name, this.totalPointsGained);
+
+      this.setCurrentStage();
     });
   }
 }
