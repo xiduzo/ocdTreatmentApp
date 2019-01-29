@@ -103,6 +103,30 @@ export class Exercise {
       )
     ).asSeconds();
   }
+
+  getPointsForExercise(): number {
+    let points: number = 0;
+
+    // Mood diff
+    points += (this.beforeMood.mood - this.afterMood.mood ) * 0.25;
+
+    // Fear rating
+    points += this.step.fearRating * 5;
+
+    // Gave in to compulsion
+    points += this.erp.gaveInToCompulsion ? 25 : -25;
+
+    // Triggers
+    this.step.triggers.forEach(trigger => {
+      points += trigger.range * -7.5;
+    });
+
+    // Duration
+    points += this.getErpTimeDifference() / this.getTotalTimeDifference() * 25;
+
+    return Math.round(points);
+  }
+
 }
 
 export class Mood {

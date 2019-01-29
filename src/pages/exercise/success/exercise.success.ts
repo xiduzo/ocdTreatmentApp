@@ -47,7 +47,7 @@ export class ExerciseSuccessModal {
     }
   }
 
-  calculateRating() {
+  updateStepCompletion() {
     let points = 0;
 
     // Mood diff
@@ -70,8 +70,11 @@ export class ExerciseSuccessModal {
   updateStepCompletion(exerciseStep, points) {
     this.storage.get('fearLadder').then(fearLadder => {
       try {
-        // TODO: update step in list view (maybe with an broadcast)
-        fearLadder.find(step => step.id === exerciseStep.id).fear.completion += points;
+        const step = fearLadder.find(step => step.id === this.exercise.step.id);
+        if(step) {
+          this.exercise.step.fear.completion += this.exercise.getPointsForExercise();
+          step.fear.completion = this.exercise.step.fear.completion;
+        }
       } catch (err) {
         console.log(`err: ${err}`);
       } finally {
