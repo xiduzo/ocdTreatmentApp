@@ -35,10 +35,10 @@ export class ExerciseSuccessModal {
   ionViewWillEnter() {
     this.level = this.params.get('level');
     this.exercise = this.params.get('exercise');
-    this.calculateRating();
+    this.updateStepCompletion();
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     const confettiSettings = {
       target: 'confetti',
       clock: 10,
@@ -51,26 +51,6 @@ export class ExerciseSuccessModal {
   }
 
   updateStepCompletion() {
-    let points = 0;
-
-    // Mood diff
-    points += (this.exercise.beforeMood.mood - this.exercise.afterMood.mood) * 0.25;
-
-    // fearRating
-    points += this.exercise.step.fearRating * 5;
-
-    // triggers
-    this.exercise.step.triggers.forEach(trigger => {
-      points += trigger.range * -7.5;
-    });
-
-    // duration
-    points += this.exercise.getErpTimeDifference() / this.exercise.getTotalTimeDifference() * 25;
-
-    this.updateStepCompletion(this.exercise.step, points)
-  }
-
-  updateStepCompletion(exerciseStep, points) {
     this.storage.get('fearLadder').then(fearLadder => {
       try {
         const step = fearLadder.find(step => step.id === this.exercise.step.id);
