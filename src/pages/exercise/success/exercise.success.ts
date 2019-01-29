@@ -7,6 +7,8 @@ import "confetti-js";
 
 import { Exercise } from '../../../lib/Exercise';
 
+import { EventsService } from 'angular-event-service';
+
 @Component({
   selector: 'page-exercise-success',
   templateUrl: 'exercise.success.html'
@@ -25,6 +27,7 @@ export class ExerciseSuccessModal {
     public viewCtrl: ViewController,
     private nativePageTransitions: NativePageTransitions,
     private storage: Storage,
+    private eventService: EventsService,
   ) {
     this.nativePageTransitions.slide(this.options);
   }
@@ -78,6 +81,7 @@ export class ExerciseSuccessModal {
       } catch (err) {
         console.log(`err: ${err}`);
       } finally {
+        this.eventService.broadcast('completed_exercise', this.exercise);
         this.storage.set('fearLadder', fearLadder);
       }
     });

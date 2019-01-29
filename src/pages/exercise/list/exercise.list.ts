@@ -13,6 +13,8 @@ import { Exercise } from '../../../lib/Exercise';
 
 import { FEAR_COMPLETION_POSITIVE_LIMIT } from '../../../lib/constants';
 
+import { EventsService } from 'angular-event-service';
+
 @Component({
   selector: 'exercise-list-page',
   templateUrl: 'exercise.list.html'
@@ -22,7 +24,7 @@ export class ExerciseListPage {
 
   private level: any;
 
-  private options: NativeTransitionOptions = {
+  private slideOptions: NativeTransitionOptions = {
     direction: 'left'
   };
 
@@ -33,14 +35,33 @@ export class ExerciseListPage {
     private modalCtrl: ModalController,
     private appCtrl: App,
     private storage: Storage,
-    private nativePageTransitions: NativePageTransitions
+    private nativePageTransitions: NativePageTransitions,
+    private eventService: EventsService,
   ) {
-    this.nativePageTransitions.slide(this.options);
+    this.nativePageTransitions.slide(this.slideOptions);
   }
 
   ionViewWillEnter() {
     this.level = this.params.get('level');
-    console.log(this.level);
+    this.eventService.on('completed_exercise', this.exerciseCompleted.bind(this));
+  }
+
+  ionViewWillLeave() {
+    this.eventService.destroyListener('completed_exercise', this.exerciseCompleted);
+  }
+
+  exerciseCompleted(exercise: Exercise) {
+    try {
+      this.level.steps.find(step => step.id === exercise.step.id ).fear.completion = exercise.step.fear.completion;
+    } catch(err) {
+      console.log(`err ${err}`);
+    } finally {
+      this.recalculateLevelCompletion();
+    }
+  }
+
+  recalculateLevelCompletion() {
+    this.level.completion = this.level.steps.filter(steps => steps.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT).length * 100 / this.level.steps.length;
   }
 
   close() {
