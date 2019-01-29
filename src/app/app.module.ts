@@ -93,6 +93,11 @@ import * as highcharts from 'highcharts/highcharts';
 // import Highmore from 'highcharts/highcharts-more';
 
 /*------------------------------
+  Global events
+------------------------------*/
+import { EventsServiceModule } from 'angular-event-service';
+
+/*------------------------------
   Components
 ------------------------------*/
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
@@ -153,6 +158,7 @@ export function createTranslateLoader(http: Http) {
     HttpClientModule,
     RoundProgressModule,
     RestangularModule.forRoot([AuthService], RestangularConfigFactory),
+    EventsServiceModule.forRoot(),
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),
