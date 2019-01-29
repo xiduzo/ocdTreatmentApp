@@ -33,6 +33,7 @@
     "@ionic-native/splash-screen": "4.17.0",
     "@ionic-native/status-bar": "4.17.0",
     "@ionic/storage": "^2.2.0",
+    "angular-event-service": "^1.2.0",
     "angular-svg-round-progressbar": "^2.0.0",
     "angular2-highcharts": "^0.5.5",
     "angular2-uuid": "^1.1.1",
