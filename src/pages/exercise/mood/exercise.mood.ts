@@ -34,7 +34,7 @@ import { ExerciseSuccessModal } from '../success/exercise.success';
   ]
 })
 export class ExerciseMoodPage {
-  public mood:Mood = new Mood();
+  public mood: Mood = new Mood({ mood: 0 });
 
   public moodClass:string = 'content';
   public moodNumber:number = 1;
