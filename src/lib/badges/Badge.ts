@@ -1,5 +1,6 @@
-import { Storage } from '@ionic/storage';
 import { Injectable } from '@angular/core';
+
+import { Storage } from '@ionic/storage';
 import { ModalController } from 'ionic-angular';
 
 import { BadgeModal } from './modal/badge';
