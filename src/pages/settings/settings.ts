@@ -79,7 +79,7 @@ export class SettingsPage {
 
   resetMockData() {
     let fearLadder = [];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 10; i++) {
       fearLadder.push(new Step({
         fearRating: Math.ceil(Math.random() * 8),
         triggers: [

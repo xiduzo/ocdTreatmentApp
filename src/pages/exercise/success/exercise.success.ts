@@ -45,7 +45,7 @@ export class ExerciseSuccessModal {
       max: 50,
     };
     const confetti = new ConfettiGenerator(confettiSettings);
-    if(Math.random() > 0.7) {
+    if (Math.random() > 0.7) {
       confetti.render();
     }
   }
@@ -54,7 +54,7 @@ export class ExerciseSuccessModal {
     this.storage.get('fearLadder').then(fearLadder => {
       try {
         const step = fearLadder.find(step => step.id === this.exercise.step.id);
-        if(step) {
+        if (step) {
           this.exercise.step.fear.completion += this.exercise.getPointsForExercise();
           step.fear.completion = this.exercise.step.fear.completion;
         }

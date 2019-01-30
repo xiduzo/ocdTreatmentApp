@@ -108,7 +108,7 @@ export class Exercise {
     let points: number = 0;
 
     // Mood diff
-    points += (this.beforeMood.mood - this.afterMood.mood ) * 0.25;
+    points += (this.beforeMood.mood - this.afterMood.mood) * 0.25;
 
     // Fear rating
     points += this.step.fearRating * 5;

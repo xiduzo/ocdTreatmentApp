@@ -24,11 +24,11 @@ import { ExerciseSuccessModal } from '../success/exercise.success';
   templateUrl: 'exercise.mood.html',
   animations: [
     trigger('trackMood', [
-      state('content', style({background: 'rgb(252, 201, 138)'})),
-      state('ok', style({background: 'rgb(145, 207, 204)'})),
-      state('meh', style({background: 'rgb(214, 217, 204)'})),
-      state('panic', style({background: 'rgb(240,120,121)'})),
-      state('worried', style({background: 'rgb(82, 156, 204)'})),
+      state('content', style({ background: 'rgb(252, 201, 138)' })),
+      state('ok', style({ background: 'rgb(145, 207, 204)' })),
+      state('meh', style({ background: 'rgb(214, 217, 204)' })),
+      state('panic', style({ background: 'rgb(240,120,121)' })),
+      state('worried', style({ background: 'rgb(82, 156, 204)' })),
       transition('* => *', animate('350ms ease-in'))
     ])
   ]
@@ -36,14 +36,14 @@ import { ExerciseSuccessModal } from '../success/exercise.success';
 export class ExerciseMoodPage {
   public mood: Mood = new Mood({ mood: 0 });
 
-  public moodClass:string = 'content';
-  public moodNumber:number = 1;
+  public moodClass: string = 'content';
+  public moodNumber: number = 1;
 
-  private level:any;
-  private exercise:Exercise;
-  private beforeMeasure:boolean = false;
+  private level: any;
+  private exercise: Exercise;
+  private beforeMeasure: boolean = false;
 
-  private options:NativeTransitionOptions = {
+  private options: NativeTransitionOptions = {
     direction: 'left'
   };
 
@@ -68,7 +68,7 @@ export class ExerciseMoodPage {
     // But for the user we use a 1-5 scale
     this.moodNumber = Math.round(map(this.mood.mood, 0, 500, 1, 5));
 
-    switch(this.moodNumber) {
+    switch (this.moodNumber) {
       case 1:
         this.moodClass = 'content';
         break;
@@ -93,7 +93,7 @@ export class ExerciseMoodPage {
     this.storage.get('exercises').then((exercises) => {
       // The last exercise is allways the exercise we are working with
       // So lets overwrite the last entry
-      exercises[exercises.length-1] = this.exercise;
+      exercises[exercises.length - 1] = this.exercise;
 
       this.storage.set('exercises', exercises);
 
@@ -112,19 +112,19 @@ export class ExerciseMoodPage {
     this.exercise.afterMood = this.mood;
 
     this.storage.get('exercises').then((exercises) => {
-      const hasATriggerEnabled = this.exercise.step.triggers.find(trigger => {return trigger.enabled});
+      const hasATriggerEnabled = this.exercise.step.triggers.find(trigger => { return trigger.enabled });
       const modal = this.modalCtrl.create(hasATriggerEnabled ? ExerciseTriggerModal : ExerciseSuccessModal, {
         level: this.level,
         exercise: this.exercise
       });
 
-      if(!hasATriggerEnabled) {
+      if (!hasATriggerEnabled) {
         this.exercise.end = new Date();
       }
 
       // The last exercise is allways the exercise we are working with
       // So lets overwrite the last entry
-      exercises[exercises.length-1] = this.exercise;
+      exercises[exercises.length - 1] = this.exercise;
       this.storage.set('exercises', exercises);
 
       modal.present();
