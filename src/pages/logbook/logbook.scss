@@ -35,7 +35,7 @@ logbook-page {
         ion-card {
           margin-left: 36px;
 
-          .start {
+          .card__date {
             float: right;
             padding: 6px 6px 0 0;
             font-size: 11px;
@@ -45,6 +45,26 @@ logbook-page {
 
           ion-card-header {
             padding: 16px 7px 16px 16px;
+          }
+
+          ion-card-content {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 650ms ease-out, opacity 400ms ease-out 200ms;
+
+            &.active {
+              opacity: 1;
+              max-height: 500px;
+            }
+
+            &.inactive {
+              transition: max-height 250ms ease-out, opacity 100ms ease-in;
+            }
+          }
+
+          .card__footer {
+            display: flex;
+            justify-content: flex-end;
           }
         }
       }

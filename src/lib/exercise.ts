@@ -134,7 +134,7 @@ export class Mood {
   public explanation: string;
 
   constructor({
-    mood = 0,
+    mood = null,
     explanation = ''
   } = {}) {
     this.mood = mood;

@@ -3,13 +3,15 @@ import { Storage } from '@ionic/storage'
 
 import { map } from '../../lib/helpers';
 
+import { Exercise } from '../../lib/Exercise';
+
 @Component({
   selector: 'logbook-page',
   templateUrl: 'logbook.html'
 })
 export class LogbookPage {
 
-  public exercises:Array<any> = [];
+  public exercises: Array<any> = [];
 
   constructor(
     private storage: Storage
@@ -22,23 +24,19 @@ export class LogbookPage {
 
   getExercises() {
     this.storage.get('exercises').then((exercises) => {
-      if(!exercises) return;
+      if (!exercises) return;
       // Only show the exercises where a comment has been made
       this.exercises = exercises
-      .sort((a,b) => { return b.start - a.start })
-      .map(exercise => {
-        console.log(exercise);
-        // Map the moods to 1-5 scale
-        if(exercise.beforeMood) exercise.beforeMood.mood = Math.round(map(exercise.beforeMood.mood, 0, 500, 1, 5));
-        if(exercise.afterMood) exercise.afterMood.mood = Math.round(map(exercise.afterMood.mood, 0, 500, 1, 5));
+        .sort((a, b) => { return b.start - a.start })
+        .map(exercise => {
+          const exercise = new Exercise(exercise);
+          // Map the moods to 1-5 scale, if not null
+          // https://stackoverflow.com/a/20629324
+          if (!isNaN(parseInt(exercise.beforeMood.mood))) exercise.beforeMood.mood = Math.round(map(exercise.beforeMood.mood, 0, 500, 1, 5));
+          if (!isNaN(parseInt(exercise.afterMood.mood))) exercise.afterMood.mood = Math.round(map(exercise.afterMood.mood, 0, 500, 1, 5));
 
-        return exercise;
-        // If any explanation has been provided, return the exercise
-        // if(exercise.beforeMood && exercise.beforeMood.explanation) return exercise;
-        // if(exercise.afterMood && exercise.afterMood.explanation) return exercise;
-        // if(exercise.step.triggers.find(trigger => { return trigger.explanation })) return exercise;
-      });
-      console.log(this.exercises);
+          return exercise;
+        });
     });
   }
 

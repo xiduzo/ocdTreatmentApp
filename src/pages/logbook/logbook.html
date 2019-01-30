@@ -44,16 +44,13 @@
         <div class="timeline__extender"></div>
       </section>
       <ion-card>
-        <div class="start">
+        <div class="card__date">
           {{ exercise.start | date : 'dd MMM' }}
         </div>
         <ion-card-header>
           {{ exercise.step.fear.situation }}
         </ion-card-header>
-        <ion-card-content>
-          <strong>
-            Notes
-          </strong>
+        <ion-card-content [class.active]="exercise.accordionOpen" [class.inactive]="!exercise.accordionOpen">
           <p *ngIf="exercise.beforeMood.explanation">
             Voor:
             <em>{{ exercise.beforeMood.explanation }}</em>
@@ -69,6 +66,12 @@
             </span>
           </p>
         </ion-card-content>
+        <ion-row class="card__footer">
+          <button ion-button icon-only clear color="dark" (click)="exercise.accordionOpen=!exercise.accordionOpen">
+            <ion-icon name="arrow-dropdown" *ngIf="!exercise.accordionOpen"></ion-icon>
+            <ion-icon name="arrow-dropup" *ngIf="exercise.accordionOpen"></ion-icon>
+          </button>
+        </ion-row>
       </ion-card>
     </div>
   </section>
