@@ -52,11 +52,13 @@ export class ExerciseListPage {
 
   exerciseCompleted(exercise: Exercise) {
     try {
-      this.level.steps.find(step => step.id === exercise.step.id ).fear.completion = exercise.step.fear.completion;
-    } catch(err) {
+      this.level.steps.find(step => step.id === exercise.step.id).fear.completion = exercise.step.fear.completion;
+    } catch (err) {
       console.log(`err ${err}`);
     } finally {
       this.recalculateLevelCompletion();
+      console.log(true);
+      this.eventService.broadcast('new_level_completion', this.level);
     }
   }
 

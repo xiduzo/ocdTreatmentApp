@@ -12,15 +12,19 @@ import { FearladderModal } from '../fearladder/fearladder';
 
 import { FEAR_COMPLETION_POSITIVE_LIMIT } from '../../lib/constants';
 
+import { EventsService } from 'angular-event-service';
+
+import { Level } from '../../lib/Level';
+import { Step } from '../../lib/Exercise';
+
 @Component({
   selector: 'page-exercise',
   templateUrl: 'exercise.html'
 })
-
 export class ExercisePage {
 
   private profile: string;
-  public levels: Array<any>;
+  public levels: Array<Level>;
   public test: string;
 
   constructor(
@@ -28,24 +32,32 @@ export class ExercisePage {
     private userService: UserService,
     private storage: Storage,
     public toastCtrl: ToastController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private eventService: EventsService
   ) {
   }
 
   ionViewDidLoad() {
     this.profile = this.userService.getUser();
+    this.setLevels();
   }
 
   ionViewWillEnter() {
-    this.resetLevels();
+    this.eventService.on('new_level_completion', this.newLevelCompletion.bind(this));
   }
 
-  resetLevels() {
-    this.levels = [];
-    // Build the levels array
-    for (let i = 1; i <= 8; i++) {
-      this.levels.push({ level: i, steps: [], completion: 0 });
-    }
+  ionViewWillLeave() {
+    this.eventService.destroyListener('new_level_completion', this.newLevelCompletion);
+  }
+
+  newLevelCompletion(level: Level) {
+    console.log(true);
+    this.levels.find(currLevel => currLevel.id === level.id).completion = level.completion;
+    this.getExersises();
+  }
+
+  setLevels() {
+    this.levels = [1, 2, 3, 4, 5, 6, 7, 8].map(level => new Level({ number: level }));
     this.getExersises();
   }
 
@@ -53,8 +65,10 @@ export class ExercisePage {
     this.storage.get('fearLadder').then(fearLadder => {
       if (!fearLadder) return;
 
+      // TODO: fix this ugly code, it could be done faster I think
+      this.levels.map(level => level.steps = []);
       fearLadder.forEach(step => {
-        this.levels.find(level => level.level === step.fearRating).steps.push(step);
+        this.levels.find(level => level.number === step.fearRating).steps.push(new Step(step));
       });
 
       // We don't need to see the levels which has no steps
@@ -68,8 +82,8 @@ export class ExercisePage {
     this.levels.forEach(level => {
       level.completion = level.steps.filter(steps => { return steps.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT; }).length * 100 / level.steps.length;
       level.done = level.completion == 100;
-      level.monster = `assets/imgs/monsters/monster-0${level.level}.svg`;
-      level.monster_sized = `assets/imgs/monsters/monster-0${level.level}_sized.svg`;
+      level.monster = `assets/imgs/monsters/monster-0${level.number}.svg`;
+      level.monster_sized = `assets/imgs/monsters/monster-0${level.number}_sized.svg`;
     });
 
   }
