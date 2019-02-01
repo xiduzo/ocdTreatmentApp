@@ -31,7 +31,7 @@ export class Trigger {
 
   constructor({
     verbose = '',
-    range = 0,
+    range = null,
     explanation = '',
     enabled = false
   } = {}) {
