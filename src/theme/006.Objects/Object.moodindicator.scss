@@ -10,24 +10,24 @@ $o-moodindicator-size: 20px;
     width: $o-moodindicator-size / 2;
     height: $o-moodindicator-size;
 
-    &--content {
+    &.mood1 {
       background: color($moods, content, base);
     }
 
-    &--panic {
-      background: color($moods, panic, base);
+    &.mood2 {
+      background: color($moods, ok, base);
     }
 
-    &--worried {
-      background: color($moods, worried, base);
-    }
-
-    &--meh {
+    &.mood3 {
       background: color($moods, meh, base);
     }
 
-    &--ok {
-      background: color($moods, ok, base);
+    &.mood4 {
+      background: color($moods, worried, base);
+    }
+
+    &.mood5 {
+      background: color($moods, panic, base);
     }
   }
 
@@ -39,5 +39,31 @@ $o-moodindicator-size: 20px;
   .after {
     border-bottom-right-radius: $o-moodindicator-size * 2;
     border-top-right-radius: $o-moodindicator-size * 2;
+  }
+}
+
+.o-moodindicator__small {
+  width: $o-moodindicator-size / 2;
+  height: $o-moodindicator-size / 2;
+  border-radius: 50%;
+
+  &.mood1 {
+    background: color($moods, content, base);
+  }
+
+  &.mood2 {
+    background: color($moods, ok, base);
+  }
+
+  &.mood3 {
+    background: color($moods, meh, base);
+  }
+
+  &.mood4 {
+    background: color($moods, worried, base);
+  }
+
+  &.mood5 {
+    background: color($moods, panic, base);
   }
 }
