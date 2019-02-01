@@ -81,7 +81,8 @@ export class ExercisePage {
   setLevelsMonsterAndCompletion() {
     this.levels.forEach(level => {
       level.completion = level.steps.filter(steps => { return steps.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT; }).length * 100 / level.steps.length;
-      level.done = level.completion == 100;
+      level.completion = level.calculateCompletion();
+      level.done = level.isLevelDone();
       level.monster = `assets/imgs/monsters/monster-0${level.number}.svg`;
       level.monster_sized = `assets/imgs/monsters/monster-0${level.number}_sized.svg`;
     });
