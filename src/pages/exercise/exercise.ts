@@ -66,7 +66,7 @@ export class ExercisePage {
       if (!fearLadder) return;
 
       // TODO: fix this ugly code, it could be done faster I think
-      this.levels.map(level => level.steps = []);
+      this.levels.forEach(level => level.steps = []);
       fearLadder.forEach(step => {
         this.levels.find(level => level.number === step.fearRating).steps.push(new Step(step));
       });
