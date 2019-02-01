@@ -57,7 +57,6 @@ export class ExerciseListPage {
       console.log(`err ${err}`);
     } finally {
       this.recalculateLevelCompletion();
-      console.log(true);
       this.eventService.broadcast('new_level_completion', this.level);
     }
   }

@@ -51,7 +51,6 @@ export class ExercisePage {
   }
 
   newLevelCompletion(level: Level) {
-    console.log(true);
     this.levels.find(currLevel => currLevel.id === level.id).completion = level.completion;
     this.getExersises();
   }
@@ -80,7 +79,6 @@ export class ExercisePage {
 
   setLevelsMonsterAndCompletion() {
     this.levels.forEach(level => {
-      level.completion = level.steps.filter(steps => { return steps.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT; }).length * 100 / level.steps.length;
       level.completion = level.calculateCompletion();
       level.done = level.isLevelDone();
       level.monster = `assets/imgs/monsters/monster-0${level.number}.svg`;
