@@ -25,21 +25,9 @@
     <div *ngFor="let exercise of exercises" class="c-logbook__item">
       <section class="c-logbook__timeline">
         <div class="o-moodindicator">
-          <span class="before"
-          [class.before--content]="exercise.beforeMood.mood === 1"
-          [class.before--ok]="exercise.beforeMood.mood === 2"
-          [class.before--meh]="exercise.beforeMood.mood === 3"
-          [class.before--worried]="exercise.beforeMood.mood === 4"
-          [class.before--panic]="exercise.beforeMood.mood === 5"
-          ></span>
+          <span class="before" [class.mood1]="exercise.beforeMood.mood === 1" [class.mood2]="exercise.beforeMood.mood === 2" [class.mood3]="exercise.beforeMood.mood === 3" [class.mood4]="exercise.beforeMood.mood === 4" [class.mood5]="exercise.beforeMood.mood === 5"></span>
 
-          <span class="after"
-          [class.after--content]="exercise.afterMood.mood === 1"
-          [class.after--ok]="exercise.afterMood.mood === 2"
-          [class.after--meh]="exercise.afterMood.mood === 3"
-          [class.after--worried]="exercise.afterMood.mood === 4"
-          [class.after--panic]="exercise.afterMood.mood === 5"
-          ></span>
+          <span class="after" [class.mood1]="exercise.afterMood.mood === 1" [class.mood2]="exercise.afterMood.mood === 2" [class.mood3]="exercise.afterMood.mood === 3" [class.mood4]="exercise.afterMood.mood === 4" [class.mood5]="exercise.afterMood.mood === 5"></span>
         </div>
         <div class="timeline__extender"></div>
       </section>
@@ -49,27 +37,38 @@
         </div>
         <ion-card-header>
           {{ exercise.step.fear.situation }}
+          <span>{{ 'WITHOUT' | translate }} {{ exercise.step.fear.without}}</span>
         </ion-card-header>
-        <ion-card-content [class.active]="exercise.accordionOpen" [class.inactive]="!exercise.accordionOpen">
-          <p *ngIf="exercise.beforeMood.explanation">
-            Voor:
-            <em>{{ exercise.beforeMood.explanation }}</em>
-          </p>
-          <p *ngIf="exercise.afterMood.explanation">
-            Na:
-            <em>{{ exercise.afterMood.explanation }}</em>
-          </p>
-          <p *ngFor="let trigger of exercise.step.triggers">
-            <span *ngIf="trigger.explanation">
-              {{ trigger.verbose | translate }}:
-              <em>{{ trigger.explanation }}</em>
-            </span>
-          </p>
+        <ion-card-content [class.active]="exercise.openedContent" [class.inactive]="!exercise.openedContent">
+          <ion-item-group>
+            <ion-item-divider>
+              {{ 'BEFORE' | translate }}
+              <span class="o-moodindicator__small" [class.mood1]="exercise.beforeMood.mood === 1" [class.mood2]="exercise.beforeMood.mood === 2" [class.mood3]="exercise.beforeMood.mood === 3" [class.mood4]="exercise.beforeMood.mood === 4"
+                [class.mood5]="exercise.beforeMood.mood === 5"></span>
+            </ion-item-divider>
+            <ion-item text-wrap *ngIf="exercise.beforeMood.explanation">{{ exercise.beforeMood.explanation }}</ion-item>
+          </ion-item-group>
+          <ion-item-group>
+            <ion-item-divider>
+              {{ 'AFTER' | translate }}
+              <span class="o-moodindicator__small" [class.mood1]="exercise.afterMood.mood === 1" [class.mood2]="exercise.afterMood.mood === 2" [class.mood3]="exercise.afterMood.mood === 3" [class.mood4]="exercise.afterMood.mood === 4" [class.mood5]="exercise.afterMood.mood === 5"></span>
+            </ion-item-divider>
+            <ion-item text-wrap *ngIf="exercise.afterMood.explanation">{{ exercise.afterMood.explanation }}</ion-item>
+          </ion-item-group>
+          <ion-item-group *ngFor="let trigger of exercise.step.triggers">
+            <div *ngIf="trigger.enabled">
+              <ion-item-divider>
+                {{ trigger.verbose | translate }}
+                <span>{{trigger.range}} / 5</span>
+              </ion-item-divider>
+              <ion-item text-wrap *ngIf="trigger.explanation">{{ trigger.explanation }}</ion-item>
+            </div>
+          </ion-item-group>
         </ion-card-content>
         <ion-row class="card__footer">
-          <button ion-button icon-only clear color="dark" (click)="exercise.accordionOpen=!exercise.accordionOpen">
-            <ion-icon name="arrow-dropdown" *ngIf="!exercise.accordionOpen"></ion-icon>
-            <ion-icon name="arrow-dropup" *ngIf="exercise.accordionOpen"></ion-icon>
+          <button ion-button icon-only full clear color="dark" (click)="toggleExerciseContent(exercise)">
+            <ion-icon name="arrow-dropdown" *ngIf="!exercise.openedContent"></ion-icon>
+            <ion-icon name="arrow-dropup" *ngIf="exercise.openedContent"></ion-icon>
           </button>
         </ion-row>
       </ion-card>

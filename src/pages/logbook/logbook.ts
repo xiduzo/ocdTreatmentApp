@@ -22,6 +22,10 @@ export class LogbookPage {
     this.getExercises();
   }
 
+  toggleExerciseContent(exercise: Exercise) {
+    exercise.openedContent = !exercise.openedContent
+  }
+
   getExercises() {
     this.storage.get('exercises').then((exercises) => {
       if (!exercises) return;
@@ -34,6 +38,8 @@ export class LogbookPage {
           // https://stackoverflow.com/a/20629324
           if (!isNaN(parseInt(exercise.beforeMood.mood))) exercise.beforeMood.mood = Math.round(map(exercise.beforeMood.mood, 0, 500, 1, 5));
           if (!isNaN(parseInt(exercise.afterMood.mood))) exercise.afterMood.mood = Math.round(map(exercise.afterMood.mood, 0, 500, 1, 5));
+
+          console.log(exercise);
 
           return exercise;
         });
