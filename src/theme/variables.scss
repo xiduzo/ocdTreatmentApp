@@ -30,10 +30,10 @@ $colors: (
 );
 $moods: (
   content: #FCCA8B,
-  panic: #F07879,
-  worried: #529CCC,
+  ok: #91CFCC,
   meh: #D6D9CC,
-  ok: #91CFCC
+  worried: #529CCC,
+  panic: #F07879,
 ); // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
