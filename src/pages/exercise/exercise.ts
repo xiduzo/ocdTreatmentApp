@@ -42,16 +42,22 @@ export class ExercisePage {
 
   ionViewWillEnter() {
     this.eventService.on('new_level_completion', this.newLevelCompletion.bind(this));
+    this.eventService.on('changed_fearladder', this.newFearladder.bind(this));
   }
 
   ionViewWillLeave() {
     this.eventService.destroyListener('new_level_completion', this.newLevelCompletion);
+    this.eventService.destroyListener('changed_fearladder', this.newFearladder);
   }
 
   newLevelCompletion(level: Level) {
     console.log(level);
     this.levels.find(currLevel => currLevel.id === level.id).completion = level.completion;
     this.getExersises();
+  }
+
+  newFearladder(fearladder: Array<Step>) {
+    this.setLevels();
   }
 
   setLevels() {
@@ -61,6 +67,7 @@ export class ExercisePage {
 
   getExersises() {
     this.storage.get('fearLadder').then(fearLadder => {
+      console.log(fearLadder);
       if (!fearLadder) return;
 
       // TODO: fix this ugly code, it could be done faster I think

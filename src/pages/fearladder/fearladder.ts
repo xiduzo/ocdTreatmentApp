@@ -6,6 +6,8 @@ import { FearladderStepModal } from '../fearladder/step/fearladder.step';
 
 import { Step }  from '../../lib/Exercise';
 
+import { EventsService } from 'angular-event-service';
+
 @Component({
   selector: 'fearladder-modal',
   templateUrl: 'fearladder.html'
@@ -17,7 +19,8 @@ export class FearladderModal {
     private viewCtrl: ViewController,
     private storage: Storage,
     private modalCtrl: ModalController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private eventService: EventsService,
   ) {
     this.storage.get('fearLadder').then((fearLadder) => {
       fearLadder.forEach(step => {
@@ -31,8 +34,11 @@ export class FearladderModal {
   }
 
   updateLocalFearLadder() {
-    // Update fearladder
     this.storage.set('fearLadder', this.fearLadder);
+    // TODO: fix update when localstorage is updated, not on arbitrary timeout
+    setTimeout(() => {
+      this.eventService.broadcast('changed_fearladder', this.fearLadder);
+    }, 1500)
   }
 
   addStep() {
@@ -59,6 +65,14 @@ export class FearladderModal {
   removeStep(step) {
     this.fearLadder.splice(this.fearLadder.indexOf(step), 1);
     this.updateLocalFearLadder();
+
+    let toast = this.toastCtrl.create({
+      message: 'Fear removed successfully',
+      duration: 2000,
+      position: 'bottom'
+    });
+
+    toast.present();
   }
 
   editStep(step) {

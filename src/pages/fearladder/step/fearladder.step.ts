@@ -8,14 +8,14 @@ import { Step, Fear }  from '../../../lib/Exercise';
   templateUrl: 'fearladder.step.html'
 })
 export class FearladderStepModal {
-  public step:Step = new Step();
+  public step:Step = new Step({fearRating: 1});
 
   public buttonText:string = 'ADD';
   public headerText:string = 'FEARLADDER_STEP_HEADER_ADD';
 
   constructor(
     public viewCtrl: ViewController,
-    private params: NavParams
+    private params: NavParams,
   ) {
   }
 
@@ -37,6 +37,5 @@ export class FearladderStepModal {
   addFear() {
     this.viewCtrl.dismiss({step: this.step});
   }
-
 
 }
