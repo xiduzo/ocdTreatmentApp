@@ -79,8 +79,8 @@ export class ExercisePage {
 
   setLevelsMonsterAndCompletion() {
     this.levels.forEach(level => {
-      level.completion = level.calculateCompletion();
-      level.done = level.isLevelDone();
+      level.calculateCompletion();
+      level.isLevelDone();
       level.monster = `assets/imgs/monsters/monster-0${level.number}.svg`;
       level.monster_sized = `assets/imgs/monsters/monster-0${level.number}_sized.svg`;
     });
