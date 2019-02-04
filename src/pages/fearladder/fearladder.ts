@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { ViewController, ModalController, ToastController } from 'ionic-angular';
+import { NavParams, ViewController, ModalController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { FearladderStepModal } from '../fearladder/step/fearladder.step';
 
-import { Step }  from '../../lib/Exercise';
+import { Step } from '../../lib/Exercise';
 
 import { EventsService } from 'angular-event-service';
 
@@ -13,9 +13,10 @@ import { EventsService } from 'angular-event-service';
   templateUrl: 'fearladder.html'
 })
 export class FearladderModal {
-  public fearLadder:Array<Step> = [];
+  public fearLadder: Array<Step> = [];
 
   constructor(
+    private params: NavParams,
     private viewCtrl: ViewController,
     private storage: Storage,
     private modalCtrl: ModalController,
@@ -23,10 +24,13 @@ export class FearladderModal {
     private eventService: EventsService,
   ) {
     this.storage.get('fearLadder').then((fearLadder) => {
+      if (!fearLadder) return;
       fearLadder.forEach(step => {
         this.fearLadder.push(new Step(step));
       });
     });
+
+    if (this.params.get('addNewFear')) this.addStep();
   }
 
   close() {
@@ -45,7 +49,7 @@ export class FearladderModal {
     let modal = this.modalCtrl.create(FearladderStepModal);
 
     modal.onDidDismiss((data) => {
-      if(!data) return; // Modal has been closed
+      if (!data) return; // Modal has been closed
 
       this.fearLadder.push(data.step);
       this.updateLocalFearLadder();
@@ -76,10 +80,10 @@ export class FearladderModal {
   }
 
   editStep(step) {
-    let modal = this.modalCtrl.create(FearladderStepModal, {step: step});
+    let modal = this.modalCtrl.create(FearladderStepModal, { step: step });
 
     modal.onDidDismiss((data) => {
-      if(!data) return; // Modal has been closed
+      if (!data) return; // Modal has been closed
 
       this.fearLadder[this.fearLadder.indexOf(step)] = data.step;
       this.updateLocalFearLadder();

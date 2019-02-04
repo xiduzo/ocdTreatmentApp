@@ -94,7 +94,9 @@ export class ExercisePage {
   }
 
   addFearsAndCompulsions() {
-    let modal = this.modalCtrl.create(FearladderModal);
+    let modal = this.modalCtrl.create(FearladderModal, {
+      addNewFear: true
+    });
 
     modal.onDidDismiss(data => {
       this.setLevelsMonsterAndCompletion();
