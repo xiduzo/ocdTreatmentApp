@@ -4,29 +4,43 @@ $o-moodindicator-size: 20px;
   display: flex;
   transform: rotate(45deg);
 
+  .before {
+    border-left: 1px dashed lighten(color($colors, dark, base), 50);
+  }
+
+  .after {
+    border-right: 1px dashed lighten(color($colors, dark, base), 50);
+  }
+
   .after,
   .before {
-    background: lighten(color($colors, dark, base), 50);
+    border-top: 1px dashed lighten(color($colors, dark, base), 50);
+    border-bottom: 1px dashed lighten(color($colors, dark, base), 50);
     width: $o-moodindicator-size / 2;
     height: $o-moodindicator-size;
 
     &.mood1 {
+      border: none;
       background: color($moods, content, base);
     }
 
     &.mood2 {
+      border: none;
       background: color($moods, ok, base);
     }
 
     &.mood3 {
+      border: none;
       background: color($moods, meh, base);
     }
 
     &.mood4 {
+      border: none;
       background: color($moods, worried, base);
     }
 
     &.mood5 {
+      border: none;
       background: color($moods, panic, base);
     }
   }
@@ -43,27 +57,33 @@ $o-moodindicator-size: 20px;
 }
 
 .o-moodindicator__small {
-  width: $o-moodindicator-size / 2;
-  height: $o-moodindicator-size / 2;
+  width: $o-moodindicator-size / 1.5;
+  height: $o-moodindicator-size / 1.5;
   border-radius: 50%;
+  border: 1px dashed lighten(color($colors, dark, base), 50);
 
   &.mood1 {
+    border: none;
     background: color($moods, content, base);
   }
 
   &.mood2 {
+    border: none;
     background: color($moods, ok, base);
   }
 
   &.mood3 {
+    border: none;
     background: color($moods, meh, base);
   }
 
   &.mood4 {
+    border: none;
     background: color($moods, worried, base);
   }
 
   &.mood5 {
+    border: none;
     background: color($moods, panic, base);
   }
 }
