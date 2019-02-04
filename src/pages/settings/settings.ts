@@ -77,6 +77,11 @@ export class SettingsPage {
     ratingModal.present();
   }
 
+  clearLocalStorage() {
+    this.storage.clear();
+    location.reload();
+  }
+
   resetMockData() {
     let fearLadder = [];
     for (let i = 0; i < 10; i++) {
