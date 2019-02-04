@@ -7,7 +7,15 @@
       </article>
     </ion-slide>
   </ion-slides>
-  <button ion-button block large color="secondary" class="c-onboarding__button" (click)="done()">
+</ion-content>
+<ion-footer>
+  <button ion-button large color="secondary" [disabled]="this.isBeginning" (click)="previousSlide()">
+    <ion-icon name="arrow-dropleft"></ion-icon>
+  </button>
+  <button ion-button large color="secondary" class="c-onboarding__button" (click)="done()">
     {{ buttonText | translate }}
   </button>
-</ion-content>
+  <button ion-button large color="secondary" [disabled]="this.isEnd" (click)=nextSlide()>
+    <ion-icon name="arrow-dropright"></ion-icon>
+  </button>
+</ion-footer>

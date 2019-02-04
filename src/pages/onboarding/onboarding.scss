@@ -1,8 +1,42 @@
+page-onboarding {
+  ion-footer {
+    display: flex;
+    button.button {
+      margin: 0;
+      flex-grow: 1;
+      box-shadow: none;
+      &.c-onboarding__button {
+        flex-grow: 10;
+      }
+    }
+
+  }
+}
+
+
 .c-onboarding {
+  // .swiper-pagination {
+  //   bottom: 10%;
+  //
+  //   .swiper-pagination-bullet-active {
+  //     background: color($colors, light, base);
+  //   }
+  // }
   .swiper-pagination {
-    bottom: 12%;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+
+    .swiper-pagination-bullet {
+      margin: 0;
+      flex-grow: 1;
+      border-radius: 0;
+      height: 4px;
+      transition: all 200ms ease-out;
+    }
 
     .swiper-pagination-bullet-active {
+      transition: all 200ms ease-in;
       background: color($colors, light, base);
     }
   }
@@ -25,7 +59,7 @@
   justify-content: center;
   align-items: center;
   // I think this is a nice color as background
-  // background-color: color($colors, light, base);
+  background-color: color($colors, light, base);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -38,15 +72,11 @@
   flex-direction: column;
 
   p {
-    padding-top: 1.5em;
-    text-align: center;
+    // text-align: center;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-}
-
-.c-onboarding__button {
-  position: absolute;
-  bottom: 0;
-  margin: 0;
-  z-index: 99;
-  color:  darken(color($colors, light, base),15);
 }

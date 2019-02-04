@@ -11,9 +11,11 @@ import { Storage } from '@ionic/storage';
 export class OnboardingPage {
   @ViewChild(Slides) slides: Slides;
 
-  public buttonText:string = "ONBOARDING_SKIP";
+  public buttonText: string = "ONBOARDING_SKIP";
+  public isEnd: boolean = false;
+  public isBeginning: boolean = true;
 
-  public _slides:any = [
+  public _slides: any = [
     'ONBOARDING_SLIDE_1',
     'ONBOARDING_SLIDE_2',
     'ONBOARDING_SLIDE_3',
@@ -39,10 +41,21 @@ export class OnboardingPage {
     this.storage.set('onboardingCompleted', true);
   }
 
+  previousSlide() {
+    this.slides.slidePrev();
+  }
+
+  nextSlide() {
+    this.slides.slideNext();
+  }
+
   slideChanged() {
     // Prevent users from 'overswiping'
-    this.slides.lockSwipeToNext(this.slides.isEnd());
-    this.slides.lockSwipeToPrev(this.slides.isBeginning());
+
+    this.isEnd = this.slides.isEnd();
+    this.isBeginning = this.slides.isBeginning();
+    this.slides.lockSwipeToNext(this.isEnd);
+    this.slides.lockSwipeToPrev(this.isBeginning);
 
     this.buttonText = this.slides.isEnd() ? "ONBOARDING_GOT_IT" : "ONBOARDING_SKIP";
   }
