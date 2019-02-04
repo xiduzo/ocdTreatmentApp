@@ -62,6 +62,7 @@ logbook-page {
           }
 
           ion-card-content {
+            padding: 0;
             max-height: 0;
             opacity: 0;
             padding-bottom: 0;
@@ -86,11 +87,7 @@ logbook-page {
               }
 
               ion-item {
-                padding: 0;
-
                 .item-inner {
-                  padding: 0;
-
                   ion-label {
                     margin: 13px 0;
                   }
