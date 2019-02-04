@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { File } from '@ionic-native/file';
-import { EmailComposer } from '@ionic-native/email-composer';
 
 import { ViewController } from 'ionic-angular';
 
@@ -23,9 +21,7 @@ export class RatingPage {
 
   constructor(
     private viewCtrl: ViewController,
-    private storage: Storage,
-    private file: File,
-    private emailComposer: EmailComposer
+    private storage: Storage
   ) {
   }
 

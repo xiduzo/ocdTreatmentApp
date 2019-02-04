@@ -11,35 +11,33 @@ import { Exercise } from '../../lib/Exercise';
 })
 export class LogbookPage {
 
-  public exercises: Array<any> = [];
+  public exercises: Array<Exercise> = [];
 
   constructor(
     private storage: Storage
   ) {
   }
 
-  ionViewWillEnter() {
+  ionViewWillLoad() {
     this.getExercises();
   }
 
   toggleExerciseContent(exercise: Exercise) {
-    exercise.openedContent = !exercise.openedContent
+    exercise["openedContent"] = !exercise["openedContent"];
   }
 
   getExercises() {
     this.storage.get('exercises').then((exercises) => {
       if (!exercises) return;
-      // Only show the exercises where a comment has been made
       this.exercises = exercises
+        // Sort by starting time of the exercise (new to old)
         .sort((a, b) => { return b.start - a.start })
-        .map(exercise => {
-          const exercise = new Exercise(exercise);
+        .map(localExercise => {
+          const exercise = new Exercise(localExercise);
           // Map the moods to 1-5 scale, if not null
           // https://stackoverflow.com/a/20629324
-          if (!isNaN(parseInt(exercise.beforeMood.mood))) exercise.beforeMood.mood = Math.round(map(exercise.beforeMood.mood, 0, 500, 1, 5));
-          if (!isNaN(parseInt(exercise.afterMood.mood))) exercise.afterMood.mood = Math.round(map(exercise.afterMood.mood, 0, 500, 1, 5));
-
-          console.log(exercise);
+          if (exercise.beforeMood.mood !== null) exercise.beforeMood.mood = Math.round(map(exercise.beforeMood.mood, 0, 500, 1, 5));
+          if (exercise.afterMood.mood !== null) exercise.afterMood.mood = Math.round(map(exercise.afterMood.mood, 0, 500, 1, 5));
 
           return exercise;
         });

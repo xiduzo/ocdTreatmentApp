@@ -6,7 +6,11 @@ export class Level {
   public id: string;
   public number: number;
   public steps: Array<Step>;
-  public completion: number;
+  public completion: number; // Percentage of completed steps
+
+  public done: boolean = false;
+  public monster: string;
+  public monster_sized: string;
 
   constructor({
     id = UUID.UUID(),
@@ -18,14 +22,17 @@ export class Level {
     this.number = number;
     this.steps = steps.map(step => new Step(step));
     this.completion = completion;
+
+    this.calculateCompletion();
+    this.isLevelDone();
   }
 
-  isLevelDone(): boolean {
-    return this.completion >= 100;
+  isLevelDone() {
+    this.done = this.completion >= 100;
   }
 
-  calculateCompletion(): number {
+  calculateCompletion() {
     const stepsCompleted = this.steps.filter(step => step.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT);
-    return Math.floor(stepsCompleted.length * 100 / this.steps.length);
+    this.completion = Math.round(stepsCompleted.length * 100 / this.steps.length);
   }
 }
