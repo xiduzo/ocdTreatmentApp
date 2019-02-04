@@ -34,6 +34,7 @@
   "MY_FEAR_LADDER": "My fear ladder",
   "MY_BADGES": "My badges",
   "MY_PERSONAL_GOAL": "My personal goal",
+  "NO_GOAL_SPECIFIED_YET": "No goal specified yet",
   "MY_LOGBOOK_ENTRIES": "My logbook entries",
 
 
@@ -76,6 +77,8 @@
 
   "WARNING_NO_LOGGED_EXERCISES": "It seems like you have not logged any exercises.",
   "WARNING_NO_FEARS": "It looks like you have not added any fears!",
-  "WARNING_BEFORE_YOU_CAN_START": "Before you can start, you must describe your fear ladder."
+  "WARNING_BEFORE_YOU_CAN_START": "Before you can start, you must describe your fear ladder.",
+
+  "MESSAGE_CHANGE_FEAR_LADDER": "You can always change your fear ladder in your settings"
 
 }

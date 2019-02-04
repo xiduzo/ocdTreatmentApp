@@ -19,9 +19,9 @@
     <ion-row style="width: 100%;">
       <ion-col col-12>
         <h1 *ngIf="!editGoal" text-center>
-          {{ personalGoal || "No goal specified yet" }}
+          {{ personalGoal || 'NO_GOAL_SPECIFIED_YET' | translate }}
         </h1>
-        <ion-textarea *ngIf="editGoal" [(ngModel)]="personalGoal" (change)="safePersonalGoal()" placeholder="No goal specified yet"></ion-textarea>
+        <ion-textarea *ngIf="editGoal" [(ngModel)]="personalGoal" (change)="safePersonalGoal()" placeholder="{{ 'NO_GOAL_SPECIFIED_YET' | translate}}"></ion-textarea>
       </ion-col>
     </ion-row>
     <ion-row>
