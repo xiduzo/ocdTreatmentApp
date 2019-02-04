@@ -10,8 +10,6 @@ import { ToastController } from 'ionic-angular';
 
 import { FearladderModal } from '../fearladder/fearladder';
 
-import { FEAR_COMPLETION_POSITIVE_LIMIT } from '../../lib/constants';
-
 import { EventsService } from 'angular-event-service';
 
 import { Level } from '../../lib/Level';
@@ -51,6 +49,7 @@ export class ExercisePage {
   }
 
   newLevelCompletion(level: Level) {
+    console.log(level);
     this.levels.find(currLevel => currLevel.id === level.id).completion = level.completion;
     this.getExersises();
   }
