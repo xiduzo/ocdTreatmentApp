@@ -9,7 +9,7 @@ export class Step {
 
   constructor({
     id = UUID.UUID(),
-    fearRating = 0,
+    fearRating = 1,
     triggers = [
       new Trigger({ verbose: 'INTENSITY_OBSESSIVE_THOUGHTS' }),
       new Trigger({ verbose: 'INTENSITY_COMPULSIVE_BEHAVIOUR' })
