@@ -50,13 +50,15 @@ export class OnboardingPage {
   }
 
   slideChanged() {
-    // Prevent users from 'overswiping'
-
+    // Toggle button states
     this.isEnd = this.slides.isEnd();
     this.isBeginning = this.slides.isBeginning();
+
+    // Prevent users from 'overswiping'
     this.slides.lockSwipeToNext(this.isEnd);
     this.slides.lockSwipeToPrev(this.isBeginning);
 
+    // Change text in main button
     this.buttonText = this.slides.isEnd() ? "ONBOARDING_GOT_IT" : "ONBOARDING_SKIP";
   }
 
