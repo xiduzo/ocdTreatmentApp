@@ -15,15 +15,15 @@ import { EventsService } from 'angular-event-service';
 import { Level } from '../../lib/Level';
 import { Step } from '../../lib/Exercise';
 
+import { TranslateService } from 'ng2-translate/ng2-translate';
+
 @Component({
   selector: 'page-exercise',
   templateUrl: 'exercise.html'
 })
 export class ExercisePage {
 
-  private profile: string;
   public levels: Array<Level>;
-  public test: string;
 
   constructor(
     public appCtrl: App,
@@ -31,13 +31,13 @@ export class ExercisePage {
     private storage: Storage,
     public toastCtrl: ToastController,
     private modalCtrl: ModalController,
-    private eventService: EventsService
+    private eventService: EventsService,
+    private translate: TranslateService
   ) {
   }
 
   ionViewDidLoad() {
-    this.profile = this.userService.getUser();
-    this.setLevels();
+    this.getExersises();
   }
 
   ionViewWillEnter() {
@@ -51,24 +51,18 @@ export class ExercisePage {
   }
 
   newLevelCompletion(level: Level) {
-    console.log(level);
     this.levels.find(currLevel => currLevel.id === level.id).completion = level.completion;
     this.getExersises();
   }
 
   newFearladder(fearladder: Array<Step>) {
-    this.setLevels();
-  }
-
-  setLevels() {
-    this.levels = [1, 2, 3, 4, 5, 6, 7, 8].map(level => new Level({ number: level }));
     this.getExersises();
   }
 
   getExersises() {
     this.storage.get('fearLadder').then(fearLadder => {
-      console.log(fearLadder);
-      if (!fearLadder) return;
+      if (!fearLadder) return this.levels = [];
+      this.levels = [1, 2, 3, 4, 5, 6, 7, 8].map(level => new Level({ number: level }));
 
       // TODO: fix this ugly code, it could be done faster I think
       this.levels.forEach(level => level.steps = []);
@@ -78,6 +72,7 @@ export class ExercisePage {
 
       // We don't need to see the levels which has no steps
       this.levels = this.levels.filter(level => level.steps.length > 0);
+
       this.setLevelsMonsterAndCompletion();
     });
 
@@ -101,14 +96,16 @@ export class ExercisePage {
     modal.onDidDismiss(data => {
       this.setLevelsMonsterAndCompletion();
 
-      let toast = this.toastCtrl.create({
-        message: 'You can allways change your fear ladder on your profile page',
-        position: 'bottom',
-        showCloseButton: true,
-        closeButtonText: 'Ok',
-        dismissOnPageChange: true
+      this.translate.get('MESSAGE_CHANGE_FEAR_LADDER').subscribe(text => {
+        let toast = this.toastCtrl.create({
+          message: text,
+          position: 'bottom',
+          showCloseButton: true,
+          closeButtonText: 'Ok',
+          dismissOnPageChange: true
+        });
+        toast.present();
       });
-      toast.present();
     });
 
     modal.present();
