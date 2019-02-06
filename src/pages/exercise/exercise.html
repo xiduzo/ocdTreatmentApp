@@ -11,8 +11,8 @@
       {{ 'MY_FEAR_LADDER' | translate }}
     </button>
   </section>
-  <ion-list no-lines class="c-exercise__levels">
-    <div *ngFor="let level of levels; index as i" class="level">
+  <ion-list no-lines class="c-exercise__levels" *ngIf="levels?.length">
+    <div *ngFor="let level of levels" class="level">
       <ion-item>
         <section [class.completed]="level.done">
           <div class="level__monster" (click)="goToLevel(level)">
