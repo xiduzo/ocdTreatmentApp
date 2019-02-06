@@ -15,31 +15,31 @@ page-onboarding {
 
 
 .c-onboarding {
-  // .swiper-pagination {
-  //   bottom: 10%;
-  //
-  //   .swiper-pagination-bullet-active {
-  //     background: color($colors, light, base);
-  //   }
-  // }
   .swiper-pagination {
-    bottom: 0;
-    display: flex;
-    justify-content: space-between;
-
-    .swiper-pagination-bullet {
-      margin: 0;
-      flex-grow: 1;
-      border-radius: 0;
-      height: 4px;
-      transition: all 200ms ease-out;
-    }
+    bottom: 1%;
 
     .swiper-pagination-bullet-active {
-      transition: all 200ms ease-in;
       background: color($colors, light, base);
     }
   }
+  // .swiper-pagination {
+  //   bottom: 0;
+  //   display: flex;
+  //   justify-content: space-between;
+  //
+  //   .swiper-pagination-bullet {
+  //     margin: 0;
+  //     flex-grow: 1;
+  //     border-radius: 0;
+  //     height: 4px;
+  //     transition: all 200ms ease-out;
+  //   }
+  //
+  //   .swiper-pagination-bullet-active {
+  //     transition: all 200ms ease-in;
+  //     background: color($colors, light, base);
+  //   }
+  // }
 }
 
 .c-onboarding__slide {
