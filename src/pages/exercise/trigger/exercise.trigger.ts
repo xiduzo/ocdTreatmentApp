@@ -20,7 +20,7 @@ export class ExerciseTriggerModal {
 
   public range:any = { min: 0, max: 5 };
 
-  private options:NativeTransitionOptions = {
+  private transitionOptions: NativeTransitionOptions = {
     direction: 'left'
   };
 
@@ -31,7 +31,7 @@ export class ExerciseTriggerModal {
     private storage: Storage,
     private nativePageTransitions: NativePageTransitions
   ) {
-    this.nativePageTransitions.slide(this.options);
+    this.nativePageTransitions.slide(this.transitionOptions);
   }
 
   ionViewWillEnter() {

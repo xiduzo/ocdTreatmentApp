@@ -43,7 +43,7 @@ export class ExerciseMoodPage {
   private exercise: Exercise;
   private beforeMeasure: boolean = false;
 
-  private options: NativeTransitionOptions = {
+  private transitionOptions: NativeTransitionOptions = {
     direction: 'left'
   };
 
@@ -54,7 +54,7 @@ export class ExerciseMoodPage {
     private storage: Storage,
     private nativePageTransitions: NativePageTransitions
   ) {
-    this.nativePageTransitions.slide(this.options);
+    this.nativePageTransitions.slide(this.transitionOptions);
   }
 
   ionViewWillEnter() {

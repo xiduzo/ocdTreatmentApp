@@ -17,7 +17,7 @@ export class ExerciseDuringModal {
   private level:any;
   private exercise:Exercise;
 
-  private options:NativeTransitionOptions = {
+  private transitionOptions: NativeTransitionOptions = {
     direction: 'left'
   };
 
@@ -28,7 +28,7 @@ export class ExerciseDuringModal {
     private storage: Storage,
     private nativePageTransitions: NativePageTransitions
   ) {
-    this.nativePageTransitions.slide(this.options);
+    this.nativePageTransitions.slide(this.transitionOptions);
   }
 
   ionViewDidLoad() {

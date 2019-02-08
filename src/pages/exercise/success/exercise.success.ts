@@ -18,7 +18,7 @@ export class ExerciseSuccessModal {
   public level: any;
   public exercise: Exercise;
 
-  private options: NativeTransitionOptions = {
+  private transitionOptions: NativeTransitionOptions = {
     direction: 'left'
   };
 
@@ -29,7 +29,7 @@ export class ExerciseSuccessModal {
     private storage: Storage,
     private eventService: EventsService,
   ) {
-    this.nativePageTransitions.slide(this.options);
+    this.nativePageTransitions.slide(this.transitionOptions);
   }
 
   ionViewWillEnter() {
