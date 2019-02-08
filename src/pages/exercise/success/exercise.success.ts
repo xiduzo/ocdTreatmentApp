@@ -39,15 +39,15 @@ export class ExerciseSuccessModal {
   }
 
   ionViewDidEnter() {
-    const confettiSettings = {
-      target: 'confetti',
-      clock: 10,
-      max: 50,
-    };
-    const confetti = new ConfettiGenerator(confettiSettings);
-    if (Math.random() > 0.7) {
-      confetti.render();
-    }
+    // const confettiSettings = {
+    //   target: 'confetti',
+    //   clock: 10,
+    //   max: 50,
+    // };
+    // const confetti = new ConfettiGenerator(confettiSettings);
+    // if (Math.random() > 0.7) {
+    //   confetti.render();
+    // }
   }
 
   updateStepCompletion() {
