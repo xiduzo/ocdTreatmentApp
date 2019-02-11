@@ -43,18 +43,6 @@ export class ExerciseSuccessModal {
       target: 'confetti',
       clock: 10,
       max: 50,
-      props: [
-        "circle",
-        "square",
-        "triangle",
-        "line",
-        {
-          type: "svg",
-          src: this.level.monster,
-          size: 25,
-          weight: 0.2
-        }
-      ]
     };
     if(window.ConfettiGenerator) {
       const confetti = new window.ConfettiGenerator(confettiSettings);
