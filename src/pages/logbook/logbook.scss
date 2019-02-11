@@ -1,4 +1,25 @@
 logbook-page {
+  ion-navbar {
+    ion-buttons {
+      &:first-of-type {
+        order: 1;
+      }
+
+      button {
+        background: transparent;
+        color: white;
+      }
+    }
+
+    ion-title {
+      .toolbar-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+
   ion-content {
     .c-logbook {
       padding: 16px 0;
@@ -37,8 +58,8 @@ logbook-page {
 
           .card__date {
             float: right;
-            padding: 6px 6px 0 0;
-            font-size: 11px;
+            padding: 4px 4px 0 0;
+            font-size: 10px;
             color: lighten(color($colors, dark, base), 50);
             font-weight: 100;
           }
@@ -110,4 +131,13 @@ logbook-page {
       }
     }
   }
+  // pagination-template {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   align-items: center;
+  //
+  //   button[ion-button] {
+  //     margin: 0;
+  //   }
+  // }
 }

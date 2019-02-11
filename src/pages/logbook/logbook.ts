@@ -5,13 +5,18 @@ import { Exercise } from '../../lib/Exercise';
 
 import { EventsService } from 'angular-event-service';
 
+import { PaginationInstance } from 'ngx-pagination';
+
 @Component({
   selector: 'logbook-page',
   templateUrl: 'logbook.html'
 })
 export class LogbookPage {
-
   public exercises: Array<Exercise> = [];
+  public paginationSettings: PaginationInstance = {
+    currentPage: 1,
+    itemsPerPage: 25,
+  };
 
   constructor(
     private storage: Storage,
@@ -54,17 +59,17 @@ export class LogbookPage {
     this.storage.get('exercises').then((exercises) => {
       if (!exercises) return;
       this.exercises = exercises
-        // Sort by starting time of the exercise (new to old)
-        .sort((a, b) => { return b.start - a.start })
-        .map(localExercise => {
-          const exercise = new Exercise(localExercise);
+      // Reverse the array for display purposes
+      .reverse()
+      .map(localExercise => {
+        const exercise = new Exercise(localExercise);
 
-          [exercise.beforeMood, exercise.afterMood].forEach(mood => {
-            if(mood.mood !== null) mood.mappedMood = mood.getMappedMood();
-          });
-
-          return exercise;
+        [exercise.beforeMood, exercise.afterMood].forEach(mood => {
+          if(mood.mood !== null) mood.mappedMood = mood.getMappedMood();
         });
+
+        return exercise;
+      });
     });
   }
 

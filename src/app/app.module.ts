@@ -101,6 +101,7 @@ import { EventsServiceModule } from 'angular-event-service';
   Components
 ------------------------------*/
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 // Setting the default restangular configuration
 export function RestangularConfigFactory(RestangularProvider, authService) {
@@ -157,6 +158,7 @@ export function createTranslateLoader(http: Http) {
     ChartModule,
     HttpClientModule,
     RoundProgressModule,
+    NgxPaginationModule,
     RestangularModule.forRoot([AuthService], RestangularConfigFactory),
     EventsServiceModule.forRoot(),
     TranslateModule.forRoot({
