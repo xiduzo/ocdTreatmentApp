@@ -19,6 +19,8 @@ import { ExerciseDuringModal } from '../during/exercise.during';
 import { ExerciseTriggerModal } from '../trigger/exercise.trigger';
 import { ExerciseSuccessModal } from '../success/exercise.success';
 
+import { EventsService } from 'angular-event-service';
+
 @Component({
   selector: 'page-exercise-mood',
   templateUrl: 'exercise.mood.html',
@@ -52,7 +54,8 @@ export class ExerciseMoodPage {
     public viewCtrl: ViewController,
     private modalCtrl: ModalController,
     private storage: Storage,
-    private nativePageTransitions: NativePageTransitions
+    private nativePageTransitions: NativePageTransitions,
+    private eventService: EventsService,
   ) {
     this.nativePageTransitions.slide(this.transitionOptions);
   }
@@ -94,8 +97,9 @@ export class ExerciseMoodPage {
       // The last exercise is allways the exercise we are working with
       // So lets overwrite the last entry
       exercises[exercises.length - 1] = this.exercise;
-
       this.storage.set('exercises', exercises);
+
+      this.eventService.broadcast('exercise_update', this.exercise);
 
       const duringModal = this.modalCtrl.create(ExerciseDuringModal, {
         level: this.level,
@@ -113,19 +117,21 @@ export class ExerciseMoodPage {
 
     this.storage.get('exercises').then((exercises) => {
       const hasATriggerEnabled = this.exercise.step.triggers.find(trigger => { return trigger.enabled });
+      // Go to different modal based on if a trigger is enabled
       const modal = this.modalCtrl.create(hasATriggerEnabled ? ExerciseTriggerModal : ExerciseSuccessModal, {
         level: this.level,
         exercise: this.exercise
       });
 
-      if (!hasATriggerEnabled) {
-        this.exercise.end = new Date();
-      }
+      // The exercise has ended when no trigger is enabled
+      if (!hasATriggerEnabled) this.exercise.end = new Date();
 
       // The last exercise is allways the exercise we are working with
       // So lets overwrite the last entry
       exercises[exercises.length - 1] = this.exercise;
       this.storage.set('exercises', exercises);
+
+      this.eventService.broadcast('exercise_update', this.exercise);
 
       modal.present();
       this.viewCtrl.dismiss();

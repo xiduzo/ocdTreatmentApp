@@ -5,6 +5,8 @@ import { map } from '../../lib/helpers';
 
 import { Exercise } from '../../lib/Exercise';
 
+import { EventsService } from 'angular-event-service';
+
 @Component({
   selector: 'logbook-page',
   templateUrl: 'logbook.html'
@@ -14,12 +16,36 @@ export class LogbookPage {
   public exercises: Array<Exercise> = [];
 
   constructor(
-    private storage: Storage
+    private storage: Storage,
+    private eventService: EventsService
   ) {
+  }
+
+  ionViewWillEnter() {
+    this.eventService.on('exercise_update', this.exerciseUpdate.bind(this));
   }
 
   ionViewWillLoad() {
     this.getExercises();
+  }
+
+  ionViewWillLeave() {
+    this.eventService.destroyListener('exercise_update', this.exerciseUpdate);
+  }
+
+  exerciseUpdate(exercise: Exercise) {
+    const localExercise = this.exercises.find(currExercise => currExercise.id === exercise.id);
+
+    [exercise.beforeMood, exercise.afterMood].forEach(mood => {
+      if(mood.mood) mood.mappedMood = mood.getMappedMood();
+    });
+
+    if(!localExercise) {
+      // Add the exercise to the start of the array for reversed chronological order
+      this.exercises.unshift(exercise);
+    } else {
+      this.exercises[this.exercises.indexOf(localExercise)] = exercise;
+    }
   }
 
   toggleExerciseContent(exercise: Exercise) {

@@ -25,9 +25,11 @@
     <div *ngFor="let exercise of exercises" class="c-logbook__item">
       <section class="c-logbook__timeline">
         <div class="o-moodindicator">
-          <span class="before" [class.mood1]="exercise.beforeMood.mood === 1" [class.mood2]="exercise.beforeMood.mood === 2" [class.mood3]="exercise.beforeMood.mood === 3" [class.mood4]="exercise.beforeMood.mood === 4" [class.mood5]="exercise.beforeMood.mood === 5"></span>
+          <span class="before" [class.mood1]="exercise.beforeMood.mappedMood === 1" [class.mood2]="exercise.beforeMood.mappedMood === 2" [class.mood3]="exercise.beforeMood.mappedMood === 3" [class.mood4]="exercise.beforeMood.mappedMood === 4"
+            [class.mood5]="exercise.beforeMood.mappedMood === 5"></span>
 
-          <span class="after" [class.mood1]="exercise.afterMood.mood === 1" [class.mood2]="exercise.afterMood.mood === 2" [class.mood3]="exercise.afterMood.mood === 3" [class.mood4]="exercise.afterMood.mood === 4" [class.mood5]="exercise.afterMood.mood === 5"></span>
+          <span class="after" [class.mood1]="exercise.afterMood.mappedMood === 1" [class.mood2]="exercise.afterMood.mappedMood === 2" [class.mood3]="exercise.afterMood.mappedMood === 3" [class.mood4]="exercise.afterMood.mappedMood === 4"
+            [class.mood5]="exercise.afterMood.mappedMood === 5"></span>
         </div>
         <div class="timeline__extender"></div>
       </section>
@@ -43,15 +45,16 @@
           <ion-item-group>
             <ion-item-divider>
               {{ 'BEFORE' | translate }}
-              <span class="o-moodindicator__small" [class.mood1]="exercise.beforeMood.mood === 1" [class.mood2]="exercise.beforeMood.mood === 2" [class.mood3]="exercise.beforeMood.mood === 3" [class.mood4]="exercise.beforeMood.mood === 4"
-                [class.mood5]="exercise.beforeMood.mood === 5"></span>
+              <span class="o-moodindicator__small" [class.mood1]="exercise.beforeMood.mappedMood === 1" [class.mood2]="exercise.beforeMood.mappedMood === 2" [class.mood3]="exercise.beforeMood.mappedMood === 3" [class.mood4]="exercise.beforeMood.mappedMood === 4"
+                [class.mood5]="exercise.beforeMood.mappedMood === 5"></span>
             </ion-item-divider>
             <ion-item text-wrap *ngIf="exercise.beforeMood.explanation">{{ exercise.beforeMood.explanation }}</ion-item>
           </ion-item-group>
           <ion-item-group>
             <ion-item-divider>
               {{ 'AFTER' | translate }}
-              <span class="o-moodindicator__small" [class.mood1]="exercise.afterMood.mood === 1" [class.mood2]="exercise.afterMood.mood === 2" [class.mood3]="exercise.afterMood.mood === 3" [class.mood4]="exercise.afterMood.mood === 4" [class.mood5]="exercise.afterMood.mood === 5"></span>
+              <span class="o-moodindicator__small" [class.mood1]="exercise.afterMood.mappedMood === 1" [class.mood2]="exercise.afterMood.mappedMood === 2" [class.mood3]="exercise.afterMood.mappedMood === 3" [class.mood4]="exercise.afterMood.mappedMood === 4"
+                [class.mood5]="exercise.afterMood.mappedMood === 5"></span>
             </ion-item-divider>
             <ion-item text-wrap *ngIf="exercise.afterMood.explanation">{{ exercise.afterMood.explanation }}</ion-item>
           </ion-item-group>

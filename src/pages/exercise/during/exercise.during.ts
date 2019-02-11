@@ -8,6 +8,8 @@ import { ExerciseMoodPage } from '../mood/exercise.mood';
 
 import { Exercise } from '../../../lib/Exercise';
 
+import { EventsService } from 'angular-event-service';
+
 @Component({
   selector: 'page-exercise-during',
   templateUrl: 'exercise.during.html'
@@ -26,7 +28,8 @@ export class ExerciseDuringModal {
     public viewCtrl: ViewController,
     private modalCtrl: ModalController,
     private storage: Storage,
-    private nativePageTransitions: NativePageTransitions
+    private nativePageTransitions: NativePageTransitions,
+    private eventService: EventsService,
   ) {
     this.nativePageTransitions.slide(this.transitionOptions);
   }
@@ -42,6 +45,8 @@ export class ExerciseDuringModal {
     this.storage.get('exercises').then((exercises) => {
       exercises[exercises.length - 1] = this.exercise;
       this.storage.set('exercises', exercises);
+
+      this.eventService.broadcast('exercise_update', this.exercise);
     });
   }
 
@@ -54,6 +59,8 @@ export class ExerciseDuringModal {
     this.storage.get('exercises').then((exercises) => {
       exercises[exercises.length - 1] = this.exercise;
       this.storage.set('exercises', exercises);
+
+      this.eventService.broadcast('exercise_update', this.exercise);
 
       let moodModal = this.modalCtrl.create(ExerciseMoodPage, {
         level: this.level,

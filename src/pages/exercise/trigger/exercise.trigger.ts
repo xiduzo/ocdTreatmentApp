@@ -8,6 +8,8 @@ import { ExerciseSuccessModal } from '../success/exercise.success';
 
 import { Trigger, Exercise } from '../../../lib/Exercise';
 
+import { EventsService } from 'angular-event-service';
+
 @Component({
   selector: 'page-exercise-trigger',
   templateUrl: 'exercise.trigger.html'
@@ -29,7 +31,8 @@ export class ExerciseTriggerModal {
     public viewCtrl: ViewController,
     private modalCtrl: ModalController,
     private storage: Storage,
-    private nativePageTransitions: NativePageTransitions
+    private nativePageTransitions: NativePageTransitions,
+    private eventService: EventsService,
   ) {
     this.nativePageTransitions.slide(this.transitionOptions);
   }
@@ -42,11 +45,6 @@ export class ExerciseTriggerModal {
     this.triggers = this.exercise.step.triggers.filter(trigger => {
       return trigger.enabled;
     });
-
-    // Skip screen if we didn't set any triggers
-    if(this.triggers.length < 1) {
-      this.done();
-    }
   }
 
   done() {
@@ -55,6 +53,8 @@ export class ExerciseTriggerModal {
     this.storage.get('exercises').then((exercises) => {
       exercises[exercises.length-1] = this.exercise;
       this.storage.set('exercises', exercises);
+
+      this.eventService.broadcast('exercise_update', this.exercise);
 
       let successModal = this.modalCtrl.create(ExerciseSuccessModal, {
         level: this.level,
