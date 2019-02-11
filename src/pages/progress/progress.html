@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="secondary">
     <ion-buttons start>
-      <button ion-button icon-only color="light" color="light" (click)="changeWeek(-1)">
+      <button ion-button icon-only color="light" (click)="changeWeek(-1)">
         <ion-icon name="arrow-dropleft"></ion-icon>
       </button>
     </ion-buttons>
@@ -11,7 +11,7 @@
       {{ startWeek | date : 'dd/MM'}} - {{ endWeek | date : 'dd/MM' }}
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only color="light" color="light" (click)="changeWeek(1)" [disabled]="!canSelectNextWeek">
+      <button ion-button icon-only color="light" (click)="changeWeek(1)" [disabled]="!canSelectNextWeek">
         <ion-icon name="arrow-dropright"></ion-icon>
       </button>
     </ion-buttons>
@@ -24,7 +24,6 @@
   <ion-grid>
     <ion-row>
       <ion-col col-12>
-        <!-- <ion-icon name="cube"></ion-icon> -->
         <ion-icon name="ribbon"></ion-icon>
         <span>
           {{ 'PROGRESS_EXERCISES_DONE' | translate }}
