@@ -5,6 +5,7 @@
   "CHANGE": "Bearbeiten",
   "EDIT": "Bearbeiten",
   "EXERCISE": "Übung",
+  "EXERCISES": "Übungen",
   "FILTER": "Filter",
   "LANGUAGE": "Sprache",
   "LEVEL": "Level",
@@ -18,6 +19,11 @@
   "SETTINGS": "Einstellungen",
   "TRIGGERS": "Auslöser",
   "WITHOUT": "Ohne",
+
+  "HOURS": "Stunden",
+  "HOUR": "Stunde",
+  "MINUTE": "Minute",
+  "MINUTES": "Minuten",
 
 
   "MOOD_HEADER": "Ich fühle mich",
@@ -53,8 +59,8 @@
   "FEARLADDER_STEP_THIS_TRIGGERS": "Diese Übung verursacht",
   "FEARLADDER_STEP_FEAR_RATING": "Angstbewertung",
 
-  "FEARLADDER_STEP_HEADER_ADD": "Füge eine neue Angst hinzu ",
-  "FEARLADDER_STEP_HEADER_EDIT": "Oefening aanpassen",
+  "FEARLADDER_STEP_HEADER_ADD": "Neue Übung",
+  "FEARLADDER_STEP_HEADER_EDIT": "Übung bearbeiten",
 
 
   "ONBOARDING_SKIP": "Überspringen",

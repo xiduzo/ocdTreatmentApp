@@ -35,7 +35,7 @@
           {{ thisWeeksExercises?.length }}
         </h1>
         <span>
-          exercises
+          {{ 'EXERCISES' | translate }}
         </span>
       </ion-col>
     </ion-row>
@@ -52,7 +52,7 @@
           {{ (thisWeeksExercises | accumulateTime | msToTime : 'hours') || '0' }}
         </h1>
         <span>
-          hours
+          {{ 'HOURS' | translate }}
         </span>
       </ion-col>
     </ion-row>
@@ -69,7 +69,7 @@
           {{ (((thisWeeksExercises | accumulateTime) / thisWeeksExercises?.length) | msToTime : 'minutes') || '0' }}
         </h1>
         <span>
-          minutes
+          {{ 'MINUTES' | translate }}
         </span>
       </ion-col>
     </ion-row>

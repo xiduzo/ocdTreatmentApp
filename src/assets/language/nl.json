@@ -5,6 +5,7 @@
   "CHANGE": "Verander",
   "EDIT": "Wijzig",
   "EXERCISE": "Oefening",
+  "EXERCISES": "Oefeningen",
   "FILTER": "Filter",
   "LANGUAGE": "Taal",
   "LEVEL": "Level",
@@ -18,6 +19,11 @@
   "SETTINGS": "Instellingen",
   "TRIGGERS": "Triggers",
   "WITHOUT": "Zonder",
+
+  "HOURS": "Uren",
+  "HOUR": "Uur",
+  "MINUTE": "Minuut",
+  "MINUTES": "Minuten",
 
 
   "MOOD_HEADER": "Ik voel me",
@@ -53,7 +59,7 @@
   "FEARLADDER_STEP_THIS_TRIGGERS": "Dit triggert",
   "FEARLADDER_STEP_FEAR_RATING": "Angst rating",
 
-  "FEARLADDER_STEP_HEADER_ADD": "Nieuwe oefening toevoegen",
+  "FEARLADDER_STEP_HEADER_ADD": "Nieuwe oefening",
   "FEARLADDER_STEP_HEADER_EDIT": "Oefening aanpassen",
 
 

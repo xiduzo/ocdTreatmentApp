@@ -5,6 +5,7 @@
   "CHANGE": "Change",
   "EDIT": "Edit",
   "EXERCISE": "Exercise",
+  "EXERCISES": "Exercises",
   "FILTER": "Filter",
   "LANGUAGE": "Language",
   "LEVEL": "Level",
@@ -18,6 +19,11 @@
   "SETTINGS": "Settings",
   "TRIGGERS": "Triggers",
   "WITHOUT": "Without",
+
+  "HOURS": "Hours",
+  "HOUR": "Hour",
+  "MINUTE": "Minute",
+  "MINUTES": "Minutes",
 
 
   "MOOD_HEADER": "I am feeling",
@@ -53,7 +59,7 @@
   "FEARLADDER_STEP_THIS_TRIGGERS": "This triggers",
   "FEARLADDER_STEP_FEAR_RATING": "Fear rating",
 
-  "FEARLAADDER_STEP_HEADER": "Add new exercise",
+  "FEARLAADDER_STEP_HEADER": "New exercise",
   "FEARLADDER_STEP_HEADER_EDIT": "Edit exercise",
 
 
