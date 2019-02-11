@@ -30,7 +30,7 @@
     </ion-item>
     <ion-item>
       <ion-label floating>
-        {{ 'FEARLADDER_STEP_FEAR_RATING' | translate }}
+        {{ 'FEARLADDER_STEP_FEAR_RATING' | translate }} ({{step.fearRating}})
       </ion-label>
       <ion-range [(ngModel)]="step.fearRating" min="1" max="8" pin="true" snaps="true">
         <ion-label range-left>1</ion-label>
