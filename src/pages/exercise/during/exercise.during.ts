@@ -50,9 +50,9 @@ export class ExerciseDuringModal {
     });
   }
 
-  finishExercise(succeed) {
+  finishExercise(gaveInToCompulsion: boolean) {
     // Check if the user gave in to his compulsion
-    this.exercise.erp.gaveInToCompulsion = succeed;
+    this.exercise.erp.gaveInToCompulsion = gaveInToCompulsion;
 
     this.exercise.erp.end = new Date();
 
