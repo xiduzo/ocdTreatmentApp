@@ -4,8 +4,6 @@ import { Storage } from '@ionic/storage';
 
 import { ExerciseListPage } from '../exercise/list/exercise.list';
 
-import { UserService } from '../../lib/services';
-
 import { ToastController } from 'ionic-angular';
 
 import { FearladderModal } from '../fearladder/fearladder';
@@ -27,7 +25,6 @@ export class ExercisePage {
 
   constructor(
     public appCtrl: App,
-    private userService: UserService,
     private storage: Storage,
     public toastCtrl: ToastController,
     private modalCtrl: ModalController,
