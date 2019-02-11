@@ -48,8 +48,12 @@ export class ExercisePage {
   }
 
   newLevelCompletion(level: Level) {
-    this.levels.find(currLevel => currLevel.id === level.id).completion = level.completion;
-    this.getExersises();
+    const localLevel = this.levels.find(currLevel => currLevel.number === level.number);
+
+    if(localLevel) {
+      this.levels[this.levels.indexOf(localLevel)].completion = level.completion;
+      this.levels[this.levels.indexOf(localLevel)].isLevelDone();
+    }
   }
 
   newFearladder(fearladder: Array<Step>) {
