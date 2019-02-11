@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
-import { map } from '../../../lib/helpers';
+import { mapRange } from '../../../lib/helpers';
 import { Mood, Exercise } from '../../../lib/Exercise';
 
 import {
@@ -66,7 +66,7 @@ export class ExerciseMoodPage {
   setMood() {
     // We want to have a more accurate tracking for the therapist
     // But for the user we use a 1-5 scale
-    this.moodNumber = Math.round(map(this.mood.mood, 0, 500, 1, 5));
+    this.moodNumber = Math.round(mapRange(this.mood.mood, 0, 500, 1, 5));
 
     switch (this.moodNumber) {
       case 1:

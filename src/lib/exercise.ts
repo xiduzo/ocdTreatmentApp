@@ -1,6 +1,8 @@
 import { UUID } from 'angular2-uuid';
 import moment from 'moment';
 
+import { mapRange } from './helpers';
+
 export class Step {
   public id: string;
   public fearRating: number;
@@ -133,12 +135,20 @@ export class Mood {
   public mood: number;
   public explanation: string;
 
+  public mappedMood: number = undefined;
+
   constructor({
     mood = null,
     explanation = ''
   } = {}) {
     this.mood = mood;
     this.explanation = explanation;
+  }
+
+  getMappedMood(): number {
+    this.mappedMood = Math.round(mapRange(this.mood, 0, 500, 1, 5));
+
+    return this.mappedMood;
   }
 }
 

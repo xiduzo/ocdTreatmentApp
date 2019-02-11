@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 import moment from 'moment';
 import regression from 'regression';
 
-import { map } from '../../lib/helpers';
+import { mapRange } from '../../lib/helpers';
 
 @Component({
   selector: 'progress-home',
@@ -156,8 +156,8 @@ export class ProgressPage {
       // Check if there is a before and aftermood registered
       if((exercise.hasOwnProperty('beforeMood') && exercise.hasOwnProperty('afterMood'))) {
         this.chart.series[1].addPoint([
-          map(exercise.afterMood.mood, 0, 500, 1, 5),
-          map(exercise.beforeMood.mood, 0, 500, 1, 5)
+          mapRange(exercise.afterMood.mood, 0, 500, 1, 5),
+          mapRange(exercise.beforeMood.mood, 0, 500, 1, 5)
         ]);
       }
     });
