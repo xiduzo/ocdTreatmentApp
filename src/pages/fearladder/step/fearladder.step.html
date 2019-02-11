@@ -42,7 +42,7 @@
     <ion-item-divider color="light">
       {{ 'TRIGGERS' | translate }}
     </ion-item-divider>
-    <ion-item *ngFor="let trigger of step.triggers">
+    <ion-item *ngFor="let trigger of step.triggers" text-wrap>
       <ion-label>
         {{ 'FEARLADDER_STEP_THIS_TRIGGERS' | translate }} {{ trigger.verbose | translate }}
       </ion-label>
