@@ -35,7 +35,7 @@ export class LogbookPage {
     const localExercise = this.exercises.find(currExercise => currExercise.id === exercise.id);
 
     [exercise.beforeMood, exercise.afterMood].forEach(mood => {
-      if(mood.mood) mood.mappedMood = mood.getMappedMood();
+      if(mood.mood !== null) mood.mappedMood = mood.getMappedMood();
     });
 
     if(!localExercise) {
@@ -60,7 +60,7 @@ export class LogbookPage {
           const exercise = new Exercise(localExercise);
 
           [exercise.beforeMood, exercise.afterMood].forEach(mood => {
-            if(mood.mood) mood.mappedMood = mood.getMappedMood();
+            if(mood.mood !== null) mood.mappedMood = mood.getMappedMood();
           });
 
           return exercise;
