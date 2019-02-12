@@ -22,7 +22,7 @@
         <ion-icon name="md-square-outline" *ngIf="step.fear.completion < fearCompletionPositiveLimit"></ion-icon>
         <ion-icon name="checkbox" *ngIf="step.fear.completion >= fearCompletionPositiveLimit"></ion-icon>
       </ion-avatar>
-      <h2 capitalize>
+      <h2>
         {{ step.fear.situation }}
       </h2>
       <p *ngIf="step.fear.without">
