@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar color="secondary">
+  <ion-navbar color="secondary">
     <ion-title text-center>
       {{ 'INTENSITY_HEADER' | translate}}
     </ion-title>
-  </ion-toolbar>
+  </ion-navbar>
 </ion-header>
 
 <ion-content>
@@ -14,8 +14,7 @@
           <ion-label stacked>
             {{ trigger.verbose | translate }} ({{trigger.range}})
           </ion-label>
-          <ion-range min="{{range.min}}" max="{{range.max}}"
-          [(ngModel)]="trigger.range" pin="true" snaps="true">
+          <ion-range min="{{range.min}}" max="{{range.max}}" [(ngModel)]="trigger.range" pin="true" snaps="true">
             <ion-label range-left>{{range.min}}</ion-label>
             <ion-label range-right>{{range.max}}</ion-label>
           </ion-range>
@@ -32,7 +31,7 @@
 </ion-content>
 
 <ion-footer>
-    <button no-margin ion-button large block (click)="done()">
-      <ion-icon name="checkmark"></ion-icon>
-    </button>
+  <button no-margin ion-button large block (click)="done()">
+    <ion-icon name="checkmark"></ion-icon>
+  </button>
 </ion-footer>
