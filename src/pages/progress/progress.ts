@@ -146,7 +146,7 @@ export class ProgressPage {
     }
 
     // Check if we need to add the exercise to the graph or anything else
-    this.checkToAddExercise(exercise, localExercise);
+    this.checkToAddExercise(exercise, localExercise ? true : false);
   }
 
   checkToAddExercise(exercise: Exercise, exerciseExists: boolean) {
