@@ -12,44 +12,20 @@ progress-home {
   chart {
     span,
     svg {
-      text {
-        vertical-align: bottom;
-      }
-
       span,
       tspan {
         &.graphMood {
           font-size: 5em;
-
-          &--content {
-            fill: color($moods, content, base);
-            color: color($moods, content, base);
-          }
-
-          &--ok {
-            fill: color($moods, ok, base);
-            color: color($moods, ok, base);
-          }
-
-          &--meh {
-            fill: color($moods, meh, base);
-            color: color($moods, meh, base);
-          }
-
-          &--worried {
-            fill: color($moods, worried, base);
-            color: color($moods, worried, base);
-          }
-
-          &--panic {
-            fill: color($moods, panic, base);
-            color: color($moods, panic, base);
+          @each $moodIndicator, $mood in $moods {
+            &--#{$moodIndicator} {
+              fill: $mood;
+              color: $mood;
+            }
           }
         }
       }
     }
 
-    span,
     span {
       line-height: 0.7em;
     }
@@ -76,23 +52,38 @@ progress-home {
         }
 
         &:nth-of-type(2) {
-          align-items: baseline;
-        }
-
-        h1 {
-          margin: 0;
-          font-weight: 900;
-          font-size: 3.25em;
-          color: color($colors, secondary, base);
+          // align-items: baseline;
         }
 
         ion-icon {
           font-size: 2em;
           color: color($colors, contrast, base);
+          margin-right: 1em;
         }
 
-        span {
-          margin-left: 1em;
+        &.stats {
+          align-items: baseline;
+
+          .title {
+            margin: 0;
+            font-weight: 900;
+            font-size: 3.25em;
+            color: color($colors, secondary, base);
+          }
+
+          .stat {
+            margin-left: 1em;
+            flex-grow: 1;
+          }
+
+          .difference {
+            color: color($colors, contrast, base);
+            font-weight: 500;
+
+            &:after {
+              content: '%';
+            }
+          }
         }
       }
     }

@@ -18,6 +18,14 @@ export class ProgressPage {
 
   public _chartOptions:any;
   public chart:any;
+  private graphCategories: Array<string> = [
+    '',
+    'content',
+    'ok',
+    'meh',
+    'worried',
+    'panic'
+  ].map(x => `<span class="graphMood graphMood--${x}">\u2022</span>`);
 
   public endWeek:object = moment(moment.now()).endOf('week');
   public startWeek:object = moment(moment.now()).startOf('week');
@@ -42,41 +50,27 @@ export class ProgressPage {
         marginBottom: 35
       },
       title: { text: ''},
-      xAxis: {
+      xAxis: { // after
         title: {
-          text: '', // after
+          text: '',
         },
         min: 1,
         max: 5,
-        categories: [
-          '',
-          '<span class="graphMood graphMood--content">\u2022</span>',
-          '<span class="graphMood graphMood--ok">\u2022</span>',
-          '<span class="graphMood graphMood--meh">\u2022</span>',
-          '<span class="graphMood graphMood--worried">\u2022</span>',
-          '<span class="graphMood graphMood--panic">\u2022</span>',
-        ],
+        categories: this.graphCategories,
         labels: {
           userHTML: true,
-          padding: 0,
+          // padding: 0,
           y: 40
         },
         tickWidth: 0,
         lineWidth: 2
 
       },
-      yAxis: {
-        title: { text: '' }, // after
+      yAxis: { // befre
+        title: { text: '' },
         min: 1,
         max: 5,
-        categories: [
-          '',
-          '<span class="graphMood graphMood--content">\u2022</span>',
-          '<span class="graphMood graphMood--ok">\u2022</span>',
-          '<span class="graphMood graphMood--meh">\u2022</span>',
-          '<span class="graphMood graphMood--worried">\u2022</span>',
-          '<span class="graphMood graphMood--panic">\u2022</span>',
-        ],
+        categories: this.graphCategories,
         labels: {
           useHTML: true,
         },
@@ -242,7 +236,7 @@ export class ProgressPage {
 
     exercises
     // Get the exercises for this week
-    .filter((exercise) => moment(exercise.start).week() === weekNumber)
+    .filter(exercise => moment(exercise.start).week() === weekNumber)
     .forEach(exercise => {
       // Check if there is a before- and aftermood
       if(exercise.beforeMood.mood !== null && exercise.afterMood.mood !== null) {
@@ -260,11 +254,11 @@ export class ProgressPage {
   updateStats(exercises:any, weekNumber:number) {
     // Get the exercises for this week
     this.thisWeeksExercises = exercises
-    .filter((exercise) => moment(exercise.start).week() === weekNumber);
+    .filter(exercise => moment(exercise.start).week() === weekNumber);
 
     // Get the exercises for previous week
     this.previousWeeksExercises = exercises
-    .filter((exercise) => moment(exercise.start).week() === weekNumber - 1);
+    .filter(exercise => moment(exercise.start).week() === weekNumber - 1);
   }
 
   changeWeek(direction:number) {
