@@ -13,15 +13,15 @@ import { mapRange } from '../../lib/helpers';
 export class ProgressPage {
 
   public _chartOptions:any;
+  public chart:any;
 
   public endWeek:object = moment(moment.now()).endOf('week');
   public startWeek:object = moment(moment.now()).startOf('week');
   public canSelectNextWeek:boolean = false;
 
-  public chart:any;
-  public exercises:any = [];
-  public thisWeeksExercises:any = [];
-  public previousWeeksExercises:any = [];
+  public exercises:Array<Exercise> = [];
+  public thisWeeksExercises:Array<Exercise> = [];
+  public previousWeeksExercises:Array<Exercise> = [];
 
   constructor(
     private storage: Storage
