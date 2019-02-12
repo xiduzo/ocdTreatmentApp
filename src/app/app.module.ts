@@ -66,6 +66,7 @@ import { databaseHost } from '../lib/constants';
 import { groupByPipe } from '../lib/pipes/groupBy';
 import { msToTimePipe } from '../lib/pipes/msToTime';
 import { accumulateTimePipe } from '../lib/pipes/accumulateTime';
+import { differencePipe } from '../lib/pipes/difference';
 
 // injectables
 import { AuthService, UserService } from '../lib/services';
@@ -148,7 +149,8 @@ export function createTranslateLoader(http: Http) {
     SettingsPage,
     groupByPipe,
     accumulateTimePipe,
-    msToTimePipe
+    msToTimePipe,
+    differencePipe
   ],
   imports: [
     BrowserModule,
