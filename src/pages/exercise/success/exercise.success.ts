@@ -44,7 +44,8 @@ export class ExerciseSuccessModal {
       clock: 10,
       max: 50,
     };
-    if(window.ConfettiGenerator) {
+    // http://adripofjavascript.com/blog/drips/the-uses-of-in-vs-hasownproperty.html
+    if('ConfettiGenerator' in window) {
       const confetti = new window.ConfettiGenerator(confettiSettings);
       if (Math.random() > 0) {
         confetti.render();
