@@ -74,7 +74,8 @@ export class FearladderModal {
 
       let toastParams = {
         duration: 2000,
-        position: 'bottom'
+        position: 'bottom',
+        message: '',
       };
 
       if(data.remove) {
