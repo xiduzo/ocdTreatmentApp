@@ -1,4 +1,4 @@
-<ion-header *ngIf="exercises.length > paginationSettings.itemsPerPage">
+<ion-header>
   <pagination-template #p="paginationApi" (pageChange)="paginationSettings.currentPage = $event">
     <ion-navbar color="secondary">
       <ion-buttons start>
