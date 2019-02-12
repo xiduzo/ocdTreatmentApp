@@ -5,14 +5,14 @@ import { zeroPad } from '../helpers';
 @Pipe({ name: 'msToTime' })
 export class msToTimePipe implements PipeTransform {
   transform(miliseconds: number, format: string) {
-    if (!miliseconds) return;
+    if (!miliseconds) return false;
 
-    let ms = miliseconds % 1000;
+    const ms = miliseconds % 1000;
     miliseconds = (miliseconds - ms) / 1000;
-    let secs = miliseconds % 60;
+    const secs = miliseconds % 60;
     miliseconds = (miliseconds - secs) / 60;
-    let mins = miliseconds % 60;
-    let hrs = (miliseconds - mins) / 60;
+    const mins = miliseconds % 60;
+    const hrs = (miliseconds - mins) / 60;
 
     let str;
     switch (format) {
