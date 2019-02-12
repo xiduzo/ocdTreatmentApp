@@ -25,7 +25,7 @@ exercise-list-page {
         padding: 0;
 
         button[ion-item] {
-          &.completed {
+          &[disabled] {
             text-decoration: line-through;
           }
 
