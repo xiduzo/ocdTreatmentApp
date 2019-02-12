@@ -13,16 +13,16 @@
   </section>
   <ion-list no-lines class="exercise__levels" *ngIf="levels?.length">
     <div *ngFor="let level of levels" class="level">
-      <ion-item>
+      <ion-item [class.done]="level.done">
         <section>
           <div class="c-level__monster" (click)="goToLevel(level)">
-            <div class="monster__icon" *ngIf="!level.done">
+            <div class="monster__icon">
               <div class="monster" [style.backgroundImage]="'url(' + level.monster + ')'"></div>
             </div>
-            <div class="level__icon" *ngIf="level.done">
+            <!-- <div class="level__icon" *ngIf="level.done">
               <div class="level" [style.backgroundImage]="'url(assets/imgs/levels/badge__level-0' + level.number + '.png)'"></div>
-            </div>
-            <round-progress *ngIf="!level.done" [current]="level.completion" [max]="100" [radius]="60" [stroke]="5" [rounded] [animationDelay]="i*100">
+            </div> -->
+            <round-progress [current]="level.completion" [max]="100" [radius]="60" [stroke]="5" [rounded] [animationDelay]="i*100">
             </round-progress>
           </div>
           <strong class="level__number">

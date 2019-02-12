@@ -110,7 +110,7 @@ export class SettingsPage {
     this.storage.set('fearLadder', fearLadder);
 
     let exercises = [];
-    for (let i = 0; i < 400; i++) {
+    for (let i = 0; i < 250; i++) {
       let begin = moment(moment.now())
         .subtract(Math.round(Math.random() * 90), "days")
         .subtract(Math.round(Math.random() * 12), "hours")

@@ -27,6 +27,24 @@ page-exercise {
         ion-item {
           padding: 0;
 
+          &.done {
+            .item-inner {
+              opacity: 0.5;
+            }
+
+            &:before {
+              content: ' ';
+              height: 120px;
+              background-image: url("../assets/imgs/misc/cage.svg");
+              width: 120px;
+              background-repeat: no-repeat;
+              position: absolute;
+              margin: 0 auto;
+              left: calc(50% - 60px);
+              z-index: 99;
+            }
+          }
+
           .item-inner {
             padding: 0;
 
