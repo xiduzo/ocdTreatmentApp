@@ -17,30 +17,20 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let step of level?.steps">
-      <button ion-item (click)="selectStep(step)" text-wrap [class.completed]="step.fear.completion >= fearCompletionPositiveLimit" [disabled]="step.fear.completion >= fearCompletionPositiveLimit">
-        <ion-avatar item-start text-center>
-          <ion-icon name="md-square-outline" *ngIf="step.fear.completion < fearCompletionPositiveLimit"></ion-icon>
-          <ion-icon name="checkbox" *ngIf="step.fear.completion >= fearCompletionPositiveLimit"></ion-icon>
-        </ion-avatar>
-        <h2 capitalize>
-          {{ step.fear.situation }}
-        </h2>
-        <p *ngIf="step.fear.without">
-          {{ 'WITHOUT' | translate }}: {{ step.fear.without }}
-        </p>
-        <p>
-          {{ step.fear.completion }}
-        </p>
-      </button>
-      <ion-item-options side="left">
-        <button ion-button (click)="finishExercise(step)" *ngIf="step.fear.completion >= fearCompletionPositiveLimit">
-          Uncomplete
-        </button>
-        <button ion-button (click)="finishExercise(step)" *ngIf="step.fear.completion < fearCompletionPositiveLimit">
-          complete
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
+    <button *ngFor="let step of level?.steps" ion-item (click)="selectStep(step)" text-wrap [class.completed]="step.fear.completion >= fearCompletionPositiveLimit" [disabled]="step.fear.completion >= fearCompletionPositiveLimit">
+      <ion-avatar item-start text-center>
+        <ion-icon name="md-square-outline" *ngIf="step.fear.completion < fearCompletionPositiveLimit"></ion-icon>
+        <ion-icon name="checkbox" *ngIf="step.fear.completion >= fearCompletionPositiveLimit"></ion-icon>
+      </ion-avatar>
+      <h2 capitalize>
+        {{ step.fear.situation }}
+      </h2>
+      <p *ngIf="step.fear.without">
+        {{ 'WITHOUT' | translate }}: {{ step.fear.without }}
+      </p>
+      <p>
+        {{ step.fear.completion }}
+      </p>
+    </button>
   </ion-list>
 </ion-content>

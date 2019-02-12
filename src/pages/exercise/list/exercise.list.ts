@@ -3,8 +3,6 @@ import { Storage } from '@ionic/storage';
 
 import { App, Content, NavParams, ModalController } from 'ionic-angular';
 
-import * as _ from 'lodash';
-
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 import { ExerciseMoodPage } from '../../exercise/mood/exercise.mood';
@@ -93,22 +91,4 @@ export class ExerciseListPage {
       exerciseMoodModal.present();
     });
   }
-
-  finishExercise(step) {
-    this.storage.get('fearLadder').then((fearLadder) => {
-      if (!fearLadder) return;
-
-      _.forEach(fearLadder, (ladderStep) => {
-        if (ladderStep.id == step.id) {
-          step.fear.completion = step.fear.completion < FEAR_COMPLETION_POSITIVE_LIMIT ? FEAR_COMPLETION_POSITIVE_LIMIT : 0;
-          ladderStep.exercise = step.exercise;
-        }
-      });
-
-      this.storage.set('fearLadder', fearLadder);
-
-    });
-  }
-
-
 }
