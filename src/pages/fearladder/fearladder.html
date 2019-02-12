@@ -21,20 +21,18 @@
       {{ 'WARNING_NO_FEARS' | translate }}
     </p>
   </section>
-  <ion-item-group *ngFor="let step of fearLadder | groupBy : 'fearRating'; let i = index">
+  <ion-item-group *ngFor="let level of fearLadder | groupBy : 'fearRating'">
     <ion-item-divider color="light">
-      {{ 'LEVEL' | translate }} {{ step.key }}
+      {{ 'LEVEL' | translate }} {{ level.key }}
     </ion-item-divider>
-    <ion-list>
-      <button ion-item *ngFor="let item of step.items" (click)="editStep(item)">
-        <h2 text-wrap>
-          {{ item.fear?.situation }}
-        </h2>
-        <p text-wrap>
-          {{ 'WITHOUT' | translate }}: {{ item.fear?.without }}
-        </p>
-      </button>
-    </ion-list>
+    <button ion-item *ngFor="let step of level.items" (click)="editStep(step)">
+      <h2 text-wrap>
+        {{ step.fear?.situation }}
+      </h2>
+      <p text-wrap>
+        {{ 'WITHOUT' | translate }}: {{ step.fear?.without }}
+      </p>
+    </button>
   </ion-item-group>
 </ion-content>
 
