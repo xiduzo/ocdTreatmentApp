@@ -3,6 +3,7 @@ import { NavParams, ViewController } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { Storage } from '@ionic/storage';
 
+declare var ConfettiGenerator: any;
 import "confetti-js";
 
 import { Exercise } from '../../../lib/Exercise';
@@ -45,11 +46,9 @@ export class ExerciseSuccessModal {
       max: 50,
     };
     // http://adripofjavascript.com/blog/drips/the-uses-of-in-vs-hasownproperty.html
-    if(window.hasOwnProperty('ConfettiGenerator')) {
-      const confetti = new window.ConfettiGenerator(confettiSettings);
-      if (Math.random() > 0) {
-        confetti.render();
-      }
+    const confetti = new ConfettiGenerator(confettiSettings);
+    if (Math.random() > 0) {
+      confetti.render();
     }
   }
 
