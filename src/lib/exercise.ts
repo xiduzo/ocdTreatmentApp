@@ -27,18 +27,18 @@ export class Step {
 
 export class Trigger {
   public verbose: string;
-  public range: number;
+  public amount: number;
   public explanation: string;
   public enabled: boolean;
 
   constructor({
     verbose = '',
-    range = null,
+    amount = 0,
     explanation = '',
     enabled = false
   } = {}) {
     this.verbose = verbose;
-    this.range = range;
+    this.amount = amount;
     this.explanation = explanation;
     this.enabled = enabled;
   }
@@ -120,7 +120,7 @@ export class Exercise {
 
     // Triggers
     this.step.triggers.forEach(trigger => {
-      points += trigger.range * -7.5;
+      points += trigger.amount * -7.5;
     });
 
     // Duration

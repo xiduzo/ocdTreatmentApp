@@ -62,7 +62,7 @@ export class RatingPage {
 
     // triggers
     this.currentRating.step.triggers.forEach(trigger => {
-      points += trigger.range * -7.5;
+      points += trigger.amount * -7.5;
     });
 
     // duration

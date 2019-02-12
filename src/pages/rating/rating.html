@@ -29,7 +29,7 @@
       fearRating: {{ currentRating?.step.fearRating }}
     </ion-item>
     <ion-item *ngFor="let trigger of currentRating?.step.triggers">
-      {{ trigger.verbose | translate}}: {{ trigger.range }}
+      {{ trigger.verbose | translate}}: {{ trigger.amount }}
     </ion-item>
     <ion-list-header>
       Duration

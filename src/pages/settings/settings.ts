@@ -91,12 +91,12 @@ export class SettingsPage {
           new Trigger({
             verbose: 'INTENSITY_OBSESSIVE_THOUGHTS',
             enabled: Math.random() >= 0.4,
-            range: Math.round(Math.random() * 5)
+            amount: Math.round(Math.random() * 5)
           }),
           new Trigger({
             verbose: 'INTENSITY_COMPULSIVE_BEHAVIOUR',
             enabled: Math.random() >= 0.4,
-            range: Math.round(Math.random() * 5)
+            amount: Math.round(Math.random() * 5)
           })
         ],
         fear: new Fear({
