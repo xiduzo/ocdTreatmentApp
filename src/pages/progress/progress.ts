@@ -154,7 +154,7 @@ export class ProgressPage {
       // Check if we have a before and after mood
       if(exercise.beforeMood.mood !== null && exercise.afterMood.mood !== null) {
         //check if the point has not been added to the graph
-        if(this.lastAddedExercise.id !== exercise.id) {
+        if(!this.lastAddedExercise || this.lastAddedExercise.id !== exercise.id) {
           // Add a point to the graph
           this.addExercisePointToGraph(exercise);
         }
