@@ -66,34 +66,28 @@ export class FearladderModal {
     modal.present();
   }
 
-  removeStep(step) {
-    this.fearLadder.splice(this.fearLadder.indexOf(step), 1);
-    this.updateLocalFearLadder();
-
-    let toast = this.toastCtrl.create({
-      message: 'Fear removed successfully',
-      duration: 2000,
-      position: 'bottom'
-    });
-
-    toast.present();
-  }
-
   editStep(step) {
     let modal = this.modalCtrl.create(FearladderStepModal, { step: step });
 
     modal.onDidDismiss((data) => {
       if (!data) return; // Modal has been closed
 
-      this.fearLadder[this.fearLadder.indexOf(step)] = data.step;
-      this.updateLocalFearLadder();
-
-      let toast = this.toastCtrl.create({
-        message: 'Fear edited successfully',
+      let toastParams = {
         duration: 2000,
         position: 'bottom'
-      });
+      };
 
+      if(data.remove) {
+        toastParams.message = 'Fear removed successfully';
+        this.fearLadder.splice(this.fearLadder.indexOf(step), 1);
+      } else {
+        toastParams.message = 'Fear edited successfully';
+        this.fearLadder[this.fearLadder.indexOf(step)] = data.step;
+      }
+
+      this.updateLocalFearLadder();
+
+      const toast = this.toastCtrl.create(toastParams);
       toast.present();
     });
 

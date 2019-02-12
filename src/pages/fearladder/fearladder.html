@@ -26,29 +26,15 @@
       {{ 'LEVEL' | translate }} {{ step.key }}
     </ion-item-divider>
     <ion-list>
-      <ion-item-sliding *ngFor="let item of step.items">
-        <ion-item text-wrap>
-          <h2>
-            {{ item.fear?.situation }}
-          </h2>
-          <p>
-            {{ 'WITHOUT' | translate }}: {{ item.fear?.without }}
-          </p>
-        </ion-item>
-        <ion-item-options side="right">
-          <button ion-button color="primary" (click)="editStep(item)">
-            <!-- <ion-icon name="text"></ion-icon> -->
-            {{ 'EDIT' | translate }}
-          </button>
-          <button ion-button color="danger" (click)="removeStep(item)">
-            <!-- <ion-icon name="text"></ion-icon> -->
-            {{ 'REMOVE' | translate }}
-          </button>
-        </ion-item-options>
-      </ion-item-sliding>
+      <button ion-item *ngFor="let item of step.items" (click)="editStep(item)">
+        <h2 text-wrap>
+          {{ item.fear?.situation }}
+        </h2>
+        <p text-wrap>
+          {{ 'WITHOUT' | translate }}: {{ item.fear?.without }}
+        </p>
+      </button>
     </ion-list>
-    <!-- <button ion-item  (click)="editStep(item)">
-    </button> -->
   </ion-item-group>
 </ion-content>
 

@@ -52,6 +52,9 @@
 </ion-content>
 
 <ion-footer>
+  <button *ngIf="editStep" color="danger" ion-button large block (click)="removeFear()">
+    {{ 'REMOVE' | translate }}
+  </button>
   <button ion-button large block (click)="addFear()" [disabled]="!step.fear.situation || !step.fear.without">
     {{ buttonText | translate }}
   </button>

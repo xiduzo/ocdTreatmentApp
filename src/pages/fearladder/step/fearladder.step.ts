@@ -13,6 +13,8 @@ export class FearladderStepModal {
   public buttonText:string = 'ADD';
   public headerText:string = 'FEARLADDER_STEP_HEADER_ADD';
 
+  public editStep:boolean = false;
+
   constructor(
     public viewCtrl: ViewController,
     private params: NavParams,
@@ -23,6 +25,9 @@ export class FearladderStepModal {
     // For when we edit a step
     if(this.params.get('step')) {
       this.step = this.params.get('step');
+      this.editStep = true;
+
+      // Change the button texts
       this.buttonText = 'SAVE';
       this.headerText = 'FEARLADDER_STEP_HEADER_EDIT';
     } else {
@@ -36,6 +41,10 @@ export class FearladderStepModal {
 
   addFear() {
     this.viewCtrl.dismiss({step: this.step});
+  }
+
+  removeFear() {
+    this.viewCtrl.dismiss({step: this.step, remove: true});
   }
 
 }
