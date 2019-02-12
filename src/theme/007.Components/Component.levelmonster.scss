@@ -1,0 +1,39 @@
+.c-level__monster {
+  display: flex;
+  min-height: 120px;
+  justify-content: center;
+  align-items: center;
+
+  .level__icon,
+  .monster__icon {
+    border-radius: 50%;
+
+    .level,
+    .monster {
+      width: inherit;
+      height: inherit;
+      background-size: cover;
+    }
+  }
+
+  .level__icon {
+    width: 125px;
+    height: 125px;
+  }
+
+  .monster__icon {
+    width: 100px;
+    height: 100px;
+    background: #FCD28A;
+    overflow: hidden;
+
+    .monster {
+      margin-top: 20px;
+    }
+  }
+
+  round-progress {
+    position: absolute;
+    z-index: 10;
+  }
+}

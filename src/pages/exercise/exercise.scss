@@ -3,5 +3,52 @@ page-exercise {
     .c-emptystate {
       height: 100%;
     }
+
+    > div.scroll-content {
+      background: white;
+    }
+
+    .exercise__levels {
+      padding: 32px 0;
+
+      .level {
+        &:not(:last-of-type) {
+          &:after {
+            content: '';
+            height: calc(12px * 5 - 6px);
+            margin: 0 auto 8px;
+            display: block;
+            width: 6px;
+            background-image: url("../assets/imgs/misc/dot.svg");
+            opacity: 0.25;
+          }
+        }
+
+        ion-item {
+          padding: 0;
+
+          .item-inner {
+            padding: 0;
+
+            ion-label {
+              margin: 0;
+
+              section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .level__number {
+                  text-transform: uppercase;
+                  font-size: 14px;
+                  padding: 8px 0;
+                  color: lighten(color($colors, dark, base), 25);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
