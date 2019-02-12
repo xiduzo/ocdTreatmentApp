@@ -9,6 +9,19 @@ progress-home {
     }
   }
 
+  [ion-fixed] {
+    display: flex;
+    flex-direction: column;
+
+    ion-scroll {
+      flex-grow: 1;
+
+      .scroll-content {
+        overflow-y: scroll;
+      }
+    }
+  }
+
   chart {
     span,
     svg {
@@ -32,7 +45,7 @@ progress-home {
   }
 
   ion-grid.grid {
-    padding: 32px 64px;
+    padding: 32px 64px 0;
 
     ion-row {
       &:not(:last-of-type) {

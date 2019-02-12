@@ -19,67 +19,71 @@
 </ion-header>
 
 <ion-content>
-  <chart [options]="_chartOptions" style="display: block" (load)="setChart($event.context)" type="chart"></chart>
+  <div ion-fixed>
+    <chart [options]="_chartOptions" style="display: block" (load)="setChart($event.context)" type="chart"></chart>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col col-12>
-        <ion-icon name="ribbon"></ion-icon>
-        <span>
-          {{ 'PROGRESS_EXERCISES_DONE' | translate }}
-        </span>
-      </ion-col>
-      <ion-col col-12 class="stats">
-        <h1 class="title">
-          {{ thisWeeksExercises?.length || '0' }}
-        </h1>
-        <span class="stat">
-          {{ 'EXERCISES' | translate }}
-        </span>
-        <span *ngIf="previousWeeksExercises.length" class="difference">
-          {{ previousWeeksExercises.length | difference : thisWeeksExercises.length }}
-        </span>
-      </ion-col>
-    </ion-row>
+    <ion-scroll>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <ion-icon name="ribbon"></ion-icon>
+            <span>
+              {{ 'PROGRESS_EXERCISES_DONE' | translate }}
+            </span>
+          </ion-col>
+          <ion-col col-12 class="stats">
+            <h1 class="title">
+              {{ thisWeeksExercises?.length || '0' }}
+            </h1>
+            <span class="stat">
+              {{ 'EXERCISES' | translate }}
+            </span>
+            <span *ngIf="previousWeeksExercises.length" class="difference">
+              {{ previousWeeksExercises.length | difference : thisWeeksExercises.length }}
+            </span>
+          </ion-col>
+        </ion-row>
 
-    <ion-row>
-      <ion-col col-12>
-        <ion-icon name="timer"></ion-icon>
-        <span>
-          {{ 'PROGRESS_TOTAL_EXERCISE_TIME' | translate }}
-        </span>
-      </ion-col>
-      <ion-col col-12 class="stats">
-        <h1 class="title">
-          {{ (thisWeeksExercises | accumulateTime | msToTime : 'hours') || '0' }}
-        </h1>
-        <span class="stat">
-          {{ 'HOURS' | translate }}
-        </span>
-        <span *ngIf="previousWeeksExercises.length" class="difference">
-          {{ (previousWeeksExercises | accumulateTime) | difference : (thisWeeksExercises | accumulateTime) }}
-        </span>
-      </ion-col>
-    </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <ion-icon name="timer"></ion-icon>
+            <span>
+              {{ 'PROGRESS_TOTAL_EXERCISE_TIME' | translate }}
+            </span>
+          </ion-col>
+          <ion-col col-12 class="stats">
+            <h1 class="title">
+              {{ (thisWeeksExercises | accumulateTime | msToTime : 'hours') || '0' }}
+            </h1>
+            <span class="stat">
+              {{ 'HOURS' | translate }}
+            </span>
+            <span *ngIf="previousWeeksExercises.length" class="difference">
+              {{ (previousWeeksExercises | accumulateTime) | difference : (thisWeeksExercises | accumulateTime) }}
+            </span>
+          </ion-col>
+        </ion-row>
 
-    <ion-row>
-      <ion-col col-12>
-        <ion-icon name="md-stopwatch"></ion-icon>
-        <span>
-          {{ 'PROGRESS_AVERAGE_EXERCISE_TIME' | translate }}
-        </span>
-      </ion-col>
-      <ion-col col-12 class="stats">
-        <h1 class="title">
-          {{ (((thisWeeksExercises | accumulateTime) / thisWeeksExercises?.length) | msToTime : 'minutes') || '0' }}
-        </h1>
-        <span class="stat">
-          {{ 'MINUTES' | translate }}
-        </span>
-        <span *ngIf="previousWeeksExercises.length" class="difference">
-          {{ ((previousWeeksExercises | accumulateTime) / previousWeeksExercises.length) | difference : ((thisWeeksExercises | accumulateTime) / thisWeeksExercises.length) }}
-        </span>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <ion-icon name="md-stopwatch"></ion-icon>
+            <span>
+              {{ 'PROGRESS_AVERAGE_EXERCISE_TIME' | translate }}
+            </span>
+          </ion-col>
+          <ion-col col-12 class="stats">
+            <h1 class="title">
+              {{ (((thisWeeksExercises | accumulateTime) / thisWeeksExercises?.length) | msToTime : 'minutes') || '0' }}
+            </h1>
+            <span class="stat">
+              {{ 'MINUTES' | translate }}
+            </span>
+            <span *ngIf="previousWeeksExercises.length" class="difference">
+              {{ ((previousWeeksExercises | accumulateTime) / previousWeeksExercises.length) | difference : ((thisWeeksExercises | accumulateTime) / thisWeeksExercises.length) }}
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-scroll>
+  </div>
 </ion-content>
