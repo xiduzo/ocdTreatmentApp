@@ -14,15 +14,6 @@ export class ProgressPage {
 
   public _chartOptions:any;
 
-  public filter:string = 'all';
-  public moods:Array<string> = [
-    'MOOD_CONTENT',
-    'MOOD_OK',
-    'MOOD_MEH',
-    'MOOD_WORRIED',
-    'MOOD_PANIC'
-  ];
-
   public endWeek:object = moment(moment.now()).endOf('week');
   public startWeek:object = moment(moment.now()).startOf('week');
   public canSelectNextWeek:boolean = false;
