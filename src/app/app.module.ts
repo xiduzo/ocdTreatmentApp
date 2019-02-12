@@ -63,7 +63,8 @@ import { SettingsPage } from '../pages/settings/settings';
 ------------------------------*/
 import { databaseHost } from '../lib/constants';
 // pipes
-import { groupByPipe } from '../lib/pipes/groupBy';
+import { NgPipesModule } from 'ngx-pipes';
+// import { groupByPipe } from '../lib/pipes/groupBy';
 import { msToTimePipe } from '../lib/pipes/msToTime';
 import { accumulateTimePipe } from '../lib/pipes/accumulateTime';
 import { differencePipe } from '../lib/pipes/difference';
@@ -147,12 +148,13 @@ export function createTranslateLoader(http: Http) {
     LogbookPage,
     BadgeModal,
     SettingsPage,
-    groupByPipe,
+    // groupByPipe,
     accumulateTimePipe,
     msToTimePipe,
     differencePipe
   ],
   imports: [
+    NgPipesModule,
     BrowserModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(MyApp, { tabsPlacement: 'bottom' }),

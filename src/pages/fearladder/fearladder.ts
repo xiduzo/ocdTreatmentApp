@@ -10,7 +10,7 @@ import { EventsService } from 'angular-event-service';
 
 @Component({
   selector: 'fearladder-modal',
-  templateUrl: 'fearladder.html'
+  templateUrl: 'fearladder.html',
 })
 export class FearladderModal {
   public fearLadder: Array<Step> = [];
@@ -25,9 +25,9 @@ export class FearladderModal {
   ) {
     this.storage.get('fearLadder').then((fearLadder) => {
       if (!fearLadder) return;
-      fearLadder.forEach(step => {
-        this.fearLadder.push(new Step(step));
-      });
+
+      this.fearLadder = fearLadder;
+
     });
 
     if (this.params.get('addNewFear')) this.addStep();

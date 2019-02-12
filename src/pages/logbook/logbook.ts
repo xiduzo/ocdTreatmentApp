@@ -45,7 +45,7 @@ export class LogbookPage {
 
     if(!localExercise) {
       // Add the exercise to the start of the array for reversed chronological order
-      this.exercises.unshift(exercise);
+      this.exercises.push(exercise);
     } else {
       this.exercises[this.exercises.indexOf(localExercise)] = exercise;
     }
@@ -60,7 +60,7 @@ export class LogbookPage {
       if (!exercises) return;
       this.exercises = exercises
       // Reverse the array for display purposes
-      .reverse()
+      // .reverse()
       .map(localExercise => {
         const exercise = new Exercise(localExercise);
 
