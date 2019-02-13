@@ -2,7 +2,13 @@ ion-toolbar {
   &.toolbar-ios {
     // Iphone X
     @media only screen and (device-width : 375px) and (device-height : 812px) and (-webkit-device-pixel-ratio : 3) {
-      padding: 32px 16px 16px;
+      min-height: 64px;
+      padding-left: 24px;
+      padding-right: 24px;
+
+      ion-title {
+        margin-top: 16px;
+      }
     }
   }
 }
