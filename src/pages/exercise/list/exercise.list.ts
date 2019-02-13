@@ -54,13 +54,9 @@ export class ExerciseListPage {
     } catch (err) {
       console.log(`err ${err}`);
     } finally {
-      this.recalculateLevelCompletion();
+      this.level.calculateCompletion();
       this.eventService.broadcast('new_level_completion', this.level);
     }
-  }
-
-  recalculateLevelCompletion() {
-    this.level.completion = this.level.steps.filter(steps => steps.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT).length * 100 / this.level.steps.length;
   }
 
   close() {
