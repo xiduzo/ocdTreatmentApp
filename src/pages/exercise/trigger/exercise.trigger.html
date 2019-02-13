@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-navbar color="secondary">
-    <ion-title text-center>
+  <ion-toolbar color="secondary">
+    <ion-title>
       {{ 'INTENSITY_HEADER' | translate}}
     </ion-title>
-  </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -11,7 +11,7 @@
     <ion-list>
       <div *ngFor="let trigger of triggers">
         <ion-item>
-          <ion-label stacked>
+          <ion-label floating>
             {{ trigger.verbose | translate }} ({{trigger.amount}})
           </ion-label>
           <ion-range min="{{range.min}}" max="{{range.max}}" [(ngModel)]="trigger.amount" pin="true" snaps="true">

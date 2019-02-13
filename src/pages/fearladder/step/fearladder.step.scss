@@ -1,4 +1,18 @@
 fearladder-step-modal {
+  ion-content {
+    ion-item-group {
+      ion-item {
+        ion-label {
+          text-transform: lowercase;
+
+          &:first-letter {
+            text-transform: capitalize;
+          }
+        }
+      }
+    }
+  }
+
   ion-footer {
     display: flex;
 

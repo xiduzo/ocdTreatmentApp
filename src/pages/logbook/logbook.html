@@ -1,6 +1,6 @@
 <!-- <ion-header>
   <pagination-template #p="paginationApi" (pageChange)="paginationSettings.currentPage = $event">
-    <ion-navbar color="secondary">
+    <ion-toolbar color="secondary">
       <ion-buttons start>
         <button ion-button icon-only color="light" [disabled]="p.isFirstPage()" (click)="p.previous()">
           <ion-icon name="arrow-dropleft"></ion-icon>
@@ -21,16 +21,16 @@
           <ion-icon name="arrow-dropright"></ion-icon>
         </button>
       </ion-buttons>
-    </ion-navbar>
+    </ion-toolbar>
   </pagination-template>
 </ion-header> -->
 
 <ion-header>
-  <ion-navbar color="secondary">
+  <ion-toolbar color="secondary">
     <ion-title>
       {{ 'MY_LOGBOOK_ENTRIES' | translate}}
     </ion-title>
-  </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>

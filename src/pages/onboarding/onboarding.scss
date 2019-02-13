@@ -1,23 +1,21 @@
 page-onboarding {
   ion-footer {
     display: flex;
+
     button.button {
       margin: 0;
       flex-grow: 1;
       box-shadow: none;
+
       &.c-onboarding__button {
         flex-grow: 10;
       }
     }
-
   }
 }
 
-
 .c-onboarding {
   .swiper-pagination {
-    bottom: 1%;
-
     .swiper-pagination-bullet-active {
       background: color($colors, light, base);
     }
@@ -64,6 +62,7 @@ page-onboarding {
   background-repeat: no-repeat;
   background-position: center center;
 }
+
 .c-onboarding__text {
   height: 40%;
   background-color: color($colors, secondary, base);

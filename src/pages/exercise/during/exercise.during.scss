@@ -6,6 +6,11 @@ page-exercise-during {
     height: 100%;
     display: flex;
     flex-direction: column;
+    background-color: color($colors, light, base);
+  }
+
+  .scroll-content {
+    display: none;
   }
 
   .exercise {

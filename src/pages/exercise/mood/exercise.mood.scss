@@ -2,17 +2,21 @@ page-exercise-mood {
   ion-content.content {
     background: rgb(252, 201, 138);
 
-    [ion-fixed], .ion-fixed {
+    .ion-fixed,
+    [ion-fixed] {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 100%;
 
       form {
         ion-item.transparent {
           background: transparent;
         }
       }
+    }
+
+    .scroll-content {
+      display: none;
     }
   }
 }

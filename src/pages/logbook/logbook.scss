@@ -1,5 +1,5 @@
 logbook-page {
-  ion-navbar {
+  ion-toolbar {
     ion-buttons {
       &:first-of-type {
         order: 1;
@@ -8,14 +8,6 @@ logbook-page {
       button {
         background: transparent;
         color: white;
-      }
-    }
-
-    ion-title {
-      .toolbar-title {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
       }
     }
   }
@@ -66,8 +58,6 @@ logbook-page {
 
           ion-card-header {
             padding: 16px 0 0 16px;
-            margin: 2px 0;
-            font-size: 1.6rem;
             font-weight: normal;
             display: flex;
             flex-direction: column;
@@ -86,7 +76,6 @@ logbook-page {
             padding: 0;
             max-height: 0;
             opacity: 0;
-            padding-bottom: 0;
             transition: max-height 450ms ease-in, opacity 200ms ease-in 100ms;
 
             &.active {
@@ -99,6 +88,10 @@ logbook-page {
             }
 
             ion-item-group {
+              &:first-of-type {
+                padding-top: 16px;
+              }
+
               ion-item-divider {
                 ion-label {
                   display: flex;
