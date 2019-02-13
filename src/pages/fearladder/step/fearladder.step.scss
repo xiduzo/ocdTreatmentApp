@@ -1,5 +1,7 @@
 fearladder-step-modal {
   ion-footer {
+    display: flex;
+
     button[ion-button] {
       margin: 0;
     }

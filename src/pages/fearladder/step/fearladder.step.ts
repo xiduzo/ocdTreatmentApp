@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
+import { AlertController } from 'ionic-angular';
+
 import { Step, Fear }  from '../../../lib/Exercise';
 
 @Component({
@@ -17,6 +19,7 @@ export class FearladderStepModal {
 
   constructor(
     public viewCtrl: ViewController,
+    public alertCtrl: AlertController,
     private params: NavParams,
   ) {
   }
@@ -44,7 +47,22 @@ export class FearladderStepModal {
   }
 
   removeFear() {
-    this.viewCtrl.dismiss({step: this.step, remove: true});
+    const confirmation = this.alertCtrl.create({
+      title: 'Are you sure you want to remove this fear?',
+      message: 'This action is irriversable',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {}
+        },
+        {
+          text: 'Remove fear',
+          handler: () => this.viewCtrl.dismiss({step: this.step, remove: true})
+        }
+      ]
+    });
+
+    confirmation.present();
   }
 
 }
