@@ -9,7 +9,7 @@ import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
   selector: 'logbook-page',
-  templateUrl: 'logbook.html'
+  templateUrl: 'logbook.html',
 })
 export class LogbookPage {
   public exercises: Array<Exercise> = [];
@@ -36,6 +36,10 @@ export class LogbookPage {
     this.eventService.destroyListener('exercise_update', this.exerciseUpdate);
   }
 
+  loadMoreExercises(infiniteScrollEvent) {
+    console.log(infiniteScrollEvent);
+  }
+
   exerciseUpdate(exercise: Exercise) {
     const localExercise = this.exercises.find(currExercise => currExercise.id === exercise.id);
 
@@ -44,7 +48,6 @@ export class LogbookPage {
     });
 
     if(!localExercise) {
-      // Add the exercise to the start of the array for reversed chronological order
       this.exercises.push(exercise);
     } else {
       this.exercises[this.exercises.indexOf(localExercise)] = exercise;
@@ -59,8 +62,6 @@ export class LogbookPage {
     this.storage.get('exercises').then((exercises) => {
       if (!exercises) return;
       this.exercises = exercises
-      // Reverse the array for display purposes
-      // .reverse()
       .map(localExercise => {
         const exercise = new Exercise(localExercise);
 

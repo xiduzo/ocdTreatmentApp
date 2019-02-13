@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <pagination-template #p="paginationApi" (pageChange)="paginationSettings.currentPage = $event">
     <ion-navbar color="secondary">
       <ion-buttons start>
@@ -23,6 +23,14 @@
       </ion-buttons>
     </ion-navbar>
   </pagination-template>
+</ion-header> -->
+
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      {{ 'MY_LOGBOOK_ENTRIES' | translate}}
+    </ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content>
@@ -36,7 +44,8 @@
     </p>
   </section>
   <section no-lines class="c-logbook">
-    <div *ngFor="let exercise of exercises | orderByImpure : '-start' | paginate : paginationSettings" class="c-logbook__item">
+    <!-- <div *ngFor="let exercise of exercises | orderByImpure : '-start' | paginate : paginationSettings" class="c-logbook__item"> -->
+    <div *ngFor="let exercise of exercises | orderBy : '-start' | initial : 5" class="c-logbook__item">
       <section class="c-logbook__timeline">
         <div class="o-moodindicator">
           <span class="before" [class.content]="exercise.beforeMood.mappedMood === 1" [class.ok]="exercise.beforeMood.mappedMood === 2" [class.meh]="exercise.beforeMood.mappedMood === 3" [class.worried]="exercise.beforeMood.mappedMood === 4"
@@ -90,5 +99,8 @@
         </ion-row>
       </ion-card>
     </div>
+    <!-- <ion-infinite-scroll (ionInfinite)="loadMoreExercises($event)">
+      <ion-infinite-scroll-content loadingText="Loading more data..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll> -->
   </section>
 </ion-content>
