@@ -45,7 +45,7 @@
   </section>
   <section no-lines class="c-logbook">
     <!-- <div *ngFor="let exercise of exercises | orderByImpure : '-start' | paginate : paginationSettings" class="c-logbook__item"> -->
-    <div *ngFor="let exercise of exercises | orderBy : '-start' | initial : 5" class="c-logbook__item">
+    <div *ngFor="let exercise of exercises | orderByImpure : '-start'" class="c-logbook__item">
       <section class="c-logbook__timeline">
         <div class="o-moodindicator">
           <span class="before" [class.content]="exercise.beforeMood.mappedMood === 1" [class.ok]="exercise.beforeMood.mappedMood === 2" [class.meh]="exercise.beforeMood.mappedMood === 3" [class.worried]="exercise.beforeMood.mappedMood === 4"
