@@ -18,12 +18,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div ion-fixed (swipe)="swipeEvent($event)">
+<ion-content (swipe)="swipeEvent($event)">
+  <div ion-fixed>
     <chart [options]="_chartOptions" style="display: block" (load)="setChart($event.context)" type="chart"></chart>
 
     <ion-scroll>
-      <ion-grid (swipe)="swipeEvent($event)">
+      <ion-grid>
         <ion-row>
           <ion-col col-12>
             <ion-icon name="ribbon"></ion-icon>
