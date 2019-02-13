@@ -168,6 +168,19 @@ export class ProgressPage {
     // As we have limited the user to go forward in time on the week selector
   }
 
+  swipeEvent(event) {
+    if(event.isFinal) {
+      switch(event.direction) {
+        case 2:
+          if(this.canSelectNextWeek) this.changeWeek(1);
+          break;
+        case 4:
+          this.changeWeek(-1);
+          break;
+      }
+    }
+  }
+
   // Use this for editing the chart dynamicly later on
   setChart(chart) {
     this.chart = chart;

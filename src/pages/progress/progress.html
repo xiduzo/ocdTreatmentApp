@@ -19,11 +19,11 @@
 </ion-header>
 
 <ion-content>
-  <div ion-fixed>
+  <div ion-fixed (swipe)="swipeEvent($event)">
     <chart [options]="_chartOptions" style="display: block" (load)="setChart($event.context)" type="chart"></chart>
 
     <ion-scroll>
-      <ion-grid>
+      <ion-grid (swipe)="swipeEvent($event)">
         <ion-row>
           <ion-col col-12>
             <ion-icon name="ribbon"></ion-icon>
