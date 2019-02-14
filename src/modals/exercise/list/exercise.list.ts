@@ -5,7 +5,7 @@ import { App, Content, NavParams, ModalController } from 'ionic-angular';
 
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
-import { ExerciseMoodPage } from '../../exercise/mood/exercise.mood';
+import { ExerciseMoodModal } from '../mood/exercise.mood';
 
 import { Exercise } from '../../../lib/Exercise';
 
@@ -17,7 +17,7 @@ import { EventsService } from 'angular-event-service';
   selector: 'exercise-list-page',
   templateUrl: 'exercise.list.html'
 })
-export class ExerciseListPage {
+export class ExerciseListModal {
   @ViewChild(Content) content: Content;
 
   private level: any;
@@ -78,7 +78,7 @@ export class ExerciseListPage {
 
       this.storage.set('exercises', exercises);
 
-      const exerciseMoodModal = this.modalCtrl.create(ExerciseMoodPage, {
+      const exerciseMoodModal = this.modalCtrl.create(ExerciseMoodModal, {
         level: this.level,
         exercise: exercise,
         before: true

@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
-import { ExerciseMoodPage } from '../mood/exercise.mood';
+import { ExerciseMoodModal } from '../mood/exercise.mood';
 
 import { Exercise } from '../../../lib/Exercise';
 
@@ -62,7 +62,7 @@ export class ExerciseDuringModal {
 
       this.eventService.broadcast('exercise_update', this.exercise);
 
-      let moodModal = this.modalCtrl.create(ExerciseMoodPage, {
+      let moodModal = this.modalCtrl.create(ExerciseMoodModal, {
         level: this.level,
         exercise: this.exercise,
         before: false }

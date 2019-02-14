@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { App, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-import { ExerciseListPage } from '../exercise/list/exercise.list';
+import { ExerciseListModal } from '../../modals/exercise/list/exercise.list';
 
 import { ToastController } from 'ionic-angular';
 
-import { FearladderModal } from '../fearladder/fearladder';
+import { FearladderModal } from '../../modals/fearladder/fearladder';
 
 import { EventsService } from 'angular-event-service';
 
@@ -119,7 +119,7 @@ export class ExercisePage {
     // Also dont need to go there if the level is done
     if (level.done) return;
 
-    this.appCtrl.getRootNav().push(ExerciseListPage, {
+    this.appCtrl.getRootNav().push(ExerciseListModal, {
       level: level
     });
   }

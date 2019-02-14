@@ -33,11 +33,6 @@ import { File } from '@ionic-native/file';
 ------------------------------*/
 // Exercise
 import { ExercisePage } from '../pages/exercise/exercise';
-import { ExerciseMoodPage } from '../pages/exercise/mood/exercise.mood';
-import { ExerciseDuringModal } from '../pages/exercise/during/exercise.during';
-import { ExerciseTriggerModal } from '../pages/exercise/trigger/exercise.trigger';
-import { ExerciseSuccessModal } from '../pages/exercise/success/exercise.success';
-import { ExerciseListPage } from '../pages/exercise/list/exercise.list';
 import { RatingPage } from '../pages/rating/rating';
 // Auth
 import { LoginPage } from '../pages/login/login';
@@ -52,11 +47,21 @@ import { ProfilePage } from '../pages/profile/profile';
 import { ProgressPage } from '../pages/progress/progress';
 // Tabs (navigation)
 import { TabsPage } from '../pages/tabs/tabs';
-// Fearladder
-import { FearladderModal } from '../pages/fearladder/fearladder';
-import { FearladderStepModal } from '../pages/fearladder/step/fearladder.step';
 //Settings
 import { SettingsPage } from '../pages/settings/settings';
+
+/*------------------------------
+  Modals
+------------------------------*/
+// Fearladder
+import { FearladderModal } from '../modals/fearladder/fearladder';
+import { FearladderStepModal } from '../modals/fearladder/step/fearladder.step';
+import { ExerciseMoodModal } from '../modals/exercise/mood/exercise.mood';
+import { ExerciseDuringModal } from '../modals/exercise/during/exercise.during';
+import { ExerciseTriggerModal } from '../modals/exercise/trigger/exercise.trigger';
+import { ExerciseSuccessModal } from '../modals/exercise/success/exercise.success';
+import { ExerciseListModal } from '../modals/exercise/list/exercise.list';
+
 
 /*------------------------------
   Lib
@@ -135,11 +140,11 @@ export function createTranslateLoader(http: Http) {
     TabsPage,
     OnboardingPage,
     ExercisePage,
-    ExerciseMoodPage,
+    ExerciseMoodModal,
     ExerciseDuringModal,
     ExerciseTriggerModal,
     ExerciseSuccessModal,
-    ExerciseListPage,
+    ExerciseListModal,
     RatingPage,
     FearladderModal,
     FearladderStepModal,
@@ -179,11 +184,11 @@ export function createTranslateLoader(http: Http) {
     TabsPage,
     OnboardingPage,
     ExercisePage,
-    ExerciseMoodPage,
+    ExerciseMoodModal,
     ExerciseDuringModal,
     ExerciseTriggerModal,
     ExerciseSuccessModal,
-    ExerciseListPage,
+    ExerciseListModal,
     RatingPage,
     FearladderModal,
     FearladderStepModal,

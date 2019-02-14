@@ -22,7 +22,7 @@ import { ExerciseSuccessModal } from '../success/exercise.success';
 import { EventsService } from 'angular-event-service';
 
 @Component({
-  selector: 'page-exercise-mood',
+  selector: 'exercise-mood-modal',
   templateUrl: 'exercise.mood.html',
   animations: [
     trigger('trackMood', [
@@ -35,7 +35,7 @@ import { EventsService } from 'angular-event-service';
     ])
   ]
 })
-export class ExerciseMoodPage {
+export class ExerciseMoodModal {
   public mood: Mood = new Mood({ mood: 0 });
 
   public moodClass: string = 'content';

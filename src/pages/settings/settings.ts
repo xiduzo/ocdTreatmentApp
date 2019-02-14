@@ -3,7 +3,7 @@ import { Storage } from '@ionic/storage';
 
 import { ViewController, ModalController } from 'ionic-angular';
 
-import { FearladderModal } from '../fearladder/fearladder';
+import { FearladderModal } from '../../modals/fearladder/fearladder';
 import { RatingPage } from '../rating/rating';
 
 import { TranslateService } from 'ng2-translate';
@@ -57,8 +57,30 @@ export class SettingsPage {
     this.viewCtrl.dismiss();
   }
 
+  createCsv(arr) {
+    let csvContent = "data:text/csv;charset=utf-8,";
+
+    let header = '';
+    for(var key in arr[0]) {
+      header += `${key},`;
+    }
+    header += "\r\n";
+    csvContent += header;
+    arr.forEach(item => {
+      let row = '';
+      for(var key in item) {
+        row += `${item[key]},`;
+      }
+      row += "\r\n";
+      csvContent += row;
+    });
+    console.log(encodeURI(csvContent));
+
+    return encodeURI(csvContent);
+  }
+
   mailData() {
-    this.file.writeFile(this.file.externalDataDirectory, "testfile.json", JSON.stringify({ a: 2, b: 4 }), { replace: true }).then(response => {
+    this.file.writeFile(this.file.cacheDirectory, "testfile.txt", JSON.stringify({ a: 2, b: 4 }), { replace: true }).then(response => {
       let email = {
         to: 'sanderboer_feyenoord@hotmail.com',
         attachments: [
@@ -110,7 +132,7 @@ export class SettingsPage {
     this.storage.set('fearLadder', fearLadder);
 
     let exercises = [];
-    for (let i = 0; i < 250; i++) {
+    for (let i = 0; i < 25; i++) {
       let begin = moment(moment.now())
         .subtract(Math.round(Math.random() * 90), "days")
         .subtract(Math.round(Math.random() * 12), "hours")
