@@ -3,8 +3,8 @@ import { Storage } from '@ionic/storage';
 
 import { ViewController, ModalController } from 'ionic-angular';
 
-import { FearladderModal } from '../../modals/fearladder/fearladder';
-import { RatingPage } from '../rating/rating';
+import { FearladderModal } from '../fearladder/fearladder';
+import { RatingPage } from '../../pages/rating/rating'; // actually a modal - to lazy to care
 
 import { TranslateService } from 'ng2-translate';
 import { availableLanguages, sysOptions } from '../../lib/language';
@@ -17,10 +17,10 @@ import { File } from '@ionic-native/file';
 import { EmailComposer } from '@ionic-native/email-composer';
 
 @Component({
-  selector: 'page-settings',
+  selector: 'settings-modal',
   templateUrl: 'settings.html'
 })
-export class SettingsPage {
+export class SettingsModal {
 
   public language: string;
   public languages: any;

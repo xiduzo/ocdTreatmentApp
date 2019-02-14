@@ -47,15 +47,16 @@ import { ProfilePage } from '../pages/profile/profile';
 import { ProgressPage } from '../pages/progress/progress';
 // Tabs (navigation)
 import { TabsPage } from '../pages/tabs/tabs';
-//Settings
-import { SettingsPage } from '../pages/settings/settings';
 
 /*------------------------------
   Modals
 ------------------------------*/
+//Settings
+import { SettingsModal } from '../modals/settings/settings';
 // Fearladder
 import { FearladderModal } from '../modals/fearladder/fearladder';
 import { FearladderStepModal } from '../modals/fearladder/step/fearladder.step';
+// Exercise
 import { ExerciseMoodModal } from '../modals/exercise/mood/exercise.mood';
 import { ExerciseDuringModal } from '../modals/exercise/during/exercise.during';
 import { ExerciseTriggerModal } from '../modals/exercise/trigger/exercise.trigger';
@@ -152,7 +153,7 @@ export function createTranslateLoader(http: Http) {
     SignUpPage,
     LogbookPage,
     BadgeModal,
-    SettingsPage,
+    SettingsModal,
     // groupByPipe,
     accumulateTimePipe,
     msToTimePipe,
@@ -196,7 +197,7 @@ export function createTranslateLoader(http: Http) {
     SignUpPage,
     LogbookPage,
     BadgeModal,
-    SettingsPage
+    SettingsModal
   ],
   providers: [
     StatusBar,

@@ -14,7 +14,7 @@ import { TEST_ONE_BADGE } from '../../lib/badges/templates/test1';
 import { TEST_TWO_BADGE } from '../../lib/badges/templates/test2';
 import { TEST_THREE_BADGE } from '../../lib/badges/templates/test3';
 
-import { SettingsPage } from '../settings/settings';
+import { SettingsModal } from '../../modals/settings/settings';
 
 
 @Component({
@@ -61,7 +61,7 @@ export class ProfilePage {
   }
 
   openSettings() {
-    let settingsModal = this.modalCtrl.create(SettingsPage);
+    let settingsModal = this.modalCtrl.create(SettingsModal);
     settingsModal.present();
   }
 
