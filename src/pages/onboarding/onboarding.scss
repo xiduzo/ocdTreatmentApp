@@ -1,4 +1,9 @@
 page-onboarding {
+  [ion-fixed] {
+    display: flex;
+    flex-direction: column;
+  }
+
   ion-footer {
     display: flex;
 
@@ -56,7 +61,6 @@ page-onboarding {
   display: flex;
   justify-content: center;
   align-items: center;
-  // I think this is a nice color as background
   background-color: color($colors, light, base);
   background-size: cover;
   background-repeat: no-repeat;
@@ -71,7 +75,6 @@ page-onboarding {
   flex-direction: column;
 
   p {
-    // text-align: center;
     margin: 0;
     height: 100%;
     display: flex;
