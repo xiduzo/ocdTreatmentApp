@@ -5,14 +5,14 @@ import { EmailComposer } from '@ionic-native/email-composer';
 
 import { AuthService, UserService } from '../../lib/services';
 
-import { Badge, BadgeFactory } from '../../lib/badges/Badge';
+import { Badge, BadgeFactory } from '../../lib/badge/Badge';
 
-import { STREAK_BADGE } from '../../lib/badges/templates/streak';
-import { EXERCISE_BADGE } from '../../lib/badges/templates/exercise';
-import { FIRST_TIME_BADGE } from '../../lib/badges/templates/firstTime';
-import { TEST_ONE_BADGE } from '../../lib/badges/templates/test1';
-import { TEST_TWO_BADGE } from '../../lib/badges/templates/test2';
-import { TEST_THREE_BADGE } from '../../lib/badges/templates/test3';
+import { STREAK_BADGE } from '../../lib/badge/templates/streak';
+import { EXERCISE_BADGE } from '../../lib/badge/templates/exercise';
+import { FIRST_TIME_BADGE } from '../../lib/badge/templates/firstTime';
+// import { TEST_ONE_BADGE } from '../../lib/badges/templates/test1';
+// import { TEST_TWO_BADGE } from '../../lib/badges/templates/test2';
+// import { TEST_THREE_BADGE } from '../../lib/badges/templates/test3';
 
 import { SettingsModal } from '../../modals/settings/settings';
 
@@ -32,9 +32,9 @@ export class ProfilePage {
     STREAK_BADGE,
     EXERCISE_BADGE,
     FIRST_TIME_BADGE,
-    TEST_ONE_BADGE,
-    TEST_TWO_BADGE,
-    TEST_THREE_BADGE
+    // TEST_ONE_BADGE,
+    // TEST_TWO_BADGE,
+    // TEST_THREE_BADGE,
   ];
 
   constructor(

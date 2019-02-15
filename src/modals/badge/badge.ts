@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
-import { Badge } from '../Badge';
+import { Badge } from '../../lib/badge/Badge';
 
 @Component({
   selector: 'badge',
@@ -16,7 +16,6 @@ export class BadgeModal {
     public params: NavParams
   ) {
     this.badge = new Badge(this.params.get('badge'));
-    console.log(this.badge);
   }
 
   addProgress() {

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { ModalController } from 'ionic-angular';
 
-import { BadgeModal } from './modal/badge';
+import { BadgeModal } from '../../modals/badge/badge';
 
 export class Badge {
   private name: string;

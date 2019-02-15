@@ -62,7 +62,8 @@ import { ExerciseDuringModal } from '../modals/exercise/during/exercise.during';
 import { ExerciseTriggerModal } from '../modals/exercise/trigger/exercise.trigger';
 import { ExerciseSuccessModal } from '../modals/exercise/success/exercise.success';
 import { ExerciseListModal } from '../modals/exercise/list/exercise.list';
-
+// Badge
+import { BadgeModal } from '../modals/badge/badge';
 
 /*------------------------------
   Lib
@@ -77,9 +78,8 @@ import { differencePipe } from '../lib/pipes/difference';
 
 // injectables
 import { AuthService, UserService } from '../lib/services';
-// - badge
-import { BadgeModal } from '../lib/badges/modal/badge';
-import { BadgeFactory } from '../lib/badges/Badge';
+// badge
+import { BadgeFactory } from '../lib/badge/Badge';
 
 /*------------------------------
   Translation
