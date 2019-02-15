@@ -45,7 +45,8 @@ export class LogbookPage {
     });
 
     if(!localExercise) {
-      this.exercises.push(exercise);
+      // Add to the start of the array for display purposes
+      this.exercises.unshift(exercise);
     } else {
       this.exercises[this.exercises.indexOf(localExercise)] = exercise;
     }
