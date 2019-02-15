@@ -16,6 +16,7 @@ import { FIRST_TIME_BADGE } from '../../lib/badge/templates/firstTime';
 
 import { SettingsModal } from '../../modals/settings/settings';
 
+import { EventsService } from 'angular-event-service';
 
 @Component({
   selector: 'page-profile',
@@ -46,13 +47,33 @@ export class ProfilePage {
     private emailComposer: EmailComposer,
     private modalCtrl: ModalController,
     private badgeFctry: BadgeFactory,
+    private eventService: EventsService,
   ) {
     this.badgeTemplates.forEach(badge => {
       this.badges.push(this.badgeFctry.createBadge(badge));
     });
   }
 
-  ionViewDidLoad() {
+  ionViewWillLoad() {
+    this.getPersonalGoal();
+    this.eventService.on('badge_update', this.updateBadge.bind(this));
+  }
+
+  ionViewWillUnload() {
+    this.eventService.destroyListener('badge_update', this.updateBadge);
+  }
+
+  updateBadge(badge: Badge) {
+    const localBadge = this.badges.find(currBadge => currBadge.name == badge.name);
+
+    if(localBadge) {
+      localBadge
+      .getProgress()
+      .then(() => localBadge.currentStage = localBadge.setCurrentStage())
+    }
+  }
+
+  getPersonalGoal() {
     this.storage.get('personalGoal').then((goal) => {
       if (!goal) return;
 
@@ -60,14 +81,15 @@ export class ProfilePage {
     });
   }
 
+  safePersonalGoal() {
+    this.storage.set('personalGoal', this.personalGoal);
+  }
+
   openSettings() {
     let settingsModal = this.modalCtrl.create(SettingsModal);
     settingsModal.present();
   }
 
-  safePersonalGoal() {
-    this.storage.set('personalGoal', this.personalGoal);
-  }
 
   logout() {
     this.authService.removeLocalToken();

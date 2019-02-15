@@ -3,6 +3,8 @@ import { NavParams, ViewController } from 'ionic-angular';
 
 import { Badge } from '../../lib/badge/Badge';
 
+import { EventsService } from 'angular-event-service';
+
 @Component({
   selector: 'badge',
   templateUrl: 'badge.html'
@@ -13,13 +15,19 @@ export class BadgeModal {
 
   constructor(
     public viewCtrl: ViewController,
-    public params: NavParams
+    public params: NavParams,
+    private eventService: EventsService,
   ) {
     this.badge = new Badge(this.params.get('badge'));
   }
 
   addProgress() {
-    this.badge.addProgress(1);
+    this.badge.addProgress(1)
+    .then(() => {
+      this.eventService.broadcast('badge_update', this.badge);
+      this.badge.getProgress()
+      .then(() => this.badge.currentStage = this.badge.setCurrentStage())
+    });
   }
 
   close() {

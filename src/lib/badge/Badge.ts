@@ -35,9 +35,7 @@ export class Badge {
 
     this.getProgress()
       .then(() => this.currentStage = this.setCurrentStage())
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(error => console.log(error));
   }
 
   showModal(): void {
@@ -87,14 +85,19 @@ export class Badge {
     });
   }
 
-  addProgress(amount: number) {
-    this.storage.get(this.name).then(response => {
-      response = parseInt(response);
+  async addProgress(amount: number): Promise<any> {
+    if(!this.name) return;
 
+    await this.storage.get(this.name).then(response => {
       this.totalPointsGained += amount;
       this.storage.set(this.name, this.totalPointsGained);
 
       this.setCurrentStage();
+    });
+
+    return new Promise((resolve, reject) => {
+      if(!this.name) reject('No name provided');
+      else resolve();
     });
   }
 }
@@ -131,7 +134,7 @@ export class BadgeFactory {
       description: badge.description,
       stages: badge.stages,
       storage: this.storage,
-      modalCtrl: this.modalCtrl
+      modalCtrl: this.modalCtrl,
     });
   }
 }
