@@ -88,12 +88,19 @@ export class Badge {
   async addProgress(amount: number): Promise<any> {
     if(!this.name) return;
 
-    await this.storage.get(this.name).then(response => {
-      this.totalPointsGained += amount;
-      this.storage.set(this.name, this.totalPointsGained);
+    this.totalPointsGained += amount;
+    await this.setProgress(this.totalPointsGained);
 
-      this.setCurrentStage();
+    return new Promise((resolve, reject) => {
+      if(!this.name) reject('No name provided');
+      else resolve();
     });
+  }
+
+  async setProgress(amount: number): Promise<any> {
+    if(!this.name) return;
+
+    await this.storage.set(this.name, amount);
 
     return new Promise((resolve, reject) => {
       if(!this.name) reject('No name provided');
