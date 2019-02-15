@@ -9,7 +9,7 @@
       <span class="badge__name">
         {{ badge.verbose }}
       </span>
-      <div class="badge__progress" (click)="addProgress()">
+      <div class="badge__progress">
         <img src="{{badge.currentStage.image}}" alt="">
         <round-progress [current]="badge.finishedStages ? badge.currentStage.amountNeeded : badge.pointsProgressToNextStage" [max]="badge.currentStage.amountNeeded" [radius]="125" [stroke]="6" [duration]="1"></round-progress>
       </div>

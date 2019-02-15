@@ -21,15 +21,6 @@ export class BadgeModal {
     this.badge = new Badge(this.params.get('badge'));
   }
 
-  addProgress() {
-    this.badge.addProgress(1)
-    .then(() => {
-      this.eventService.broadcast('badge_update', this.badge);
-      this.badge.getProgress()
-      .then(() => this.badge.currentStage = this.badge.setCurrentStage())
-    });
-  }
-
   close() {
     this.viewCtrl.dismiss();
   }
