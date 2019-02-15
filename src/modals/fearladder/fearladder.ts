@@ -38,11 +38,8 @@ export class FearladderModal {
   }
 
   updateLocalFearLadder() {
-    this.storage.set('fearLadder', this.fearLadder);
-    // TODO: fix update when localstorage is updated, not on arbitrary timeout
-    setTimeout(() => {
-      this.eventService.broadcast('changed_fearladder', this.fearLadder);
-    }, 1500)
+    this.storage.set('fearLadder', this.fearLadder)
+    .then(() => this.eventService.broadcast('changed_fearladder', this.fearLadder));
   }
 
   addStep() {
