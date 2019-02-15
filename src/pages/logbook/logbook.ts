@@ -24,15 +24,12 @@ export class LogbookPage {
   ) {
   }
 
-  ionViewWillEnter() {
+  ionViewWillLoad() {
+    this.getExercises();
     this.eventService.on('exercise_update', this.exerciseUpdate.bind(this));
   }
 
-  ionViewWillLoad() {
-    this.getExercises();
-  }
-
-  ionViewWillLeave() {
+  ionViewWillUnload() {
     this.eventService.destroyListener('exercise_update', this.exerciseUpdate);
   }
 

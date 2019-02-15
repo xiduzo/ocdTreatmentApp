@@ -33,16 +33,13 @@ export class ExercisePage {
   ) {
   }
 
-  ionViewDidLoad() {
+  ionViewWillLoad() {
     this.getExersises();
-  }
-
-  ionViewWillEnter() {
     this.eventService.on('new_level_completion', this.newLevelCompletion.bind(this));
     this.eventService.on('changed_fearladder', this.newFearladder.bind(this));
   }
 
-  ionViewWillLeave() {
+  ionViewWillUnload() {
     this.eventService.destroyListener('new_level_completion', this.newLevelCompletion);
     this.eventService.destroyListener('changed_fearladder', this.newFearladder);
   }

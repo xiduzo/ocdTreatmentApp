@@ -106,6 +106,11 @@ export class ProgressPage {
     }
   }
 
+  ionViewWillLoad() {
+    this.getExercises();
+    this.eventService.on('exercise_update', this.exerciseUpdate.bind(this));
+  }
+
   ionViewDidEnter() {
     // Every time the view entered, check if we need to recalculate the regression line
     if(this.hasAddedNewExercises) {
@@ -114,15 +119,7 @@ export class ProgressPage {
     }
   }
 
-  ionViewWillEnter() {
-    this.eventService.on('exercise_update', this.exerciseUpdate.bind(this));
-  }
-
-  ionViewWillLoad() {
-    this.getExercises();
-  }
-
-  ionViewWillLeave() {
+  ionViewWillUnload() {
     this.eventService.destroyListener('exercise_update', this.exerciseUpdate);
   }
 

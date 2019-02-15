@@ -41,10 +41,13 @@ export class ExerciseListModal {
 
   ionViewWillEnter() {
     this.level = this.params.get('level');
+  }
+
+  ionViewWillLoad() {
     this.eventService.on('completed_exercise', this.exerciseCompleted.bind(this));
   }
 
-  ionViewWillLeave() {
+  ionViewWillUnload() {
     this.eventService.destroyListener('completed_exercise', this.exerciseCompleted);
   }
 
