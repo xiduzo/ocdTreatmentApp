@@ -10,6 +10,9 @@ import { Exercise } from '../../../lib/Exercise';
 
 import { EventsService } from 'angular-event-service';
 
+import { Badge, BadgeFactory } from '../../../lib/badge/Badge';
+import { EXERCISE_BADGE } from '../../../lib/badge/templates/exercise';
+
 @Component({
   selector: 'page-exercise-success',
   templateUrl: 'exercise.success.html'
@@ -18,6 +21,7 @@ export class ExerciseSuccessModal {
 
   public level: any;
   public exercise: Exercise;
+  public exerciseBadge: Badge = this.badgeFctry.createBadge(EXERCISE_BADGE)
 
   private transitionOptions: NativeTransitionOptions = {
     direction: 'left'
@@ -29,6 +33,7 @@ export class ExerciseSuccessModal {
     private nativePageTransitions: NativePageTransitions,
     private storage: Storage,
     private eventService: EventsService,
+    private badgeFctry: BadgeFactory,
   ) {
     this.nativePageTransitions.slide(this.transitionOptions);
   }
@@ -63,6 +68,8 @@ export class ExerciseSuccessModal {
       } catch (err) {
         console.log(`err: ${err}`);
       } finally {
+        this.exerciseBadge.addProgress(1)
+        .then(() => this.eventService.broadcast('badge_update', this.exerciseBadge));
         this.eventService.broadcast('completed_exercise', this.exercise);
         this.storage.set('fearLadder', fearLadder);
       }
