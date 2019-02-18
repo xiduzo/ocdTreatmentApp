@@ -69,7 +69,9 @@ export class ProfilePage {
     if(localBadge) {
       localBadge
       .getProgress()
-      .then(() => localBadge.currentStage = localBadge.setCurrentStage())
+      .then(() => {
+        localBadge.currentStage = localBadge.setCurrentStage()
+      })
     }
   }
 
