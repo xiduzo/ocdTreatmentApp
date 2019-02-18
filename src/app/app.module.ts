@@ -64,6 +64,7 @@ import { ExerciseSuccessModal } from '../modals/exercise/success/exercise.succes
 import { ExerciseListModal } from '../modals/exercise/list/exercise.list';
 // Badge
 import { BadgeModal } from '../modals/badge/badge';
+import { BadgeEarnedModal } from '../modals/badgeEarned/badgeEarned';
 
 /*------------------------------
   Lib
@@ -153,6 +154,7 @@ export function createTranslateLoader(http: Http) {
     SignUpPage,
     LogbookPage,
     BadgeModal,
+    BadgeEarnedModal,
     SettingsModal,
     // groupByPipe,
     accumulateTimePipe,
@@ -197,6 +199,7 @@ export function createTranslateLoader(http: Http) {
     SignUpPage,
     LogbookPage,
     BadgeModal,
+    BadgeEarnedModal,
     SettingsModal
   ],
   providers: [

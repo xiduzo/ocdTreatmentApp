@@ -8,5 +8,10 @@ export const TEST_ONE_BADGE = {
       description: "Hard work pays off! Keep on going.",
       image: "assets/imgs/badges/panic.svg"
     },
+    {
+      amountNeeded: 2,
+      description: "Hard work pays off! Keep on going.",
+      image: "assets/imgs/badges/medal.svg"
+    },
   ]
 };

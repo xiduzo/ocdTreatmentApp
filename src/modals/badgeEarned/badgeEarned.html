@@ -1,0 +1,34 @@
+<ion-content>
+  <canvas id="confetti"></canvas>
+  <ion-fab top right>
+    <button ion-fab mini color="light" (click)="close()">
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-fab>
+  <section padding>
+    <div class="o-badge o-badge--nextStage">
+      <span class="badge__name">
+        {{ badge.verbose }}
+      </span>
+      <div class="badge__progress">
+        <section class="turnable">
+          <div class="front">
+            <img src="{{previousStage?.image}}" alt="">
+          </div>
+          <div class="back">
+            <img src="{{badge.currentStage.image}}" alt="">
+          </div>
+        </section>
+        <round-progress [current]="currValue" [max]="maxValue" [radius]="125" [stroke]="6" [duration]="1"></round-progress>
+      </div>
+    </div>
+    <article>
+      <p>
+        {{ badge.description }}
+      </p>
+      <p>
+        {{ badge.currentStage.description }}
+      </p>
+    </article>
+  </section>
+</ion-content>
