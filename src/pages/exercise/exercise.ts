@@ -29,7 +29,7 @@ export class ExercisePage {
     public toastCtrl: ToastController,
     private modalCtrl: ModalController,
     private eventService: EventsService,
-    private translate: TranslateService
+    private translate: TranslateService,
   ) {
   }
 
