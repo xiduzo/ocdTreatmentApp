@@ -53,7 +53,11 @@ export class ExerciseListModal {
 
   exerciseCompleted(exercise: Exercise) {
     try {
-      this.level.steps.find(step => step.id === exercise.step.id).fear.completion = exercise.step.fear.completion;
+      const step = this.level.steps.find(step => step.id === exercise.step.id);
+
+      if(!step) throw("Step not found");
+      
+      step.fear.completion = exercise.step.fear.completion;
     } catch (err) {
       console.log(`err ${err}`);
     } finally {
