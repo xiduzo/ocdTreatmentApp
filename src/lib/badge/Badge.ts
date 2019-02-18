@@ -34,7 +34,9 @@ export class Badge {
     this.modalCtrl = modalCtrl;
 
     this.getProgress()
-      .then(() => this.currentStage = this.setCurrentStage())
+      .then(response => {
+        this.setCurrentStage().then(stage => this.currentStage = stage)
+      })
       .catch(error => console.log(error));
   }
 
@@ -43,7 +45,7 @@ export class Badge {
     badgeModal.present();
   }
 
-  setCurrentStage(): Stage {
+  setCurrentStage(): Promise<Stage> {
     let pickedStage = null;
     let points = this.totalPointsGained;
 
@@ -63,10 +65,13 @@ export class Badge {
       pickedStage = this.stages[this.stages.length - 1];
     }
 
-    return pickedStage;
+    return new Promise((resolve, reject) => {
+      if (false) reject("This is a test reject");
+      else resolve(pickedStage);
+    });
   }
 
-  async getProgress(): Promise<any> {
+  async getProgress(): Promise<number> {
     if (!this.name) return;
 
     await this.storage.get(this.name).then(response => {
@@ -81,19 +86,21 @@ export class Badge {
 
     return new Promise((resolve, reject) => {
       if (isNaN(this.totalPointsGained)) reject("Points is not a number");
-      else resolve();
+      else resolve(this.totalPointsGained);
     });
   }
 
-  async addProgress(amount: number): Promise<any> {
+  async addProgress(amount: number): Promise<boolean> {
     if(!this.name) return;
 
     this.totalPointsGained += amount;
+    this.pointsProgressToNextStage += amount;
     await this.setProgress(this.totalPointsGained);
 
     return new Promise((resolve, reject) => {
       if(!this.name) reject('No name provided');
-      else resolve();
+      // Return a boolean value to see if we completed this stage
+      else resolve(this.pointsProgressToNextStage >= this.currentStage.amountNeeded);
     });
   }
 
