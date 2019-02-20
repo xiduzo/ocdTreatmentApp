@@ -238,6 +238,20 @@ export class ProgressPage {
       // Add the points to the graph
       this.chart.series[0].addPoint(point);
     });
+
+    // const test = regression
+    // .linear(
+    // // .polynomial(
+    //   this.chart.series[1].data
+    //   // Only need the mapped x and y values
+    //   .map(point => [point.x, point.y])
+    // );
+    // console.log(test.predict(4.5));
+    // TODO
+    // calculate the 'perfect line'
+    // See how the user deviates from this
+    // Also see how the user deviates from their average linear
+    // Use those two values to calulate the points gained for an exercise
   }
 
   addExercisesToGraph(exercises:Array<Exercise>, weekNumber:number) {
