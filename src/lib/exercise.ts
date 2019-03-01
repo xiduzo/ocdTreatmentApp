@@ -1,7 +1,7 @@
 import { UUID } from 'angular2-uuid';
 import moment from 'moment';
 
-import { mapRange } from './helpers';
+import { mapRange } from '@/lib/helpers';
 
 export class Step {
   public id: string;

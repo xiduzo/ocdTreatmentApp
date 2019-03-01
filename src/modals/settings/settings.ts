@@ -3,15 +3,15 @@ import { Storage } from '@ionic/storage';
 
 import { ViewController, ModalController } from 'ionic-angular';
 
-import { FearladderModal } from '../fearladder/fearladder';
-import { RatingPage } from '../../pages/rating/rating'; // actually a modal - to lazy to care
+import { FearladderModal } from '@/modals/fearladder/fearladder';
+import { RatingPage } from '@/pages/rating/rating'; // actually a modal - to lazy to care
 
 import { TranslateService } from 'ng2-translate';
-import { availableLanguages, sysOptions } from '../../lib/language';
+import { availableLanguages, sysOptions } from '@/lib/language';
 
 import moment from 'moment';
 
-import { Fear, Trigger, Exercise, Mood, Step, Erp } from '../../lib/Exercise';
+import { Fear, Trigger, Exercise, Mood, Step, Erp } from '@/lib/Exercise';
 
 import { File } from '@ionic-native/file';
 import { EmailComposer } from '@ionic-native/email-composer';

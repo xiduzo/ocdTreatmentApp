@@ -4,9 +4,9 @@ import { Storage } from '@ionic/storage';
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
-import { ExerciseMoodModal } from '../mood/exercise.mood';
+import { ExerciseMoodModal } from '@/modals/exercise/mood/exercise.mood';
 
-import { Exercise } from '../../../lib/Exercise';
+import { Exercise } from '@/lib/Exercise';
 
 import { EventsService } from 'angular-event-service';
 

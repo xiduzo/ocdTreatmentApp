@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { ModalController } from 'ionic-angular';
 
-import { BadgeModal } from '../../modals/badge/badge';
+import { BadgeModal } from '@/modals/badge/badge';
 
 export class Badge {
   private name: string;
   private verbose: string;
   private description: string;
-  private stages: Array<Stage>;
+  public stages: Array<Stage>;
   private storage: Storage;
   private modalCtrl: ModalController;
 
@@ -66,7 +66,7 @@ export class Badge {
     }
 
     return new Promise((resolve, reject) => {
-      if (false) reject("This is a test reject");
+      if (!pickedStage) reject("No stage picked");
       else resolve(pickedStage);
     });
   }

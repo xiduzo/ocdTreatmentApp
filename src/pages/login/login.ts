@@ -3,10 +3,10 @@ import { App } from 'ionic-angular';
 //import { ToastController } from 'ionic-angular';
 
 
-import { AuthService, UserService } from '../../lib/services';
+import { AuthService, UserService } from '@/lib/services';
 import { Restangular } from 'ngx-restangular';
-import { OnboardingPage } from '../onboarding/onboarding';
-import { SignUpPage } from '../signup/signup'
+import { OnboardingPage } from '@/pages/onboarding/onboarding';
+import { SignUpPage } from '@/pages/signup/signup'
 
 @Component({
   selector: 'page-login',

@@ -2,16 +2,16 @@ import { Component } from '@angular/core';
 import { App, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-import { ExerciseListModal } from '../../modals/exercise/list/exercise.list';
+import { ExerciseListModal } from '@/modals/exercise/list/exercise.list';
 
 import { ToastController } from 'ionic-angular';
 
-import { FearladderModal } from '../../modals/fearladder/fearladder';
+import { FearladderModal } from '@/modals/fearladder/fearladder';
 
 import { EventsService } from 'angular-event-service';
 
-import { Level } from '../../lib/Level';
-import { Step } from '../../lib/Exercise';
+import { Level } from '@/lib/Level';
+import { Step } from '@/lib/Exercise';
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
 

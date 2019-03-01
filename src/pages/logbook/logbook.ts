@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage'
 
-import { Exercise } from '../../lib/Exercise';
+import { Exercise } from '@/lib/Exercise';
 
 import { EventsService } from 'angular-event-service';
 

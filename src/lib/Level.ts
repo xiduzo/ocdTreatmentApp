@@ -1,4 +1,4 @@
-import { Step } from './Exercise';
+import { Step } from '@/lib/Exercise';
 import { UUID } from 'angular2-uuid';
 import { FEAR_COMPLETION_POSITIVE_LIMIT } from './constants';
 

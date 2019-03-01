@@ -6,16 +6,16 @@ import { Storage } from '@ionic/storage';
 declare var ConfettiGenerator: any;
 import "confetti-js";
 
-import { Exercise } from '../../../lib/Exercise';
-import { Level } from '../../../lib/Level';
+import { Exercise } from '@/lib/Exercise';
+import { Level } from '@/lib/Level';
 
 import { EventsService } from 'angular-event-service';
 
-import { Badge, BadgeFactory } from '../../../lib/badge/Badge';
-import { BadgeEarnedModal } from '../../../modals/badgeEarned/badgeEarned';
+import { Badge, BadgeFactory } from '@/lib/badge/Badge';
+import { BadgeEarnedModal } from '@/modals/badgeEarned/badgeEarned';
 
-import { EXERCISE_BADGE } from '../../../lib/badge/templates/exercise';
-import { FIRST_TIME_BADGE } from '../../../lib/badge/templates/firstTime';
+import { EXERCISE_BADGE } from '@/lib/badge/templates/exercise';
+import { FIRST_TIME_BADGE } from '@/lib/badge/templates/firstTime';
 
 @Component({
   selector: 'page-exercise-success',
@@ -56,8 +56,6 @@ export class ExerciseSuccessModal {
   }
 
   ionViewDidEnter() {
-<<<<<<< Updated upstream:src/modals/exercise/success/exercise.success.ts
-    // TODO decide when to show the confetti, dont want to show it each time (i think)
     if (Math.random() > 0) {
       const confettiSettings = {
         target: 'confetti',
@@ -69,17 +67,6 @@ export class ExerciseSuccessModal {
 
       confetti.render();
     }
-=======
-    // const confettiSettings = {
-    //   target: 'confetti',
-    //   clock: 10,
-    //   max: 50,
-    // };
-    // const confetti = new ConfettiGenerator(confettiSettings);
-    // if (Math.random() > 0.7) {
-    //   confetti.render();
-    // }
->>>>>>> Stashed changes:src/pages/exercise/success/exercise.success.ts
   }
 
   updateStepCompletion() {

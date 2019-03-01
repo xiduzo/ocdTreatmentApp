@@ -4,9 +4,9 @@ import { Storage } from '@ionic/storage';
 import moment from 'moment';
 import regression from 'regression';
 
-import { mapRange } from '../../lib/helpers';
+import { mapRange } from '@/lib/helpers';
 
-import { Exercise } from '../../lib/Exercise';
+import { Exercise } from '@/lib/Exercise';
 
 import { EventsService } from 'angular-event-service';
 

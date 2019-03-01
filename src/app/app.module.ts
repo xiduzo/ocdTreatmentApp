@@ -32,55 +32,55 @@ import { File } from '@ionic-native/file';
   Pages
 ------------------------------*/
 // Exercise
-import { ExercisePage } from '../pages/exercise/exercise';
-import { RatingPage } from '../pages/rating/rating';
+import { ExercisePage } from '@/pages/exercise/exercise';
+import { RatingPage } from '@/pages/rating/rating';
 // Auth
-import { LoginPage } from '../pages/login/login';
-import { SignUpPage } from '../pages/signup/signup';
+import { LoginPage } from '@/pages/login/login';
+import { SignUpPage } from '@/pages/signup/signup';
 // Onboarding
-import { OnboardingPage } from '../pages/onboarding/onboarding';
+import { OnboardingPage } from '@/pages/onboarding/onboarding';
 // Logbook
-import { LogbookPage } from '../pages/logbook/logbook';
+import { LogbookPage } from '@/pages/logbook/logbook';
 // Profile
-import { ProfilePage } from '../pages/profile/profile';
+import { ProfilePage } from '@/pages/profile/profile';
 // Progress
-import { ProgressPage } from '../pages/progress/progress';
+import { ProgressPage } from '@/pages/progress/progress';
 // Tabs (navigation)
-import { TabsPage } from '../pages/tabs/tabs';
+import { TabsPage } from '@/pages/tabs/tabs';
 
 /*------------------------------
   Modals
 ------------------------------*/
 //Settings
-import { SettingsModal } from '../modals/settings/settings';
+import { SettingsModal } from '@/modals/settings/settings';
 // Fearladder
-import { FearladderModal } from '../modals/fearladder/fearladder';
-import { FearladderStepModal } from '../modals/fearladder/step/fearladder.step';
+import { FearladderModal } from '@/modals/fearladder/fearladder';
+import { FearladderStepModal } from '@/modals/fearladder/step/fearladder.step';
 // Exercise
-import { ExerciseMoodModal } from '../modals/exercise/mood/exercise.mood';
-import { ExerciseDuringModal } from '../modals/exercise/during/exercise.during';
-import { ExerciseTriggerModal } from '../modals/exercise/trigger/exercise.trigger';
-import { ExerciseSuccessModal } from '../modals/exercise/success/exercise.success';
-import { ExerciseListModal } from '../modals/exercise/list/exercise.list';
+import { ExerciseMoodModal } from '@/modals/exercise/mood/exercise.mood';
+import { ExerciseDuringModal } from '@/modals/exercise/during/exercise.during';
+import { ExerciseTriggerModal } from '@/modals/exercise/trigger/exercise.trigger';
+import { ExerciseSuccessModal } from '@/modals/exercise/success/exercise.success';
+import { ExerciseListModal } from '@/modals/exercise/list/exercise.list';
 // Badge
-import { BadgeModal } from '../modals/badge/badge';
-import { BadgeEarnedModal } from '../modals/badgeEarned/badgeEarned';
+import { BadgeModal } from '@/modals/badge/badge';
+import { BadgeEarnedModal } from '@/modals/badgeEarned/badgeEarned';
 
 /*------------------------------
   Lib
 ------------------------------*/
-import { databaseHost } from '../lib/constants';
+import { databaseHost } from '@/lib/constants';
 // pipes
 import { NgPipesModule } from 'ngx-pipes';
-// import { groupByPipe } from '../lib/pipes/groupBy';
-import { msToTimePipe } from '../lib/pipes/msToTime';
-import { accumulateTimePipe } from '../lib/pipes/accumulateTime';
-import { differencePipe } from '../lib/pipes/difference';
+// import { groupByPipe } from '@/lib/pipes/groupBy';
+import { msToTimePipe } from '@/lib/pipes/msToTime';
+import { accumulateTimePipe } from '@/lib/pipes/accumulateTime';
+import { differencePipe } from '@/lib/pipes/difference';
 
 // injectables
-import { AuthService, UserService } from '../lib/services';
+import { AuthService, UserService } from '@/lib/services';
 // badge
-import { BadgeFactory } from '../lib/badge/Badge';
+import { BadgeFactory } from '@/lib/badge/Badge';
 
 /*------------------------------
   Translation

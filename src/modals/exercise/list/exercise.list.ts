@@ -5,11 +5,11 @@ import { App, Content, NavParams, ModalController } from 'ionic-angular';
 
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
-import { ExerciseMoodModal } from '../mood/exercise.mood';
+import { ExerciseMoodModal } from '@/modals/exercise/mood/exercise.mood';
 
-import { Exercise } from '../../../lib/Exercise';
+import { Exercise } from '@/lib/Exercise';
 
-import { FEAR_COMPLETION_POSITIVE_LIMIT } from '../../../lib/constants';
+import { FEAR_COMPLETION_POSITIVE_LIMIT } from '@/lib/constants';
 
 import { EventsService } from 'angular-event-service';
 
@@ -56,7 +56,7 @@ export class ExerciseListModal {
       const step = this.level.steps.find(step => step.id === exercise.step.id);
 
       if(!step) throw("Step not found");
-      
+
       step.fear.completion = exercise.step.fear.completion;
     } catch (err) {
       console.log(`err ${err}`);

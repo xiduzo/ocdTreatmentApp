@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { NavParams, ViewController, ModalController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-import { FearladderStepModal } from '../fearladder/step/fearladder.step';
+import { FearladderStepModal } from '@/modals/fearladder/step/fearladder.step';
 
-import { Step } from '../../lib/Exercise';
+import { Step } from '@/lib/Exercise';
 
 import { EventsService } from 'angular-event-service';
 

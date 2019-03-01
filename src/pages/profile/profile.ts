@@ -3,18 +3,18 @@ import { App, NavController, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { EmailComposer } from '@ionic-native/email-composer';
 
-import { AuthService, UserService } from '../../lib/services';
+import { AuthService, UserService } from '@/lib/services';
 
-import { Badge, BadgeFactory } from '../../lib/badge/Badge';
+import { Badge, BadgeFactory } from '@/lib/badge/Badge';
 
-import { STREAK_BADGE } from '../../lib/badge/templates/streak';
-import { EXERCISE_BADGE } from '../../lib/badge/templates/exercise';
-import { FIRST_TIME_BADGE } from '../../lib/badge/templates/firstTime';
+import { STREAK_BADGE } from '@/lib/badge/templates/streak';
+import { EXERCISE_BADGE } from '@/lib/badge/templates/exercise';
+import { FIRST_TIME_BADGE } from '@/lib/badge/templates/firstTime';
 // import { TEST_ONE_BADGE } from '../../lib/badges/templates/test1';
 // import { TEST_TWO_BADGE } from '../../lib/badges/templates/test2';
 // import { TEST_THREE_BADGE } from '../../lib/badges/templates/test3';
 
-import { SettingsModal } from '../../modals/settings/settings';
+import { SettingsModal } from '@/modals/settings/settings';
 
 import { EventsService } from 'angular-event-service';
 

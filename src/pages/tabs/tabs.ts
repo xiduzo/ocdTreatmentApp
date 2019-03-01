@@ -2,10 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { Tabs } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
-import { ExercisePage } from '../exercise/exercise';
-import { ProgressPage } from '../progress/progress';
-import { ProfilePage } from '../profile/profile';
-import { LogbookPage } from '../logbook/logbook';
+import { ExercisePage } from '@/pages/exercise/exercise';
+import { ProgressPage } from '@/pages/progress/progress';
+import { ProfilePage } from '@/pages/profile/profile';
+import { LogbookPage } from '@/pages/logbook/logbook';
 
 @Component({
   templateUrl: 'tabs.html'

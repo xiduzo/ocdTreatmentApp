@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 
-import { databaseHost } from '../lib/constants';
+import { databaseHost } from '@/lib/constants';
 
 @Injectable()
 export class AuthService {
