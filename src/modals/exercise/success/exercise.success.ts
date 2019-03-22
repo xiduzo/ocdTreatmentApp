@@ -56,6 +56,7 @@ export class ExerciseSuccessModal {
   }
 
   ionViewDidEnter() {
+    // TODO decide when to show the confetti, dont want to show it each time (i think)
     if (Math.random() > 0) {
       const confettiSettings = {
         target: 'confetti',
@@ -89,21 +90,21 @@ export class ExerciseSuccessModal {
 
   updateExerciseBadge() {
     this.exerciseBadge.addProgress(50)
-    .then(finishedStage => {
-      console.log(finishedStage);
-      // TODO: move this responsibility to the badge class
-      if(finishedStage) {
-        this.showBadge.modal = BadgeEarnedModal;
-        this.showBadge.badge = this.exerciseBadge;
-      }
-      this.eventService.broadcast('badge_update', this.exerciseBadge)
-    });
+      .then(finishedStage => {
+        console.log(finishedStage);
+        // TODO: move this responsibility to the badge class
+        if (finishedStage) {
+          this.showBadge.modal = BadgeEarnedModal;
+          this.showBadge.badge = this.exerciseBadge;
+        }
+        this.eventService.broadcast('badge_update', this.exerciseBadge)
+      });
   }
 
 
 
   close() {
-    if(this.showBadge.modal && this.showBadge.badge) {
+    if (this.showBadge.modal && this.showBadge.badge) {
       const modal = this.modalCtrl.create(this.showBadge.modal, {
         badge: this.showBadge.badge
       });
