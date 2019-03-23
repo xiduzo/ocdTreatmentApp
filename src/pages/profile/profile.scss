@@ -23,6 +23,11 @@ page-profile {
     display: flex;
     flex-direction: column;
 
+    button[ion-button] {
+      margin: 0;
+      border-radius: 0;
+    }
+
     ion-scroll {
       flex-grow: 1;
 

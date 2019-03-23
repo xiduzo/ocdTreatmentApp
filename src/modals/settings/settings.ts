@@ -3,7 +3,6 @@ import { Storage } from '@ionic/storage';
 
 import { ViewController, ModalController } from 'ionic-angular';
 
-import { FearladderModal } from '@/modals/fearladder/fearladder';
 import { RatingPage } from '@/pages/rating/rating'; // actually a modal - to lazy to care
 
 import { TranslateService } from 'ng2-translate';
@@ -61,14 +60,14 @@ export class SettingsModal {
     let csvContent = "data:text/csv;charset=utf-8,";
 
     let header = '';
-    for(var key in arr[0]) {
+    for (var key in arr[0]) {
       header += `${key},`;
     }
     header += "\r\n";
     csvContent += header;
     arr.forEach(item => {
       let row = '';
-      for(var key in item) {
+      for (var key in item) {
         row += `${item[key]},`;
       }
       row += "\r\n";

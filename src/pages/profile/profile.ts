@@ -15,7 +15,7 @@ import { FIRST_TIME_BADGE } from '@/lib/badge/templates/firstTime';
 // import { TEST_THREE_BADGE } from '../../lib/badges/templates/test3';
 
 import { SettingsModal } from '@/modals/settings/settings';
-
+import { FearladderModal } from '@/modals/fearladder/fearladder';
 import { EventsService } from 'angular-event-service';
 
 @Component({
@@ -104,6 +104,11 @@ export class ProfilePage {
   openSettings() {
     let settingsModal = this.modalCtrl.create(SettingsModal);
     settingsModal.present();
+  }
+
+  openFearLadder() {
+    let fearladderModal = this.modalCtrl.create(FearladderModal);
+    fearladderModal.present();
   }
 
 
