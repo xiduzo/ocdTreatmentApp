@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { App, NavController, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { App, NavController, ModalController, TextInput } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { EmailComposer } from '@ionic-native/email-composer';
 
@@ -24,6 +24,8 @@ import { EventsService } from 'angular-event-service';
   providers: [BadgeFactory]
 })
 export class ProfilePage {
+  @ViewChild('personalGoal') personalGoalTextArea: TextInput;
+
 
   public personalGoal: string;
   public editGoal: boolean = false;
@@ -66,12 +68,18 @@ export class ProfilePage {
   updateBadge(badge: Badge) {
     const localBadge = this.badges.find(currBadge => currBadge.name == badge.name);
 
-    if(localBadge) {
+    if (localBadge) {
       localBadge
-      .getProgress()
-      .then(() => {
-        localBadge.currentStage = localBadge.setCurrentStage()
-      })
+        .getProgress()
+        .then(() => {
+          localBadge.setCurrentStage()
+            .then(response => {
+              localBadge.currentStage = response;
+            })
+            .catch(err => {
+              console.log(`err: ${err}`);
+            })
+        })
     }
   }
 
@@ -85,6 +93,12 @@ export class ProfilePage {
 
   safePersonalGoal() {
     this.storage.set('personalGoal', this.personalGoal);
+  }
+
+  togglePersonalGoalEdit() {
+    this.editGoal = !this.editGoal;
+
+    if (this.editGoal) this.personalGoalTextArea.focus();
   }
 
   openSettings() {

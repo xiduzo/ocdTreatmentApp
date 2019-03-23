@@ -27,10 +27,10 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <button ion-button icon-only color="dark" small clear *ngIf="!editGoal" (click)="editGoal = true;">
+          <button ion-button icon-only color="dark" small clear *ngIf="!editGoal" (click)="togglePersonalGoalEdit()">
             <ion-icon name="md-create"></ion-icon>
           </button>
-          <button ion-button icon-only color="dark" small clear *ngIf="editGoal" (click)="editGoal = false;">
+          <button ion-button icon-only color="dark" small clear *ngIf="editGoal" (click)="togglePersonalGoalEdit()">
             <ion-icon name="md-checkmark"></ion-icon>
           </button>
         </ion-col>

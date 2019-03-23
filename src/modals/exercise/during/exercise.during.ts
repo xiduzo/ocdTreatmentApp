@@ -16,8 +16,8 @@ import { EventsService } from 'angular-event-service';
 })
 export class ExerciseDuringModal {
 
-  private level:any;
-  private exercise:Exercise;
+  private level: any;
+  private exercise: Exercise;
 
   private transitionOptions: NativeTransitionOptions = {
     direction: 'left'
@@ -65,8 +65,8 @@ export class ExerciseDuringModal {
       let moodModal = this.modalCtrl.create(ExerciseMoodModal, {
         level: this.level,
         exercise: this.exercise,
-        before: false }
-      );
+        before: false
+      });
 
       moodModal.present();
       this.viewCtrl.dismiss();

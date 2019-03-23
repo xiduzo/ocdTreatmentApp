@@ -6,14 +6,14 @@ import { ModalController } from 'ionic-angular';
 import { BadgeModal } from '@/modals/badge/badge';
 
 export class Badge {
-  private name: string;
+  public name: string;
   private verbose: string;
   private description: string;
   public stages: Array<Stage>;
   private storage: Storage;
   private modalCtrl: ModalController;
 
-  private currentStage: Stage = new Stage();
+  public currentStage: Stage = new Stage();
   private totalPointsGained: number = 0;
   private pointsProgressToNextStage: number = 0;
   private finishedStages: boolean = false;
@@ -50,9 +50,9 @@ export class Badge {
     let points = this.totalPointsGained;
 
     this.stages.forEach(stage => {
-      if(pickedStage) return;
+      if (pickedStage) return;
 
-      if(stage.amountNeeded > points) {
+      if (stage.amountNeeded > points) {
         pickedStage = stage;
         this.pointsProgressToNextStage = points;
       } else {
@@ -60,12 +60,12 @@ export class Badge {
       }
     });
 
-    if(!pickedStage) {
+    if (!pickedStage) {
       this.finishedStages = true;
       pickedStage = this.stages[this.stages.length - 1];
     }
 
-    return new Promise((resolve, reject) => {
+    return new Promise<Stage>((resolve, reject) => {
       if (!pickedStage) reject("No stage picked");
       else resolve(pickedStage);
     });
@@ -84,39 +84,39 @@ export class Badge {
       this.totalPointsGained = response || 0;
     });
 
-    return new Promise((resolve, reject) => {
+    return await new Promise<number>((resolve, reject) => {
       if (isNaN(this.totalPointsGained)) reject("Points is not a number");
       else resolve(this.totalPointsGained);
     });
   }
 
   async addProgress(amount: number): Promise<boolean> {
-    if(!this.name) return;
+    if (!this.name) return;
 
     this.totalPointsGained += amount;
     this.pointsProgressToNextStage += amount;
     await this.setProgress(this.totalPointsGained);
 
-    return new Promise((resolve, reject) => {
-      if(!this.name) reject('No name provided');
+    return new Promise<boolean>((resolve, reject) => {
+      if (!this.name) reject('No name provided');
       // Return a boolean value to see if we completed this stage
       else resolve(this.pointsProgressToNextStage >= this.currentStage.amountNeeded);
     });
   }
 
   async setProgress(amount: number): Promise<any> {
-    if(!this.name) return;
+    if (!this.name) return;
 
     await this.storage.set(this.name, amount);
 
-    return new Promise((resolve, reject) => {
-      if(!this.name) reject('No name provided');
+    return new Promise<any>((resolve, reject) => {
+      if (!this.name) reject('No name provided');
       else resolve();
     });
   }
 }
 
-class Stage {
+export class Stage {
   public amountNeeded: number;
   public description: string;
   public image: string;

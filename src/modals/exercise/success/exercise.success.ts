@@ -32,7 +32,7 @@ export class ExerciseSuccessModal {
     direction: 'left'
   };
 
-  private showBadge: object = {
+  private showBadge: any = {
     modal: null,
     badge: null,
   };
