@@ -2,21 +2,19 @@ exercise-mood-modal {
   ion-content.content {
     background: rgb(252, 201, 138);
 
-    .ion-fixed,
-    [ion-fixed] {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+    .scroll-content {
+      > div {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
-      form {
-        ion-item.transparent {
-          background: transparent;
+        form {
+          ion-item.transparent {
+            background: transparent;
+          }
         }
       }
-    }
-
-    .scroll-content {
-      display: none;
     }
   }
 }

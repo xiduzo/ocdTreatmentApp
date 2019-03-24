@@ -1,5 +1,5 @@
 <ion-content [@trackMood]='moodClass'>
-  <div ion-fixed>
+  <div>
     <ion-fab top right *ngIf="beforeMeasure">
       <button ion-fab mini color="light" (click)="stopExercise()">
         <ion-icon name="close"></ion-icon>
@@ -16,7 +16,7 @@
         </div>
     </strong>
 
-    <section class="c-mood__circle">
+    <section class="c-mood__circle" *ngIf="!focusedOnMoodExplenation">
         <section [className]="moodClass">
             <div class="c-mood__face">
                 <section class="face__attributes">
@@ -43,7 +43,7 @@
     </section>
 
     <form>
-      <ion-item class="transparent">
+      <ion-item class="transparent" *ngIf="!focusedOnMoodExplenation">
         <ion-range class="show-pin big-slider"
           color="light"
           [(ngModel)]="mood.mood"
@@ -57,7 +57,7 @@
         <ion-label floating>
           {{ 'MOOD_EXPLENATION' | translate }}
         </ion-label>
-        <ion-textarea [(ngModel)]="mood.explanation" name="moodExplanation"></ion-textarea>
+        <ion-textarea [(ngModel)]="mood.explanation" name="moodExplanation" (ionFocus)="!focusedOnMoodExplenation = true" (ionBlur)="!focusedOnMoodExplenation = false"></ion-textarea>
       </ion-item>
     </form>
 
