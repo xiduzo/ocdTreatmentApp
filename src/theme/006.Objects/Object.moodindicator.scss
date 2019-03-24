@@ -3,6 +3,8 @@ $o-moodindicator-size: 20px;
 .o-moodindicator {
   display: flex;
   transform: rotate(45deg);
+  min-width: $o-moodindicator-size;
+  min-height: $o-moodindicator-size;
 
   .before {
     border-left: 1px dashed lighten(color($colors, dark, base), 50);
