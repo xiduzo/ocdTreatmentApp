@@ -20,9 +20,9 @@
       <ion-row style="width: 100%;">
         <ion-col col-12>
           <h1 *ngIf="!editGoal" text-center>
-            {{ personalGoal || 'NO_GOAL_SPECIFIED_YET' | translate }}
+            {{ personalGoalText || 'NO_GOAL_SPECIFIED_YET' | translate }}
           </h1>
-          <ion-textarea *ngIf="editGoal" [(ngModel)]="personalGoal" (change)="safePersonalGoal()" placeholder="{{ 'NO_GOAL_SPECIFIED_YET' | translate}}"></ion-textarea>
+          <ion-textarea *ngIf="editGoal" [(ngModel)]="personalGoalText" (change)="safePersonalGoal()" placeholder="{{ 'NO_GOAL_SPECIFIED_YET' | translate}}" #personalGoal></ion-textarea>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -36,8 +36,8 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    
-    <button ion-button (click)="openFearLadder()">
+
+    <button ion-button (click)="openFearLadder()" large>
       {{ 'MY_FEAR_LADDER' | translate }}
     </button>
 

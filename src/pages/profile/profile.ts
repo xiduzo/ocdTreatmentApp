@@ -27,7 +27,7 @@ export class ProfilePage {
   @ViewChild('personalGoal') personalGoalTextArea: TextInput;
 
 
-  public personalGoal: string;
+  public personalGoalText: string;
   public editGoal: boolean = false;
   public view: string = 'journey';
   public badges: Array<Badge> = [];
@@ -87,18 +87,21 @@ export class ProfilePage {
     this.storage.get('personalGoal').then((goal) => {
       if (!goal) return;
 
-      this.personalGoal = goal;
+      this.personalGoalText = goal;
     });
   }
 
   safePersonalGoal() {
-    this.storage.set('personalGoal', this.personalGoal);
+    this.storage.set('personalGoal', this.personalGoalText);
   }
 
   togglePersonalGoalEdit() {
     this.editGoal = !this.editGoal;
 
-    if (this.editGoal) this.personalGoalTextArea.focus();
+    // We need to wait a bit before the element is added to the DOM
+    setTimeout(() => {
+      if (this.editGoal) this.personalGoalTextArea.setFocus();
+    }, 100)
   }
 
   openSettings() {
