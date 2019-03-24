@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 import moment from 'moment';
+import { unitOfTime } from 'moment';
 import regression from 'regression';
 
 import { mapRange } from '@/lib/helpers';
@@ -16,8 +17,8 @@ import { EventsService } from 'angular-event-service';
 })
 export class ProgressPage {
 
-  public _chartOptions:any;
-  public chart:any;
+  public _chartOptions: any;
+  public chart: any;
   private graphCategories: Array<string> = [
     '',
     'content',
@@ -27,13 +28,15 @@ export class ProgressPage {
     'panic'
   ].map(x => `<span class="graphMood graphMood--${x}">\u2022</span>`);
 
-  public endWeek:object = moment(moment.now()).endOf('week');
-  public startWeek:object = moment(moment.now()).startOf('week');
-  public canSelectNextWeek:boolean = false;
+  public timeFrame: string = 'month'; // Day / Week / Month / Year
+  public endTimeFrame: object = moment(moment.now()).endOf(this.timeFrame as unitOfTime.StartOf);
+  public startTimeFrame: object = moment(moment.now()).startOf(this.timeFrame as unitOfTime.StartOf);
+  public canSelectNextTimeFrame: boolean = false;
 
-  public exercises:Array<Exercise> = [];
-  public thisWeeksExercises:Array<Exercise> = [];
-  public previousWeeksExercises:Array<Exercise> = [];
+  public exercises: Array<Exercise> = [];
+  public thisTimeFrameExercises: Array<Exercise> = [];
+  public previousTimeFrameExercises: Array<Exercise> = [];
+
 
   private lastAddedExercise: Exercise;
   private hasAddedNewExercises: boolean = false;
@@ -49,7 +52,7 @@ export class ProgressPage {
         animation: false,
         marginBottom: 35
       },
-      title: { text: ''},
+      title: { text: '' },
       xAxis: { // after
         title: {
           text: '',
@@ -113,7 +116,7 @@ export class ProgressPage {
 
   ionViewDidEnter() {
     // Every time the view entered, check if we need to recalculate the regression line
-    if(this.hasAddedNewExercises) {
+    if (this.hasAddedNewExercises) {
       this.addRegressionToGraph();
       this.hasAddedNewExercises = false;
     }
@@ -127,10 +130,10 @@ export class ProgressPage {
     const localExercise = this.exercises.find(currExercise => currExercise.id === exercise.id);
 
     [exercise.beforeMood, exercise.afterMood].forEach(mood => {
-      if(mood.mood !== null) mood.mappedMood = mood.getMappedMood();
+      if (mood.mood !== null) mood.mappedMood = mood.getMappedMood();
     });
 
-    if(!localExercise) {
+    if (!localExercise) {
       this.exercises.push(exercise);
     } else {
       this.exercises[this.exercises.indexOf(localExercise)] = exercise;
@@ -141,17 +144,17 @@ export class ProgressPage {
   }
 
   checkToAddExercise(exercise: Exercise, exerciseExists: boolean) {
-    if(moment(this.endWeek).week() === moment(exercise.start).week()) {
-      if(exerciseExists) {
-        this.thisWeeksExercises[this.thisWeeksExercises.indexOf(exercise)] = exercise;
+    if (this.isExerciseInTimeFrame(exercise, moment(this.endTimeFrame))) {
+      if (exerciseExists) {
+        this.thisTimeFrameExercises[this.thisTimeFrameExercises.indexOf(exercise)] = exercise;
       } else {
-        this.thisWeeksExercises.push(exercise);
+        this.thisTimeFrameExercises.push(exercise);
       }
 
       // Check if we have a before and after mood
-      if(exercise.beforeMood.mood !== null && exercise.afterMood.mood !== null) {
+      if (exercise.beforeMood.mood !== null && exercise.afterMood.mood !== null) {
         //check if the point has not been added to the graph
-        if(!this.lastAddedExercise || this.lastAddedExercise.id !== exercise.id) {
+        if (!this.lastAddedExercise || this.lastAddedExercise.id !== exercise.id) {
           // Add a point to the graph
           this.addExercisePointToGraph(exercise);
         }
@@ -166,13 +169,13 @@ export class ProgressPage {
   }
 
   swipeEvent(event) {
-    if(event.isFinal) {
-      switch(event.direction) {
+    if (event.isFinal) {
+      switch (event.direction) {
         case 2:
-          if(this.canSelectNextWeek) this.changeWeek(1);
+          if (this.canSelectNextTimeFrame) this.changeTimeFrame(1);
           break;
         case 4:
-          this.changeWeek(-1);
+          this.changeTimeFrame(-1);
           break;
       }
     }
@@ -194,18 +197,18 @@ export class ProgressPage {
 
   getExercises() {
     this.storage.get('exercises').then((exercises) => {
-      if(!exercises) return;
+      if (!exercises) return;
 
       this.exercises = exercises;
 
       // Now update the graph
-      this.addExercisesToGraph(this.exercises, moment(this.endWeek).week());
+      this.addExercisesToGraph(this.exercises, moment(this.endTimeFrame).startOf(this.timeFrame as unitOfTime.StartOf));
     });
   }
 
   clearSeries(serieNumber: number) {
     const amount = this.chart.series[serieNumber].data.length;
-    for(let i = 0; i < amount; i++) {
+    for (let i = 0; i < amount; i++) {
       this.chart.series[serieNumber].removePoint(0);
     }
   }
@@ -227,17 +230,17 @@ export class ProgressPage {
     // Update the regression line
     // https://github.com/Tom-Alexander/regression-js
     regression
-    .polynomial(
-      this.chart.series[1].data
-      // Only need the mapped x and y values
-      .map(point => [point.x, point.y])
-    ).points
-    // Sort the points in order to for a smooth line
-    .sort()
-    .forEach(point => {
-      // Add the points to the graph
-      this.chart.series[0].addPoint(point);
-    });
+      .polynomial(
+        this.chart.series[1].data
+          // Only need the mapped x and y values
+          .map(point => [point.x, point.y])
+      ).points
+      // Sort the points in order to for a smooth line
+      .sort()
+      .forEach(point => {
+        // Add the points to the graph
+        this.chart.series[0].addPoint(point);
+      });
 
     // const test = regression
     // .linear(
@@ -254,47 +257,97 @@ export class ProgressPage {
     // Use those two values to calulate the points gained for an exercise
   }
 
-  addExercisesToGraph(exercises:Array<Exercise>, weekNumber:number) {
+  addExercisesToGraph(exercises: Array<Exercise>, beginOfTimeFrame: moment.Moment) {
     // First clear the old exercises
     this.clearExercises();
 
     exercises
-    // Get the exercises for this week
-    .filter(exercise => moment(exercise.start).week() === weekNumber)
-    .forEach(exercise => {
-      // Check if there is a before- and aftermood
-      if(exercise.beforeMood.mood !== null && exercise.afterMood.mood !== null) {
-        this.addExercisePointToGraph(exercise);
-      }
-    });
+      // Get the exercises for this time frame
+      .filter(exercise => moment(exercise.start) >= moment(beginOfTimeFrame) && moment(exercise.start) <= moment(beginOfTimeFrame).add(1, this.timeFrame as moment.unitOfTime.DurationConstructor))
+      .forEach(exercise => {
+        // Check if there is a before- and aftermood
+        if (exercise.beforeMood.mood !== null && exercise.afterMood.mood !== null) {
+          this.addExercisePointToGraph(exercise);
+        }
+      });
 
     // Add the regression line again
     this.addRegressionToGraph();
 
     // Update the stats
-    this.updateStats(exercises, weekNumber);
+    this.updateStats(exercises, beginOfTimeFrame);
   }
 
-  updateStats(exercises:any, weekNumber:number) {
-    // Get the exercises for this week
-    this.thisWeeksExercises = exercises
-    .filter(exercise => moment(exercise.start).week() === weekNumber);
+  isExerciseInTimeFrame(exercise: Exercise, beginOfTimeFrame: moment.Moment): boolean {
+    let returnValue: boolean;
 
-    // Get the exercises for previous week
-    this.previousWeeksExercises = exercises
-    .filter(exercise => moment(exercise.start).week() === weekNumber - 1);
+    switch (this.timeFrame) {
+      case 'day':
+        returnValue = Boolean(moment(exercise.start).day() === moment(beginOfTimeFrame).day());
+        break;
+      case 'week':
+        returnValue = Boolean(moment(exercise.start).week() === moment(beginOfTimeFrame).week());
+        break;
+      case 'month':
+        returnValue = Boolean(moment(exercise.start).month() === moment(beginOfTimeFrame).month());
+        break;
+      case 'year':
+        returnValue = Boolean(moment(exercise.start).year() === moment(beginOfTimeFrame).year());
+        break;
+      default:
+        returnValue = false; // Always return something
+        break;
+    }
+
+    return returnValue;
   }
 
-  changeWeek(direction:number) {
-    // Based on the direction we move one week back or forward
-    this.endWeek = moment(this.endWeek).add((direction > 0 ? 7 : - 7), 'days');
-    this.startWeek = moment(this.startWeek).add((direction > 0 ? 7 : - 7), 'days');
+  updateStats(exercises: Array<Exercise>, beginOfTimeFrame: moment.Moment) {
+    // Get the exercises for this timeframe
+    this.thisTimeFrameExercises = exercises
+      .filter(exercise => this.isExerciseInTimeFrame(exercise, beginOfTimeFrame));
 
-    // Cant go further than this week
-    this.canSelectNextWeek = !Boolean(moment(this.endWeek).week() === moment(moment.now()).week());
+    // Get the exercises for previous timeframe
+    this.previousTimeFrameExercises = exercises
+      .filter(exercise => this.isExerciseInTimeFrame(exercise, moment(beginOfTimeFrame).add(-1, this.timeFrame as moment.unitOfTime.DurationConstructor)));
+  }
+
+  checkIfUserCanSelectNextTimeFrame(): boolean {
+    let returnValue: boolean;
+
+    switch (this.timeFrame) {
+      case 'day':
+        returnValue = !Boolean(moment(this.endTimeFrame).day() === moment(moment.now()).day());
+        break;
+      case 'week':
+        returnValue = !Boolean(moment(this.endTimeFrame).week() === moment(moment.now()).week());
+        break;
+      case 'month':
+        returnValue = !Boolean(moment(this.endTimeFrame).month() === moment(moment.now()).month());
+        break;
+      case 'year':
+        returnValue = !Boolean(moment(this.endTimeFrame).year() === moment(moment.now()).year());
+        break;
+      default:
+        returnValue = false; // Always return something
+        break;
+    }
+
+    return returnValue;
+  }
+
+  changeTimeFrame(direction: number) {
+    // TODO: Instead of adding 1 timeframe, set the new timeframe to the start of the timeframe
+    // then add 1 timeframe to the endTimeFrame
+    // Based on the direction we move one timeframe back or forward
+    this.endTimeFrame = moment(this.endTimeFrame).add((direction > 0 ? 1 : - 1), this.timeFrame as moment.unitOfTime.DurationConstructor);
+    this.startTimeFrame = moment(this.startTimeFrame).add((direction > 0 ? 1 : - 1), this.timeFrame as moment.unitOfTime.DurationConstructor);
+
+    // Cant go further than this timeFrame
+    this.canSelectNextTimeFrame = this.checkIfUserCanSelectNextTimeFrame()
 
     // Update the graph again
-    this.addExercisesToGraph(this.exercises, moment(this.endWeek).week());
+    this.addExercisesToGraph(this.exercises, moment(this.endTimeFrame).startOf(this.timeFrame as unitOfTime.StartOf));
   }
 
 }
