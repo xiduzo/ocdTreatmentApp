@@ -337,10 +337,9 @@ export class ProgressPage {
   }
 
   changeTimeFrame(direction: number) {
-    // TODO: Instead of adding 1 timeframe, set the new timeframe to the start of the timeframe
-    // then add 1 timeframe to the endTimeFrame
+    // Set endTimeFrame to be +1 / -1 timeframe and then till end of timeFrame
     // Based on the direction we move one timeframe back or forward
-    this.endTimeFrame = moment(this.endTimeFrame).add((direction > 0 ? 1 : - 1), this.timeFrame as moment.unitOfTime.DurationConstructor);
+    this.endTimeFrame = moment(this.endTimeFrame).add((direction > 0 ? 1 : - 1), this.timeFrame as moment.unitOfTime.DurationConstructor).endOf(this.timeFrame as moment.unitOfTime.DurationConstructor);
     this.startTimeFrame = moment(this.startTimeFrame).add((direction > 0 ? 1 : - 1), this.timeFrame as moment.unitOfTime.DurationConstructor);
 
     // Cant go further than this timeFrame
