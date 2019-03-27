@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
-import { ViewController, ModalController } from 'ionic-angular';
+import { ViewController, ModalController, Platform } from 'ionic-angular';
 
 import { RatingPage } from '@/pages/rating/rating'; // actually a modal - to lazy to care
 
@@ -30,7 +30,8 @@ export class SettingsModal {
     private storage: Storage,
     private modalCtrl: ModalController,
     private file: File,
-    private emailComposer: EmailComposer
+    private emailComposer: EmailComposer,
+    private platform: Platform
   ) {
     this.languages = availableLanguages;
   }
@@ -51,32 +52,19 @@ export class SettingsModal {
     this.viewCtrl.dismiss();
   }
 
-  createCsv(arr) {
-    let csvContent = "data:text/csv;charset=utf-8,";
+  getDataDir(): string {
+    // https://ionicframework.com/docs/v3/api/platform/Platform/
+    // "on Android, if you need to use external memory, use .externalDataDirectory"
+    if (this.platform.is('android')) return this.file.externalDataDirectory
 
-    let header = '';
-    for (var key in arr[0]) {
-      header += `${key},`;
-    }
-    header += "\r\n";
-    csvContent += header;
-    arr.forEach(item => {
-      let row = '';
-      for (var key in item) {
-        row += `${item[key]},`;
-      }
-      row += "\r\n";
-      csvContent += row;
-    });
-    console.log(encodeURI(csvContent));
-
-    return encodeURI(csvContent);
+    return this.file.dataDirectory
   }
 
   mailData() {
-    this.file.writeFile(this.file.externalDataDirectory, "testfile.txt", JSON.stringify({ a: 2, b: 4 }), { replace: true }).then(response => {
-      alert(response.nativeURL);
-      let email = {
+    const fileName: string = `data-${moment(moment.now()).format('DDMMYYYY')}.json`;
+
+    this.file.writeFile(this.getDataDir(), fileName, JSON.stringify({ a: 2, b: 4 }), { replace: true }).then(response => {
+      const email = {
         to: 'sanderboer_feyenoord@hotmail.com',
         attachments: [
           response.nativeURL
@@ -90,7 +78,7 @@ export class SettingsModal {
   }
 
   openRatingPage() {
-    let ratingModal = this.modalCtrl.create(RatingPage);
+    const ratingModal = this.modalCtrl.create(RatingPage);
     ratingModal.present();
   }
 
