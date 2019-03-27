@@ -22,10 +22,6 @@ export class ExerciseListModal {
 
   private level: any;
 
-  private slideOptions: NativeTransitionOptions = {
-    direction: 'left'
-  };
-
   public fearCompletionPositiveLimit = FEAR_COMPLETION_POSITIVE_LIMIT;
 
   constructor(
@@ -36,7 +32,6 @@ export class ExerciseListModal {
     private nativePageTransitions: NativePageTransitions,
     private eventService: EventsService,
   ) {
-    this.nativePageTransitions.slide(this.slideOptions);
   }
 
   ionViewWillEnter() {
@@ -55,7 +50,7 @@ export class ExerciseListModal {
     try {
       const step = this.level.steps.find(step => step.id === exercise.step.id);
 
-      if(!step) throw("Step not found");
+      if (!step) throw ("Step not found");
 
       step.fear.completion = exercise.step.fear.completion;
     } catch (err) {
