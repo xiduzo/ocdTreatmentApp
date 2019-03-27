@@ -47,11 +47,6 @@ export class SettingsModal {
     this.storage.set('language', this.language);
   }
 
-  editFearLadder() {
-    let fearLadderModal = this.modalCtrl.create(FearladderModal);
-    fearLadderModal.present();
-  }
-
   close() {
     this.viewCtrl.dismiss();
   }
@@ -79,7 +74,8 @@ export class SettingsModal {
   }
 
   mailData() {
-    this.file.writeFile(this.file.cacheDirectory, "testfile.txt", JSON.stringify({ a: 2, b: 4 }), { replace: true }).then(response => {
+    this.file.writeFile(this.file.externalDataDirectory, "testfile.txt", JSON.stringify({ a: 2, b: 4 }), { replace: true }).then(response => {
+      alert(response.nativeURL);
       let email = {
         to: 'sanderboer_feyenoord@hotmail.com',
         attachments: [
