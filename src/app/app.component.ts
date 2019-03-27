@@ -10,8 +10,6 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { OnboardingPage } from '../pages/onboarding/onboarding';
 //import { LoginPage } from '../pages/login/login';
 
-import { AuthService, UserService } from '../lib/services';
-
 import { TranslateService } from 'ng2-translate';
 import { Globalization } from '@ionic-native/globalization';
 import { defaultLanguage, availableLanguages, sysOptions } from '../lib/language';
@@ -26,44 +24,41 @@ export class MyApp {
   private rootPage: any;
 
   constructor(
-    protected appCtrl: App,
-    protected platform: Platform,
-    protected statusBar: StatusBar,
-    protected splashScreen: SplashScreen,
-    protected storage: Storage,
-    protected authService: AuthService,
-    protected userService: UserService,
-    protected translate: TranslateService,
-    protected globalization: Globalization,
-    protected screenOrientation: ScreenOrientation
+    private appCtrl: App,
+    private platform: Platform,
+    private statusBar: StatusBar,
+    private splashScreen: SplashScreen,
+    private storage: Storage,
+    private translate: TranslateService,
+    private globalization: Globalization,
+    private screenOrientation: ScreenOrientation
   ) {
-    platform.ready().then(() => {
-      // storage.clear();
+    this.platform.ready().then((): void => {
       // We only let the users use the app in portrait, bc its fucked up in landscape (sorry not sorry)
-      // screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
+      this.screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
 
       // Set the language for the app
       this.setLanguage();
 
       // See if the users completed their onboarding
-      storage.get('onboardingCompleted')
-        .then((val) => {
+      this.storage.get('onboardingCompleted')
+        .then(val => {
           // Based on the 'onboardingCompleted' we guide the user to the next page
           this.appCtrl.getRootNav().push((val ? TabsPage : OnboardingPage));
         })
-        .catch((err) => { console.log(err); });
+        .catch(err => { console.log(err); });
 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
     });
   }
 
-  setLanguage() {
+  setLanguage(): void {
     // See if we have set the language allready
     this.storage.get('language')
-      .then((val) => {
+      .then(val => {
         // return if we have set a language
         if (val) return this.translate.setDefaultLang(val);
 
@@ -88,7 +83,7 @@ export class MyApp {
 
   }
 
-  getSuitableLanguage(language) {
+  getSuitableLanguage(language): string {
     language = language.substring(0, 2).toLowerCase();
     return availableLanguages.some(x => x.code == language) ? language : defaultLanguage;
   }
