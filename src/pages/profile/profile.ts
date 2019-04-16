@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { App, NavController, ModalController, TextInput } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { EmailComposer } from '@ionic-native/email-composer';
 
 import { AuthService, UserService } from '@/lib/services';
 
@@ -46,7 +45,6 @@ export class ProfilePage {
     private authService: AuthService,
     private userService: UserService,
     private storage: Storage,
-    private emailComposer: EmailComposer,
     private modalCtrl: ModalController,
     private badgeFctry: BadgeFactory,
     private eventService: EventsService,

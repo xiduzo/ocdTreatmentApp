@@ -3,8 +3,6 @@ import { Storage } from '@ionic/storage';
 
 import { App, Content, NavParams, ModalController } from 'ionic-angular';
 
-import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
-
 import { ExerciseMoodModal } from '@/modals/exercise/mood/exercise.mood';
 
 import { Exercise } from '@/lib/Exercise';
@@ -29,7 +27,6 @@ export class ExerciseListModal {
     private modalCtrl: ModalController,
     private appCtrl: App,
     private storage: Storage,
-    private nativePageTransitions: NativePageTransitions,
     private eventService: EventsService,
   ) {
   }
