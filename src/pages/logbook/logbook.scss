@@ -35,8 +35,6 @@ logbook-page {
           position: absolute;
           height: 100%;
 
-          .o-moodindicator {}
-
           .timeline__extender {
             width: 2px;
             height: 100%;
@@ -57,7 +55,6 @@ logbook-page {
           }
 
           ion-card-header {
-            padding: 16px 0 0 16px;
             font-weight: normal;
             display: flex;
             flex-direction: column;
@@ -88,9 +85,6 @@ logbook-page {
             }
 
             ion-item-group {
-              &:first-of-type {
-                padding-top: 16px;
-              }
 
               ion-item-divider {
                 ion-label {
