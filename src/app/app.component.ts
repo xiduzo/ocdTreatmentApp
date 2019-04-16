@@ -35,7 +35,9 @@ export class MyApp {
   ) {
     this.platform.ready().then((): void => {
       // We only let the users use the app in portrait, bc its fucked up in landscape (sorry not sorry)
-      this.screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
+      if(this.platform.is('cordova')) {
+        this.screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
+      }
 
       // Set the language for the app
       this.setLanguage();
@@ -80,10 +82,9 @@ export class MyApp {
           this.storage.set('language', language);
         }
       })
-
   }
 
-  getSuitableLanguage(language): string {
+  getSuitableLanguage(language: string): string {
     language = language.substring(0, 2).toLowerCase();
     return availableLanguages.some(x => x.code == language) ? language : defaultLanguage;
   }
