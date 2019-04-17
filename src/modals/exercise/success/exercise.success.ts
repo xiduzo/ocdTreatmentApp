@@ -91,7 +91,6 @@ export class ExerciseSuccessModal {
   updateExerciseBadge() {
     this.exerciseBadge.addProgress(50)
       .then(finishedStage => {
-        console.log(finishedStage);
         // TODO: move this responsibility to the badge class
         if (finishedStage) {
           this.showBadge.modal = BadgeEarnedModal;
