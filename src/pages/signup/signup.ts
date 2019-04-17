@@ -17,8 +17,6 @@ import {
   transition
 } from '@angular/animations';
 
-import { Restangular } from 'ngx-restangular';
-
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
@@ -44,7 +42,6 @@ export class SignUpPage {
   private password_repeat: AbstractControl;
 
   constructor(
-    private restangular: Restangular,
     private formBuilder: FormBuilder
   ) {
   }
@@ -78,20 +75,7 @@ export class SignUpPage {
   }
 
   signUp() {
-    this.restangular.all('users/create').post({
-      username: this.registerForm.controls.username.value,
-      password: this.registerForm.controls.password.value,
-      email: this.registerForm.controls.email.value
-    })
-      .subscribe((resp) => {
-        console.log(resp)
-      }, (err) => {
-        console.log(err);
-        if (err.data.email) {
-        }
-        if (err.data.username) {
-        }
-      });
+    
   }
 
 }

@@ -69,7 +69,6 @@ import { BadgeEarnedModal } from '@/modals/badgeEarned/badgeEarned';
 /*------------------------------
   Lib
 ------------------------------*/
-import { databaseHost } from '@/lib/constants';
 // pipes
 import { NgPipesModule } from 'ngx-pipes';
 // import { groupByPipe } from '@/lib/pipes/groupBy';
@@ -89,17 +88,12 @@ import { TranslateModule } from 'ng2-translate/ng2-translate';
 import { TranslateLoader, TranslateStaticLoader } from 'ng2-translate/src/translate.service';
 
 /*------------------------------
-  Restangular
-------------------------------*/
-import { RestangularModule } from 'ngx-restangular';
-
-/*------------------------------
   Datavisualizations
 ------------------------------*/
 import { ChartModule } from 'angular2-highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import * as highcharts from 'highcharts/highcharts';
-// import Highmore from 'highcharts/highcharts-more';
+import Highmore from 'highcharts/highcharts-more';
 
 /*------------------------------
   Global events
@@ -111,23 +105,6 @@ import { EventsServiceModule } from 'angular-event-service';
 ------------------------------*/
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { NgxPaginationModule } from 'ngx-pagination';
-
-// Setting the default restangular configuration
-export function RestangularConfigFactory(RestangularProvider, authService) {
-  RestangularProvider.setBaseUrl(databaseHost);
-  RestangularProvider.setRequestSuffix('/');
-  RestangularProvider.setFullResponse(true);
-
-  RestangularProvider.addFullRequestInterceptor((element, operation, path, url, headers, params) => {
-    let jwtToken = authService.getLocalToken();
-    alert(jwtToken);
-    if (!jwtToken) return;
-
-    return {
-      headers: Object.assign({}, headers, { Authorization: `JWT ${jwtToken}` })
-    };
-  });
-}
 
 // Language settings
 export function createTranslateLoader(http: Http) {
@@ -171,7 +148,6 @@ export function createTranslateLoader(http: Http) {
     HttpClientModule,
     RoundProgressModule,
     NgxPaginationModule,
-    RestangularModule.forRoot([AuthService], RestangularConfigFactory),
     EventsServiceModule.forRoot(),
     TranslateModule.forRoot({
       provide: TranslateLoader,
@@ -235,7 +211,7 @@ export function highchartsFactory() {
   });
 
   // Initialize addons.
-  // Highmore(highcharts);
+  Highmore(highcharts);
 
   return highcharts;
 }

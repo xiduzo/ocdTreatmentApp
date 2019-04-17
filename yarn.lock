@@ -316,11 +316,6 @@
   dependencies:
     "@types/geojson" "*"
 
-"@types/lodash@^4.14.62":
-  version "4.14.123"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.123.tgz#39be5d211478c8dd3bdae98ee75bb7efe4abfe4d"
-  integrity sha512-pQvPkc4Nltyx7G1Ww45OjVqUsJP4UsZm+GWJpigXgkikZqJgRm4c48g027o6tdgubWHwFRF15iFd+Y4Pmqv6+Q==
-
 "@types/node@^9.4.7":
   version "9.6.47"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.47.tgz#655b4a1cc52c8ab08f48cc055061990d6846bc97"
@@ -3226,13 +3221,6 @@ ngx-pipes@^2.3.10:
   integrity sha512-ISrdCxiOt9AiyJGtRqlNB5JMrCCb0Otp2KV1sWOxwZqfysz8apGhK0nrag0mCJQtjSNkdDgWcZdW7ZnDtQqZSg==
   dependencies:
     tslib "^1.9.0"
-
-ngx-restangular@^2.0.2:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/ngx-restangular/-/ngx-restangular-2.2.3.tgz#6fdcc2a6636025394ff99d0c918ca40b9b96e3ac"
-  integrity sha1-b9zCpmNgJTlP+Z0MkYykC5uW46w=
-  dependencies:
-    "@types/lodash" "^4.14.62"
 
 nice-try@^1.0.4:
   version "1.0.5"
