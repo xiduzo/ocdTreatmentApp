@@ -136,11 +136,6 @@
   resolved "https://registry.yarnpkg.com/@ionic-native/native-page-transitions/-/native-page-transitions-4.20.0.tgz#de2aa3fd695e82327738e3b36fdac7d890dc0383"
   integrity sha512-hUbhoRG8ts3U9LM63NovjrosuGLDl3yJJwRVgDFXALjh4L5j9wlrfrMOKfgniYkbTUDYsDc6C1NW9LkGw87+1Q==
 
-"@ionic-native/network@^4.17.0":
-  version "4.20.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/network/-/network-4.20.0.tgz#762e7fe2d33b3b3c31464a8bc0f2e3500f55bd98"
-  integrity sha512-BBSeaJJEd9KpzJmgkZwti0pzWeDO3bIVyl6/+c/Ivi1ytmJI2kL0bQcukLuABv02rCeKczVuzUgL0D4dGWtLqA==
-
 "@ionic-native/screen-orientation@^4.17.0":
   version "4.20.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/screen-orientation/-/screen-orientation-4.20.0.tgz#4337f7e014d9d12d2d9a9b8f8ede9cefa55cf739"
@@ -351,7 +346,7 @@ acorn@^4.0.3:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-4.0.13.tgz#105495ae5361d697bd195c825192e1ad7f253787"
   integrity sha1-EFSVrlNh1pe9GVyCUZLhrX8lN4c=
 
-acorn@^5.0.0, acorn@^5.1.1, acorn@^5.2.1:
+acorn@^5.0.0, acorn@^5.2.1:
   version "5.7.3"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
   integrity sha512-T/zvzYRfbVojPWahDsE5evJdHb3oJoQfFbsrKM7w5Zcs++Tr257tia3BmMP8XYVjp1S9RZXQMh7gao96BlqZOw==
@@ -741,14 +736,6 @@ braces@^2.3.1, braces@^2.3.2:
     snapdragon-node "^2.0.1"
     split-string "^3.0.2"
     to-regex "^3.0.1"
-
-brain.js@^1.5.2:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/brain.js/-/brain.js-1.6.1.tgz#ab18c591882feeda11e70c62a427fe78ca4aa817"
-  integrity sha512-c+qrOGoW9VvIohTf70MQCjNzrunXVWI09CT27BZ/lZb6nObGxkdP10c4g9Ztnd8WFJijGdh3veh1A1vk/daIUA==
-  dependencies:
-    gpu.js "^1.10.4"
-    thaw.js "^2.0.0"
 
 brorand@^1.0.1:
   version "1.1.0"
@@ -1304,11 +1291,6 @@ cordova-plugin-local-notification@^0.9.0-beta.2:
   version "0.9.0-beta.2"
   resolved "https://registry.yarnpkg.com/cordova-plugin-local-notification/-/cordova-plugin-local-notification-0.9.0-beta.2.tgz#e3a0b4a35d11f95bb4f1e367d9baee9909cca695"
   integrity sha512-63n77K1pt8dnbWnNR8QWETi9Glezi1bvNHvHWmGNIOv0xCb0phZnm+Ku49BQ+omwe8Z5voMvrA4I03SYPpv38w==
-
-cordova-plugin-network-information@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-network-information/-/cordova-plugin-network-information-2.0.1.tgz#e90421f430c6ab76d409223f25fcefbbbce17690"
-  integrity sha1-6QQh9DDGq3bUCSI/Jfzvu7zhdpA=
 
 cordova-plugin-screen-orientation@^3.0.1:
   version "3.0.1"
@@ -2210,13 +2192,6 @@ globule@^1.0.0:
     lodash "~4.17.10"
     minimatch "~3.0.2"
 
-gpu.js@^1.10.4:
-  version "1.10.4"
-  resolved "https://registry.yarnpkg.com/gpu.js/-/gpu.js-1.10.4.tgz#f0290dc08d40a9de7329b91f1523703cdd0a64c7"
-  integrity sha512-qh5O1LXwwkhGOpEicR9SnQB7xduUDY5rKGPWj9yOFLNI90bX+mReooGQjnL3iZ08btBOT0zQGu9wKA+gGy2BhQ==
-  dependencies:
-    acorn "^5.1.1"
-
 graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.1.15"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.15.tgz#ffb703e1066e8a0eeaa4c8b80ba9253eeefbfb00"
@@ -2309,10 +2284,10 @@ highcharts@^5.0.7:
   resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-5.0.15.tgz#a9af11538a85b85f300e66f7a0e048a7ef8ab381"
   integrity sha512-+LTe57ntLyWgkjsHzLmvRspM3FVKtds7iDswOTwuTAmZD3FtG1I/DqHiVSRjX92RQmQMZ1M7dcoRb7T648m1xA==
 
-highcharts@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-6.2.0.tgz#2a6d04652eb43c66f462ca7e2d2808f1f2782b61"
-  integrity sha512-A4E89MA+kto8giic7zyLU6ZxfXnVeCUlKOyzFsah3+n4BROx4bgonl92KIBtwLud/mIWir8ahqhuhe2by9LakQ==
+highcharts@^7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-7.1.1.tgz#8c4433e39d5e7dbdc064685d9548181a35e12c19"
+  integrity sha512-BQtWDQmH4AweQNFLGJCHBQwv9tj9kyp35bp2FFpmNBm7LOecCQdLjvZNgUKvCsKzBzJJIywcwWu4QEcAkPGCjg==
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
@@ -4663,11 +4638,6 @@ tar@^4:
     mkdirp "^0.5.0"
     safe-buffer "^5.1.2"
     yallist "^3.0.2"
-
-thaw.js@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/thaw.js/-/thaw.js-2.0.0.tgz#452bc5d7ee2ce1b6f92037b05b506cbd656291d0"
-  integrity sha1-RSvF1+4s4bb5IDewW1BsvWVikdA=
 
 through2@^3.0.0:
   version "3.0.1"

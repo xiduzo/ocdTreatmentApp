@@ -5,8 +5,6 @@ import { ViewController } from 'ionic-angular';
 
 import moment from 'moment';
 
-import brain from 'brain.js';
-
 @Component({
   selector: 'rating',
   templateUrl: 'rating.html'
@@ -98,35 +96,6 @@ export class RatingPage {
   }
 
   save() {
-    // console.log(this.ratings);
-    // console.log(JSON.stringify(this.ratings));
-    console.log("trained model");
-    const config = {
-      binaryThresh: 0.5,
-      hiddenLayers: [20, 20, 20],
-      iterations: 200000,
-      errorThresh: 0.001,
-      log: true,
-      learningRate: 0.2
-    };
-    const net = new brain.NeuralNetwork(config);
-
-    net.train(this.ratings);
-    const trained = net.toJSON();
-    console.log("model");
-    console.log("=======================");
-    console.log(JSON.stringify(trained));
-
-    const outputExercise = this.exercises[Math.random() * this.exercises.length - 1];
-    const output = net.run(outputExercise);
-    console.log("output");
-    console.log("=======================");
-    console.log(outputExercise, output);
-    const outputExercise2 = this.exercises[Math.random() * this.exercises.length - 1];
-    const output2 = net.run(outputExercise2);
-    console.log("output2");
-    console.log("=======================");
-    console.log(outputExercise2, output2);
     // this.file.writeFile(this.file.dataDirectory, "ratings.json", JSON.stringify(this.ratings), { replace: true }).then(response => {
     //   let email = {
     //     to: 'sanderboer_feyenoord@hotmail.com',
