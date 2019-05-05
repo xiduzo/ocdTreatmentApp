@@ -39,6 +39,8 @@
     "angular-svg-round-progressbar": "^2.0.0",
     "angular2-highcharts": "^0.5.5",
     "angular2-uuid": "^1.1.1",
+    "aws-amplify": "^1.1.26",
+    "aws-amplify-angular": "^3.0.1",
     "com.telerik.plugins.nativepagetransitions": "^0.6.5",
     "confetti-js": "0.0.14",
     "cordova-android": "7.1.4",
@@ -74,7 +76,7 @@
   "devDependencies": {
     "@ionic/app-scripts": "^3.2.3",
     "@ionic/lab": "1.0.24",
-    "@types/node": "^9.4.7",
+    "@types/node": "^12.0.0",
     "@types/regression": "^2.0.0",
     "core-js": "^2.5.7",
     "node-sass": "^4.11.0",

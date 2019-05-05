@@ -14,8 +14,10 @@
     "target": "es5",
     "baseUrl": "./src",
     "typeRoots": [
-      "../node_modules/@types"
+      "../node_modules/@types",
+      "node_modules/@types"
     ],
+    "types": ["node"],
     "paths": {
       "@/lib/*": ["lib/*"],
       "@/pages/*": ["pages/*"],

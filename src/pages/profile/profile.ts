@@ -2,8 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { App, NavController, ModalController, TextInput } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-import { AuthService, UserService } from '@/lib/services';
-
 import { Badge, BadgeFactory } from '@/lib/badge/Badge';
 
 import { STREAK_BADGE } from '@/lib/badge/templates/streak';
@@ -42,8 +40,6 @@ export class ProfilePage {
   constructor(
     private appCtrl: App,
     public navCtrl: NavController,
-    private authService: AuthService,
-    private userService: UserService,
     private storage: Storage,
     private modalCtrl: ModalController,
     private badgeFctry: BadgeFactory,
@@ -110,17 +106,6 @@ export class ProfilePage {
   openFearLadder() {
     let fearladderModal = this.modalCtrl.create(FearladderModal);
     fearladderModal.present();
-  }
-
-
-  logout() {
-    this.authService.removeLocalToken();
-    this.userService.removeUser();
-    // this.storage.set('onboardingCompleted', false);
-
-    // Because we initiate with the login page we can pop the current app to
-    // return to the login page
-    this.appCtrl.getRootNav().pop();
   }
 
   showBadge(badge) {

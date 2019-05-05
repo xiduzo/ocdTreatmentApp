@@ -28,14 +28,21 @@ import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { File } from '@ionic-native/file';
 
 /*------------------------------
+  AWS
+------------------------------*/
+// Amplify
+import { AmplifyAngularModule, AmplifyService, AmplifyModules } from 'aws-amplify-angular';
+import Auth from '@aws-amplify/auth';
+
+/*------------------------------
   Pages
 ------------------------------*/
 // Exercise
 import { ExercisePage } from '@/pages/exercise/exercise';
 import { RatingPage } from '@/pages/rating/rating';
 // Auth
-import { LoginPage } from '@/pages/login/login';
-import { SignUpPage } from '@/pages/signup/signup';
+import { LoginPage } from '@/pages/auth/login/login';
+import { SignUpPage } from '@/pages/auth/signup/signup';
 // Onboarding
 import { OnboardingPage } from '@/pages/onboarding/onboarding';
 // Logbook
@@ -75,8 +82,6 @@ import { msToTimePipe } from '@/lib/pipes/msToTime';
 import { accumulateTimePipe } from '@/lib/pipes/accumulateTime';
 import { differencePipe } from '@/lib/pipes/difference';
 
-// injectables
-import { AuthService, UserService } from '@/lib/services';
 // badge
 import { BadgeFactory } from '@/lib/badge/Badge';
 
@@ -142,11 +147,15 @@ export function createTranslateLoader(http: Http) {
     BrowserModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(MyApp, { tabsPlacement: 'bottom' }),
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot({
+      name: '__spiritDB',
+      driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }),
     ChartModule,
     HttpClientModule,
     RoundProgressModule,
     NgxPaginationModule,
+    AmplifyAngularModule,
     EventsServiceModule.forRoot(),
     TranslateModule.forRoot({
       provide: TranslateLoader,
@@ -183,14 +192,21 @@ export function createTranslateLoader(http: Http) {
     EmailComposer,
     NativePageTransitions,
     ScreenOrientation,
-    AuthService,
-    UserService,
     LocalNotifications,
     Globalization,
+    AmplifyService,
     File,
     BadgeFactory,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    { provide: HighchartsStatic, useFactory: highchartsFactory }
+    { provide: HighchartsStatic, useFactory: highchartsFactory },
+    {
+      provide: AmplifyService,
+      useFactory: () => {
+        return AmplifyModules({
+          Auth,
+        });
+      }
+    }
   ]
 })
 

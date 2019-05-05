@@ -1,18 +1,23 @@
-import { Component } from '@angular/core';
-import { App, Platform } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { App, Platform, Tabs } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { Storage } from '@ionic/storage';
 
-import { TabsPage } from '../pages/tabs/tabs';
+import { TabsPage } from '@/pages/tabs/tabs';
 import { OnboardingPage } from '../pages/onboarding/onboarding';
 //import { LoginPage } from '../pages/login/login';
 
 import { TranslateService } from 'ng2-translate';
 import { Globalization } from '@ionic-native/globalization';
 import { defaultLanguage, availableLanguages, sysOptions } from '../lib/language';
+
+import { AmplifyService } from 'aws-amplify-angular';
+
+import Auth from '@aws-amplify/auth';
+import { LoginPage } from '@/pages/auth/login/login';
 
 
 @Component({
@@ -21,7 +26,10 @@ import { defaultLanguage, availableLanguages, sysOptions } from '../lib/language
 export class MyApp {
   // private rootPage:any = LoginPage; // Always start the app with the LoginPage to be sure
   // TODO: Fix some sort of secure login for users (finger print / passcode / etc) if user want to have protection of data
-  private rootPage: any;
+  private rootPage: any = LoginPage;
+
+  private signedIn: boolean;
+  private user: any;
 
   constructor(
     private appCtrl: App,
@@ -31,30 +39,57 @@ export class MyApp {
     private storage: Storage,
     private translate: TranslateService,
     private globalization: Globalization,
-    private screenOrientation: ScreenOrientation
+    private screenOrientation: ScreenOrientation,
+    private amplifyService: AmplifyService
   ) {
     this.platform.ready().then((): void => {
-      // We only let the users use the app in portrait, bc its fucked up in landscape (sorry not sorry)
-      if(this.platform.is('cordova')) {
-        this.screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
-      }
-
-      // Set the language for the app
-      this.setLanguage();
-
-      // See if the users completed their onboarding
-      this.storage.get('onboardingCompleted')
-        .then(val => {
-          // Based on the 'onboardingCompleted' we guide the user to the next page
-          this.appCtrl.getRootNav().push((val ? TabsPage : OnboardingPage));
-        })
-        .catch(err => { console.log(err); });
-
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  ngOnInit(): any {
+    // Set the language for the app
+    this.setLanguage();
+
+    // We only let the users use the app in portrait, bc its fucked up in landscape (sorry not sorry)
+    if (this.platform.is('cordova')) {
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    }
+
+    // Subscribe on auth events
+    this.amplifyService.authStateChange$
+      .subscribe(authState => {
+        switch (authState.state) {
+          case 'signedIn':
+            this.signedIn = true;
+            this.user = authState.user;
+            this.setTabsOrOnboardingPage();
+            break;
+          case 'signedOut':
+            this.signedIn = false;
+            this.rootPage = LoginPage;
+          default:
+            // TODO:
+            // Catch all events
+            console.log(authState.state)
+            break;
+        }
+      });
+  }
+
+  setTabsOrOnboardingPage(): void {
+    // See if the users completed their onboarding
+    this.storage.get('onboardingCompleted')
+      .then(val => {
+        // Based on the 'onboardingCompleted' we guide the user to the next page
+        // this.appCtrl.getRootNav().push((val ? TabsPage : OnboardingPage));
+        this.rootPage = val ? TabsPage : OnboardingPage;
+        // this.appCtrl.getRootNav().push(OnboardingPage);
+      })
+      .catch(err => { console.log(err); });
   }
 
   setLanguage(): void {
@@ -65,23 +100,26 @@ export class MyApp {
         if (val) return this.translate.setDefaultLang(val);
 
         // Else try to find the best option
+        // First set the default language
         this.translate.setDefaultLang(defaultLanguage);
 
+        // Then try to find best language based on cordova || browser
         if ((<any>window).cordova) {
           this.globalization.getPreferredLanguage().then(result => {
-            let language = this.getSuitableLanguage(result.value);
-            this.translate.use(language);
-            sysOptions.systemLanguage = language;
-            this.storage.set('language', language);
+            this.updateLanguageSettings(result.value);
           });
         } else {
           let browserLanguage = this.translate.getBrowserLang() || defaultLanguage;
-          let language = this.getSuitableLanguage(browserLanguage);
-          this.translate.use(language);
-          sysOptions.systemLanguage = language;
-          this.storage.set('language', language);
+          this.updateLanguageSettings(browserLanguage);
         }
       })
+  }
+
+  updateLanguageSettings(language: string): void {
+    language = this.getSuitableLanguage(language);
+    this.translate.use(language);
+    sysOptions.systemLanguage = language;
+    this.storage.set('language', language);
   }
 
   getSuitableLanguage(language: string): string {
