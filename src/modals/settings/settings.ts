@@ -14,6 +14,7 @@ import { Fear, Trigger, Exercise, Mood, Step, Erp } from '@/lib/Exercise';
 
 import { File } from '@ionic-native/file';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { Auth } from 'aws-amplify';
 
 @Component({
   selector: 'settings-modal',
@@ -40,6 +41,16 @@ export class SettingsModal {
     this.storage.get('language').then((val) => {
       this.language = val;
     });
+  }
+
+  signOut() {
+    Auth.signOut()
+    .then(() => {
+      this.close();
+    });
+    // .catch(error => {
+    //   console.log(error);
+    // });
   }
 
   updateAppLanguage() {
