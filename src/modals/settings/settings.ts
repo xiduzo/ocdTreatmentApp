@@ -6,7 +6,7 @@ import { ViewController, ModalController, Platform } from 'ionic-angular';
 import { RatingPage } from '@/pages/rating/rating'; // actually a modal - to lazy to care
 
 import { TranslateService } from 'ng2-translate';
-import { availableLanguages, sysOptions } from '@/lib/language';
+import { availableLanguages, sysOptions, ILanguageCode } from '@/lib/language';
 
 import moment from 'moment';
 
@@ -22,7 +22,7 @@ import { EmailComposer } from '@ionic-native/email-composer';
 export class SettingsModal {
 
   public language: string;
-  public languages: any;
+  public languages: Array<ILanguageCode>;
 
   constructor(
     private viewCtrl: ViewController,
