@@ -41,6 +41,20 @@
   </ion-item>
 
   <ion-list-header>
+    My profile
+  </ion-list-header>
+  <ion-item>
+    <ion-label>
+      Sign out
+    </ion-label>
+    <div item-end>
+      <button ion-button (click)="signOut()">
+        sing out
+      </button>
+    </div>
+  </ion-item>
+
+  <ion-list-header>
     {{ 'MY_OBSESSIONS' | translate }}
   </ion-list-header>
   <ion-item>
