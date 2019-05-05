@@ -233,8 +233,9 @@ export class ProgressPage {
       .polynomial(
         this.chart.series[1].data
           // Only need the mapped x and y values
-          .map(point => [point.x, point.y])
+          .map((point: any) => [`${point.x}`, `${point.y}`])
       ).points
+      .map(x => [x[0].toString(), x[1].toString()])
       // Sort the points in order to for a smooth line
       .sort()
       .forEach(point => {
