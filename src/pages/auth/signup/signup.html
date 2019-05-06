@@ -1,18 +1,15 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons>
+      <button ion-back-button></button>
+    </ion-buttons>
     <ion-title>
       Sign up
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <section class="p-signup__header"></section>
-  <!-- <section padding *ngIf="errors.length" [@showErrors]>
-    <p *ngFor="let error of errors" class="o-message--error" [@showError]>
-      {{ error }}
-    </p>
-  </section> -->
   <form [formGroup]="registerForm" (ngSubmit)="signUp()">
     <ion-list>
       <ion-item>
@@ -54,7 +51,8 @@
           This field is required
         </p>
       </ion-item>
-      <ion-item *ngIf="password_repeat.valid && (password_repeat.dirty || password_repeat.touched) && registerForm.hasError('mismatchedPasswords')">
+      <ion-item
+        *ngIf="password_repeat.valid && (password_repeat.dirty || password_repeat.touched) && registerForm.hasError('mismatchedPasswords')">
         <p>
           Passwords do not match
         </p>

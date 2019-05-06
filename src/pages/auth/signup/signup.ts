@@ -7,31 +7,9 @@ import {
   AbstractControl
 } from '@angular/forms';
 
-import {
-  animateChild,
-  query,
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from '@angular/animations';
-
 @Component({
   selector: 'page-signup',
-  templateUrl: 'signup.html',
-  animations: [
-    trigger('showErrors', [
-      transition(':enter, :leave', [
-        query('@*', animateChild())
-      ])
-    ]),
-    trigger('showError', [
-      state('void', style({ transform: 'translateX(-100%)' })),
-      state('*', style({ transform: 'translateX(0)' })),
-      transition('void => *', animate('300ms ease-in'))
-    ])
-  ]
+  templateUrl: 'signup.html'
 })
 export class SignUpPage {
 
@@ -77,5 +55,4 @@ export class SignUpPage {
   signUp() {
     
   }
-
 }

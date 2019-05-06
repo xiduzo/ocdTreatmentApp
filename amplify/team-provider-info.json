@@ -12,9 +12,7 @@
         },
         "categories": {
             "auth": {
-                "cognitodee5d4ef": {
-                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"342355773299853\",\"client_secret\":\"131aae24d4a91f571cd602f86829ca26\"},{\"ProviderName\":\"Google\",\"client_id\":\"680404985058-210mulbfnqn2icmjf7lsf1qe672uuovb.apps.googleusercontent.com\",\"client_secret\":\"tYRG6004cE83SaMwgixFMZOa\"},{\"ProviderName\":\"LoginWithAmazon\",\"client_id\":\"amzn1.application.b56728bc4fba47c797cdf83239fd199f\",\"client_secret\":\"ea081d0c3892dc29a3988c3fa51e2f730602c0a3dfd43256a8b7467416990e5d\"}]"
-                }
+                "cognitodee5d4ef": {}
             }
         }
     }
