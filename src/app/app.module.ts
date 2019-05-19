@@ -31,7 +31,7 @@ import { File } from '@ionic-native/file';
   AWS
 ------------------------------*/
 // Amplify
-import { AmplifyAngularModule, AmplifyService, AmplifyModules } from 'aws-amplify-angular';
+import { AmplifyAngularModule, AmplifyService, AmplifyModules, } from 'aws-amplify-angular';
 import Auth from '@aws-amplify/auth';
 
 /*------------------------------
@@ -80,6 +80,7 @@ import { NgPipesModule } from 'ngx-pipes';
 import { msToTimePipe } from '@/lib/pipes/msToTime';
 import { accumulateTimePipe } from '@/lib/pipes/accumulateTime';
 import { differencePipe } from '@/lib/pipes/difference';
+import { relativeTimePipe } from '@/lib/pipes/relativeTime';
 
 // badge
 import { BadgeFactory } from '@/lib/badge/Badge';
@@ -138,7 +139,8 @@ export function createTranslateLoader(http: Http) {
     SettingsModal,
     accumulateTimePipe,
     msToTimePipe,
-    differencePipe
+    differencePipe,
+    relativeTimePipe
   ],
   imports: [
     NgPipesModule,
