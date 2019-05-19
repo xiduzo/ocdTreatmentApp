@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { App } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 
 import { Auth } from 'aws-amplify';
 
-import { OnboardingPage } from '@/pages/onboarding/onboarding';
 import { SignUpPage } from '@/pages/auth/signup/signup'
 
 @Component({
@@ -16,6 +15,8 @@ export class LoginPage {
 
   private username: string;
   private password: string;
+
+  public signinButtonEnabled: boolean = true;
 
   constructor(
     private appCtrl: App,
@@ -33,23 +34,25 @@ export class LoginPage {
     loader.present();
 
     Auth.currentAuthenticatedUser()
-    .then(() => {
-      loader.dismiss();
-      // Auth user is handled in app.components.ts
-    })
-    .catch(error => {
-      loader.dismiss();
-    });
+      .then(() => {
+        loader.dismiss();
+        // Auth user is handled in app.components.ts
+      })
+      .catch(error => {
+        loader.dismiss();
+      });
   }
-  
+
 
   login() {
+    this.signinButtonEnabled = false;
     Auth.signIn(this.username, this.password)
       .then(user => {
         console.log(user);
         this.showMessage(`Welcome back ${user.username}!`);
       })
       .catch(error => {
+        this.signinButtonEnabled = true;
         this.showMessage(error.message);
         console.log(error);
       })

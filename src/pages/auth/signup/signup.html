@@ -1,15 +1,24 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons>
-      <button ion-back-button></button>
+<!-- <ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons start>
+      <button ion-button icon-only color="light" (click)="back()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
     </ion-buttons>
-    <ion-title>
-      Sign up
-    </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
+
 <ion-content>
-  <section class="p-signup__header"></section>
+  <ion-fab top left>
+    <button ion-fab icon-only color="light" (click)="back()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <h1 ion-text color="light">
+    Create <span>account</span>
+  </h1>
+
   <form [formGroup]="registerForm" (ngSubmit)="signUp()">
     <ion-list>
       <ion-item>
@@ -19,6 +28,9 @@
       <ion-item *ngIf="username.invalid && (username.dirty || username.touched)">
         <p *ngIf="username.errors.required">
           This field is required
+        </p>
+        <p *ngIf="username.errors.minlength">
+          Enter at least 6 characters
         </p>
       </ion-item>
       <ion-item>
@@ -41,25 +53,35 @@
         <p *ngIf="password.errors.required">
           This field is required
         </p>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Repeat password</ion-label>
-        <ion-input formControlName="password_repeat" type="password"></ion-input>
-      </ion-item>
-      <ion-item *ngIf="password_repeat.invalid && (password_repeat.dirty || password_repeat.touched)">
-        <p *ngIf="password_repeat.errors.required">
-          This field is required
+        <p *ngIf="password.errors.minlength">
+          Enter at least 6 characters
         </p>
       </ion-item>
-      <ion-item
-        *ngIf="password_repeat.valid && (password_repeat.dirty || password_repeat.touched) && registerForm.hasError('mismatchedPasswords')">
+      <ion-item *ngIf="registerForm.hasError('weakPassword') && (password.dirty || password.touched) && !password.errors">
         <p>
-          Passwords do not match
+          Use at least:
         </p>
+        <ul>
+          <li>One uppercase letter</li>
+          <li>One lowercase letter</li>
+          <li>One number</li>
+          <li>One sign (!, @, #, $, %, ^, & or *)</li>
+        </ul>
       </ion-item>
     </ion-list>
-    <button type="submit" [disabled]="!registerForm.valid" ion-button block large color="secondary">
+  </form>
+
+  <section class="sign-up">
+    <h2 ion-text>
+      Sign up
+    </h2>
+    <button ion-button icon-only round color="secondary" (click)="signUp()" [disabled]="!registerForm.valid || !signupButtonEnabled">
       <ion-icon name="checkmark"></ion-icon>
     </button>
-  </form>
+  </section>
+
 </ion-content>
+<!-- 
+<ion-footer>
+    <button ion-button color="dark" clear (click)="back()">Sign in</button>
+</ion-footer> -->

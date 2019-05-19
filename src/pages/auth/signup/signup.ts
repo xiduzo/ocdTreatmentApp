@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { App } from 'ionic-angular';
+
+import { Auth } from 'aws-amplify';
+
+import { ToastController } from 'ionic-angular';
 
 import {
   FormBuilder,
@@ -17,42 +22,89 @@ export class SignUpPage {
   private username: AbstractControl;
   private email: AbstractControl;
   private password: AbstractControl;
-  private password_repeat: AbstractControl;
+
+  public signupButtonEnabled: boolean = true;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastCtrl: ToastController,
+    private appCtrl: App
   ) {
   }
 
-  matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
-    // TODO maybe use this https://github.com/yuyang041060120/ng2-validation#notequalto-1
+  passwordCreteria(passwordKey: string) {
     return (group: FormGroup): { [key: string]: any } => {
-      let password = group.controls[passwordKey];
-      let confirmPassword = group.controls[confirmPasswordKey];
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/gm;
+      
+      const matches = regex.exec(group.controls[passwordKey].value);
 
-      if (password.value !== confirmPassword.value) {
+      if(!matches) {
         return {
-          mismatchedPasswords: true
-        };
+          weakPassword: true
+        }
       }
     }
   }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      username: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-      password_repeat: ['', [Validators.required]],
-    }, { validator: this.matchingPasswords('password', 'password_repeat') });
+      username: ['', <any>[Validators.required, Validators.minLength(6)]],
+      email: ['', <any>[Validators.required, Validators.email]],
+      password: ['', <any>[Validators.required, Validators.minLength(6)]],
+    }, {
+      validator: this.passwordCreteria('password')
+    });
 
     this.username = this.registerForm.controls['username'];
     this.email = this.registerForm.controls['email'];
     this.password = this.registerForm.controls['password'];
-    this.password_repeat = this.registerForm.controls['password_repeat'];
+  }
+
+  async showMessage(message: string) {
+    console.log(message);
+    const toast = await this.toastCtrl.create({
+      message: message,
+      showCloseButton: true,
+      duration: 5000
+    });
+
+    toast.present();
+  }
+
+  back() {
+    this.appCtrl.getRootNav().pop();
   }
 
   signUp() {
-    
+    this.signupButtonEnabled = false;
+    Auth.signUp({
+      username: this.username.value,
+      password: this.password.value,
+      attributes: {
+        email: this.email.value
+      }
+    })
+      .then(response => {
+        console.log(response);
+        // TODO go to confirm page
+        // Remove this page from nav stack
+        this.showMessage(`${response}`);
+      })
+      .catch(error => {
+        this.signupButtonEnabled = true;
+        switch (error.code) {
+          case 'UsernameExistsException':
+            this.showMessage(`Username and/or email allready registered`);
+            break;
+          // case 'InvalidParameterException':
+            // this.showMessage(`Username and/or email allready registered`);
+          case 'InvalidPasswordException':
+            const regex = /(?<=: ).*$/gm;
+            const matches = regex.exec(error.message);
+            this.showMessage(matches[0]);
+          default:
+            console.log(error);
+        }
+      })
   }
 }
