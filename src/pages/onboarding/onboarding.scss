@@ -21,15 +21,20 @@ page-onboarding {
 
 .c-onboarding {
   .swiper-pagination {
+    .swiper-pagination-bullet {
+      transition: all 450ms;
+    }
     .swiper-pagination-bullet-active {
       background: color($colors, light, base);
+      width: 20px;
+      border-radius: 5px;
     }
   }
   // .swiper-pagination {
   //   bottom: 0;
   //   display: flex;
   //   justify-content: space-between;
-  //
+  
   //   .swiper-pagination-bullet {
   //     margin: 0;
   //     flex-grow: 1;
@@ -37,7 +42,7 @@ page-onboarding {
   //     height: 4px;
   //     transition: all 200ms ease-out;
   //   }
-  //
+  
   //   .swiper-pagination-bullet-active {
   //     transition: all 200ms ease-in;
   //     background: color($colors, light, base);
