@@ -77,7 +77,6 @@ import { BadgeEarnedModal } from '@/modals/badgeEarned/badgeEarned';
 ------------------------------*/
 // pipes
 import { NgPipesModule } from 'ngx-pipes';
-// import { groupByPipe } from '@/lib/pipes/groupBy';
 import { msToTimePipe } from '@/lib/pipes/msToTime';
 import { accumulateTimePipe } from '@/lib/pipes/accumulateTime';
 import { differencePipe } from '@/lib/pipes/difference';
@@ -137,7 +136,6 @@ export function createTranslateLoader(http: Http) {
     BadgeModal,
     BadgeEarnedModal,
     SettingsModal,
-    // groupByPipe,
     accumulateTimePipe,
     msToTimePipe,
     differencePipe
