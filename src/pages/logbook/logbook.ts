@@ -60,7 +60,9 @@ export class LogbookPage {
     this.storage.get('exercises').then((exercises) => {
       if (!exercises) return;
       this.exercises = exercises
-      .map(localExercise => {
+      // TODO, fix that this will show arr by start DESC
+      // .sort((a:Exercise, b:Exercise) => <any>b.start - <any>a.start)
+      .map((localExercise: Exercise) => {
         const exercise = new Exercise(localExercise);
 
         [exercise.beforeMood, exercise.afterMood].forEach(mood => {
