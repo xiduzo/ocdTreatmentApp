@@ -146,7 +146,11 @@ export function createTranslateLoader(http: Http) {
     NgPipesModule,
     BrowserModule,
     BrowserAnimationsModule,
-    IonicModule.forRoot(MyApp, { tabsPlacement: 'bottom' }),
+    IonicModule.forRoot(MyApp, {
+      tabsPlacement: 'bottom',
+      scrollPadding: false,
+      scrollAssist: false
+    }),
     IonicStorageModule.forRoot({
       name: '__spiritDB',
       driverOrder: ['indexeddb', 'sqlite', 'websql']
