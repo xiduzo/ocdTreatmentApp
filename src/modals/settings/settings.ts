@@ -57,6 +57,9 @@ export class SettingsModal {
     this.translate.use(this.language);
     sysOptions.systemLanguage = this.language;
     this.storage.set('language', this.language);
+
+    // Update moment language
+    moment.locale(this.language);
   }
 
   close() {

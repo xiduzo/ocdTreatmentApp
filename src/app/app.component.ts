@@ -18,6 +18,7 @@ import { AmplifyService } from 'aws-amplify-angular';
 
 import { LoginPage } from '@/pages/auth/login/login';
 
+import moment from 'moment';
 
 @Component({
   templateUrl: 'app.html'
@@ -117,6 +118,9 @@ export class MyApp {
     this.translate.use(language);
     sysOptions.systemLanguage = language;
     this.storage.set('language', language);
+
+    // Moment language
+    moment.locale(language);
   }
 
   getSuitableLanguage(language: string): string {
