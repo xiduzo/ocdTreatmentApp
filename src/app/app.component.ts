@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { App, Platform, Tabs } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { App, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -16,7 +16,6 @@ import { defaultLanguage, availableLanguages, sysOptions } from '../lib/language
 
 import { AmplifyService } from 'aws-amplify-angular';
 
-import Auth from '@aws-amplify/auth';
 import { LoginPage } from '@/pages/auth/login/login';
 
 
@@ -85,9 +84,7 @@ export class MyApp {
     this.storage.get('onboardingCompleted')
       .then(val => {
         // Based on the 'onboardingCompleted' we guide the user to the next page
-        // this.appCtrl.getRootNav().push((val ? TabsPage : OnboardingPage));
         this.rootPage = val ? TabsPage : OnboardingPage;
-        // this.appCtrl.getRootNav().push(OnboardingPage);
       })
       .catch(err => { console.log(err); });
   }
