@@ -2,14 +2,14 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app.module';
 
+import awsmobile from '../aws-exports';
+
 import Auth from '@aws-amplify/auth';
 import Storage from '@aws-amplify/storage';
-import awsmobile from '../aws-exports';
-Storage.configure(awsmobile);
+import Analytics from '@aws-amplify/Analytics';
+
 Auth.configure(awsmobile);
-
-import { Analytics } from 'aws-amplify'
-
-Analytics.configure({ disabled: true })
+Storage.configure(awsmobile);
+Analytics.configure(awsmobile);
 
 platformBrowserDynamic().bootstrapModule(AppModule);

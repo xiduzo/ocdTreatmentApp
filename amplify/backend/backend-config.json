@@ -10,5 +10,11 @@
 			"service": "S3",
 			"providerPlugin": "awscloudformation"
 		}
+	},
+	"analytics": {
+		"spirit": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation"
+		}
 	}
 }
