@@ -1,0 +1,76 @@
+.c-authpage {
+  .scroll-content {
+    background-size: cover;
+    background-position: center;
+    background-image: url("../assets/imgs/signup_background.png");
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  @media screen and (min-height: 725px) {
+    .scroll-content {
+      background-position: top;
+    }
+  }
+
+  @media screen and (min-height: 750px) {
+    .scroll-content {
+      background-position: center;
+    }
+  }
+
+  ion-header {
+    ion-toolbar {
+      ion-buttons {
+        &:first-of-type {
+          order: 1;
+        }
+      }
+    }
+  }
+
+  h1 {
+    padding: 36px;
+    font-weight: 300;
+    font-size: 4rem;
+    margin: 0;
+    width: 100vw;
+
+    span {
+      display: block;
+      text-transform: capitalize;
+    }
+  }
+
+  ion-list.list {
+    margin: 0;
+    width: 80vw;
+
+    ion-item.item {
+      background-color: transparent;
+
+      ion-label.label {
+        color: black;
+      }
+    }
+  }
+
+  .action {
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0;
+
+    button[ion-button][round] {
+      width: 75px;
+      height: 75px;
+    }
+  }
+
+  + ion-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+}

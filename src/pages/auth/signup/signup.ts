@@ -12,6 +12,8 @@ import {
   AbstractControl
 } from '@angular/forms';
 
+import { ConfirmCodePage } from '@/pages/auth/confirmCode/confirmCode';
+
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html'
@@ -85,11 +87,11 @@ export class SignUpPage {
         email: this.email.value
       }
     })
-      .then(response => {
-        console.log(response);
-        // TODO go to confirm page
-        // Remove this page from nav stack
-        this.showMessage(`${response}`);
+      .then((response: any) => {
+        this.appCtrl.getRootNav().pop();
+        this.appCtrl.getRootNav().push(ConfirmCodePage, {
+          user: response.user
+        });
       })
       .catch(error => {
         this.signupButtonEnabled = true;

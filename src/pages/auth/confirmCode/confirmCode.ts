@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { Auth } from 'aws-amplify';
 
-import { ToastController } from 'ionic-angular';
+import { App, ToastController, NavParams } from 'ionic-angular';
 
 import {
   FormBuilder,
@@ -16,14 +16,67 @@ import {
   templateUrl: 'confirmCode.html'
 })
 export class ConfirmCodePage {
-  private registerForm: FormGroup;
-  private username: AbstractControl;
-  private email: AbstractControl;
-  private password: AbstractControl;
-  private password_repeat: AbstractControl;
+  private confirmationCode: string;
+  public confirmCodeButtonEnabled: boolean = true;
+  private user: any;
 
   constructor(
     private formBuilder: FormBuilder,
-    private toastCtrl: ToastController
-  ) {}
+    private toastCtrl: ToastController,
+    private params: NavParams,
+    private appCtrl: App
+  ) {
+    this.user = this.params.get('user');
+  }
+
+  async showMessage(message: string) {
+    const toast = await this.toastCtrl.create({
+      message: message,
+      showCloseButton: true,
+      duration: 5000
+    });
+
+    toast.present();
+  }
+
+  confirmCode(): void {
+    this.confirmCodeButtonEnabled = false;
+    const { username } = this.user;
+    Auth.confirmSignUp(username, this.confirmationCode)
+      .then(response => {
+        // Go back to the sign in page'
+        // TODO: sign in automatically
+        this.showMessage(`Signup completed, login to continue.`);
+        this.appCtrl.getRootNav().pop();
+      })
+      .catch((error: any) => {
+        this.confirmCodeButtonEnabled = true;
+        switch (error.code) {
+          case 'CodeMismatchException':
+            this.showMessage(error.message);
+            break;
+          // default:
+          //   console.log(error);
+          //   break;
+        }
+      });
+  }
+
+  resendCode(): void {
+    this.confirmCodeButtonEnabled = false;
+    const { username } = this.user;
+    Auth.resendSignUp(username)
+      .then((response: any) => {
+        this.confirmCodeButtonEnabled = true;
+        this.showMessage(
+          `Confirmation code has been resend to ${
+            response.CodeDeliveryDetails.Destination
+          }`
+        );
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 }

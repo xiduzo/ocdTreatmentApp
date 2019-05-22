@@ -1,0 +1,31 @@
+<ion-content class="c-authpage">
+  <h1 ion-text color="light">Confirm <span>code</span></h1>
+
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Code</ion-label>
+      <ion-input [(ngModel)]="confirmationCode" type="number"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <section class="action">
+    <h2 ion-text>
+      Confirm
+    </h2>
+    <button
+      ion-button
+      icon-only
+      round
+      color="primary"
+      (click)="confirmCode()"
+      [disabled]="!confirmationCode || !confirmCodeButtonEnabled"
+    >
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </section>
+</ion-content>
+<ion-footer>
+  <button ion-button color="dark" clear (click)="resendCode()">
+    Resend code
+  </button>
+</ion-footer>

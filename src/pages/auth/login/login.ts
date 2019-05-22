@@ -6,6 +6,7 @@ import { LoadingController } from 'ionic-angular';
 import { Auth } from 'aws-amplify';
 
 import { SignUpPage } from '@/pages/auth/signup/signup';
+import { ConfirmCodePage } from '@/pages/auth/confirmCode/confirmCode';
 
 @Component({
   selector: 'page-login',
@@ -50,8 +51,17 @@ export class LoginPage {
       })
       .catch(error => {
         this.signinButtonEnabled = true;
-        this.showMessage(error.message);
-        console.log(error);
+        switch (error.code) {
+          case 'UserNotConfirmedException':
+            this.appCtrl.getRootNav().push(ConfirmCodePage, {
+              user: { username: this.username }
+            });
+            break;
+          default:
+            console.log(error);
+            this.showMessage(error.message);
+            break;
+        }
       });
   }
 
