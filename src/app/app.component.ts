@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, Platform } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -7,8 +7,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { Storage } from '@ionic/storage';
 
 import { TabsPage } from '@/pages/tabs/tabs';
-import { OnboardingPage } from '../pages/onboarding/onboarding';
-//import { LoginPage } from '../pages/login/login';
+import { OnboardingPage } from '@/pages/onboarding/onboarding';
+import { LoginPage } from '@/pages/auth/login/login';
 
 import { TranslateService } from 'ng2-translate';
 import { Globalization } from '@ionic-native/globalization';
@@ -19,8 +19,6 @@ import {
 } from '../lib/language';
 
 import { AmplifyService } from 'aws-amplify-angular';
-
-import { LoginPage } from '@/pages/auth/login/login';
 
 import moment from 'moment';
 
@@ -35,7 +33,6 @@ export class MyApp {
   private user: any;
 
   constructor(
-    private appCtrl: App,
     private platform: Platform,
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
@@ -68,6 +65,7 @@ export class MyApp {
     this.amplifyService.authStateChange$.subscribe(authState => {
       switch (authState.state) {
         case 'signedIn':
+          console.log(authState, authState.state);
           this.signedIn = true;
           this.user = authState.user;
           this.setTabsOrOnboardingPage();
@@ -75,10 +73,16 @@ export class MyApp {
         case 'signedOut':
           this.signedIn = false;
           this.rootPage = LoginPage;
+        case 'confirmSignUp':
+          this.user = authState.user;
+          break;
+        case 'signIn':
+          console.log(this.user);
+          break;
         default:
           // TODO:
           // Catch all events
-          console.log(authState.state);
+          console.log(authState, authState.state);
           break;
       }
     });
