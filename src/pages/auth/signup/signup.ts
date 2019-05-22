@@ -23,7 +23,6 @@ export class SignUpPage {
   private username: AbstractControl;
   private email: AbstractControl;
   private password: AbstractControl;
-
   public signupButtonEnabled: boolean = true;
 
   constructor(
@@ -51,7 +50,7 @@ export class SignUpPage {
       {
         username: ['', <any>[Validators.required, Validators.minLength(6)]],
         email: ['', <any>[Validators.required, Validators.email]],
-        password: ['', <any>[Validators.required, Validators.minLength(6)]]
+        password: ['', <any>[Validators.required, Validators.minLength(8)]]
       },
       {
         validator: this.passwordCriteria('password')
@@ -64,7 +63,6 @@ export class SignUpPage {
   }
 
   async showMessage(message: string) {
-    console.log(message);
     const toast = await this.toastCtrl.create({
       message: message,
       showCloseButton: true,

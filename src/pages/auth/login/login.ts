@@ -15,8 +15,7 @@ import { ConfirmCodePage } from '@/pages/auth/confirmCode/confirmCode';
 export class LoginPage {
   private username: string;
   private password: string;
-
-  public signinButtonEnabled: boolean = true;
+  public signInButtonEnabled: boolean = true;
 
   constructor(
     private appCtrl: App,
@@ -43,14 +42,13 @@ export class LoginPage {
   }
 
   login() {
-    this.signinButtonEnabled = false;
+    this.signInButtonEnabled = false;
     Auth.signIn(this.username, this.password)
       .then(user => {
-        console.log(user);
         this.showMessage(`Welcome back ${user.username}!`);
       })
       .catch(error => {
-        this.signinButtonEnabled = true;
+        this.signInButtonEnabled = true;
         switch (error.code) {
           case 'UserNotConfirmedException':
             this.appCtrl.getRootNav().push(ConfirmCodePage, {

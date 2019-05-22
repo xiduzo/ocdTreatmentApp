@@ -1,7 +1,7 @@
-<ion-content>
+<ion-content class="c-authpage">
   <h1 ion-text color="light">Welcome <span>back</span></h1>
 
-  <ion-list class="login__inputs">
+  <ion-list>
     <ion-item>
       <ion-label floating>Username</ion-label>
       <ion-input [(ngModel)]="username" type="text"></ion-input>
@@ -13,7 +13,7 @@
     </ion-item>
   </ion-list>
 
-  <section class="sign-in">
+  <section class="action">
     <h2 ion-text>
       Sign in
     </h2>
@@ -23,7 +23,7 @@
       round
       color="primary"
       (click)="login()"
-      [disabled]="!password || !username || !signinButtonEnabled"
+      [disabled]="!password || !username || !signInButtonEnabled"
     >
       <ion-icon name="arrow-forward"></ion-icon>
     </button>
