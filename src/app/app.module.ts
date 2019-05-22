@@ -91,6 +91,10 @@ import { relativeTimePipe } from '@/lib/pipes/relativeTime';
 import { BadgeFactory } from '@/lib/badge/Badge';
 
 /*------------------------------
+  Directives
+------------------------------*/
+
+/*------------------------------
   Translation
 ------------------------------*/
 import { TranslateModule } from 'ng2-translate/ng2-translate';
@@ -126,26 +130,29 @@ export function createTranslateLoader(http: Http) {
 @NgModule({
   declarations: [
     MyApp,
+    // Pages
+    LoginPage,
+    SignUpPage,
+    ConfirmCodePage,
+    LogbookPage,
     ProfilePage,
     ProgressPage,
     TabsPage,
     OnboardingPage,
     ExercisePage,
+    RatingPage,
+    // Modals
+    BadgeModal,
+    BadgeEarnedModal,
+    SettingsModal,
     ExerciseMoodModal,
     ExerciseDuringModal,
     ExerciseTriggerModal,
     ExerciseSuccessModal,
     ExerciseListModal,
-    RatingPage,
     FearladderModal,
     FearladderStepModal,
-    LoginPage,
-    SignUpPage,
-    ConfirmCodePage,
-    LogbookPage,
-    BadgeModal,
-    BadgeEarnedModal,
-    SettingsModal,
+    // Pipes
     accumulateTimePipe,
     msToTimePipe,
     differencePipe,
@@ -179,26 +186,28 @@ export function createTranslateLoader(http: Http) {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    // Pages
     ProfilePage,
     ProgressPage,
     TabsPage,
     OnboardingPage,
-    ExercisePage,
-    ExerciseMoodModal,
-    ExerciseDuringModal,
-    ExerciseTriggerModal,
-    ExerciseSuccessModal,
-    ExerciseListModal,
-    RatingPage,
-    FearladderModal,
-    FearladderStepModal,
     LoginPage,
     SignUpPage,
     ConfirmCodePage,
     LogbookPage,
+    RatingPage,
+    ExercisePage,
+    // Modals
     BadgeModal,
+    FearladderStepModal,
     BadgeEarnedModal,
-    SettingsModal
+    SettingsModal,
+    FearladderModal,
+    ExerciseMoodModal,
+    ExerciseDuringModal,
+    ExerciseTriggerModal,
+    ExerciseSuccessModal,
+    ExerciseListModal
   ],
   providers: [
     StatusBar,
