@@ -33,11 +33,9 @@ export class ProgressPage {
   public startTimeFrame: object = moment(moment.now()).startOf(this
     .timeFrame as unitOfTime.StartOf);
   public canSelectNextTimeFrame: boolean = false;
-
   public exercises: Array<Exercise> = [];
   public thisTimeFrameExercises: Array<Exercise> = [];
   public previousTimeFrameExercises: Array<Exercise> = [];
-
   private lastAddedExercise: Exercise;
   private hasAddedNewExercises: boolean = false;
 
@@ -67,7 +65,7 @@ export class ProgressPage {
         lineWidth: 2
       },
       yAxis: {
-        // befre
+        // before
         title: { text: '' },
         min: 1,
         max: 5,
@@ -99,7 +97,7 @@ export class ProgressPage {
           marker: { symbol: 'round', radius: 6 }
         }
         // {
-        //   name: 'Callibration',
+        //   name: 'Calibration',
         //   data: [1,2,3,4,5].map(x => [x,x])
         // }
       ],
@@ -189,7 +187,7 @@ export class ProgressPage {
     }
   }
 
-  // Use this for editing the chart dynamicly later on
+  // Use this for editing the chart dynamically later on
   setChart(chart) {
     this.chart = chart;
   }
