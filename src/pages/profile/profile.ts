@@ -78,7 +78,7 @@ export class ProfilePage {
   }
 
   getPersonalGoal() {
-    this.storage.get('personalGoal').then(goal => {
+    this.storage.get('personalGoal').then((goal: string) => {
       if (!goal) return;
 
       this.personalGoalText = goal;

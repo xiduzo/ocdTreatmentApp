@@ -73,7 +73,7 @@ export class ExercisePage {
 
       // TODO: fix this ugly code, it could be done faster I think
       this.levels.forEach(level => (level.steps = []));
-      fearLadder.forEach(step => {
+      fearLadder.forEach((step: Step) => {
         this.levels
           .find(level => level.number === step.fearRating)
           .steps.push(new Step(step));
@@ -87,7 +87,7 @@ export class ExercisePage {
   }
 
   setLevelsMonsterAndCompletion() {
-    this.levels.forEach(level => {
+    this.levels.forEach((level: Level) => {
       level.calculateCompletion();
       level.isLevelDone();
       level.monster = `assets/imgs/monsters/monster-0${level.number}.svg`;
@@ -105,22 +105,24 @@ export class ExercisePage {
     modal.onDidDismiss(data => {
       this.setLevelsMonsterAndCompletion();
 
-      this.translate.get('MESSAGE_CHANGE_FEAR_LADDER').subscribe(text => {
-        let toast = this.toastCtrl.create({
-          message: text,
-          position: 'bottom',
-          showCloseButton: true,
-          closeButtonText: 'Ok',
-          dismissOnPageChange: true
+      this.translate
+        .get('MESSAGE_CHANGE_FEAR_LADDER')
+        .subscribe((text: string) => {
+          const toast = this.toastCtrl.create({
+            message: text,
+            position: 'bottom',
+            showCloseButton: true,
+            closeButtonText: 'Ok',
+            dismissOnPageChange: true
+          });
+          toast.present();
         });
-        toast.present();
-      });
     });
 
     modal.present();
   }
 
-  goToLevel(level) {
+  goToLevel(level: Level): void {
     // Don't need to go there if there are no exercises
     if (!level.steps.length) return;
 
