@@ -205,6 +205,13 @@
   resolved "https://registry.yarnpkg.com/@ionic-native/globalization/-/globalization-4.20.0.tgz#2a00588a9430c7601a563da06700fd6fa7da15e4"
   integrity sha512-zyxaW+vZb1OHeDgGbrZHQe3hy30K4YeKjGr8KNGcwq+k2ZHkfqo/H6XIwf2m/UlFTgacvdR9XZtfP+6N0suybg==
 
+"@ionic-native/keyboard@^5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/keyboard/-/keyboard-5.6.0.tgz#8f5081f261942340cf1acedd0063287b2f618d7c"
+  integrity sha512-UFP2xfCw1pCwxz1F6atXwNQnwmSosGy/l/5mdhE7bz85D19vVbiziCuo6icgJ5MzNJKL5q2zpUCwbp6enIYacw==
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic-native/local-notifications@^4.17.0":
   version "4.20.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/local-notifications/-/local-notifications-4.20.0.tgz#39fc8a7f738753260b0ee385fbac898cee41b163"
@@ -377,6 +384,11 @@
   dependencies:
     debug "^4.0.0"
     tslib "^1.9.0"
+
+"@types/cordova@latest":
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/@types/cordova/-/cordova-0.0.34.tgz#ea7addf74ecec3d7629827a0c39e2c9addc73d04"
+  integrity sha1-6nrd907Ow9dimCegw54smt3HPQQ=
 
 "@types/geojson@*":
   version "7946.0.7"
