@@ -1,12 +1,14 @@
 <ion-content class="c-authpage">
   <h1 ion-text color="light">Confirm <span>code</span></h1>
 
-  <ion-list>
-    <ion-item>
-      <ion-label floating>Code</ion-label>
-      <ion-input [(ngModel)]="confirmationCode" type="number"></ion-input>
-    </ion-item>
-  </ion-list>
+  <form [formGroup]="confirmCodeForm" (ngSubmit)="confirmCode()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Code</ion-label>
+        <ion-input formControlName="confirmationCode" type="number"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
 
   <section class="action">
     <h2 ion-text>
@@ -18,7 +20,7 @@
       round
       color="primary"
       (click)="confirmCode()"
-      [disabled]="!confirmationCode || !confirmCodeButtonEnabled"
+      [disabled]="!confirmCodeForm.valid || !confirmCodeButtonEnabled"
     >
       <ion-icon name="checkmark"></ion-icon>
     </button>

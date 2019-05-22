@@ -16,7 +16,8 @@ import {
   templateUrl: 'confirmCode.html'
 })
 export class ConfirmCodePage {
-  private confirmationCode: string;
+  private confirmCodeForm: FormGroup;
+  private confirmationCode: AbstractControl;
   public confirmCodeButtonEnabled: boolean = true;
   private user: any;
 
@@ -39,10 +40,18 @@ export class ConfirmCodePage {
     toast.present();
   }
 
+  ngOnInit() {
+    this.confirmCodeForm = this.formBuilder.group({
+      confirmationCode: ['', <any>[Validators.required]]
+    });
+
+    this.confirmationCode = this.confirmCodeForm.controls['confirmationCode'];
+  }
+
   confirmCode(): void {
     this.confirmCodeButtonEnabled = false;
     const { username } = this.user;
-    Auth.confirmSignUp(username, this.confirmationCode)
+    Auth.confirmSignUp(username, this.confirmationCode.value)
       .then(response => {
         // Go back to the sign in page'
         // TODO: sign in automatically
