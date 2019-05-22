@@ -1,7 +1,5 @@
 <ion-content>
-  <h1 ion-text color="light">
-    Welcome <span>back</span>
-  </h1>
+  <h1 ion-text color="light">Welcome <span>back</span></h1>
 
   <ion-list class="login__inputs">
     <ion-item>
@@ -19,12 +17,17 @@
     <h2 ion-text>
       Sign in
     </h2>
-    <button ion-button icon-only round color="primary" (click)="login()"
-      [disabled]="!password || !username || !signinButtonEnabled">
+    <button
+      ion-button
+      icon-only
+      round
+      color="primary"
+      (click)="login()"
+      [disabled]="!password || !username || !signinButtonEnabled"
+    >
       <ion-icon name="arrow-forward"></ion-icon>
     </button>
   </section>
-
 </ion-content>
 <ion-footer>
   <button ion-button color="dark" clear (click)="signUp()">Sign up</button>

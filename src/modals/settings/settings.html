@@ -4,7 +4,7 @@
       {{ 'SETTINGS' | translate }}
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only color="light" (click)=close()>
+      <button ion-button icon-only color="light" (click)="close()">
         <ion-icon name="close"></ion-icon>
       </button>
     </ion-buttons>
@@ -74,7 +74,10 @@
   <ion-item>
     <ion-label>{{ 'LANGUAGE' | translate }}</ion-label>
     <ion-select [(ngModel)]="language" (ngModelChange)="updateAppLanguage()">
-      <ion-option *ngFor="let language of languages" value="{{ language.code }}">
+      <ion-option
+        *ngFor="let language of languages"
+        value="{{ language.code }}"
+      >
         {{ language.name }}
       </ion-option>
     </ion-select>
