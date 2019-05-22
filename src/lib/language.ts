@@ -1,11 +1,11 @@
 export interface ILanguageCode {
-  code: string,
-  name: string
-};
+  code: string;
+  name: string;
+}
 
 export interface ISysOptions {
-  systemLanguage: string
-};
+  systemLanguage: string;
+}
 
 export const availableLanguages: Array<ILanguageCode> = [
   {
@@ -24,6 +24,6 @@ export const availableLanguages: Array<ILanguageCode> = [
 
 export const defaultLanguage: string = 'en';
 
-export const sysOptions : ISysOptions = {
+export const sysOptions: ISysOptions = {
   systemLanguage: defaultLanguage
 };

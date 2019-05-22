@@ -17,7 +17,6 @@ import {
   templateUrl: 'signup.html'
 })
 export class SignUpPage {
-
   private registerForm: FormGroup;
   private username: AbstractControl;
   private email: AbstractControl;
@@ -29,31 +28,33 @@ export class SignUpPage {
     private formBuilder: FormBuilder,
     private toastCtrl: ToastController,
     private appCtrl: App
-  ) {
-  }
+  ) {}
 
-  passwordCreteria(passwordKey: string) {
+  passwordCriteria(passwordKey: string) {
     return (group: FormGroup): { [key: string]: any } => {
       const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/gm;
-      
+
       const matches = regex.exec(group.controls[passwordKey].value);
 
-      if(!matches) {
+      if (!matches) {
         return {
           weakPassword: true
-        }
+        };
       }
-    }
+    };
   }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      username: ['', <any>[Validators.required, Validators.minLength(6)]],
-      email: ['', <any>[Validators.required, Validators.email]],
-      password: ['', <any>[Validators.required, Validators.minLength(6)]],
-    }, {
-      validator: this.passwordCreteria('password')
-    });
+    this.registerForm = this.formBuilder.group(
+      {
+        username: ['', <any>[Validators.required, Validators.minLength(6)]],
+        email: ['', <any>[Validators.required, Validators.email]],
+        password: ['', <any>[Validators.required, Validators.minLength(6)]]
+      },
+      {
+        validator: this.passwordCriteria('password')
+      }
+    );
 
     this.username = this.registerForm.controls['username'];
     this.email = this.registerForm.controls['email'];
@@ -94,10 +95,10 @@ export class SignUpPage {
         this.signupButtonEnabled = true;
         switch (error.code) {
           case 'UsernameExistsException':
-            this.showMessage(`Username and/or email allready registered`);
+            this.showMessage(`Username and/or email already registered`);
             break;
           // case 'InvalidParameterException':
-            // this.showMessage(`Username and/or email allready registered`);
+          // this.showMessage(`Username and/or email already registered`);
           case 'InvalidPasswordException':
             const regex = /(?<=: ).*$/gm;
             const matches = regex.exec(error.message);
@@ -105,6 +106,6 @@ export class SignUpPage {
           default:
             console.log(error);
         }
-      })
+      });
   }
 }

@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
-import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+import {
+  NativePageTransitions,
+  NativeTransitionOptions
+} from '@ionic-native/native-page-transitions';
 import { Storage } from '@ionic/storage';
 
 declare var ConfettiGenerator: any;
-import "confetti-js";
+import 'confetti-js';
 
 import { Exercise } from '@/lib/Exercise';
 import { Level } from '@/lib/Level';
@@ -22,7 +25,6 @@ import { FIRST_TIME_BADGE } from '@/lib/badge/templates/firstTime';
   templateUrl: 'exercise.success.html'
 })
 export class ExerciseSuccessModal {
-
   public level: Level;
   public exercise: Exercise;
   public exerciseBadge: Badge = this.badgeFctry.createBadge(EXERCISE_BADGE);
@@ -34,7 +36,7 @@ export class ExerciseSuccessModal {
 
   private showBadge: any = {
     modal: null,
-    badge: null,
+    badge: null
   };
 
   constructor(
@@ -44,7 +46,7 @@ export class ExerciseSuccessModal {
     private nativePageTransitions: NativePageTransitions,
     private storage: Storage,
     private eventService: EventsService,
-    private badgeFctry: BadgeFactory,
+    private badgeFctry: BadgeFactory
   ) {
     this.nativePageTransitions.slide(this.transitionOptions);
   }
@@ -56,12 +58,12 @@ export class ExerciseSuccessModal {
   }
 
   ionViewDidEnter() {
-    // TODO decide when to show the confetti, dont want to show it each time (i think)
+    // TODO decide when to show the confetti, don't want to show it each time (i think)
     if (Math.random() > 0) {
       const confettiSettings = {
         target: 'confetti',
         clock: 10,
-        max: 50,
+        max: 50
       };
 
       const confetti = new ConfettiGenerator(confettiSettings);
@@ -89,18 +91,15 @@ export class ExerciseSuccessModal {
   }
 
   updateExerciseBadge() {
-    this.exerciseBadge.addProgress(50)
-      .then(finishedStage => {
-        // TODO: move this responsibility to the badge class
-        if (finishedStage) {
-          this.showBadge.modal = BadgeEarnedModal;
-          this.showBadge.badge = this.exerciseBadge;
-        }
-        this.eventService.broadcast('badge_update', this.exerciseBadge)
-      });
+    this.exerciseBadge.addProgress(50).then(finishedStage => {
+      // TODO: move this responsibility to the badge class
+      if (finishedStage) {
+        this.showBadge.modal = BadgeEarnedModal;
+        this.showBadge.badge = this.exerciseBadge;
+      }
+      this.eventService.broadcast('badge_update', this.exerciseBadge);
+    });
   }
-
-
 
   close() {
     if (this.showBadge.modal && this.showBadge.badge) {
@@ -111,5 +110,4 @@ export class ExerciseSuccessModal {
     }
     this.viewCtrl.dismiss();
   }
-
 }

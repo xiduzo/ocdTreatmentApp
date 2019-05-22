@@ -23,7 +23,6 @@ import { EventsService } from 'angular-event-service';
 export class ProfilePage {
   @ViewChild('personalGoal') personalGoalTextArea: TextInput;
 
-
   public personalGoalText: string;
   public editGoal: boolean = false;
   public view: string = 'journey';
@@ -31,7 +30,7 @@ export class ProfilePage {
   private badgeTemplates: Array<any> = [
     STREAK_BADGE,
     EXERCISE_BADGE,
-    FIRST_TIME_BADGE,
+    FIRST_TIME_BADGE
     // TEST_ONE_BADGE,
     // TEST_TWO_BADGE,
     // TEST_THREE_BADGE,
@@ -43,7 +42,7 @@ export class ProfilePage {
     private storage: Storage,
     private modalCtrl: ModalController,
     private badgeFctry: BadgeFactory,
-    private eventService: EventsService,
+    private eventService: EventsService
   ) {
     this.badgeTemplates.forEach(badge => {
       this.badges.push(this.badgeFctry.createBadge(badge));
@@ -60,25 +59,26 @@ export class ProfilePage {
   }
 
   updateBadge(badge: Badge) {
-    const localBadge = this.badges.find(currBadge => currBadge.name == badge.name);
+    const localBadge = this.badges.find(
+      currBadge => currBadge.name == badge.name
+    );
 
     if (localBadge) {
-      localBadge
-        .getProgress()
-        .then(() => {
-          localBadge.setCurrentStage()
-            .then(response => {
-              localBadge.currentStage = response;
-            })
-            .catch(err => {
-              console.log(`err: ${err}`);
-            })
-        })
+      localBadge.getProgress().then(() => {
+        localBadge
+          .setCurrentStage()
+          .then(response => {
+            localBadge.currentStage = response;
+          })
+          .catch(err => {
+            console.log(`err: ${err}`);
+          });
+      });
     }
   }
 
   getPersonalGoal() {
-    this.storage.get('personalGoal').then((goal) => {
+    this.storage.get('personalGoal').then(goal => {
       if (!goal) return;
 
       this.personalGoalText = goal;
@@ -95,7 +95,7 @@ export class ProfilePage {
     // We need to wait a bit before the element is added to the DOM
     setTimeout(() => {
       if (this.editGoal) this.personalGoalTextArea.setFocus();
-    }, 100)
+    }, 100);
   }
 
   openSettings() {
@@ -111,5 +111,4 @@ export class ProfilePage {
   showBadge(badge) {
     badge.showModal();
   }
-
 }

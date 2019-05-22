@@ -12,7 +12,11 @@ import { OnboardingPage } from '../pages/onboarding/onboarding';
 
 import { TranslateService } from 'ng2-translate';
 import { Globalization } from '@ionic-native/globalization';
-import { defaultLanguage, availableLanguages, sysOptions } from '../lib/language';
+import {
+  defaultLanguage,
+  availableLanguages,
+  sysOptions
+} from '../lib/language';
 
 import { AmplifyService } from 'aws-amplify-angular';
 
@@ -25,7 +29,6 @@ import moment from 'moment';
 })
 export class MyApp {
   // private rootPage:any = LoginPage; // Always start the app with the LoginPage to be sure
-  // TODO: Fix some sort of secure login for users (finger print / passcode / etc) if user want to have protection of data
   private rootPage: any = LoginPage;
 
   private signedIn: boolean;
@@ -42,12 +45,14 @@ export class MyApp {
     private screenOrientation: ScreenOrientation,
     private amplifyService: AmplifyService
   ) {
-    this.platform.ready().then((): void => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
+    this.platform.ready().then(
+      (): void => {
+        // Okay, so the platform is ready and our plugins are available.
+        // Here you can do any higher level native things you might need.
+        this.statusBar.styleDefault();
+        this.splashScreen.hide();
+      }
+    );
   }
 
   ngOnInit(): any {
@@ -60,57 +65,59 @@ export class MyApp {
     }
 
     // Subscribe on auth events
-    this.amplifyService.authStateChange$
-      .subscribe(authState => {
-        switch (authState.state) {
-          case 'signedIn':
-            this.signedIn = true;
-            this.user = authState.user;
-            this.setTabsOrOnboardingPage();
-            break;
-          case 'signedOut':
-            this.signedIn = false;
-            this.rootPage = LoginPage;
-          default:
-            // TODO:
-            // Catch all events
-            console.log(authState.state)
-            break;
-        }
-      });
+    this.amplifyService.authStateChange$.subscribe(authState => {
+      switch (authState.state) {
+        case 'signedIn':
+          this.signedIn = true;
+          this.user = authState.user;
+          this.setTabsOrOnboardingPage();
+          break;
+        case 'signedOut':
+          this.signedIn = false;
+          this.rootPage = LoginPage;
+        default:
+          // TODO:
+          // Catch all events
+          console.log(authState.state);
+          break;
+      }
+    });
   }
 
   setTabsOrOnboardingPage(): void {
     // See if the users completed their onboarding
-    this.storage.get('onboardingCompleted')
+    this.storage
+      .get('onboardingCompleted')
       .then(val => {
         // Based on the 'onboardingCompleted' we guide the user to the next page
         this.rootPage = val ? TabsPage : OnboardingPage;
       })
-      .catch(err => { console.log(err); });
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   setLanguage(): void {
-    // See if we have set the language allready
-    this.storage.get('language')
-      .then(val => {
-        // return if we have set a language
-        if (val) return this.translate.setDefaultLang(val);
+    // See if we have set the language already
+    this.storage.get('language').then(val => {
+      // return if we have set a language
+      if (val) return this.translate.setDefaultLang(val);
 
-        // Else try to find the best option
-        // First set the default language
-        this.translate.setDefaultLang(defaultLanguage);
+      // Else try to find the best option
+      // First set the default language
+      this.translate.setDefaultLang(defaultLanguage);
 
-        // Then try to find best language based on cordova || browser
-        if ((<any>window).cordova) {
-          this.globalization.getPreferredLanguage().then(result => {
-            this.updateLanguageSettings(result.value);
-          });
-        } else {
-          let browserLanguage = this.translate.getBrowserLang() || defaultLanguage;
-          this.updateLanguageSettings(browserLanguage);
-        }
-      })
+      // Then try to find best language based on cordova || browser
+      if ((<any>window).cordova) {
+        this.globalization.getPreferredLanguage().then(result => {
+          this.updateLanguageSettings(result.value);
+        });
+      } else {
+        let browserLanguage =
+          this.translate.getBrowserLang() || defaultLanguage;
+        this.updateLanguageSettings(browserLanguage);
+      }
+    });
   }
 
   updateLanguageSettings(language: string): void {
@@ -125,6 +132,8 @@ export class MyApp {
 
   getSuitableLanguage(language: string): string {
     language = language.substring(0, 2).toLowerCase();
-    return availableLanguages.some(x => x.code == language) ? language : defaultLanguage;
+    return availableLanguages.some(x => x.code == language)
+      ? language
+      : defaultLanguage;
   }
 }

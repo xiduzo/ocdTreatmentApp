@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage';
 export class OnboardingPage {
   @ViewChild(Slides) slides: Slides;
 
-  public buttonText: string = "ONBOARDING_SKIP";
+  public buttonText: string = 'ONBOARDING_SKIP';
   public isEnd: boolean = false;
   public isBeginning: boolean = true;
 
@@ -24,11 +24,7 @@ export class OnboardingPage {
     'ONBOARDING_SLIDE_6'
   ];
 
-  constructor(
-    private appCtrl: App,
-    private storage: Storage
-  ) {
-  }
+  constructor(private appCtrl: App, private storage: Storage) {}
 
   ionViewDidEnter() {
     // Prevent the user from swiping into the void
@@ -54,12 +50,13 @@ export class OnboardingPage {
     this.isEnd = this.slides.isEnd();
     this.isBeginning = this.slides.isBeginning();
 
-    // Prevent users from 'overswiping'
+    // Prevent users from 'over swiping'
     this.slides.lockSwipeToNext(this.isEnd);
     this.slides.lockSwipeToPrev(this.isBeginning);
 
     // Change text in main button
-    this.buttonText = this.slides.isEnd() ? "ONBOARDING_GOT_IT" : "ONBOARDING_SKIP";
+    this.buttonText = this.slides.isEnd()
+      ? 'ONBOARDING_GOT_IT'
+      : 'ONBOARDING_SKIP';
   }
-
 }

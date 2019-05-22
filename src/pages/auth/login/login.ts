@@ -5,14 +5,13 @@ import { LoadingController } from 'ionic-angular';
 
 import { Auth } from 'aws-amplify';
 
-import { SignUpPage } from '@/pages/auth/signup/signup'
+import { SignUpPage } from '@/pages/auth/signup/signup';
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage {
-
   private username: string;
   private password: string;
 
@@ -22,12 +21,11 @@ export class LoginPage {
     private appCtrl: App,
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     const loader = this.loadingCtrl.create({
-      content: "Loading user data...",
+      content: 'Loading user data...',
       duration: 60 * 1000
     });
 
@@ -43,7 +41,6 @@ export class LoginPage {
       });
   }
 
-
   login() {
     this.signinButtonEnabled = false;
     Auth.signIn(this.username, this.password)
@@ -55,7 +52,7 @@ export class LoginPage {
         this.signinButtonEnabled = true;
         this.showMessage(error.message);
         console.log(error);
-      })
+      });
   }
 
   async showMessage(message: string) {
@@ -71,5 +68,4 @@ export class LoginPage {
   signUp() {
     this.appCtrl.getRootNav().push(SignUpPage);
   }
-
 }

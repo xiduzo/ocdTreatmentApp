@@ -20,7 +20,6 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
   templateUrl: 'exercise.html'
 })
 export class ExercisePage {
-
   public levels: Array<Level>;
 
   constructor(
@@ -29,43 +28,55 @@ export class ExercisePage {
     public toastCtrl: ToastController,
     private modalCtrl: ModalController,
     private eventService: EventsService,
-    private translate: TranslateService,
-  ) {
-  }
+    private translate: TranslateService
+  ) {}
 
   ionViewWillLoad() {
-    this.getExersises();
-    this.eventService.on('new_level_completion', this.newLevelCompletion.bind(this));
+    this.getExercises();
+    this.eventService.on(
+      'new_level_completion',
+      this.newLevelCompletion.bind(this)
+    );
     this.eventService.on('changed_fearladder', this.newFearladder.bind(this));
   }
 
   ionViewWillUnload() {
-    this.eventService.destroyListener('new_level_completion', this.newLevelCompletion);
+    this.eventService.destroyListener(
+      'new_level_completion',
+      this.newLevelCompletion
+    );
     this.eventService.destroyListener('changed_fearladder', this.newFearladder);
   }
 
   newLevelCompletion(level: Level) {
-    const localLevel = this.levels.find(currLevel => currLevel.number === level.number);
+    const localLevel = this.levels.find(
+      currLevel => currLevel.number === level.number
+    );
 
-    if(localLevel) {
-      this.levels[this.levels.indexOf(localLevel)].completion = level.completion;
+    if (localLevel) {
+      this.levels[this.levels.indexOf(localLevel)].completion =
+        level.completion;
       this.levels[this.levels.indexOf(localLevel)].isLevelDone();
     }
   }
 
   newFearladder(fearladder: Array<Step>) {
-    this.getExersises();
+    this.getExercises();
   }
 
-  getExersises() {
+  getExercises() {
     this.storage.get('fearLadder').then(fearLadder => {
-      if (!fearLadder) return this.levels = [];
-      this.levels = [1, 2, 3, 4, 5, 6, 7, 8].map(level => new Level({ number: level }));
+      if (!fearLadder) return (this.levels = []);
+      this.levels = [1, 2, 3, 4, 5, 6, 7, 8].map(
+        level => new Level({ number: level })
+      );
 
       // TODO: fix this ugly code, it could be done faster I think
-      this.levels.forEach(level => level.steps = []);
+      this.levels.forEach(level => (level.steps = []));
       fearLadder.forEach(step => {
-        this.levels.find(level => level.number === step.fearRating).steps.push(new Step(step));
+        this.levels
+          .find(level => level.number === step.fearRating)
+          .steps.push(new Step(step));
       });
 
       // We don't need to see the levels which has no steps
@@ -73,7 +84,6 @@ export class ExercisePage {
 
       this.setLevelsMonsterAndCompletion();
     });
-
   }
 
   setLevelsMonsterAndCompletion() {
@@ -81,9 +91,10 @@ export class ExercisePage {
       level.calculateCompletion();
       level.isLevelDone();
       level.monster = `assets/imgs/monsters/monster-0${level.number}.svg`;
-      level.monster_sized = `assets/imgs/monsters/monster-0${level.number}_sized.svg`;
+      level.monster_sized = `assets/imgs/monsters/monster-0${
+        level.number
+      }_sized.svg`;
     });
-
   }
 
   addFearsAndCompulsions() {
@@ -110,7 +121,7 @@ export class ExercisePage {
   }
 
   goToLevel(level) {
-    // Dont need to go there if there are no exercises
+    // Don't need to go there if there are no exercises
     if (!level.steps.length) return;
 
     // Also dont need to go there if the level is done
@@ -120,6 +131,4 @@ export class ExercisePage {
       level: level
     });
   }
-
-
 }

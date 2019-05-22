@@ -7,9 +7,7 @@ import { sysOptions } from '@/lib/language';
 
 @Pipe({ name: 'relativeTime' })
 export class relativeTimePipe implements PipeTransform {
-  constructor(private storage: Storage) {
-
-  }
+  constructor(private storage: Storage) {}
   async transform(time: number) {
     if (!time) return false;
 
@@ -17,9 +15,8 @@ export class relativeTimePipe implements PipeTransform {
     await this.storage.get('language').then((val: string) => {
       locale = val;
     });
-    
+
     moment.locale(locale || sysOptions.systemLanguage);
     return moment(time).fromNow();
-
   }
 }

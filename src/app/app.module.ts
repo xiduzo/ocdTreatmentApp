@@ -10,7 +10,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { Http } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 /*------------------------------
@@ -31,7 +31,11 @@ import { File } from '@ionic-native/file';
   AWS
 ------------------------------*/
 // Amplify
-import { AmplifyAngularModule, AmplifyService, AmplifyModules, } from 'aws-amplify-angular';
+import {
+  AmplifyAngularModule,
+  AmplifyService,
+  AmplifyModules
+} from 'aws-amplify-angular';
 import Auth from '@aws-amplify/auth';
 
 /*------------------------------
@@ -43,6 +47,7 @@ import { RatingPage } from '@/pages/rating/rating';
 // Auth
 import { LoginPage } from '@/pages/auth/login/login';
 import { SignUpPage } from '@/pages/auth/signup/signup';
+import { ConfirmCodePage } from '@/pages/auth/confirmCode/confirmCode';
 // Onboarding
 import { OnboardingPage } from '@/pages/onboarding/onboarding';
 // Logbook
@@ -89,7 +94,10 @@ import { BadgeFactory } from '@/lib/badge/Badge';
   Translation
 ------------------------------*/
 import { TranslateModule } from 'ng2-translate/ng2-translate';
-import { TranslateLoader, TranslateStaticLoader } from 'ng2-translate/src/translate.service';
+import {
+  TranslateLoader,
+  TranslateStaticLoader
+} from 'ng2-translate/src/translate.service';
 
 /*------------------------------
   Datavisualizations
@@ -164,7 +172,7 @@ export function createTranslateLoader(http: Http) {
     EventsServiceModule.forRoot(),
     TranslateModule.forRoot({
       provide: TranslateLoader,
-      useFactory: (createTranslateLoader),
+      useFactory: createTranslateLoader,
       deps: [Http]
     })
   ],
@@ -209,16 +217,14 @@ export function createTranslateLoader(http: Http) {
       provide: AmplifyService,
       useFactory: () => {
         return AmplifyModules({
-          Auth,
+          Auth
         });
       }
     }
   ]
 })
-
 export class AppModule {
-  constructor() {
-  }
+  constructor() {}
 }
 
 //https://github.com/gevgeny/angular2-highcharts/issues/163#issuecomment-383855550

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Storage } from '@ionic/storage'
+import { Storage } from '@ionic/storage';
 
 import { Exercise } from '@/lib/Exercise';
 
@@ -9,20 +9,16 @@ import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
   selector: 'logbook-page',
-  templateUrl: 'logbook.html',
+  templateUrl: 'logbook.html'
 })
 export class LogbookPage {
   public exercises: Array<Exercise> = [];
   public paginationSettings: PaginationInstance = {
     currentPage: 1,
-    itemsPerPage: 25,
+    itemsPerPage: 25
   };
 
-  constructor(
-    private storage: Storage,
-    private eventService: EventsService
-  ) {
-  }
+  constructor(private storage: Storage, private eventService: EventsService) {}
 
   ionViewWillLoad() {
     this.getExercises();
@@ -33,18 +29,20 @@ export class LogbookPage {
     this.eventService.destroyListener('exercise_update', this.exerciseUpdate);
   }
 
-  loadMoreExercises(infiniteScrollEvent) {
+  loadMoreExercises(infiniteScrollEvent: any) {
     console.log(infiniteScrollEvent);
   }
 
   exerciseUpdate(exercise: Exercise) {
-    const localExercise = this.exercises.find(currExercise => currExercise.id === exercise.id);
+    const localExercise = this.exercises.find(
+      currExercise => currExercise.id === exercise.id
+    );
 
     [exercise.beforeMood, exercise.afterMood].forEach(mood => {
-      if(mood.mood !== null) mood.mappedMood = mood.getMappedMood();
+      if (mood.mood !== null) mood.mappedMood = mood.getMappedMood();
     });
 
-    if(!localExercise) {
+    if (!localExercise) {
       // Add to the start of the array for display purposes
       this.exercises.unshift(exercise);
     } else {
@@ -53,25 +51,24 @@ export class LogbookPage {
   }
 
   toggleExerciseContent(exercise: Exercise) {
-    exercise["openedContent"] = !exercise["openedContent"];
+    exercise['openedContent'] = !exercise['openedContent'];
   }
 
   getExercises() {
-    this.storage.get('exercises').then((exercises) => {
+    this.storage.get('exercises').then(exercises => {
       if (!exercises) return;
       this.exercises = exercises
-      // TODO, fix that this will show arr by start DESC
-      // .sort((a:Exercise, b:Exercise) => <any>b.start - <any>a.start)
-      .map((localExercise: Exercise) => {
-        const exercise = new Exercise(localExercise);
+        // TODO, fix that this will show arr by start DESC
+        // .sort((a:Exercise, b:Exercise) => <any>b.start - <any>a.start)
+        .map((localExercise: Exercise) => {
+          const exercise = new Exercise(localExercise);
 
-        [exercise.beforeMood, exercise.afterMood].forEach(mood => {
-          if(mood.mood !== null) mood.mappedMood = mood.getMappedMood();
+          [exercise.beforeMood, exercise.afterMood].forEach(mood => {
+            if (mood.mood !== null) mood.mappedMood = mood.getMappedMood();
+          });
+
+          return exercise;
         });
-
-        return exercise;
-      });
     });
   }
-
 }

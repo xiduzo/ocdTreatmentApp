@@ -16,7 +16,6 @@ import { EventsService } from 'angular-event-service';
   templateUrl: 'progress.html'
 })
 export class ProgressPage {
-
   public _chartOptions: any;
   public chart: any;
   private graphCategories: Array<string> = [
@@ -29,22 +28,20 @@ export class ProgressPage {
   ].map(x => `<span class="graphMood graphMood--${x}">\u2022</span>`);
 
   public timeFrame: string = 'month'; // Day / Week / Month / Year
-  public endTimeFrame: object = moment(moment.now()).endOf(this.timeFrame as unitOfTime.StartOf);
-  public startTimeFrame: object = moment(moment.now()).startOf(this.timeFrame as unitOfTime.StartOf);
+  public endTimeFrame: object = moment(moment.now()).endOf(this
+    .timeFrame as unitOfTime.StartOf);
+  public startTimeFrame: object = moment(moment.now()).startOf(this
+    .timeFrame as unitOfTime.StartOf);
   public canSelectNextTimeFrame: boolean = false;
 
   public exercises: Array<Exercise> = [];
   public thisTimeFrameExercises: Array<Exercise> = [];
   public previousTimeFrameExercises: Array<Exercise> = [];
 
-
   private lastAddedExercise: Exercise;
   private hasAddedNewExercises: boolean = false;
 
-  constructor(
-    private storage: Storage,
-    private eventService: EventsService
-  ) {
+  constructor(private storage: Storage, private eventService: EventsService) {
     this._chartOptions = {
       chart: {
         type: 'scatter',
@@ -53,9 +50,10 @@ export class ProgressPage {
         marginBottom: 35
       },
       title: { text: '' },
-      xAxis: { // after
+      xAxis: {
+        // after
         title: {
-          text: '',
+          text: ''
         },
         min: 1,
         max: 5,
@@ -67,15 +65,15 @@ export class ProgressPage {
         },
         tickWidth: 0,
         lineWidth: 2
-
       },
-      yAxis: { // befre
+      yAxis: {
+        // befre
         title: { text: '' },
         min: 1,
         max: 5,
         categories: this.graphCategories,
         labels: {
-          useHTML: true,
+          useHTML: true
         },
         gridLineWidth: 0,
         lineWidth: 2
@@ -91,7 +89,7 @@ export class ProgressPage {
           color: '#F07879',
           marker: { enabled: false },
           states: { hover: { lineWidth: 0 } },
-          enableMouseTracking: false,
+          enableMouseTracking: false
         },
         {
           name: 'Observations',
@@ -99,14 +97,14 @@ export class ProgressPage {
           color: '#7D8CA9',
           enableMouseTracking: false,
           marker: { symbol: 'round', radius: 6 }
-        },
+        }
         // {
         //   name: 'Callibration',
         //   data: [1,2,3,4,5].map(x => [x,x])
         // }
       ],
       credits: { href: null, text: '' }
-    }
+    };
   }
 
   ionViewWillLoad() {
@@ -127,7 +125,9 @@ export class ProgressPage {
   }
 
   exerciseUpdate(exercise: Exercise) {
-    const localExercise = this.exercises.find(currExercise => currExercise.id === exercise.id);
+    const localExercise = this.exercises.find(
+      currExercise => currExercise.id === exercise.id
+    );
 
     [exercise.beforeMood, exercise.afterMood].forEach(mood => {
       if (mood.mood !== null) mood.mappedMood = mood.getMappedMood();
@@ -146,15 +146,23 @@ export class ProgressPage {
   checkToAddExercise(exercise: Exercise, exerciseExists: boolean) {
     if (this.isExerciseInTimeFrame(exercise, moment(this.endTimeFrame))) {
       if (exerciseExists) {
-        this.thisTimeFrameExercises[this.thisTimeFrameExercises.indexOf(exercise)] = exercise;
+        this.thisTimeFrameExercises[
+          this.thisTimeFrameExercises.indexOf(exercise)
+        ] = exercise;
       } else {
         this.thisTimeFrameExercises.push(exercise);
       }
 
       // Check if we have a before and after mood
-      if (exercise.beforeMood.mood !== null && exercise.afterMood.mood !== null) {
+      if (
+        exercise.beforeMood.mood !== null &&
+        exercise.afterMood.mood !== null
+      ) {
         //check if the point has not been added to the graph
-        if (!this.lastAddedExercise || this.lastAddedExercise.id !== exercise.id) {
+        if (
+          !this.lastAddedExercise ||
+          this.lastAddedExercise.id !== exercise.id
+        ) {
           // Add a point to the graph
           this.addExercisePointToGraph(exercise);
         }
@@ -196,20 +204,23 @@ export class ProgressPage {
   }
 
   getExercises() {
-    this.storage.get('exercises').then((exercises) => {
+    this.storage.get('exercises').then(exercises => {
       if (!exercises) return;
 
       this.exercises = exercises;
 
       // Now update the graph
-      this.addExercisesToGraph(this.exercises, moment(this.endTimeFrame).startOf(this.timeFrame as unitOfTime.StartOf));
+      this.addExercisesToGraph(
+        this.exercises,
+        moment(this.endTimeFrame).startOf(this.timeFrame as unitOfTime.StartOf)
+      );
     });
   }
 
-  clearSeries(serieNumber: number) {
-    const amount = this.chart.series[serieNumber].data.length;
+  clearSeries(seriesNumber: number) {
+    const amount = this.chart.series[seriesNumber].data.length;
     for (let i = 0; i < amount; i++) {
-      this.chart.series[serieNumber].removePoint(0);
+      this.chart.series[seriesNumber].removePoint(0);
     }
   }
 
@@ -234,8 +245,8 @@ export class ProgressPage {
         this.chart.series[1].data
           // Only need the mapped x and y values
           .map((point: any) => [`${point.x}`, `${point.y}`])
-      ).points
-      .map(x => [x[0].toString(), x[1].toString()])
+      )
+      .points.map(x => [x[0].toString(), x[1].toString()])
       // Sort the points in order to for a smooth line
       .sort()
       .forEach(point => {
@@ -258,16 +269,28 @@ export class ProgressPage {
     // Use those two values to calulate the points gained for an exercise
   }
 
-  addExercisesToGraph(exercises: Array<Exercise>, beginOfTimeFrame: moment.Moment) {
+  addExercisesToGraph(
+    exercises: Array<Exercise>,
+    beginOfTimeFrame: moment.Moment
+  ) {
     // First clear the old exercises
     this.clearExercises();
 
     exercises
       // Get the exercises for this time frame
-      .filter(exercise => moment(exercise.start) >= moment(beginOfTimeFrame) && moment(exercise.start) <= moment(beginOfTimeFrame).add(1, this.timeFrame as moment.unitOfTime.DurationConstructor))
+      .filter(
+        exercise =>
+          moment(exercise.start) >= moment(beginOfTimeFrame) &&
+          moment(exercise.start) <=
+            moment(beginOfTimeFrame).add(1, this
+              .timeFrame as moment.unitOfTime.DurationConstructor)
+      )
       .forEach(exercise => {
         // Check if there is a before- and aftermood
-        if (exercise.beforeMood.mood !== null && exercise.afterMood.mood !== null) {
+        if (
+          exercise.beforeMood.mood !== null &&
+          exercise.afterMood.mood !== null
+        ) {
           this.addExercisePointToGraph(exercise);
         }
       });
@@ -279,21 +302,32 @@ export class ProgressPage {
     this.updateStats(exercises, beginOfTimeFrame);
   }
 
-  isExerciseInTimeFrame(exercise: Exercise, beginOfTimeFrame: moment.Moment): boolean {
+  isExerciseInTimeFrame(
+    exercise: Exercise,
+    beginOfTimeFrame: moment.Moment
+  ): boolean {
     let returnValue: boolean;
 
     switch (this.timeFrame) {
       case 'day':
-        returnValue = Boolean(moment(exercise.start).day() === moment(beginOfTimeFrame).day());
+        returnValue = Boolean(
+          moment(exercise.start).day() === moment(beginOfTimeFrame).day()
+        );
         break;
       case 'week':
-        returnValue = Boolean(moment(exercise.start).week() === moment(beginOfTimeFrame).week());
+        returnValue = Boolean(
+          moment(exercise.start).week() === moment(beginOfTimeFrame).week()
+        );
         break;
       case 'month':
-        returnValue = Boolean(moment(exercise.start).month() === moment(beginOfTimeFrame).month());
+        returnValue = Boolean(
+          moment(exercise.start).month() === moment(beginOfTimeFrame).month()
+        );
         break;
       case 'year':
-        returnValue = Boolean(moment(exercise.start).year() === moment(beginOfTimeFrame).year());
+        returnValue = Boolean(
+          moment(exercise.start).year() === moment(beginOfTimeFrame).year()
+        );
         break;
       default:
         returnValue = false; // Always return something
@@ -305,12 +339,18 @@ export class ProgressPage {
 
   updateStats(exercises: Array<Exercise>, beginOfTimeFrame: moment.Moment) {
     // Get the exercises for this timeframe
-    this.thisTimeFrameExercises = exercises
-      .filter(exercise => this.isExerciseInTimeFrame(exercise, beginOfTimeFrame));
+    this.thisTimeFrameExercises = exercises.filter(exercise =>
+      this.isExerciseInTimeFrame(exercise, beginOfTimeFrame)
+    );
 
     // Get the exercises for previous timeframe
-    this.previousTimeFrameExercises = exercises
-      .filter(exercise => this.isExerciseInTimeFrame(exercise, moment(beginOfTimeFrame).add(-1, this.timeFrame as moment.unitOfTime.DurationConstructor)));
+    this.previousTimeFrameExercises = exercises.filter(exercise =>
+      this.isExerciseInTimeFrame(
+        exercise,
+        moment(beginOfTimeFrame).add(-1, this
+          .timeFrame as moment.unitOfTime.DurationConstructor)
+      )
+    );
   }
 
   checkIfUserCanSelectNextTimeFrame(): boolean {
@@ -318,16 +358,24 @@ export class ProgressPage {
 
     switch (this.timeFrame) {
       case 'day':
-        returnValue = !Boolean(moment(this.endTimeFrame).day() === moment(moment.now()).day());
+        returnValue = !Boolean(
+          moment(this.endTimeFrame).day() === moment(moment.now()).day()
+        );
         break;
       case 'week':
-        returnValue = !Boolean(moment(this.endTimeFrame).week() === moment(moment.now()).week());
+        returnValue = !Boolean(
+          moment(this.endTimeFrame).week() === moment(moment.now()).week()
+        );
         break;
       case 'month':
-        returnValue = !Boolean(moment(this.endTimeFrame).month() === moment(moment.now()).month());
+        returnValue = !Boolean(
+          moment(this.endTimeFrame).month() === moment(moment.now()).month()
+        );
         break;
       case 'year':
-        returnValue = !Boolean(moment(this.endTimeFrame).year() === moment(moment.now()).year());
+        returnValue = !Boolean(
+          moment(this.endTimeFrame).year() === moment(moment.now()).year()
+        );
         break;
       default:
         returnValue = false; // Always return something
@@ -340,14 +388,22 @@ export class ProgressPage {
   changeTimeFrame(direction: number) {
     // Set endTimeFrame to be +1 / -1 timeframe and then till end of timeFrame
     // Based on the direction we move one timeframe back or forward
-    this.endTimeFrame = moment(this.endTimeFrame).add((direction > 0 ? 1 : - 1), this.timeFrame as moment.unitOfTime.DurationConstructor).endOf(this.timeFrame as moment.unitOfTime.DurationConstructor);
-    this.startTimeFrame = moment(this.startTimeFrame).add((direction > 0 ? 1 : - 1), this.timeFrame as moment.unitOfTime.DurationConstructor);
+    this.endTimeFrame = moment(this.endTimeFrame)
+      .add(direction > 0 ? 1 : -1, this
+        .timeFrame as moment.unitOfTime.DurationConstructor)
+      .endOf(this.timeFrame as moment.unitOfTime.DurationConstructor);
+    this.startTimeFrame = moment(this.startTimeFrame).add(
+      direction > 0 ? 1 : -1,
+      this.timeFrame as moment.unitOfTime.DurationConstructor
+    );
 
     // Cant go further than this timeFrame
-    this.canSelectNextTimeFrame = this.checkIfUserCanSelectNextTimeFrame()
+    this.canSelectNextTimeFrame = this.checkIfUserCanSelectNextTimeFrame();
 
     // Update the graph again
-    this.addExercisesToGraph(this.exercises, moment(this.endTimeFrame).startOf(this.timeFrame as unitOfTime.StartOf));
+    this.addExercisesToGraph(
+      this.exercises,
+      moment(this.endTimeFrame).startOf(this.timeFrame as unitOfTime.StartOf)
+    );
   }
-
 }
