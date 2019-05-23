@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
-import { ViewController, ModalController, Platform } from 'ionic-angular';
+import {
+  ViewController,
+  ModalController,
+  LoadingController
+} from 'ionic-angular';
 
 import { RatingPage } from '@/pages/rating/rating'; // actually a modal - to lazy to care
 
@@ -12,9 +16,7 @@ import moment from 'moment';
 
 import { Fear, Trigger, Exercise, Mood, Step, Erp } from '@/lib/Exercise';
 
-import { File } from '@ionic-native/file';
-import { EmailComposer } from '@ionic-native/email-composer';
-import { Auth } from 'aws-amplify';
+import { Auth, Storage as AwsStorage } from 'aws-amplify';
 
 @Component({
   selector: 'settings-modal',
@@ -29,9 +31,7 @@ export class SettingsModal {
     private translate: TranslateService,
     private storage: Storage,
     private modalCtrl: ModalController,
-    private file: File,
-    private emailComposer: EmailComposer,
-    private platform: Platform
+    private loadingCtrl: LoadingController
   ) {
     this.languages = availableLanguages;
   }
@@ -64,33 +64,27 @@ export class SettingsModal {
     this.viewCtrl.dismiss();
   }
 
-  getDataDir(): string {
-    // https://ionicframework.com/docs/v3/api/platform/Platform/
-    // "on Android, if you need to use external memory, use .externalDataDirectory"
-    if (this.platform.is('android')) return this.file.externalDataDirectory;
+  sendData() {
+    const loader = this.loadingCtrl.create({
+      content: 'Sending data...',
+      duration: 60 * 1000
+    });
 
-    return this.file.dataDirectory;
-  }
+    loader.present();
 
-  mailData() {
-    const fileName: string = `data-${moment(moment.now()).format(
-      'DDMMYYYY'
-    )}.json`;
-
-    this.file
-      .writeFile(this.getDataDir(), fileName, JSON.stringify({ a: 2, b: 4 }), {
-        replace: true
-      })
-      .then(response => {
-        const email = {
-          to: 'sanderboer_feyenoord@hotmail.com',
-          attachments: [response.nativeURL],
-          subject: 'test',
-          body: 'How are you? Nice greetings from Leipzig',
-          isHtml: false
-        };
-        this.emailComposer.open(email);
+    Auth.currentAuthenticatedUser().then(userSession => {
+      const { username } = userSession;
+      const fileName: string = `${username}/${moment(moment.now()).format(
+        'DDMMYYYY@HHmmsssssZ'
+      )}.json`;
+      this.storage.get('exercises').then(response => {
+        AwsStorage.put(fileName, JSON.stringify(response), {
+          contentType: 'application/json'
+        })
+          .then(result => loader.dismiss())
+          .catch(err => loader.dismiss());
       });
+    });
   }
 
   openRatingPage() {

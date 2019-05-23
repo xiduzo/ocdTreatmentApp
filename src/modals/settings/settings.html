@@ -40,19 +40,9 @@
     </div>
   </ion-item>
 
-  <ion-list-header>
+  <!-- <ion-list-header>
     My profile
-  </ion-list-header>
-  <ion-item>
-    <ion-label>
-      Sign out
-    </ion-label>
-    <div item-end>
-      <button ion-button (click)="signOut()">
-        sing out
-      </button>
-    </div>
-  </ion-item>
+  </ion-list-header> -->
 
   <ion-list-header>
     {{ 'MY_OBSESSIONS' | translate }}
@@ -62,7 +52,7 @@
       Mail data
     </ion-label>
     <div item-end>
-      <button ion-button (click)="mailData()">
+      <button ion-button (click)="sendData()">
         send
       </button>
     </div>
@@ -74,12 +64,15 @@
   <ion-item>
     <ion-label>{{ 'LANGUAGE' | translate }}</ion-label>
     <ion-select [(ngModel)]="language" (ngModelChange)="updateAppLanguage()">
-      <ion-option
-        *ngFor="let language of languages"
-        value="{{ language.code }}"
-      >
+      <ion-option *ngFor="let language of languages" value="{{ language.code }}">
         {{ language.name }}
       </ion-option>
     </ion-select>
   </ion-item>
 </ion-content>
+
+<ion-footer>
+  <button color="danger" ion-button large block (click)="signOut()">
+    Sign out
+  </button>
+</ion-footer>
