@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { App, NavController, ModalController, TextInput } from 'ionic-angular';
+import { NavController, ModalController, TextInput } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { Badge, BadgeFactory } from '@/lib/badge/Badge';
@@ -37,7 +37,6 @@ export class ProfilePage {
   ];
 
   constructor(
-    private appCtrl: App,
     public navCtrl: NavController,
     private storage: Storage,
     private modalCtrl: ModalController,
