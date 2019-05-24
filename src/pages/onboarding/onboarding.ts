@@ -47,7 +47,7 @@ export class OnboardingPage {
     else this.slides.slideNext();
   }
 
-  slideChanged() {
+  ionSlideDidChange() {
     this.isEnd = this.slides.isEnd();
     this.isBeginning = this.slides.isBeginning();
 

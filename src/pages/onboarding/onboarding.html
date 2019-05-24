@@ -1,6 +1,6 @@
 <ion-content>
   <div ion-fixed>
-    <ion-slides pager (ionSlideDidChange)="slideChanged()" class="c-onboarding">
+    <ion-slides pager (ionSlideDidChange)="ionSlideDidChange()" class="c-onboarding">
       <ion-slide class="c-onboarding__slide" *ngFor="let slide of _slides; let i = index">
         <div class="c-onboarding__illustration" [style.backgroundImage]="
             'url(assets/imgs/onboarding/step' + (i + 1) + '.png)'
