@@ -72,11 +72,13 @@
     "zone.js": "0.8.26"
   },
   "devDependencies": {
+    "@angular/cli": "^7.3.9",
     "@ionic/app-scripts": "^3.2.3",
     "@ionic/lab": "1.0.24",
     "@types/node": "^12.0.0",
     "@types/regression": "^2.0.0",
     "core-js": "^2.5.7",
+    "graceful-fs": "^4.1.15",
     "node-sass": "^4.11.0",
     "tslint-eslint-rules": "^5.4.0",
     "typescript": "2.4.2",
