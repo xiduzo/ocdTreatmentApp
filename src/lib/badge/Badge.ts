@@ -34,7 +34,7 @@ export class Badge {
     this.modalCtrl = modalCtrl;
 
     this.getProgress()
-      .then(response => {
+      .then(() => {
         this.setCurrentStage().then(stage => (this.currentStage = stage));
       })
       .catch(error => console.log(error));
@@ -135,7 +135,7 @@ export class Stage {
 export class BadgeFactory {
   constructor(private storage: Storage, private modalCtrl: ModalController) {}
 
-  public createBadge(badge) {
+  public createBadge(badge: Badge) {
     return new Badge({
       name: badge.name,
       verbose: badge.verbose,
