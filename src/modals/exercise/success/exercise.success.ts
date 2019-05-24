@@ -6,6 +6,8 @@ import {
 } from '@ionic-native/native-page-transitions';
 import { Storage } from '@ionic/storage';
 
+import { confettiSettings } from '@/lib/Confetti';
+
 declare var ConfettiGenerator: any;
 import 'confetti-js';
 
@@ -60,15 +62,16 @@ export class ExerciseSuccessModal {
   ionViewDidEnter() {
     // TODO decide when to show the confetti, don't want to show it each time (i think)
     if (Math.random() > 0) {
-      const confettiSettings = {
-        target: 'confetti',
-        clock: 10,
-        max: 50
-      };
+      this.renderConfetti();
+    }
+  }
 
+  renderConfetti() {
+    try {
       const confetti = new ConfettiGenerator(confettiSettings);
-
       confetti.render();
+    } catch (e) {
+      console.log(e);
     }
   }
 
