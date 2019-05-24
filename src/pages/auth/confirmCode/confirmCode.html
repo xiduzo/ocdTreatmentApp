@@ -14,14 +14,8 @@
     <h2 ion-text>
       Confirm
     </h2>
-    <button
-      ion-button
-      icon-only
-      round
-      color="primary"
-      (click)="confirmCode()"
-      [disabled]="!confirmCodeForm.valid || !confirmCodeButtonEnabled"
-    >
+    <button ion-button icon-only round color="primary" (click)="confirmCode()"
+      [disabled]="!confirmCodeForm.valid || !confirmCodeButtonEnabled">
       <ion-icon name="checkmark"></ion-icon>
     </button>
   </section>
