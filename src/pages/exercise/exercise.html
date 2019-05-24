@@ -1,13 +1,26 @@
 <ion-content>
+  <!-- <amplify-auth-confirm-sign-in></amplify-auth-confirm-sign-in> -->
+  <!-- <amplify-auth-confirm-sign-up></amplify-auth-confirm-sign-up> -->
+  <!-- <amplify-auth-forgot-password></amplify-auth-forgot-password> -->
+  <!-- <amplify-auth-greetings></amplify-auth-greetings> -->
+  <!-- <amplify-auth-require-new-password></amplify-auth-require-new-password> -->
+  <!-- <amplify-auth-sign-in></amplify-auth-sign-in> -->
+  <!-- <amplify-auth-sign-up></amplify-auth-sign-up> -->
   <section *ngIf="!levels?.length" class="c-emptystate">
-    <img src="assets/imgs/monsters/all.png" alt="">
+    <img src="assets/imgs/monsters/all.png" alt="" />
     <h1>
       {{ 'OOPS' | translate }}
     </h1>
     <p>
       {{ 'WARNING_BEFORE_YOU_CAN_START' | translate }}
     </p>
-    <button color="secondary" ion-button large block (click)="addFearsAndCompulsions()">
+    <button
+      color="secondary"
+      ion-button
+      large
+      block
+      (click)="addFearsAndCompulsions()"
+    >
       {{ 'MY_FEAR_LADDER' | translate }}
     </button>
   </section>
@@ -17,12 +30,22 @@
         <section>
           <div class="c-level__monster" (click)="goToLevel(level)">
             <div class="monster__icon">
-              <div class="monster" [style.backgroundImage]="'url(' + level.monster + ')'"></div>
+              <div
+                class="monster"
+                [style.backgroundImage]="'url(' + level.monster + ')'"
+              ></div>
             </div>
             <!-- <div class="level__icon" *ngIf="level.done">
               <div class="level" [style.backgroundImage]="'url(assets/imgs/levels/badge__level-0' + level.number + '.png)'"></div>
             </div> -->
-            <round-progress [current]="level.completion" [max]="100" [radius]="60" [stroke]="5" [rounded] [animationDelay]="i*100">
+            <round-progress
+              [current]="level.completion"
+              [max]="100"
+              [radius]="60"
+              [stroke]="5"
+              [rounded]
+              [animationDelay]="100"
+            >
             </round-progress>
           </div>
           <strong class="level__number">

@@ -49,11 +49,7 @@ export class Fear {
   public situation: string;
   public without: string;
 
-  constructor({
-    completion = 0,
-    situation = '',
-    without = ''
-  } = {}) {
+  constructor({ completion = 0, situation = '', without = '' } = {}) {
     this.completion = completion;
     this.situation = situation;
     this.without = without;
@@ -89,21 +85,17 @@ export class Exercise {
 
   getErpTimeDifference(): number {
     if (!this.start || !this.end) return null;
-    return moment.duration(
-      moment(this.end).diff(
-        moment(this.start)
-      )
-    ).asSeconds();
+    return moment
+      .duration(moment(this.end).diff(moment(this.start)))
+      .asSeconds();
   }
 
   getTotalTimeDifference(): number {
     if (!this.erp) return null;
     if (!this.erp.start || !this.erp.end) return null;
-    return moment.duration(
-      moment(this.erp.end).diff(
-        moment(this.erp.start)
-      )
-    ).asSeconds();
+    return moment
+      .duration(moment(this.erp.end).diff(moment(this.erp.start)))
+      .asSeconds();
   }
 
   getPointsForExercise(): number {
@@ -124,11 +116,11 @@ export class Exercise {
     });
 
     // Duration
-    points += this.getErpTimeDifference() / this.getTotalTimeDifference() * 25;
+    points +=
+      (this.getErpTimeDifference() / this.getTotalTimeDifference()) * 25;
 
     return Math.round(points);
   }
-
 }
 
 export class Mood {
@@ -137,10 +129,7 @@ export class Mood {
 
   public mappedMood: number = undefined;
 
-  constructor({
-    mood = null,
-    explanation = ''
-  } = {}) {
+  constructor({ mood = null, explanation = '' } = {}) {
     this.mood = mood;
     this.explanation = explanation;
   }
@@ -157,11 +146,7 @@ export class Erp {
   public start: Date;
   public end: Date;
 
-  constructor({
-    gaveInToCompulsion = false,
-    start = null,
-    end = null
-  } = {}) {
+  constructor({ gaveInToCompulsion = false, start = null, end = null } = {}) {
     this.gaveInToCompulsion = gaveInToCompulsion;
     this.start = start;
     this.end = end;

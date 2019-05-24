@@ -32,7 +32,11 @@ export class Level {
   }
 
   calculateCompletion() {
-    const stepsCompleted = this.steps.filter(step => step.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT);
-    this.completion = Math.round(stepsCompleted.length * 100 / this.steps.length);
+    const stepsCompleted = this.steps.filter(
+      step => step.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT
+    );
+    this.completion = Math.round(
+      (stepsCompleted.length * 100) / this.steps.length
+    );
   }
 }

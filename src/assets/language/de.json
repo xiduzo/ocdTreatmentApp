@@ -19,13 +19,10 @@
   "SETTINGS": "Einstellungen",
   "TRIGGERS": "Auslöser",
   "WITHOUT": "Ohne",
-
   "HOURS": "Stunden",
   "HOUR": "Stunde",
   "MINUTE": "Minute",
   "MINUTES": "Minuten",
-
-
   "MOOD_HEADER": "Ich fühle mich",
   "MOOD_EXPLENATION": "Wodurch wird dieses Gefühl verursacht (optional)",
   "MOOD_SUCCESS": "Erfolg",
@@ -34,36 +31,26 @@
   "MOOD_3": "Etwas angespannt",
   "MOOD_4": "Sehr angespannt",
   "MOOD_5": "Wahnsinnig angespannt",
-
-
   "MY_OBSESSIONS": "Meine Zwänge",
   "MY_FEAR_LADDER": "Meine Angstleiter",
   "MY_BADGES": "Meine Abzeichen",
   "MY_PERSONAL_GOAL": "Mein persönliches Ziel",
   "NO_GOAL_SPECIFIED_YET": "Noch kein Ziel angegeben",
   "MY_LOGBOOK_ENTRIES": "Logbucheinträge",
-
-
   "BUTTON_GAVE_IN": "Der Zwangshandlung nachgeben",
   "BUTTON_SUCCEED_EXERCISE": "Ohne Zwangshandlung",
   "BUTTON_ADD_FEAR": "Neue Übung hinzufügen",
-
-
   "INTENSITY_HEADER": "Wie stark ist dein drang",
   "INTENSITY_OBSESSIVE_THOUGHTS": "Zwangsgedanken",
   "INTENSITY_COMPULSIVE_BEHAVIOUR": "Zwangshandlungen",
   "INTENSITY_WHY": "Beschreibe deine angstauslösenden Gedankengänge (Optional)",
-
-
   "FEARLADDER_STEP_I_WANT_TO": "Ich möchte",
   "FEARLADDER_STEP_THIS_TRIGGERS": "Diese Übung verursacht",
   "FEARLADDER_STEP_FEAR_RATING": "Angstbewertung",
-
   "FEARLADDER_STEP_HEADER_ADD": "Neue Übung",
   "FEARLADDER_STEP_HEADER_EDIT": "Übung bearbeiten",
-
-
   "ONBOARDING_SKIP": "Überspringen",
+  "ONBOARDING_NEXT": "Nächster",
   "ONBOARDING_GOT_IT": "Fertig",
   "ONBOARDING_SLIDE_1": "Zwangsvorstellungen sind wie Monster, die sich in dein Gehirn eingeschlichen haben. Die Monster besetzen manchmal deine Gedanken und bestimmen deine Handlungen.",
   "ONBOARDING_SLIDE_2": "Finde heraus, welche Monster sich in deinem Kopf herumtreiben. Einige davon beängstigen dich mehr als andere.",
@@ -71,19 +58,12 @@
   "ONBOARDING_SLIDE_4": "Sobald du eine Übung erfolgreich durchgeführt und das Monster besiegt  hast,  kannst du es in einen Käfig einsperren.",
   "ONBOARDING_SLIDE_5": "Durch das Durchführen der Übungen  engst du den Raum der Monster ein und verschaffst dir selbst Freiheit.",
   "ONBOARDING_SLIDE_6": "Sobald du alle Übungen einer Schwierigkeitsstufe erfolgreich durchgeführt hast, wird das entsprechende  Monster im Käfig schrumpfen.",
-
-
   "PROGRESS_EXERCISES_DONE": "Übungen erledigt",
   "PROGRESS_TOTAL_EXERCISE_TIME": "Gesamttrainingszeit",
   "PROGRESS_AVERAGE_EXERCISE_TIME": "Durchschnittliche Trainingszeit",
-
-
   "PROFILE_RESET_MOCK_DATA": "Daten zurücksetzen",
-
-
   "WARNING_NO_LOGGED_EXERCISES": "Es sieht so aus als hättest du noch keine EInträge zu deinen Übungen gemacht.",
   "WARNING_NO_FEARS": "Es sieht so aus, als hättest du noch keine Übungen zur Angstkonfrontation hinzugefügt.",
   "WARNING_BEFORE_YOU_CAN_START": "Bevor du starten kannst, musst du deine Ängste und Zwangshandlungen in der Angstleiter beschreiben.",
-
   "MESSAGE_CHANGE_FEAR_LADDER": "Sie können Ihre Angstleiter immer in Ihren Einstellungen ändern"
 }

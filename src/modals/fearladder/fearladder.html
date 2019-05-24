@@ -13,7 +13,7 @@
 
 <ion-content>
   <section *ngIf="!fearLadder?.length" class="c-emptystate">
-    <img src="assets/imgs/monsters/all.png" alt="">
+    <img src="assets/imgs/monsters/all.png" alt="" />
     <h1>
       {{ 'OOPS' | translate }}
     </h1>
@@ -21,7 +21,9 @@
       {{ 'WARNING_NO_FEARS' | translate }}
     </p>
   </section>
-  <ion-item-group *ngFor="let level of fearLadder | groupByImpure : 'fearRating' | pairs">
+  <ion-item-group
+    *ngFor="let level of fearLadder | groupByImpure: 'fearRating' | pairs"
+  >
     <ion-item-divider color="light">
       {{ 'LEVEL' | translate }} {{ level[0] }}
     </ion-item-divider>
@@ -29,9 +31,7 @@
       <h2 text-wrap>
         {{ step.fear?.situation }}
       </h2>
-      <p text-wrap>
-        {{ 'WITHOUT' | translate }}: {{ step.fear?.without }}
-      </p>
+      <p text-wrap>{{ 'WITHOUT' | translate }}: {{ step.fear?.without }}</p>
     </button>
   </ion-item-group>
 </ion-content>

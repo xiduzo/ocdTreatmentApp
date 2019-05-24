@@ -11,11 +11,11 @@ import { Storage } from '@ionic/storage';
 export class OnboardingPage {
   @ViewChild(Slides) slides: Slides;
 
-  public buttonText: string = "ONBOARDING_SKIP";
+  public buttonText: string = 'ONBOARDING_NEXT';
   public isEnd: boolean = false;
   public isBeginning: boolean = true;
 
-  public _slides: any = [
+  public _slides: Array<string> = [
     'ONBOARDING_SLIDE_1',
     'ONBOARDING_SLIDE_2',
     'ONBOARDING_SLIDE_3',
@@ -24,11 +24,7 @@ export class OnboardingPage {
     'ONBOARDING_SLIDE_6'
   ];
 
-  constructor(
-    private appCtrl: App,
-    private storage: Storage
-  ) {
-  }
+  constructor(private appCtrl: App, private storage: Storage) {}
 
   ionViewDidEnter() {
     // Prevent the user from swiping into the void
@@ -46,20 +42,20 @@ export class OnboardingPage {
   }
 
   nextSlide() {
-    this.slides.slideNext();
+    // If we are at the end, we're done with onboarding
+    if (this.slides.isEnd()) this.done();
+    else this.slides.slideNext();
   }
 
-  slideChanged() {
-    // Toggle button states
+  ionSlideDidChange() {
     this.isEnd = this.slides.isEnd();
     this.isBeginning = this.slides.isBeginning();
 
-    // Prevent users from 'overswiping'
+    // Prevent users from 'over swiping'
     this.slides.lockSwipeToNext(this.isEnd);
     this.slides.lockSwipeToPrev(this.isBeginning);
 
     // Change text in main button
-    this.buttonText = this.slides.isEnd() ? "ONBOARDING_GOT_IT" : "ONBOARDING_SKIP";
+    this.buttonText = this.isEnd ? 'ONBOARDING_GOT_IT' : 'ONBOARDING_NEXT';
   }
-
 }

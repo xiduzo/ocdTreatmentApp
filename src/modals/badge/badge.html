@@ -10,14 +10,26 @@
         {{ badge.verbose }}
       </span>
       <div class="badge__progress">
-        <img src="{{badge.currentStage.image}}" alt="">
-        <round-progress [current]="badge.finishedStages ? badge.currentStage.amountNeeded : badge.pointsProgressToNextStage" [max]="badge.currentStage.amountNeeded" [radius]="125" [stroke]="6" [duration]="1"></round-progress>
+        <img src="{{ badge.currentStage.image }}" alt="" />
+        <round-progress
+          [current]="
+            badge.finishedStages
+              ? badge.currentStage.amountNeeded
+              : badge.pointsProgressToNextStage
+          "
+          [max]="badge.currentStage.amountNeeded"
+          [radius]="125"
+          [stroke]="6"
+          [duration]="1"
+        ></round-progress>
       </div>
       <span class="badge__progress__numbers" *ngIf="!badge.finishedStages">
-        <strong>{{badge.pointsProgressToNextStage}}</strong> / {{badge.currentStage.amountNeeded}}
+        <strong>{{ badge.pointsProgressToNextStage }}</strong> /
+        {{ badge.currentStage.amountNeeded }}
       </span>
       <span class="badge__progress__numbers" *ngIf="badge.finishedStages">
-        <strong>{{badge.currentStage.amountNeeded}}</strong> / {{badge.currentStage.amountNeeded}}
+        <strong>{{ badge.currentStage.amountNeeded }}</strong> /
+        {{ badge.currentStage.amountNeeded }}
       </span>
     </div>
     <article>

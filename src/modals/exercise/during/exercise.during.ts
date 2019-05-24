@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
-import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+import {
+  NativePageTransitions,
+  NativeTransitionOptions
+} from '@ionic-native/native-page-transitions';
 
 import { ExerciseMoodModal } from '@/modals/exercise/mood/exercise.mood';
 
@@ -15,7 +18,6 @@ import { EventsService } from 'angular-event-service';
   templateUrl: 'exercise.during.html'
 })
 export class ExerciseDuringModal {
-
   private level: any;
   private exercise: Exercise;
 
@@ -29,7 +31,7 @@ export class ExerciseDuringModal {
     private modalCtrl: ModalController,
     private storage: Storage,
     private nativePageTransitions: NativePageTransitions,
-    private eventService: EventsService,
+    private eventService: EventsService
   ) {
     this.nativePageTransitions.slide(this.transitionOptions);
   }
@@ -42,7 +44,7 @@ export class ExerciseDuringModal {
   ionViewWillEnter() {
     this.exercise.erp.start = new Date();
 
-    this.storage.get('exercises').then((exercises) => {
+    this.storage.get('exercises').then(exercises => {
       exercises[exercises.length - 1] = this.exercise;
       this.storage.set('exercises', exercises);
 
@@ -56,7 +58,7 @@ export class ExerciseDuringModal {
 
     this.exercise.erp.end = new Date();
 
-    this.storage.get('exercises').then((exercises) => {
+    this.storage.get('exercises').then(exercises => {
       exercises[exercises.length - 1] = this.exercise;
       this.storage.set('exercises', exercises);
 
@@ -71,7 +73,5 @@ export class ExerciseDuringModal {
       moodModal.present();
       this.viewCtrl.dismiss();
     });
-
   }
-
 }

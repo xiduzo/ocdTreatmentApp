@@ -34,8 +34,8 @@ export class Badge {
     this.modalCtrl = modalCtrl;
 
     this.getProgress()
-      .then(response => {
-        this.setCurrentStage().then(stage => this.currentStage = stage)
+      .then(() => {
+        this.setCurrentStage().then(stage => (this.currentStage = stage));
       })
       .catch(error => console.log(error));
   }
@@ -66,7 +66,7 @@ export class Badge {
     }
 
     return new Promise<Stage>((resolve, reject) => {
-      if (!pickedStage) reject("No stage picked");
+      if (!pickedStage) reject('No stage picked');
       else resolve(pickedStage);
     });
   }
@@ -85,7 +85,7 @@ export class Badge {
     });
 
     return await new Promise<number>((resolve, reject) => {
-      if (isNaN(this.totalPointsGained)) reject("Points is not a number");
+      if (isNaN(this.totalPointsGained)) reject('Points is not a number');
       else resolve(this.totalPointsGained);
     });
   }
@@ -100,7 +100,10 @@ export class Badge {
     return new Promise<boolean>((resolve, reject) => {
       if (!this.name) reject('No name provided');
       // Return a boolean value to see if we completed this stage
-      else resolve(this.pointsProgressToNextStage >= this.currentStage.amountNeeded);
+      else
+        resolve(
+          this.pointsProgressToNextStage >= this.currentStage.amountNeeded
+        );
     });
   }
 
@@ -121,11 +124,7 @@ export class Stage {
   public description: string;
   public image: string;
 
-  constructor({
-    amountNeeded = 0,
-    description = '',
-    image = ''
-  } = {}) {
+  constructor({ amountNeeded = 0, description = '', image = '' } = {}) {
     this.amountNeeded = amountNeeded;
     this.description = description;
     this.image = image;
@@ -134,21 +133,16 @@ export class Stage {
 
 @Injectable()
 export class BadgeFactory {
+  constructor(private storage: Storage, private modalCtrl: ModalController) {}
 
-  constructor(
-    private storage: Storage,
-    private modalCtrl: ModalController
-  ) {
-  }
-
-  public createBadge(badge) {
+  public createBadge(badge: Badge) {
     return new Badge({
       name: badge.name,
       verbose: badge.verbose,
       description: badge.description,
       stages: badge.stages,
       storage: this.storage,
-      modalCtrl: this.modalCtrl,
+      modalCtrl: this.modalCtrl
     });
   }
 }

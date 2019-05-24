@@ -19,13 +19,10 @@
   "SETTINGS": "Settings",
   "TRIGGERS": "Triggers",
   "WITHOUT": "Without",
-
   "HOURS": "Hours",
   "HOUR": "Hour",
   "MINUTE": "Minute",
   "MINUTES": "Minutes",
-
-
   "MOOD_HEADER": "I am feeling",
   "MOOD_EXPLENATION": "What causes this mood (optional)",
   "MOOD_SUCCESS": "Success",
@@ -34,36 +31,26 @@
   "MOOD_3": "Somewhat anxious",
   "MOOD_4": "Strong anxiety",
   "MOOD_5": "Freak out anxiety",
-
-
   "MY_OBSESSIONS": "My Obsessions",
   "MY_FEAR_LADDER": "My fear ladder",
   "MY_BADGES": "My badges",
   "MY_PERSONAL_GOAL": "My personal goal",
   "NO_GOAL_SPECIFIED_YET": "No goal specified yet",
   "MY_LOGBOOK_ENTRIES": "My logbook entries",
-
-
   "BUTTON_GAVE_IN": "Gave in to compulsive behavior",
   "BUTTON_SUCCEED_EXERCISE": "Succeeded without compulsion",
   "BUTTON_ADD_FEAR": "Add new fear",
-
-
   "INTENSITY_HEADER": "Score intensity of",
   "INTENSITY_OBSESSIVE_THOUGHTS": "Obsessive thoughts",
   "INTENSITY_COMPULSIVE_BEHAVIOUR": "Compulsive behavior",
   "INTENSITY_WHY": "Why (optional)",
-
-
   "FEARLADDER_STEP_I_WANT_TO": "I want to",
   "FEARLADDER_STEP_THIS_TRIGGERS": "This triggers",
   "FEARLADDER_STEP_FEAR_RATING": "Fear rating",
-
   "FEARLADDER_STEP_HEADER_ADD": "New exercise",
   "FEARLADDER_STEP_HEADER_EDIT": "Edit exercise",
-
-
   "ONBOARDING_SKIP": "Skip",
+  "ONBOARDING_NEXT": "Next",
   "ONBOARDING_GOT_IT": "Got it",
   "ONBOARDING_SLIDE_1": "Obsessions are like little monsters, living in your mind. The mosnters sometimes take over your thoughts and actions",
   "ONBOARDING_SLIDE_2": "You already defined what monsters live in your mind and some monsters scare you more than others.",
@@ -71,20 +58,12 @@
   "ONBOARDING_SLIDE_4": "If you success an exercise and faced the monster successfully you ...",
   "ONBOARDING_SLIDE_5": "By conducting the exercises you allow them less space and give more to yourself.",
   "ONBOARDING_SLIDE_6": "After completing all exercises successfully you give the monster no space at all and it will shrink.",
-
-
   "PROGRESS_EXERCISES_DONE": "Exercises done",
   "PROGRESS_TOTAL_EXERCISE_TIME": "Total exercise time",
   "PROGRESS_AVERAGE_EXERCISE_TIME": "Average exercise time",
-
-
   "PROFILE_RESET_MOCK_DATA": "Reset mock data",
-
-
   "WARNING_NO_LOGGED_EXERCISES": "It seems like you have not logged any exercises.",
   "WARNING_NO_FEARS": "It looks like you have not added any fears!",
   "WARNING_BEFORE_YOU_CAN_START": "Before you can start, you must describe your fear ladder.",
-
   "MESSAGE_CHANGE_FEAR_LADDER": "You can always change your fear ladder in your settings"
-
 }

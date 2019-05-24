@@ -1,0 +1,20 @@
+{
+    "appName": "spirit",
+    "roleName": "pinpointLambdaRolef99ccda0",
+    "cloudWatchPolicyName": "cloudWatchPolicyf99ccda0",
+    "pinpointPolicyName": "pinpointPolicyf99ccda0",
+    "authPolicyName": "pinpoint_amplify_f99ccda0",
+    "unauthPolicyName": "pinpoint_amplify_f99ccda0",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

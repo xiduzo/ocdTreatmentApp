@@ -1,4 +1,4 @@
-<ion-content [@trackMood]='moodClass'>
+<ion-content [@trackMood]="moodClass">
   <div>
     <ion-fab top right *ngIf="beforeMeasure">
       <button ion-fab mini color="light" (click)="stopExercise()">
@@ -6,70 +6,89 @@
       </button>
     </ion-fab>
     <strong class="c-mood__mood">
-        {{ 'MOOD_HEADER' | translate }}
-        <div class="mood__name" text-center>
-          <span *ngIf="moodNumber === 1">{{ 'MOOD_1' | translate }}</span>
-          <span *ngIf="moodNumber === 2">{{ 'MOOD_2' | translate }}</span>
-          <span *ngIf="moodNumber === 3">{{ 'MOOD_3' | translate }}</span>
-          <span *ngIf="moodNumber === 4">{{ 'MOOD_4' | translate }}</span>
-          <span *ngIf="moodNumber === 5">{{ 'MOOD_5' | translate }}</span>
-        </div>
+      {{ 'MOOD_HEADER' | translate }}
+      <div class="mood__name" text-center>
+        <span *ngIf="moodNumber === 1">{{ 'MOOD_1' | translate }}</span>
+        <span *ngIf="moodNumber === 2">{{ 'MOOD_2' | translate }}</span>
+        <span *ngIf="moodNumber === 3">{{ 'MOOD_3' | translate }}</span>
+        <span *ngIf="moodNumber === 4">{{ 'MOOD_4' | translate }}</span>
+        <span *ngIf="moodNumber === 5">{{ 'MOOD_5' | translate }}</span>
+      </div>
     </strong>
 
     <section class="c-mood__circle" *ngIf="!focusedOnMoodExplenation">
-        <section [className]="moodClass">
-            <div class="c-mood__face">
-                <section class="face__attributes">
-                    <section class="face__eyebrows">
-                        <div class="eyebrow eyebrow--left"></div>
-                        <div class="eyebrow eyebrow--right"></div>
-                    </section>
-                    <section class="face__blush">
-                        <div class="blush blush--left"></div>
-                        <div class="blush blush--right"></div>
-                    </section>
-                    <div class="face__drop"></div>
-                </section>
-                <section class="face__eyes">
-                    <div class="eye eye--left"></div>
-                    <div class="eye eye--right"></div>
-                </section>
-                <section class="face__mouth">
-                    <div class="mouth__lips"></div>
-                    <div class="mouth__inside"></div>
-                </section>
-            </div>
-        </section>
+      <section [className]="moodClass">
+        <div class="c-mood__face">
+          <section class="face__attributes">
+            <section class="face__eyebrows">
+              <div class="eyebrow eyebrow--left"></div>
+              <div class="eyebrow eyebrow--right"></div>
+            </section>
+            <section class="face__blush">
+              <div class="blush blush--left"></div>
+              <div class="blush blush--right"></div>
+            </section>
+            <div class="face__drop"></div>
+          </section>
+          <section class="face__eyes">
+            <div class="eye eye--left"></div>
+            <div class="eye eye--right"></div>
+          </section>
+          <section class="face__mouth">
+            <div class="mouth__lips"></div>
+            <div class="mouth__inside"></div>
+          </section>
+        </div>
+      </section>
     </section>
 
     <form>
       <ion-item class="transparent" *ngIf="!focusedOnMoodExplenation">
-        <ion-range class="show-pin big-slider"
+        <ion-range
+          class="show-pin big-slider"
           color="light"
           [(ngModel)]="mood.mood"
           name="moodNumber"
           (ngModelChange)="setMood()"
           min="0"
-          max="500">
+          max="500"
+        >
         </ion-range>
       </ion-item>
       <ion-item>
         <ion-label floating>
           {{ 'MOOD_EXPLENATION' | translate }}
         </ion-label>
-        <ion-textarea [(ngModel)]="mood.explanation" name="moodExplanation" (ionFocus)="!focusedOnMoodExplenation = true" (ionBlur)="!focusedOnMoodExplenation = false"></ion-textarea>
+        <ion-textarea
+          [(ngModel)]="mood.explanation"
+          name="moodExplanation"
+          (ionFocus)="!(focusedOnMoodExplenation = true)"
+          (ionBlur)="!(focusedOnMoodExplenation = false)"
+        ></ion-textarea>
       </ion-item>
     </form>
-
   </div>
-
 </ion-content>
 
 <ion-footer>
-  <button no-margin ion-button large block (click)="startExercise()" *ngIf="beforeMeasure">
+  <button
+    no-margin
+    ion-button
+    large
+    block
+    (click)="startExercise()"
+    *ngIf="beforeMeasure"
+  >
     <ion-icon name="checkmark"></ion-icon>
   </button>
-  <button no-margin ion-button large block (click)="finishExercise()" *ngIf="!beforeMeasure">
+  <button
+    no-margin
+    ion-button
+    large
+    block
+    (click)="finishExercise()"
+    *ngIf="!beforeMeasure"
+  >
     <ion-icon name="checkmark"></ion-icon>
   </button>
 </ion-footer>

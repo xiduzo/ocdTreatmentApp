@@ -1,0 +1,19 @@
+{
+    "spirit": {
+        "awscloudformation": {
+            "AuthRoleName": "spirit-spirit-20190503212936-authRole",
+            "UnauthRoleArn": "arn:aws:iam::002779451522:role/spirit-spirit-20190503212936-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::002779451522:role/spirit-spirit-20190503212936-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "spirit-spirit-20190503212936-deployment",
+            "UnauthRoleName": "spirit-spirit-20190503212936-unauthRole",
+            "StackName": "spirit-spirit-20190503212936",
+            "StackId": "arn:aws:cloudformation:eu-west-1:002779451522:stack/spirit-spirit-20190503212936/ce661c40-6dd9-11e9-8371-0254d350c81a"
+        },
+        "categories": {
+            "auth": {
+                "cognitodee5d4ef": {}
+            }
+        }
+    }
+}

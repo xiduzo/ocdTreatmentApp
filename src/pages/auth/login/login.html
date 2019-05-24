@@ -1,0 +1,37 @@
+<ion-content class="c-authpage">
+  <h1 ion-text color="light">Welcome <span>back</span></h1>
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input formControlName="username" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+
+  <section class="action">
+    <h2 ion-text>
+      Sign in
+    </h2>
+    <button
+      ion-button
+      icon-only
+      round
+      color="primary"
+      (click)="login()"
+      [disabled]="!loginForm.valid || !signInButtonEnabled"
+    >
+      <ion-icon name="arrow-forward"></ion-icon>
+    </button>
+  </section>
+</ion-content>
+<ion-footer>
+  <button ion-button color="dark" clear (click)="signUp()">Sign up</button>
+  <button ion-button color="dark" clear>Forgot password</button>
+</ion-footer>

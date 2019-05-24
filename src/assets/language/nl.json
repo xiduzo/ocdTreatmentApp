@@ -19,13 +19,10 @@
   "SETTINGS": "Instellingen",
   "TRIGGERS": "Triggers",
   "WITHOUT": "Zonder",
-
   "HOURS": "Uren",
   "HOUR": "Uur",
   "MINUTE": "Minuut",
   "MINUTES": "Minuten",
-
-
   "MOOD_HEADER": "Ik voel me",
   "MOOD_EXPLENATION": "Hoe komt dit (optioneel)",
   "MOOD_SUCCESS": "Succes",
@@ -34,36 +31,26 @@
   "MOOD_3": "Een beetje angstig",
   "MOOD_4": "Sterke angst",
   "MOOD_5": "Freak out angst",
-
-
   "MY_OBSESSIONS": "Mijn obsessies",
   "MY_FEAR_LADDER": "Mijn angstladder",
   "MY_BADGES": "Mijn badges",
   "MY_PERSONAL_GOAL": "Mijn persoonlijke doel",
   "NO_GOAL_SPECIFIED_YET": "Nog geen doel opgegeven",
   "MY_LOGBOOK_ENTRIES": "Mijn logboekitems",
-
-
   "BUTTON_GAVE_IN": "Toegegeven aan dwangmatig gedrag",
   "BUTTON_SUCCEED_EXERCISE": "Geslaagd zonder dwang",
   "BUTTON_ADD_FEAR": "Nieuwe angst toevoegen",
-
-
   "INTENSITY_HEADER": "Score intensiteit van",
   "INTENSITY_OBSESSIVE_THOUGHTS": "Obsessieve gedachten",
   "INTENSITY_COMPULSIVE_BEHAVIOUR": "Compulsief gedrag",
   "INTENSITY_WHY": "Hoe komt dit (optioneel)",
-
-
   "FEARLADDER_STEP_I_WANT_TO": "Ik wil graag",
   "FEARLADDER_STEP_THIS_TRIGGERS": "Dit triggert",
   "FEARLADDER_STEP_FEAR_RATING": "Angst rating",
-
   "FEARLADDER_STEP_HEADER_ADD": "Nieuwe oefening",
   "FEARLADDER_STEP_HEADER_EDIT": "Oefening aanpassen",
-
-
   "ONBOARDING_SKIP": "Overslaan",
+  "ONBOARDING_NEXT": "Volgende",
   "ONBOARDING_GOT_IT": "Ik snap het",
   "ONBOARDING_SLIDE_1": "Obsessieve gedachten zijn als kleine monsters, die soms leven in je hoofd. De monster nemen soms je gedachten en acties over",
   "ONBOARDING_SLIDE_2": "Je hebt al gedefineerd welke monsters er bij jou aanwezig zijn, sommige zijn enger dan andere.",
@@ -71,20 +58,12 @@
   "ONBOARDING_SLIDE_4": "Als je oefeningen sucessvol doet en de monsters onder ogen hebt gezien dan ...",
   "ONBOARDING_SLIDE_5": "Door het doen van de oefeningen geef je de monsters minder ruimte en geef je dit terug aan jezelf!",
   "ONBOARDING_SLIDE_6": "Als je de oefeningen hebt afgerond heeft het monster geen ruimte meer en zal hij krimpen.",
-
-
   "PROGRESS_EXERCISES_DONE": "Oefeningen gedaan",
   "PROGRESS_TOTAL_EXERCISE_TIME": "Totale tijd",
   "PROGRESS_AVERAGE_EXERCISE_TIME": "Gemiddelde tijd",
-
-
   "PROFILE_RESET_MOCK_DATA": "Reset mock data",
-
-
   "WARNING_NO_LOGGED_EXERCISES": "Het lijkt erop dat je nog geen oefening hebt gedaan.",
   "WARNING_NO_FEARS": "Het lijkt erop alsof je nog geen oefeningen hebt toegevoegd!",
   "WARNING_BEFORE_YOU_CAN_START": "Voordat je kunt starten moet je jouw angstladder invullen.",
-
   "MESSAGE_CHANGE_FEAR_LADDER": "Je kunt altijd je angstladder wijzigen in je instellingen"
-
 }

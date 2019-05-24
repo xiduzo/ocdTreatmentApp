@@ -27,27 +27,32 @@ export class ExerciseListModal {
     private modalCtrl: ModalController,
     private appCtrl: App,
     private storage: Storage,
-    private eventService: EventsService,
-  ) {
-  }
+    private eventService: EventsService
+  ) {}
 
   ionViewWillEnter() {
     this.level = this.params.get('level');
   }
 
   ionViewWillLoad() {
-    this.eventService.on('completed_exercise', this.exerciseCompleted.bind(this));
+    this.eventService.on(
+      'completed_exercise',
+      this.exerciseCompleted.bind(this)
+    );
   }
 
   ionViewWillUnload() {
-    this.eventService.destroyListener('completed_exercise', this.exerciseCompleted);
+    this.eventService.destroyListener(
+      'completed_exercise',
+      this.exerciseCompleted
+    );
   }
 
   exerciseCompleted(exercise: Exercise) {
     try {
       const step = this.level.steps.find(step => step.id === exercise.step.id);
 
-      if (!step) throw ("Step not found");
+      if (!step) throw 'Step not found';
 
       step.fear.completion = exercise.step.fear.completion;
     } catch (err) {
@@ -65,7 +70,7 @@ export class ExerciseListModal {
   selectStep(step) {
     if (step.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT) return;
 
-    this.storage.get('exercises').then((exercises) => {
+    this.storage.get('exercises').then(exercises => {
       if (!exercises) exercises = []; // When it's the users' first time
 
       const exercise = new Exercise({

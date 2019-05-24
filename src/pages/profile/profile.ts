@@ -1,8 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { App, NavController, ModalController, TextInput } from 'ionic-angular';
+import { NavController, ModalController, TextInput } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-
-import { AuthService, UserService } from '@/lib/services';
 
 import { Badge, BadgeFactory } from '@/lib/badge/Badge';
 
@@ -25,7 +23,6 @@ import { EventsService } from 'angular-event-service';
 export class ProfilePage {
   @ViewChild('personalGoal') personalGoalTextArea: TextInput;
 
-
   public personalGoalText: string;
   public editGoal: boolean = false;
   public view: string = 'journey';
@@ -33,21 +30,18 @@ export class ProfilePage {
   private badgeTemplates: Array<any> = [
     STREAK_BADGE,
     EXERCISE_BADGE,
-    FIRST_TIME_BADGE,
+    FIRST_TIME_BADGE
     // TEST_ONE_BADGE,
     // TEST_TWO_BADGE,
     // TEST_THREE_BADGE,
   ];
 
   constructor(
-    private appCtrl: App,
     public navCtrl: NavController,
-    private authService: AuthService,
-    private userService: UserService,
     private storage: Storage,
     private modalCtrl: ModalController,
     private badgeFctry: BadgeFactory,
-    private eventService: EventsService,
+    private eventService: EventsService
   ) {
     this.badgeTemplates.forEach(badge => {
       this.badges.push(this.badgeFctry.createBadge(badge));
@@ -64,25 +58,26 @@ export class ProfilePage {
   }
 
   updateBadge(badge: Badge) {
-    const localBadge = this.badges.find(currBadge => currBadge.name == badge.name);
+    const localBadge = this.badges.find(
+      currBadge => currBadge.name == badge.name
+    );
 
     if (localBadge) {
-      localBadge
-        .getProgress()
-        .then(() => {
-          localBadge.setCurrentStage()
-            .then(response => {
-              localBadge.currentStage = response;
-            })
-            .catch(err => {
-              console.log(`err: ${err}`);
-            })
-        })
+      localBadge.getProgress().then(() => {
+        localBadge
+          .setCurrentStage()
+          .then(response => {
+            localBadge.currentStage = response;
+          })
+          .catch(err => {
+            console.log(`err: ${err}`);
+          });
+      });
     }
   }
 
   getPersonalGoal() {
-    this.storage.get('personalGoal').then((goal) => {
+    this.storage.get('personalGoal').then((goal: string) => {
       if (!goal) return;
 
       this.personalGoalText = goal;
@@ -99,7 +94,7 @@ export class ProfilePage {
     // We need to wait a bit before the element is added to the DOM
     setTimeout(() => {
       if (this.editGoal) this.personalGoalTextArea.setFocus();
-    }, 100)
+    }, 100);
   }
 
   openSettings() {
@@ -112,19 +107,7 @@ export class ProfilePage {
     fearladderModal.present();
   }
 
-
-  logout() {
-    this.authService.removeLocalToken();
-    this.userService.removeUser();
-    // this.storage.set('onboardingCompleted', false);
-
-    // Because we initiate with the login page we can pop the current app to
-    // return to the login page
-    this.appCtrl.getRootNav().pop();
-  }
-
   showBadge(badge) {
     badge.showModal();
   }
-
 }

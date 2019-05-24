@@ -9,13 +9,12 @@ import { BadgeEarnedModal } from '@/modals/badgeEarned/badgeEarned';
   templateUrl: 'badge.html'
 })
 export class BadgeModal {
-
   public badge: Badge = new Badge();
 
   constructor(
     public viewCtrl: ViewController,
     public params: NavParams,
-    public modalCtrl: ModalController,
+    public modalCtrl: ModalController
   ) {
     this.badge = new Badge(this.params.get('badge'));
   }
@@ -30,6 +29,4 @@ export class BadgeModal {
   close() {
     this.viewCtrl.dismiss();
   }
-
-
 }

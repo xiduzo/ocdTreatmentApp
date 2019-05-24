@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
-import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+import {
+  NativePageTransitions,
+  NativeTransitionOptions
+} from '@ionic-native/native-page-transitions';
 
 import { mapRange } from '@/lib/helpers';
 import { Mood, Exercise } from '@/lib/Exercise';
@@ -55,7 +58,7 @@ export class ExerciseMoodModal {
     private modalCtrl: ModalController,
     private storage: Storage,
     private nativePageTransitions: NativePageTransitions,
-    private eventService: EventsService,
+    private eventService: EventsService
   ) {
     this.nativePageTransitions.slide(this.transitionOptions);
   }
@@ -93,8 +96,8 @@ export class ExerciseMoodModal {
   startExercise() {
     this.exercise.beforeMood = this.mood;
 
-    this.storage.get('exercises').then((exercises) => {
-      // The last exercise is allways the exercise we are working with
+    this.storage.get('exercises').then(exercises => {
+      // The last exercise is always the exercise we are working with
       // So lets overwrite the last entry
       exercises[exercises.length - 1] = this.exercise;
       this.storage.set('exercises', exercises);
@@ -109,24 +112,28 @@ export class ExerciseMoodModal {
       duringModal.present();
       this.viewCtrl.dismiss();
     });
-
   }
 
   finishExercise() {
     this.exercise.afterMood = this.mood;
 
-    this.storage.get('exercises').then((exercises) => {
-      const hasATriggerEnabled = this.exercise.step.triggers.find(trigger => { return trigger.enabled });
-      // Go to different modal based on if a trigger is enabled
-      const modal = this.modalCtrl.create(hasATriggerEnabled ? ExerciseTriggerModal : ExerciseSuccessModal, {
-        level: this.level,
-        exercise: this.exercise
+    this.storage.get('exercises').then(exercises => {
+      const hasATriggerEnabled = this.exercise.step.triggers.find(trigger => {
+        return trigger.enabled;
       });
+      // Go to different modal based on if a trigger is enabled
+      const modal = this.modalCtrl.create(
+        hasATriggerEnabled ? ExerciseTriggerModal : ExerciseSuccessModal,
+        {
+          level: this.level,
+          exercise: this.exercise
+        }
+      );
 
       // The exercise has ended when no trigger is enabled
       if (!hasATriggerEnabled) this.exercise.end = new Date();
 
-      // The last exercise is allways the exercise we are working with
+      // The last exercise is always the exercise we are working with
       // So lets overwrite the last entry
       exercises[exercises.length - 1] = this.exercise;
       this.storage.set('exercises', exercises);
@@ -141,5 +148,4 @@ export class ExerciseMoodModal {
   stopExercise() {
     this.viewCtrl.dismiss();
   }
-
 }

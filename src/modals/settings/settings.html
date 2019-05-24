@@ -4,7 +4,7 @@
       {{ 'SETTINGS' | translate }}
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only color="light" (click)=close()>
+      <button ion-button icon-only color="light" (click)="close()">
         <ion-icon name="close"></ion-icon>
       </button>
     </ion-buttons>
@@ -40,6 +40,10 @@
     </div>
   </ion-item>
 
+  <!-- <ion-list-header>
+    My profile
+  </ion-list-header> -->
+
   <ion-list-header>
     {{ 'MY_OBSESSIONS' | translate }}
   </ion-list-header>
@@ -48,7 +52,7 @@
       Mail data
     </ion-label>
     <div item-end>
-      <button ion-button (click)="mailData()">
+      <button ion-button (click)="sendData()">
         send
       </button>
     </div>
@@ -66,3 +70,9 @@
     </ion-select>
   </ion-item>
 </ion-content>
+
+<ion-footer>
+  <button color="danger" ion-button large block (click)="signOut()">
+    Sign out
+  </button>
+</ion-footer>

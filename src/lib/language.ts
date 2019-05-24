@@ -1,4 +1,13 @@
-export const availableLanguages = [
+export interface ILanguageCode {
+  code: string;
+  name: string;
+}
+
+export interface ISysOptions {
+  systemLanguage: string;
+}
+
+export const availableLanguages: Array<ILanguageCode> = [
   {
     code: 'nl',
     name: 'Nederlands (nl)'
@@ -13,8 +22,8 @@ export const availableLanguages = [
   }
 ];
 
-export const defaultLanguage = 'en';
+export const defaultLanguage: string = 'en';
 
-export const sysOptions = {
+export const sysOptions: ISysOptions = {
   systemLanguage: defaultLanguage
 };

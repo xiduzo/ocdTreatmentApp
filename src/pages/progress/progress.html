@@ -8,10 +8,16 @@
     <ion-title text-center>
       <!-- TODO look at this, maybe it is nice to select the date -->
       <!-- <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="startWeek"></ion-datetime> -->
-      {{ startTimeFrame | date : 'dd/MM'}} - {{ endTimeFrame | date : 'dd/MM' }}
+      {{ startTimeFrame | date: 'dd/MM' }} - {{ endTimeFrame | date: 'dd/MM' }}
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only color="light" (click)="changeTimeFrame(1)" [disabled]="!canSelectNextTimeFrame">
+      <button
+        ion-button
+        icon-only
+        color="light"
+        (click)="changeTimeFrame(1)"
+        [disabled]="!canSelectNextTimeFrame"
+      >
         <ion-icon name="arrow-dropright"></ion-icon>
       </button>
     </ion-buttons>
@@ -20,7 +26,12 @@
 
 <ion-content (swipe)="swipeEvent($event)">
   <div ion-fixed>
-    <chart [options]="_chartOptions" style="display: block" (load)="setChart($event.context)" type="chart"></chart>
+    <chart
+      [options]="_chartOptions"
+      style="display: block"
+      (load)="setChart($event.context)"
+      type="chart"
+    ></chart>
 
     <ion-scroll>
       <ion-grid>
@@ -39,7 +50,10 @@
               {{ 'EXERCISES' | translate }}
             </span>
             <span *ngIf="previousTimeFrameExercises.length" class="difference">
-              {{ previousTimeFrameExercises.length | difference : thisTimeFrameExercises.length }}
+              {{
+                previousTimeFrameExercises.length
+                  | difference: thisTimeFrameExercises.length
+              }}
             </span>
           </ion-col>
         </ion-row>
@@ -53,13 +67,20 @@
           </ion-col>
           <ion-col col-12 class="stats">
             <h1 class="title">
-              {{ (thisTimeFrameExercises | accumulateTime | msToTime : 'hours') || '0' }}
+              {{
+                (thisTimeFrameExercises | accumulateTime | msToTime: 'hours') ||
+                  '0'
+              }}
             </h1>
             <span class="stat">
               {{ 'HOURS' | translate }}
             </span>
             <span *ngIf="previousTimeFrameExercises.length" class="difference">
-              {{ (previousTimeFrameExercises | accumulateTime) | difference : (thisTimeFrameExercises | accumulateTime) }}
+              {{
+                previousTimeFrameExercises
+                  | accumulateTime
+                  | difference: (thisTimeFrameExercises | accumulateTime)
+              }}
             </span>
           </ion-col>
         </ion-row>
@@ -73,13 +94,22 @@
           </ion-col>
           <ion-col col-12 class="stats">
             <h1 class="title">
-              {{ (((thisTimeFrameExercises | accumulateTime) / thisTimeFrameExercises?.length) | msToTime : 'minutes') || '0' }}
+              {{
+                ((thisTimeFrameExercises | accumulateTime) /
+                  thisTimeFrameExercises?.length | msToTime: 'minutes') || '0'
+              }}
             </h1>
             <span class="stat">
               {{ 'MINUTES' | translate }}
             </span>
             <span *ngIf="previousTimeFrameExercises.length" class="difference">
-              {{ ((previousTimeFrameExercises | accumulateTime) / previousTimeFrameExercises.length) | difference : ((thisTimeFrameExercises | accumulateTime) / thisTimeFrameExercises.length) }}
+              {{
+                (previousTimeFrameExercises | accumulateTime) /
+                  previousTimeFrameExercises.length
+                  | difference
+                    : (thisTimeFrameExercises | accumulateTime) /
+                        thisTimeFrameExercises.length
+              }}
             </span>
           </ion-col>
         </ion-row>

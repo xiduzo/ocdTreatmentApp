@@ -34,8 +34,7 @@ $o-badge-size: 70px;
   }
 }
 
-.o-badge--big,
-.o-badge--nextStage {
+.o-badge--big {
   .badge__progress {
     height: 250px;
 
@@ -50,5 +49,3 @@ $o-badge-size: 70px;
     font-size: 2em;
   }
 }
-
-.o-badge--nextStage {}

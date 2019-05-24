@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
-import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+import {
+  NativePageTransitions,
+  NativeTransitionOptions
+} from '@ionic-native/native-page-transitions';
 
 import { ExerciseSuccessModal } from '@/modals/exercise/success/exercise.success';
 
@@ -15,12 +18,11 @@ import { EventsService } from 'angular-event-service';
   templateUrl: 'exercise.trigger.html'
 })
 export class ExerciseTriggerModal {
+  public level: any;
+  public exercise: Exercise;
+  public triggers: Array<Trigger>;
 
-  public level:any;
-  public exercise:Exercise;
-  public triggers:Array<Trigger>;
-
-  public range:any = { min: 0, max: 5 };
+  public range: any = { min: 0, max: 5 };
 
   private transitionOptions: NativeTransitionOptions = {
     direction: 'left'
@@ -32,7 +34,7 @@ export class ExerciseTriggerModal {
     private modalCtrl: ModalController,
     private storage: Storage,
     private nativePageTransitions: NativePageTransitions,
-    private eventService: EventsService,
+    private eventService: EventsService
   ) {
     this.nativePageTransitions.slide(this.transitionOptions);
   }
@@ -50,8 +52,8 @@ export class ExerciseTriggerModal {
   done() {
     this.exercise.end = new Date();
 
-    this.storage.get('exercises').then((exercises) => {
-      exercises[exercises.length-1] = this.exercise;
+    this.storage.get('exercises').then(exercises => {
+      exercises[exercises.length - 1] = this.exercise;
       this.storage.set('exercises', exercises);
 
       this.eventService.broadcast('exercise_update', this.exercise);
@@ -65,5 +67,4 @@ export class ExerciseTriggerModal {
       this.viewCtrl.dismiss();
     });
   }
-
 }

@@ -10,7 +10,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { Http } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 /*------------------------------
@@ -28,14 +28,26 @@ import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { File } from '@ionic-native/file';
 
 /*------------------------------
+  AWS
+------------------------------*/
+// Amplify
+import {
+  AmplifyAngularModule,
+  AmplifyService,
+  AmplifyModules
+} from 'aws-amplify-angular';
+import Auth from '@aws-amplify/auth';
+
+/*------------------------------
   Pages
 ------------------------------*/
 // Exercise
 import { ExercisePage } from '@/pages/exercise/exercise';
 import { RatingPage } from '@/pages/rating/rating';
 // Auth
-import { LoginPage } from '@/pages/login/login';
-import { SignUpPage } from '@/pages/signup/signup';
+import { LoginPage } from '@/pages/auth/login/login';
+import { SignUpPage } from '@/pages/auth/signup/signup';
+import { ConfirmCodePage } from '@/pages/auth/confirmCode/confirmCode';
 // Onboarding
 import { OnboardingPage } from '@/pages/onboarding/onboarding';
 // Logbook
@@ -70,21 +82,26 @@ import { BadgeEarnedModal } from '@/modals/badgeEarned/badgeEarned';
 ------------------------------*/
 // pipes
 import { NgPipesModule } from 'ngx-pipes';
-// import { groupByPipe } from '@/lib/pipes/groupBy';
 import { msToTimePipe } from '@/lib/pipes/msToTime';
 import { accumulateTimePipe } from '@/lib/pipes/accumulateTime';
 import { differencePipe } from '@/lib/pipes/difference';
+import { relativeTimePipe } from '@/lib/pipes/relativeTime';
 
-// injectables
-import { AuthService, UserService } from '@/lib/services';
 // badge
 import { BadgeFactory } from '@/lib/badge/Badge';
+
+/*------------------------------
+  Directives
+------------------------------*/
 
 /*------------------------------
   Translation
 ------------------------------*/
 import { TranslateModule } from 'ng2-translate/ng2-translate';
-import { TranslateLoader, TranslateStaticLoader } from 'ng2-translate/src/translate.service';
+import {
+  TranslateLoader,
+  TranslateStaticLoader
+} from 'ng2-translate/src/translate.service';
 
 /*------------------------------
   Datavisualizations
@@ -113,69 +130,84 @@ export function createTranslateLoader(http: Http) {
 @NgModule({
   declarations: [
     MyApp,
+    // Pages
+    LoginPage,
+    SignUpPage,
+    ConfirmCodePage,
+    LogbookPage,
     ProfilePage,
     ProgressPage,
     TabsPage,
     OnboardingPage,
     ExercisePage,
+    RatingPage,
+    // Modals
+    BadgeModal,
+    BadgeEarnedModal,
+    SettingsModal,
     ExerciseMoodModal,
     ExerciseDuringModal,
     ExerciseTriggerModal,
     ExerciseSuccessModal,
     ExerciseListModal,
-    RatingPage,
     FearladderModal,
     FearladderStepModal,
-    LoginPage,
-    SignUpPage,
-    LogbookPage,
-    BadgeModal,
-    BadgeEarnedModal,
-    SettingsModal,
-    // groupByPipe,
+    // Pipes
     accumulateTimePipe,
     msToTimePipe,
-    differencePipe
+    differencePipe,
+    relativeTimePipe
   ],
   imports: [
     NgPipesModule,
     BrowserModule,
     BrowserAnimationsModule,
-    IonicModule.forRoot(MyApp, { tabsPlacement: 'bottom' }),
-    IonicStorageModule.forRoot(),
+    IonicModule.forRoot(MyApp, {
+      tabsPlacement: 'bottom',
+      scrollPadding: false,
+      scrollAssist: false
+    }),
+    IonicStorageModule.forRoot({
+      name: '__spiritDB',
+      driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }),
     ChartModule,
     HttpClientModule,
     RoundProgressModule,
     NgxPaginationModule,
+    AmplifyAngularModule,
     EventsServiceModule.forRoot(),
     TranslateModule.forRoot({
       provide: TranslateLoader,
-      useFactory: (createTranslateLoader),
+      useFactory: createTranslateLoader,
       deps: [Http]
     })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    // Pages
     ProfilePage,
     ProgressPage,
     TabsPage,
     OnboardingPage,
+    LoginPage,
+    SignUpPage,
+    ConfirmCodePage,
+    LogbookPage,
+    RatingPage,
     ExercisePage,
+    // Modals
+    BadgeModal,
+    FearladderStepModal,
+    BadgeEarnedModal,
+    SettingsModal,
+    FearladderModal,
     ExerciseMoodModal,
     ExerciseDuringModal,
     ExerciseTriggerModal,
     ExerciseSuccessModal,
-    ExerciseListModal,
-    RatingPage,
-    FearladderModal,
-    FearladderStepModal,
-    LoginPage,
-    SignUpPage,
-    LogbookPage,
-    BadgeModal,
-    BadgeEarnedModal,
-    SettingsModal
+    ExerciseListModal
   ],
   providers: [
     StatusBar,
@@ -183,20 +215,25 @@ export function createTranslateLoader(http: Http) {
     EmailComposer,
     NativePageTransitions,
     ScreenOrientation,
-    AuthService,
-    UserService,
     LocalNotifications,
     Globalization,
+    AmplifyService,
     File,
     BadgeFactory,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    { provide: HighchartsStatic, useFactory: highchartsFactory }
+    { provide: HighchartsStatic, useFactory: highchartsFactory },
+    {
+      provide: AmplifyService,
+      useFactory: () => {
+        return AmplifyModules({
+          Auth
+        });
+      }
+    }
   ]
 })
-
 export class AppModule {
-  constructor() {
-  }
+  constructor() {}
 }
 
 //https://github.com/gevgeny/angular2-highcharts/issues/163#issuecomment-383855550

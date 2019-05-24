@@ -1,6 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { Tabs } from 'ionic-angular';
-import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+import {
+  NativePageTransitions,
+  NativeTransitionOptions
+} from '@ionic-native/native-page-transitions';
 
 import { ExercisePage } from '@/pages/exercise/exercise';
 import { ProgressPage } from '@/pages/progress/progress';
@@ -13,30 +16,27 @@ import { LogbookPage } from '@/pages/logbook/logbook';
 export class TabsPage {
   @ViewChild('mainTabs') tabRef: Tabs;
 
-  loaded:boolean = false;
-  tabIndex:number = 0;
+  loaded: boolean = false;
+  tabIndex: number = 0;
 
   ExercisePageRoot = ExercisePage;
   ProgressPageRoot = ProgressPage;
   ProfilePageRoot = ProfilePage;
   LogbookPageRoot = LogbookPage;
 
-  constructor(
-    private nativePageTransitions: NativePageTransitions
-  ) {
-  }
+  constructor(private nativePageTransitions: NativePageTransitions) {}
 
-  private getAnimationDirection(index):string {
+  private getAnimationDirection(index): string {
     let currentIndex = this.tabIndex;
 
     this.tabIndex = index;
 
-    return (currentIndex < index ? 'left' : 'right');
+    return currentIndex < index ? 'left' : 'right';
   }
 
-  public transition(e):void {
+  public transition(e: any): void {
     let options: NativeTransitionOptions = {
-      direction:this.getAnimationDirection(e.index),
+      direction: this.getAnimationDirection(e.index),
       duration: 250,
       slowdownfactor: -1,
       slidePixels: 0,

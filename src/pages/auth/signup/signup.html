@@ -1,0 +1,101 @@
+<!-- <ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons start>
+      <button ion-button icon-only color="light" (click)="back()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="c-authpage">
+  <ion-fab top left>
+    <button ion-fab icon-only color="light" (click)="back()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <h1 ion-text color="light">Create <span>account</span></h1>
+
+  <form [formGroup]="registerForm" (ngSubmit)="signUp()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input formControlName="username" type="text"></ion-input>
+      </ion-item>
+      <ion-item
+        *ngIf="username.invalid && (username.dirty || username.touched)"
+      >
+        <p *ngIf="username.errors.required">
+          This field is required
+        </p>
+        <p *ngIf="username.errors.minlength">
+          Enter at least 6 characters
+        </p>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input formControlName="email" type="text"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="email.invalid && (email.dirty || email.touched)">
+        <p *ngIf="email.errors.required">
+          This field is required
+        </p>
+        <p *ngIf="email.errors.email && !email.errors.required">
+          This is not a valid email
+        </p>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <ion-item
+        *ngIf="password.invalid && (password.dirty || password.touched)"
+      >
+        <p *ngIf="password.errors.required">
+          This field is required
+        </p>
+        <p *ngIf="password.errors.minlength">
+          Enter at least 6 characters
+        </p>
+      </ion-item>
+      <ion-item
+        *ngIf="
+          registerForm.hasError('weakPassword') &&
+          (password.dirty || password.touched) &&
+          !password.errors
+        "
+      >
+        <p>
+          Use at least:
+        </p>
+        <ul>
+          <li>One uppercase letter</li>
+          <li>One lowercase letter</li>
+          <li>One number</li>
+          <li>One sign (!, @, #, $, %, ^, & or *)</li>
+        </ul>
+      </ion-item>
+    </ion-list>
+  </form>
+
+  <section class="action">
+    <h2 ion-text>
+      Sign up
+    </h2>
+    <button
+      ion-button
+      icon-only
+      round
+      color="secondary"
+      (click)="signUp()"
+      [disabled]="!registerForm.valid || !signupButtonEnabled"
+    >
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </section>
+</ion-content>
+<!-- 
+<ion-footer>
+    <button ion-button color="dark" clear (click)="back()">Sign in</button>
+</ion-footer> -->

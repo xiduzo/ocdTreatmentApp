@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController, ModalController, ToastController } from 'ionic-angular';
+import {
+  NavParams,
+  ViewController,
+  ModalController,
+  ToastController
+} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { FearladderStepModal } from '@/modals/fearladder/step/fearladder.step';
@@ -10,7 +15,7 @@ import { EventsService } from 'angular-event-service';
 
 @Component({
   selector: 'fearladder-modal',
-  templateUrl: 'fearladder.html',
+  templateUrl: 'fearladder.html'
 })
 export class FearladderModal {
   public fearLadder: Array<Step> = [];
@@ -21,13 +26,12 @@ export class FearladderModal {
     private storage: Storage,
     private modalCtrl: ModalController,
     private toastCtrl: ToastController,
-    private eventService: EventsService,
+    private eventService: EventsService
   ) {
-    this.storage.get('fearLadder').then((fearLadder) => {
+    this.storage.get('fearLadder').then(fearLadder => {
       if (!fearLadder) return;
 
       this.fearLadder = fearLadder;
-
     });
 
     if (this.params.get('addNewFear')) this.addStep();
@@ -38,14 +42,17 @@ export class FearladderModal {
   }
 
   updateLocalFearLadder() {
-    this.storage.set('fearLadder', this.fearLadder)
-    .then(() => this.eventService.broadcast('changed_fearladder', this.fearLadder));
+    this.storage
+      .set('fearLadder', this.fearLadder)
+      .then(() =>
+        this.eventService.broadcast('changed_fearladder', this.fearLadder)
+      );
   }
 
   addStep() {
     let modal = this.modalCtrl.create(FearladderStepModal);
 
-    modal.onDidDismiss((data) => {
+    modal.onDidDismiss(data => {
       if (!data) return; // Modal has been closed
 
       this.fearLadder.push(data.step);
@@ -66,16 +73,16 @@ export class FearladderModal {
   editStep(step) {
     let modal = this.modalCtrl.create(FearladderStepModal, { step: step });
 
-    modal.onDidDismiss((data) => {
+    modal.onDidDismiss(data => {
       if (!data) return; // Modal has been closed
 
       let toastParams = {
         duration: 2000,
         position: 'bottom',
-        message: '',
+        message: ''
       };
 
-      if(data.remove) {
+      if (data.remove) {
         toastParams.message = 'Fear removed successfully';
         this.fearLadder.splice(this.fearLadder.indexOf(step), 1);
       } else {
