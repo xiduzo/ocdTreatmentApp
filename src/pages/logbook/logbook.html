@@ -7,7 +7,11 @@
 </ion-header>
 
 <ion-content>
-  <section *ngIf="!exercises?.length" class="c-emptystate">
+  <section>
+    <!-- <div *ngFor="let exercise of (exercises$ | async).exercises">
+      testing
+    </div> -->
+    <!-- <section *ngIf="!exercises?.length" class="c-emptystate">
     <img src="assets/imgs/monsters/all.png" alt="" />
     <h1>
       {{ 'OOPS' | translate }}
@@ -81,7 +85,7 @@
           </section>
         </ion-card-content>
       </ion-card>
-    </div>
+    </div> -->
     <!-- <ion-infinite-scroll (ionInfinite)="loadMoreExercises($event)">
       <ion-infinite-scroll-content loadingText="Loading more data..."></ion-infinite-scroll-content>
     </ion-infinite-scroll> -->

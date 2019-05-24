@@ -112,6 +112,19 @@ import * as highcharts from 'highcharts/highcharts';
 import Highmore from 'highcharts/highcharts-more';
 
 /*------------------------------
+  Redux
+------------------------------*/
+import {
+  NgReduxModule,
+  NgRedux,
+  DevToolsExtension
+} from '@angular-redux/store';
+// Types
+import { IExercise } from '@/stores/exercise/exercise.model';
+// Reducers
+import { rootReducer } from '@/stores/reducer';
+
+/*------------------------------
   Global events
 ------------------------------*/
 import { EventsServiceModule } from 'angular-event-service';
@@ -181,7 +194,8 @@ export function createTranslateLoader(http: Http) {
       provide: TranslateLoader,
       useFactory: createTranslateLoader,
       deps: [Http]
-    })
+    }),
+    NgReduxModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -233,8 +247,24 @@ export function createTranslateLoader(http: Http) {
   ]
 })
 export class AppModule {
-  constructor() {}
+  constructor(
+    private ngRedux: NgRedux<IAppState>,
+    private devTools: DevToolsExtension
+  ) {
+    this.ngRedux.configureStore(
+      rootReducer,
+      INITIAL_STATE,
+      [],
+      [devTools.enhancer()]
+    );
+  }
 }
+export interface IAppState {
+  exercises: IExercise[];
+}
+export const INITIAL_STATE = {
+  exercises: []
+};
 
 //https://github.com/gevgeny/angular2-highcharts/issues/163#issuecomment-383855550
 export function highchartsFactory() {

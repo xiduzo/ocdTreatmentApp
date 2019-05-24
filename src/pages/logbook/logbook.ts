@@ -7,11 +7,19 @@ import { EventsService } from 'angular-event-service';
 
 import { PaginationInstance } from 'ngx-pagination';
 
+import { select, NgRedux } from '@Angular-redux/store';
+import { Observable } from 'rxjs/Observable';
+import { IAppState } from '../../app/app.module';
+import { IExerciseState } from '@/stores/exercise/exercise.reducer';
+import { ExerciseActions } from '@/stores/exercise/exercise.action';
+
 @Component({
   selector: 'logbook-page',
   templateUrl: 'logbook.html'
 })
 export class LogbookPage {
+  @select(['exercises']) exercises$: Observable<IExerciseState>;
+
   public exercises: Array<Exercise> = [];
   public paginationSettings: PaginationInstance = {
     currentPage: 1,

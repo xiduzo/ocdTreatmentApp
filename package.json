@@ -16,6 +16,7 @@
     "ionic_webpack": "webpack.config.js"
   },
   "dependencies": {
+    "@angular-redux/store": "^10.0.0",
     "@angular/animations": "^5.0.3",
     "@angular/common": "5.0.3",
     "@angular/compiler": "5.0.3",
@@ -35,6 +36,7 @@
     "@ionic-native/splash-screen": "4.17.0",
     "@ionic-native/status-bar": "4.17.0",
     "@ionic/storage": "^2.2.0",
+    "@ngrx/store": "^7.4.0",
     "angular-event-service": "^1.2.0",
     "angular-svg-round-progressbar": "^2.0.0",
     "angular2-highcharts": "^0.5.5",
@@ -59,6 +61,7 @@
     "cordova-sqlite-storage": "^2.5.2",
     "driver.js": "^0.9.5",
     "es6-promise-plugin": "^4.2.2",
+    "flux-standard-action": "^2.1.0",
     "highcharts": "^7.1.1",
     "ionic-angular": "3.9.5",
     "ionicons": "^4.5.5",
@@ -66,6 +69,8 @@
     "ng2-translate": "^5.0.0",
     "ngx-pagination": "^3.2.1",
     "ngx-pipes": "^2.3.10",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
     "regression": "^2.0.1",
     "rxjs": "5.5.2",
     "sw-toolbox": "3.6.0",
