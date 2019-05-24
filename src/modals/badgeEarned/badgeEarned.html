@@ -6,26 +6,12 @@
     </button>
   </ion-fab>
   <section padding>
-    <div class="o-badge o-badge--nextStage">
+    <div class="o-badge o-badge--big">
       <span class="badge__name">
         {{ badge.verbose }}
       </span>
       <div class="badge__progress">
-        <section class="turnable">
-          <div class="front">
-            <img src="{{ previousStage?.image }}" alt="" />
-          </div>
-          <div class="back">
-            <img src="{{ badge.currentStage.image }}" alt="" />
-          </div>
-        </section>
-        <round-progress
-          [current]="currValue"
-          [max]="maxValue"
-          [radius]="125"
-          [stroke]="6"
-          [duration]="1"
-        ></round-progress>
+        <img src="{{ badge.currentStage.image }}" alt="" />
       </div>
     </div>
     <article>
