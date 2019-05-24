@@ -4,8 +4,8 @@ import { AppModule } from './app.module';
 
 import awsmobile from '../aws-exports';
 
-import Auth from '@aws-amplify/auth';
-import Storage from '@aws-amplify/storage';
+// import Auth from '@aws-amplify/auth';
+// import Storage from '@aws-amplify/storage';
 import Amplify, { Analytics } from 'aws-amplify';
 Amplify.configure(awsmobile);
 
