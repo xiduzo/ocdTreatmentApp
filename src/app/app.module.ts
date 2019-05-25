@@ -7,7 +7,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 /*------------------------------
   Angular
 ------------------------------*/
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, ApplicationRef } from '@angular/core';
 import { Http } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -119,10 +119,14 @@ import {
   NgRedux,
   DevToolsExtension
 } from '@angular-redux/store';
+declare var require;
+var reduxLogger = require('redux-logger');
 // Types
-import { IExercise } from '@/stores/exercise/exercise.model';
+import { IExerciseState } from '@/stores/exercise/exercise.reducer';
+import { ExerciseActions } from '@/stores/exercise/exercise.action';
+
 // Reducers
-import { rootReducer } from '@/stores/reducer';
+import { rootReducer, IAppState, INITIAL_STATE } from '@/stores/reducer';
 
 /*------------------------------
   Global events
@@ -234,8 +238,14 @@ export function createTranslateLoader(http: Http) {
     AmplifyService,
     File,
     BadgeFactory,
+    ExerciseActions,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     { provide: HighchartsStatic, useFactory: highchartsFactory },
+    {
+      provide: DevToolsExtension,
+      useClass: DevToolsExtension,
+      deps: [ApplicationRef, NgRedux]
+    },
     {
       provide: AmplifyService,
       useFactory: () => {
@@ -254,17 +264,11 @@ export class AppModule {
     this.ngRedux.configureStore(
       rootReducer,
       INITIAL_STATE,
-      [],
-      [devTools.enhancer()]
+      [reduxLogger.createLogger()],
+      [this.devTools.enhancer()]
     );
   }
 }
-export interface IAppState {
-  exercises: IExercise[];
-}
-export const INITIAL_STATE = {
-  exercises: []
-};
 
 //https://github.com/gevgeny/angular2-highcharts/issues/163#issuecomment-383855550
 export function highchartsFactory() {

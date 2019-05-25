@@ -7,18 +7,19 @@ import { EventsService } from 'angular-event-service';
 
 import { PaginationInstance } from 'ngx-pagination';
 
-import { select, NgRedux } from '@Angular-redux/store';
+import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
-import { IAppState } from '../../app/app.module';
 import { IExerciseState } from '@/stores/exercise/exercise.reducer';
 import { ExerciseActions } from '@/stores/exercise/exercise.action';
+import { timeout } from 'rxjs/operators';
 
 @Component({
   selector: 'logbook-page',
   templateUrl: 'logbook.html'
 })
 export class LogbookPage {
-  @select(['exercises']) exercises$: Observable<IExerciseState>;
+  // public exercises: IExerciseState;
+  @select() readonly exercises$: Observable<IExerciseState>;
 
   public exercises: Array<Exercise> = [];
   public paginationSettings: PaginationInstance = {
@@ -26,7 +27,16 @@ export class LogbookPage {
     itemsPerPage: 25
   };
 
-  constructor(private storage: Storage, private eventService: EventsService) {}
+  constructor(
+    private storage: Storage,
+    private eventService: EventsService, // private store: NgRedux<IAppState>,
+    private exerciseActions: ExerciseActions // private store: NgRedux<IAppState>
+  ) {
+    this.exerciseActions.loadExercises();
+    setTimeout(() => {
+      this.exerciseActions.addExercise(new Exercise());
+    }, 2000);
+  }
 
   ionViewWillLoad() {
     this.getExercises();

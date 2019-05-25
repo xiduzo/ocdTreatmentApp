@@ -1,41 +1,26 @@
-// import { ActionReducer, Action } from '@ngrx/store';
-// import { ExerciseActions } from '@/stores/exercise/exercise.action';
-// import { IExercise } from './exercise.model';
-
-// export interface IExerciseState {
-//   exercises: IExercise[];
-// }
-
-// export const INITIAL_EXERCISE_STATE: IExerciseState = {
-//   exercises: []
-// };
-
-// export function ExerciseReducer(
-//   state: IExerciseState = INITIAL_EXERCISE_STATE,
-//   action
-// ) {
-//   switch (action.type) {
-//     case ExerciseActions.ADD_EXERCISE:
-//       return [...state.exercises, ...action.payload];
-//   }
-// }
-
 import { Reducer } from 'redux';
 import { IExercise } from './exercise.model';
+import { Exercise } from '@/lib/Exercise';
 
 export interface IExerciseState {
-  exercises: IExercise[];
+  list: IExercise[];
+  loading: boolean;
+  errors: any[];
 }
 
 export const ADD_EXERCISE: string = 'ADD_EXERCISE';
+export const LOAD_EXERCISES: string = 'LOAD_EXERCISES';
 
-export const exercisesReducer: Reducer<any> = (
+export const exercisesReducer: Reducer<IExerciseState> = (
   state: IExerciseState,
   action
 ) => {
+  console.log(action);
   switch (action.type) {
     case ADD_EXERCISE:
-      return { ...state.exercises, ...action.payload };
+      return { ...state, list: [...state.list, ...[action.payload]] };
+    case LOAD_EXERCISES:
+      return { ...state, list: [...state.list, ...[new Exercise()]] };
     default:
       return state;
   }

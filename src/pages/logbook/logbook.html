@@ -7,6 +7,12 @@
 </ion-header>
 
 <ion-content>
+  <section *ngFor="let exercise of (exercises$ | async).list">
+    {{ exercise.id }}
+  </section>
+  <!-- <section *ngIf="true">
+    loading: {{ (exercises$ | async) | json }}
+  </section> -->
   <section>
     <!-- <div *ngFor="let exercise of (exercises$ | async).exercises">
       testing
