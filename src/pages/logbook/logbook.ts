@@ -2,10 +2,6 @@ import { Component } from '@angular/core';
 
 import { Exercise } from '@/lib/Exercise';
 
-import { EventsService } from 'angular-event-service';
-
-import { PaginationInstance } from 'ngx-pagination';
-
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import { IExerciseState } from '@/stores/exercise/exercise.reducer';
