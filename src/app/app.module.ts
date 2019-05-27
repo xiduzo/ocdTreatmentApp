@@ -125,6 +125,7 @@ import reduxLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 // Actions
 import { ExerciseActions } from '@/stores/exercise/exercise.action';
+import { FearLadderActions } from '@/stores/fearLadder/fearLadder.action';
 
 // Reducers
 import { rootReducer, IAppState, INITIAL_STATE } from '@/stores/reducer';
@@ -240,6 +241,7 @@ export function createTranslateLoader(http: Http) {
     File,
     BadgeFactory,
     ExerciseActions,
+    FearLadderActions,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     { provide: HighchartsStatic, useFactory: highchartsFactory },
     {

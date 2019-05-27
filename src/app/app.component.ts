@@ -23,14 +23,14 @@ import { AmplifyService } from 'aws-amplify-angular';
 import moment from 'moment';
 
 import { ExerciseActions } from '@/stores/exercise/exercise.action';
+import { FearLadderActions } from '@/stores/fearLadder/fearLadder.action';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   // private rootPage:any = LoginPage; // Always start the app with the LoginPage to be sure
   private rootPage: any = LoginPage;
-
-  private signedIn: boolean;
   private user: any;
 
   constructor(
@@ -43,6 +43,7 @@ export class MyApp {
     private screenOrientation: ScreenOrientation,
     private amplifyService: AmplifyService,
     private exerciseActions: ExerciseActions,
+    private fearLadderActions: FearLadderActions
   ) {
     this.platform.ready().then(
       (): void => {
@@ -70,19 +71,16 @@ export class MyApp {
     this.amplifyService.authStateChange$.subscribe(authState => {
       switch (authState.state) {
         case 'signedIn':
-          console.log(authState, authState.state);
-          this.signedIn = true;
           this.user = authState.user;
           this.setTabsOrOnboardingPage();
           break;
         case 'signedOut':
-          this.signedIn = false;
           this.rootPage = LoginPage;
         case 'confirmSignUp':
           this.user = authState.user;
           break;
         case 'signIn':
-          console.log(this.user);
+          // console.log(this.user);
           break;
         default:
           // TODO:
@@ -95,6 +93,7 @@ export class MyApp {
 
   initReduxStates(): void {
     this.exerciseActions.loadExercises();
+    this.fearLadderActions.loadFearLadder();
   }
 
   setTabsOrOnboardingPage(): void {
