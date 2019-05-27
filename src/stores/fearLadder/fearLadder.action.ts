@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { dispatch } from '@angular-redux/store';
 import { Action } from '@ngrx/store';
 
+import { IStep } from '@/stores/exercise/exercise.model';
 import { IFearLadder } from '@/stores/fearLadder/fearLadder.model';
 import {
   LOAD_FEAR_LADDER,
@@ -31,10 +32,10 @@ export class FearLadderActions {
   constructor(private storage: Storage) {}
   @dispatch()
   receivedFearLadder = (
-    fearLadder: IFearLadder
+    steps: IStep[]
   ): FearLadderReceivedFearLadderAction => ({
     type: RECEIVED_FEAR_LADDER,
-    payload: fearLadder
+    payload: steps
   });
   @dispatch()
   requestFearLadder = (): FearLadderRequestFearLadderAction => ({
@@ -42,9 +43,8 @@ export class FearLadderActions {
   });
   loadFearLadder = (): any => {
     this.requestFearLadder();
-    this.storage.get('fearLadder').then((fearLadder: IFearLadder) => {
-      if (fearLadder) this.receivedFearLadder(fearLadder);
-      else this.receivedFearLadder([]);
+    this.storage.get('fearLadder').then((fearLadder: IStep[]) => {
+      this.receivedFearLadder(fearLadder ? fearLadder : []);
     });
   };
 }
