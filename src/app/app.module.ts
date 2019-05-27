@@ -138,6 +138,10 @@ import { EventsServiceModule } from 'angular-event-service';
 /*------------------------------
   Components
 ------------------------------*/
+import { SpiritMoodIndicator } from '@/components/moodIndicator/moodIndicator.component';
+/*------------------------------
+  Other
+------------------------------*/
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -175,7 +179,9 @@ export function createTranslateLoader(http: Http) {
     accumulateTimePipe,
     msToTimePipe,
     differencePipe,
-    relativeTimePipe
+    relativeTimePipe,
+    // Components
+    SpiritMoodIndicator
   ],
   imports: [
     NgPipesModule,

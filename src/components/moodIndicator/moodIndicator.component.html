@@ -1,0 +1,5 @@
+<div [class.content]="mood === 1" [class.ok]="mood === 2" [class.meh]="mood === 3"
+  [class.worried]="mood === 4" [class.panic]="mood === 5" [class.combined]="afterMood">
+  <span *ngIf="afterMood" class="after" [class.content]="afterMood === 1" [class.ok]="afterMood === 2" [class.meh]="afterMood === 3"
+  [class.worried]="afterMood === 4" [class.panic]="afterMood === 5"></span>
+</div>

@@ -1,0 +1,48 @@
+$o-mood-indicator-size: 20px;
+
+spirit-mood-indicator {
+  display: flex;
+  transform: rotate(45deg);
+  min-width: $o-mood-indicator-size;
+  min-height: $o-mood-indicator-size;
+
+  > div {
+    width: $o-mood-indicator-size;
+    height: $o-mood-indicator-size;
+    min-width: $o-mood-indicator-size;
+    min-height: $o-mood-indicator-size;
+    border-radius: 50%;
+    border: 1px dashed lighten(color($colors, dark, base), 50);
+    @each $moodIndicator, $mood in $moods {
+      &.#{$moodIndicator} {
+        border: none;
+        background: $mood;
+      }
+    }
+
+    &:not(.combined) {
+      width: $o-mood-indicator-size / 1.5;
+      height: $o-mood-indicator-size / 1.5;
+      min-width: $o-mood-indicator-size / 1.5;
+      min-height: $o-mood-indicator-size / 1.5;
+    }
+
+    .after {
+      display: block;
+      border-right: 1px dashed lighten(color($colors, dark, base), 50);
+      border-top: 1px dashed lighten(color($colors, dark, base), 50);
+      border-bottom: 1px dashed lighten(color($colors, dark, base), 50);
+      width: $o-mood-indicator-size / 2;
+      height: $o-mood-indicator-size;
+      margin-left: $o-mood-indicator-size/ 2;
+      border-bottom-right-radius: $o-mood-indicator-size * 2;
+      border-top-right-radius: $o-mood-indicator-size * 2;
+      @each $moodIndicator, $mood in $moods {
+        &.#{$moodIndicator} {
+          border: none;
+          background: $mood;
+        }
+      }
+    }
+  }
+}

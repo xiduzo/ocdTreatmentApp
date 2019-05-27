@@ -7,7 +7,8 @@ useDefaultConfig.dev.resolve.alias = {
   '@/pages': path.resolve('./src/pages/'),
   '@/modals': path.resolve('./src/modals/'),
   '@/directives': path.resolve('./src/directives/'),
-  '@/stores': path.resolve('./src/stores/')
+  '@/stores': path.resolve('./src/stores/'),
+  '@/components': path.resolve('./src/components/')
 };
 
 module.exports = function() {

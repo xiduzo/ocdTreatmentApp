@@ -17,7 +17,8 @@
       "@/pages/*": ["pages/*"],
       "@/modals/*": ["modals/*"],
       "@/directives/*": ["directives/*"],
-      "@/stores/*": ["stores/*"]
+      "@/stores/*": ["stores/*"],
+      "@/components/*": ["components/*"]
     }
   },
   "include": ["src/**/*.ts"],

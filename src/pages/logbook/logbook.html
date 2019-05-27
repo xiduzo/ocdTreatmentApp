@@ -17,16 +17,8 @@
     <section *ngIf="(exercises$ | async).list.length" no-lines class="c-logbook">
       <div *ngFor="let exercise of (exercises$ | async).list | orderByImpure '-start'" class="c-logbook__item">
         <div class="c-timeline">
-          <div class="o-moodindicator">
-            <span class="before" [class.content]="exercise.beforeMood.mappedMood === 1"
-              [class.ok]="exercise.beforeMood.mappedMood === 2" [class.meh]="exercise.beforeMood.mappedMood === 3"
-              [class.worried]="exercise.beforeMood.mappedMood === 4"
-              [class.panic]="exercise.beforeMood.mappedMood === 5"></span>
-            <span class="after" [class.content]="exercise.afterMood.mappedMood === 1"
-              [class.ok]="exercise.afterMood.mappedMood === 2" [class.meh]="exercise.afterMood.mappedMood === 3"
-              [class.worried]="exercise.afterMood.mappedMood === 4"
-              [class.panic]="exercise.afterMood.mappedMood === 5"></span>
-          </div>
+          <spirit-mood-indicator [mood]="exercise.beforeMood.mappedMood" [afterMood]="exercise.afterMood.mappedMood">
+          </spirit-mood-indicator>
           <div class="c-timeline__extender"></div>
         </div>
         <ion-card (click)="toggleExerciseContent(exercise)">
@@ -45,10 +37,7 @@
               <ion-item-group>
                 <ion-item-divider>
                   {{ 'BEFORE' | translate }}
-                  <span class="o-moodindicator__small" [class.content]="exercise.beforeMood.mappedMood === 1"
-                    [class.ok]="exercise.beforeMood.mappedMood === 2" [class.meh]="exercise.beforeMood.mappedMood === 3"
-                    [class.worried]="exercise.beforeMood.mappedMood === 4"
-                    [class.panic]="exercise.beforeMood.mappedMood === 5"></span>
+                  <spirit-mood-indicator [mood]="exercise.beforeMood.mappedMood"></spirit-mood-indicator>
                 </ion-item-divider>
                 <ion-item text-wrap *ngIf="exercise.beforeMood.explanation">{{ exercise.beforeMood.explanation }}
                 </ion-item>
@@ -56,10 +45,7 @@
               <ion-item-group>
                 <ion-item-divider>
                   {{ 'AFTER' | translate }}
-                  <span class="o-moodindicator__small" [class.content]="exercise.afterMood.mappedMood === 1"
-                    [class.ok]="exercise.afterMood.mappedMood === 2" [class.meh]="exercise.afterMood.mappedMood === 3"
-                    [class.worried]="exercise.afterMood.mappedMood === 4"
-                    [class.panic]="exercise.afterMood.mappedMood === 5"></span>
+                  <spirit-mood-indicator [mood]="exercise.afterMood.mappedMood"></spirit-mood-indicator>
                 </ion-item-divider>
                 <ion-item text-wrap *ngIf="exercise.afterMood.explanation">{{
                         exercise.afterMood.explanation
