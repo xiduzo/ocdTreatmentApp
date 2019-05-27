@@ -9,18 +9,24 @@ export interface IExerciseState {
 }
 
 export const ADD_EXERCISE: string = 'ADD_EXERCISE';
-export const LOAD_EXERCISES: string = 'LOAD_EXERCISES';
+export const REQUEST_EXERCISES: string = 'REQUEST_EXERCISES';
+export const RECEIVED_EXERCISES: string = 'RECEIVED_EXERCISES';
 
 export const exercisesReducer: Reducer<IExerciseState> = (
   state: IExerciseState,
   action
 ) => {
-  console.log(action);
   switch (action.type) {
     case ADD_EXERCISE:
-      return { ...state, list: [...state.list, ...[action.payload]] };
-    case LOAD_EXERCISES:
-      return { ...state, list: [...state.list, ...[new Exercise()]] };
+      return { ...state, list: [...state.list, action.payload] };
+    case REQUEST_EXERCISES:
+      return { ...state, loading: true };
+    case RECEIVED_EXERCISES:
+      return {
+        ...state,
+        list: [...state.list, ...action.payload],
+        loading: false
+      };
     default:
       return state;
   }

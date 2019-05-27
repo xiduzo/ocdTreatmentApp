@@ -7,93 +7,79 @@
 </ion-header>
 
 <ion-content>
-  <section *ngFor="let exercise of (exercises$ | async).list">
-    {{ exercise.id }}
+  <section *ngIf="(exercises$ | async).loading">
+    loading items
   </section>
-  <!-- <section *ngIf="true">
-    loading: {{ (exercises$ | async) | json }}
-  </section> -->
-  <section>
-    <!-- <div *ngFor="let exercise of (exercises$ | async).exercises">
-      testing
-    </div> -->
-    <!-- <section *ngIf="!exercises?.length" class="c-emptystate">
-    <img src="assets/imgs/monsters/all.png" alt="" />
-    <h1>
-      {{ 'OOPS' | translate }}
-    </h1>
-    <p>
-      {{ 'WARNING_NO_LOGGED_EXERCISES' | translate }}
-    </p>
-  </section>
-  <section no-lines class="c-logbook">
-    <div *ngFor="let exercise of exercises | orderByImpure '-'" class="c-logbook__item">
-      <div class="c-timeline">
-        <div class="o-moodindicator">
-          <span class="before" [class.content]="exercise.beforeMood.mappedMood === 1"
-            [class.ok]="exercise.beforeMood.mappedMood === 2" [class.meh]="exercise.beforeMood.mappedMood === 3"
-            [class.worried]="exercise.beforeMood.mappedMood === 4"
-            [class.panic]="exercise.beforeMood.mappedMood === 5"></span>
-          <span class="after" [class.content]="exercise.afterMood.mappedMood === 1"
-            [class.ok]="exercise.afterMood.mappedMood === 2" [class.meh]="exercise.afterMood.mappedMood === 3"
-            [class.worried]="exercise.afterMood.mappedMood === 4"
-            [class.panic]="exercise.afterMood.mappedMood === 5"></span>
+  <section *ngIf="!(exercises$ | async).loading">
+    <section *ngIf="!(exercises$ | async).list.length">
+      no items
+    </section>
+    <section *ngIf="(exercises$ | async).list.length" no-lines class="c-logbook">
+      <div *ngFor="let exercise of (exercises$ | async).list | orderByImpure '-start'" class="c-logbook__item">
+        <div class="c-timeline">
+          <div class="o-moodindicator">
+            <span class="before" [class.content]="exercise.beforeMood.mappedMood === 1"
+              [class.ok]="exercise.beforeMood.mappedMood === 2" [class.meh]="exercise.beforeMood.mappedMood === 3"
+              [class.worried]="exercise.beforeMood.mappedMood === 4"
+              [class.panic]="exercise.beforeMood.mappedMood === 5"></span>
+            <span class="after" [class.content]="exercise.afterMood.mappedMood === 1"
+              [class.ok]="exercise.afterMood.mappedMood === 2" [class.meh]="exercise.afterMood.mappedMood === 3"
+              [class.worried]="exercise.afterMood.mappedMood === 4"
+              [class.panic]="exercise.afterMood.mappedMood === 5"></span>
+          </div>
+          <div class="c-timeline__extender"></div>
         </div>
-        <div class="c-timeline__extender"></div>
-      </div>
-      <ion-card (click)="toggleExerciseContent(exercise)">
-        <ion-card-header>
-          {{ exercise.start | relativeTime | async }}
-        </ion-card-header>
-        <ion-card-content>
-          <h1 text-wrap>
-            {{ exercise.step.fear.situation }}
-          </h1>
-          <h2 text-wrap>
-            {{ 'WITHOUT' | translate }}: {{ exercise.step.fear.without }}
-          </h2>
-          <section class="c-item__detail" [class.active]="exercise.openedContent"
-            [class.inactive]="!exercise.openedContent">
-            <ion-item-group>
-              <ion-item-divider>
-                {{ 'BEFORE' | translate }}
-                <span class="o-moodindicator__small" [class.content]="exercise.beforeMood.mappedMood === 1"
-                  [class.ok]="exercise.beforeMood.mappedMood === 2" [class.meh]="exercise.beforeMood.mappedMood === 3"
-                  [class.worried]="exercise.beforeMood.mappedMood === 4"
-                  [class.panic]="exercise.beforeMood.mappedMood === 5"></span>
-              </ion-item-divider>
-              <ion-item text-wrap *ngIf="exercise.beforeMood.explanation">{{ exercise.beforeMood.explanation }}
-              </ion-item>
-            </ion-item-group>
-            <ion-item-group>
-              <ion-item-divider>
-                {{ 'AFTER' | translate }}
-                <span class="o-moodindicator__small" [class.content]="exercise.afterMood.mappedMood === 1"
-                  [class.ok]="exercise.afterMood.mappedMood === 2" [class.meh]="exercise.afterMood.mappedMood === 3"
-                  [class.worried]="exercise.afterMood.mappedMood === 4"
-                  [class.panic]="exercise.afterMood.mappedMood === 5"></span>
-              </ion-item-divider>
-              <ion-item text-wrap *ngIf="exercise.afterMood.explanation">{{
-                exercise.afterMood.explanation
-              }}</ion-item>
-            </ion-item-group>
-            <ion-item-group *ngFor="let trigger of exercise.step.triggers">
-              <div *ngIf="trigger.enabled">
+        <ion-card (click)="toggleExerciseContent(exercise)">
+          <ion-card-header>
+            {{ exercise.start | relativeTime | async }}
+          </ion-card-header>
+          <ion-card-content>
+            <h1 text-wrap>
+              {{ exercise.step.fear.situation }}
+            </h1>
+            <h2 text-wrap>
+              {{ 'WITHOUT' | translate }}: {{ exercise.step.fear.without }}
+            </h2>
+            <section class="c-item__detail" [class.active]="exercise.openedContent"
+              [class.inactive]="!exercise.openedContent">
+              <ion-item-group>
                 <ion-item-divider>
-                  {{ trigger.verbose | translate }}
-                  <span>{{ trigger.amount }} / 5</span>
+                  {{ 'BEFORE' | translate }}
+                  <span class="o-moodindicator__small" [class.content]="exercise.beforeMood.mappedMood === 1"
+                    [class.ok]="exercise.beforeMood.mappedMood === 2" [class.meh]="exercise.beforeMood.mappedMood === 3"
+                    [class.worried]="exercise.beforeMood.mappedMood === 4"
+                    [class.panic]="exercise.beforeMood.mappedMood === 5"></span>
                 </ion-item-divider>
-                <ion-item text-wrap *ngIf="trigger.explanation">{{
-                  trigger.explanation
-                }}</ion-item>
-              </div>
-            </ion-item-group>
-          </section>
-        </ion-card-content>
-      </ion-card>
-    </div> -->
-    <!-- <ion-infinite-scroll (ionInfinite)="loadMoreExercises($event)">
-      <ion-infinite-scroll-content loadingText="Loading more data..."></ion-infinite-scroll-content>
-    </ion-infinite-scroll> -->
+                <ion-item text-wrap *ngIf="exercise.beforeMood.explanation">{{ exercise.beforeMood.explanation }}
+                </ion-item>
+              </ion-item-group>
+              <ion-item-group>
+                <ion-item-divider>
+                  {{ 'AFTER' | translate }}
+                  <span class="o-moodindicator__small" [class.content]="exercise.afterMood.mappedMood === 1"
+                    [class.ok]="exercise.afterMood.mappedMood === 2" [class.meh]="exercise.afterMood.mappedMood === 3"
+                    [class.worried]="exercise.afterMood.mappedMood === 4"
+                    [class.panic]="exercise.afterMood.mappedMood === 5"></span>
+                </ion-item-divider>
+                <ion-item text-wrap *ngIf="exercise.afterMood.explanation">{{
+                        exercise.afterMood.explanation
+                      }}</ion-item>
+              </ion-item-group>
+              <ion-item-group *ngFor="let trigger of exercise.step.triggers">
+                <div *ngIf="trigger.enabled">
+                  <ion-item-divider>
+                    {{ trigger.verbose | translate }}
+                    <span>{{ trigger.amount }} / 5</span>
+                  </ion-item-divider>
+                  <ion-item text-wrap *ngIf="trigger.explanation">{{
+                          trigger.explanation
+                        }}</ion-item>
+                </div>
+              </ion-item-group>
+            </section>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </section>
   </section>
 </ion-content>

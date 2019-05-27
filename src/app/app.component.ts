@@ -22,6 +22,7 @@ import { AmplifyService } from 'aws-amplify-angular';
 
 import moment from 'moment';
 
+import { ExerciseActions } from '@/stores/exercise/exercise.action';
 @Component({
   templateUrl: 'app.html'
 })
@@ -40,7 +41,8 @@ export class MyApp {
     private translate: TranslateService,
     private globalization: Globalization,
     private screenOrientation: ScreenOrientation,
-    private amplifyService: AmplifyService
+    private amplifyService: AmplifyService,
+    private exerciseActions: ExerciseActions,
   ) {
     this.platform.ready().then(
       (): void => {
@@ -55,6 +57,9 @@ export class MyApp {
   ngOnInit(): any {
     // Set the language for the app
     this.setLanguage();
+
+    // Init the redux states
+    this.initReduxStates();
 
     // We only let the users use the app in portrait, bc its fucked up in landscape (sorry not sorry)
     if (this.platform.is('cordova')) {
@@ -86,6 +91,10 @@ export class MyApp {
           break;
       }
     });
+  }
+
+  initReduxStates(): void {
+    this.exerciseActions.loadExercises();
   }
 
   setTabsOrOnboardingPage(): void {

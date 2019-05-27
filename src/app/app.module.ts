@@ -121,8 +121,9 @@ import {
 } from '@angular-redux/store';
 declare var require;
 var reduxLogger = require('redux-logger');
-// Types
-import { IExerciseState } from '@/stores/exercise/exercise.reducer';
+import reduxLogger from 'redux-logger';
+import thunk from 'redux-thunk';
+// Actions
 import { ExerciseActions } from '@/stores/exercise/exercise.action';
 
 // Reducers
@@ -264,7 +265,7 @@ export class AppModule {
     this.ngRedux.configureStore(
       rootReducer,
       INITIAL_STATE,
-      [reduxLogger.createLogger()],
+      [reduxLogger.createLogger(), thunk],
       [this.devTools.enhancer()]
     );
   }
