@@ -19,7 +19,7 @@ export class FearLadderLoadFearLadderAction implements Action {
 
 export class FearLadderReceivedFearLadderAction implements Action {
   readonly type: string = RECEIVED_FEAR_LADDER;
-  constructor(public payload: IFearLadder) {}
+  constructor(public payload: IStep[]) {}
 }
 
 export class FearLadderRequestFearLadderAction implements Action {
