@@ -22,7 +22,8 @@ import { ExerciseDuringModal } from '@/modals/exercise/during/exercise.during';
 import { ExerciseTriggerModal } from '@/modals/exercise/trigger/exercise.trigger';
 import { ExerciseSuccessModal } from '@/modals/exercise/success/exercise.success';
 
-import { EventsService } from 'angular-event-service';
+import { IStep, IExercise, IMood } from '@/stores/exercise/exercise.model';
+import { ExerciseActions } from '@/stores/exercise/exercise.action';
 
 @Component({
   selector: 'exercise-mood-modal',
@@ -40,12 +41,11 @@ import { EventsService } from 'angular-event-service';
 })
 export class ExerciseMoodModal {
   public mood: Mood = new Mood({ mood: 0 });
-
   public moodClass: string = 'content';
   public moodNumber: number = 1;
 
-  private level: any;
-  private exercise: Exercise;
+  private level: IStep[];
+  private exercise: IExercise;
   private beforeMeasure: boolean = false;
 
   private transitionOptions: NativeTransitionOptions = {
@@ -56,9 +56,8 @@ export class ExerciseMoodModal {
     private params: NavParams,
     public viewCtrl: ViewController,
     private modalCtrl: ModalController,
-    private storage: Storage,
     private nativePageTransitions: NativePageTransitions,
-    private eventService: EventsService
+    private exerciseActions: ExerciseActions
   ) {
     this.nativePageTransitions.slide(this.transitionOptions);
   }
@@ -94,55 +93,33 @@ export class ExerciseMoodModal {
   }
 
   startExercise() {
-    this.exercise.beforeMood = this.mood;
+    this.exerciseActions.editExercise(this.exercise, { beforeMood: this.mood });
 
-    this.storage.get('exercises').then(exercises => {
-      // The last exercise is always the exercise we are working with
-      // So lets overwrite the last entry
-      exercises[exercises.length - 1] = this.exercise;
-      this.storage.set('exercises', exercises);
-
-      this.eventService.broadcast('exercise_update', this.exercise);
-
-      const duringModal = this.modalCtrl.create(ExerciseDuringModal, {
-        level: this.level,
-        exercise: this.exercise
-      });
-
-      duringModal.present();
-      this.viewCtrl.dismiss();
+    const duringModal = this.modalCtrl.create(ExerciseDuringModal, {
+      level: this.level,
+      exercise: this.exercise
     });
+
+    duringModal.present();
+    this.viewCtrl.dismiss();
   }
 
   finishExercise() {
-    this.exercise.afterMood = this.mood;
+    this.exerciseActions.editExercise(this.exercise, { afterMood: this.mood });
 
-    this.storage.get('exercises').then(exercises => {
-      const hasATriggerEnabled = this.exercise.step.triggers.find(trigger => {
-        return trigger.enabled;
-      });
-      // Go to different modal based on if a trigger is enabled
-      const modal = this.modalCtrl.create(
-        hasATriggerEnabled ? ExerciseTriggerModal : ExerciseSuccessModal,
-        {
-          level: this.level,
-          exercise: this.exercise
-        }
-      );
+    const hasATriggerEnabled = this.exercise.step.triggers.find(
+      trigger => trigger.enabled
+    );
+    const modal = this.modalCtrl.create(
+      hasATriggerEnabled ? ExerciseTriggerModal : ExerciseSuccessModal,
+      {
+        level: this.level,
+        exercise: this.exercise
+      }
+    );
 
-      // The exercise has ended when no trigger is enabled
-      if (!hasATriggerEnabled) this.exercise.end = new Date();
-
-      // The last exercise is always the exercise we are working with
-      // So lets overwrite the last entry
-      exercises[exercises.length - 1] = this.exercise;
-      this.storage.set('exercises', exercises);
-
-      this.eventService.broadcast('exercise_update', this.exercise);
-
-      modal.present();
-      this.viewCtrl.dismiss();
-    });
+    modal.present();
+    this.viewCtrl.dismiss();
   }
 
   stopExercise() {
