@@ -7,41 +7,22 @@
   <ion-toolbar color="secondary" padding>
     <div class="c-level__monster">
       <div class="monster__icon">
-        <div
-          class="monster"
-          [style.backgroundImage]="'url(' + level?.monster + ')'"
-        ></div>
+        <div class="monster"
+          [style.backgroundImage]="'url(assets/imgs/monsters/monster-0' + level[0].fearRating + '.svg)'"></div>
       </div>
-      <round-progress
-        [current]="level?.completion"
-        [max]="100"
-        [radius]="60"
-        [stroke]="5"
-        [duration]="1"
-      >
+      <round-progress [current]="getCompletion()" [max]="100" [radius]="60" [stroke]="5" [duration]="1">
       </round-progress>
     </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <button
-      *ngFor="let step of level?.steps"
-      ion-item
-      (click)="selectStep(step)"
-      text-wrap
-      [disabled]="step.fear.completion >= fearCompletionPositiveLimit"
-    >
+  <ion-list *ngIf="level.length">
+    <button *ngFor="let step of level" ion-item (click)="selectStep(step)" text-wrap
+      [disabled]="step.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT">
       <ion-avatar item-start text-center>
-        <ion-icon
-          name="md-square-outline"
-          *ngIf="step.fear.completion < fearCompletionPositiveLimit"
-        ></ion-icon>
-        <ion-icon
-          name="checkbox"
-          *ngIf="step.fear.completion >= fearCompletionPositiveLimit"
-        ></ion-icon>
+        <ion-icon name="md-square-outline" *ngIf="step.fear.completion < FEAR_COMPLETION_POSITIVE_LIMIT"></ion-icon>
+        <ion-icon name="checkbox" *ngIf="step.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT"></ion-icon>
       </ion-avatar>
       <h2>
         {{ step.fear.situation }}
