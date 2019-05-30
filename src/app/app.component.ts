@@ -22,15 +22,23 @@ import { AmplifyService } from 'aws-amplify-angular';
 
 import moment from 'moment';
 
-import { ExerciseActions } from '@/stores/exercise/exercise.action';
+import { select } from '@angular-redux/store';
+import { Observable } from 'rxjs/Observable';
+
+import { IFearLadderState } from '@/stores/fearLadder/fearLadder.reducer';
 import { FearLadderActions } from '@/stores/fearLadder/fearLadder.action';
+
+import { IExerciseState } from '@/stores/exercise/exercise.reducer';
+import { ExerciseActions } from '@/stores/exercise/exercise.action';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  // private rootPage:any = LoginPage; // Always start the app with the LoginPage to be sure
-  private rootPage: any = LoginPage;
+  @select() readonly fearLadder$: Observable<IFearLadderState>;
+  @select() readonly exercises$: Observable<IExerciseState>;
+
+  private rootPage: any = LoginPage; // Always start the app with the LoginPage to be sure
   private user: any;
 
   constructor(
@@ -61,6 +69,10 @@ export class MyApp {
 
     // Init the redux states
     this.initReduxStates();
+
+    // Observe changes for local storage
+    // TODO fix this in the actions (thunk)
+    this.observeReduxStates();
 
     // We only let the users use the app in portrait, bc its fucked up in landscape (sorry not sorry)
     if (this.platform.is('cordova')) {
@@ -94,6 +106,17 @@ export class MyApp {
   initReduxStates(): void {
     this.exerciseActions.loadExercises();
     this.fearLadderActions.loadFearLadder();
+  }
+
+  observeReduxStates(): void {
+    // Subscribe on fear ladder events
+    this.fearLadder$.subscribe((fearLadderState: IFearLadderState) => {
+      this.storage.set('fearLadder', fearLadderState.steps);
+    });
+    // Subscribe on exercise events
+    this.exercises$.subscribe((exerciseState: IExerciseState) => {
+      this.storage.set('exercises', exerciseState.list);
+    });
   }
 
   setTabsOrOnboardingPage(): void {
