@@ -23,8 +23,7 @@
               <div class="monster" [style.backgroundImage]="'url(assets/imgs/monsters/monster-0' + level[0] + '.svg)'">
               </div>
             </div>
-            <round-progress [current]="getCompletion(level[1])" [max]="100" [radius]="60" [stroke]="5" [rounded]
-              [duration]="1">
+            <round-progress [current]="getCompletion(level[1])" [max]="100" [radius]="60" [stroke]="5" [duration]="1">
             </round-progress>
             <strong class="level__number">
               {{ 'LEVEL' | translate }} {{ level[0] }}
