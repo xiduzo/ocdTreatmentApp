@@ -14,7 +14,7 @@ page-exercise {
       .level {
         &:not(:last-of-type) {
           &:after {
-            content: '';
+            content: "";
             height: calc(12px * 5 - 6px);
             margin: 0 auto 8px;
             display: block;
@@ -33,7 +33,7 @@ page-exercise {
             }
 
             &:before {
-              content: ' ';
+              content: " ";
               height: 120px;
               background-image: url("../assets/imgs/misc/cage.svg");
               width: 120px;
@@ -51,7 +51,7 @@ page-exercise {
             ion-label {
               margin: 0;
 
-              section {
+              .c-level__monster {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -59,7 +59,7 @@ page-exercise {
                 .level__number {
                   text-transform: uppercase;
                   font-size: 14px;
-                  padding: 8px 0;
+                  padding: 16px 0;
                   color: lighten(color($colors, dark, base), 25);
                 }
               }

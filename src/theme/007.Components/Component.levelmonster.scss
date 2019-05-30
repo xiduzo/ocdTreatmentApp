@@ -24,8 +24,9 @@
   .monster__icon {
     width: 100px;
     height: 100px;
-    background: #FCD28A;
+    background: #fcd28a;
     overflow: hidden;
+    margin-top: 10px;
 
     .monster {
       margin-top: 20px;
@@ -35,5 +36,6 @@
   round-progress {
     position: absolute;
     z-index: 10;
+    top: 0;
   }
 }

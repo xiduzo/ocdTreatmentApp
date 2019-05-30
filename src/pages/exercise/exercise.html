@@ -1,58 +1,37 @@
 <ion-content>
-  <!-- <amplify-auth-confirm-sign-in></amplify-auth-confirm-sign-in> -->
-  <!-- <amplify-auth-confirm-sign-up></amplify-auth-confirm-sign-up> -->
-  <!-- <amplify-auth-forgot-password></amplify-auth-forgot-password> -->
-  <!-- <amplify-auth-greetings></amplify-auth-greetings> -->
-  <!-- <amplify-auth-require-new-password></amplify-auth-require-new-password> -->
-  <!-- <amplify-auth-sign-in></amplify-auth-sign-in> -->
-  <!-- <amplify-auth-sign-up></amplify-auth-sign-up> -->
-  <section *ngIf="!levels?.length" class="c-emptystate">
-    <img src="assets/imgs/monsters/all.png" alt="" />
-    <h1>
-      {{ 'OOPS' | translate }}
-    </h1>
-    <p>
-      {{ 'WARNING_BEFORE_YOU_CAN_START' | translate }}
-    </p>
-    <button
-      color="secondary"
-      ion-button
-      large
-      block
-      (click)="addFearsAndCompulsions()"
-    >
-      {{ 'MY_FEAR_LADDER' | translate }}
-    </button>
+  <section *ngIf="(fearLadder$ | async).loading">
+    loading
   </section>
-  <ion-list no-lines class="exercise__levels" *ngIf="levels?.length">
-    <div *ngFor="let level of levels" class="level">
-      <ion-item [class.done]="level.done">
-        <section>
-          <div class="c-level__monster" (click)="goToLevel(level)">
+  <section *ngIf="!(fearLadder$ | async).loading">
+    <section *ngIf="!(fearLadder$ | async).steps.length">
+      <img src="assets/imgs/monsters/all.png" alt="" />
+      <h1>
+        {{ 'OOPS' | translate }}
+      </h1>
+      <p>
+        {{ 'WARNING_BEFORE_YOU_CAN_START' | translate }}
+      </p>
+      <button color="secondary" ion-button large block (click)="addFearsAndCompulsions()">
+        {{ 'MY_FEAR_LADDER' | translate }}
+      </button>
+    </section>
+    <ion-list *ngIf="(fearLadder$ | async).steps.length" no-lines class="exercise__levels">
+      <div class="level" *ngFor="let level of (fearLadder$ | async).steps | groupByImpure: 'fearRating' | pairs">
+        <ion-item>
+          <div class="c-level__monster" (click)="goToLevel(level[1])">
             <div class="monster__icon">
-              <div
-                class="monster"
-                [style.backgroundImage]="'url(' + level.monster + ')'"
-              ></div>
+              <div class="monster" [style.backgroundImage]="'url(assets/imgs/monsters/monster-0' + level[0] + '.svg)'">
+              </div>
             </div>
-            <!-- <div class="level__icon" *ngIf="level.done">
-              <div class="level" [style.backgroundImage]="'url(assets/imgs/levels/badge__level-0' + level.number + '.png)'"></div>
-            </div> -->
-            <round-progress
-              [current]="level.completion"
-              [max]="100"
-              [radius]="60"
-              [stroke]="5"
-              [rounded]
-              [animationDelay]="100"
-            >
+            <round-progress [current]="getCompletion(level[1])" [max]="100" [radius]="60" [stroke]="5" [rounded]
+              [duration]="1">
             </round-progress>
+            <strong class="level__number">
+              {{ 'LEVEL' | translate }} {{ level[0] }}
+            </strong>
           </div>
-          <strong class="level__number">
-            {{ 'LEVEL' | translate }} {{ level.number }}
-          </strong>
-        </section>
-      </ion-item>
-    </div>
-  </ion-list>
+        </ion-item>
+      </div>
+    </ion-list>
+  </section>
 </ion-content>
