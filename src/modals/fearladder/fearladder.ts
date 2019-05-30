@@ -5,58 +5,45 @@ import {
   ModalController,
   ToastController
 } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 
 import { FearladderStepModal } from '@/modals/fearladder/step/fearladder.step';
 
 import { Step } from '@/lib/Exercise';
 
-import { EventsService } from 'angular-event-service';
+import { select } from '@angular-redux/store';
+import { Observable } from 'rxjs/Observable';
+import { IFearLadderState } from '@/stores/fearLadder/fearLadder.reducer';
+import { FearLadderActions } from '@/stores/fearLadder/fearLadder.action';
+import { IStep } from '@/stores/exercise/exercise.model';
 
 @Component({
   selector: 'fearladder-modal',
   templateUrl: 'fearladder.html'
 })
 export class FearladderModal {
+  @select() readonly fearLadder$: Observable<IFearLadderState>;
   public fearLadder: Array<Step> = [];
 
   constructor(
     private params: NavParams,
     private viewCtrl: ViewController,
-    private storage: Storage,
     private modalCtrl: ModalController,
     private toastCtrl: ToastController,
-    private eventService: EventsService
+    private fearLadderActions: FearLadderActions
   ) {
-    this.storage.get('fearLadder').then(fearLadder => {
-      if (!fearLadder) return;
-
-      this.fearLadder = fearLadder;
-    });
-
+    // When user visits fearladder from home screen for the first time
     if (this.params.get('addNewFear')) this.addStep();
   }
 
   close() {
     this.viewCtrl.dismiss();
   }
-
-  updateLocalFearLadder() {
-    this.storage
-      .set('fearLadder', this.fearLadder)
-      .then(() =>
-        this.eventService.broadcast('changed_fearladder', this.fearLadder)
-      );
-  }
-
   addStep() {
     let modal = this.modalCtrl.create(FearladderStepModal);
-
     modal.onDidDismiss(data => {
       if (!data) return; // Modal has been closed
 
-      this.fearLadder.push(data.step);
-      this.updateLocalFearLadder();
+      this.fearLadderActions.addFearLadderStep(data.step);
 
       let toast = this.toastCtrl.create({
         message: 'Fear added successfully',
@@ -70,7 +57,7 @@ export class FearladderModal {
     modal.present();
   }
 
-  editStep(step) {
+  editStep(step: IStep) {
     let modal = this.modalCtrl.create(FearladderStepModal, { step: step });
 
     modal.onDidDismiss(data => {
@@ -84,13 +71,11 @@ export class FearladderModal {
 
       if (data.remove) {
         toastParams.message = 'Fear removed successfully';
-        this.fearLadder.splice(this.fearLadder.indexOf(step), 1);
+        this.fearLadderActions.removeFearLadderStep(step);
       } else {
         toastParams.message = 'Fear edited successfully';
-        this.fearLadder[this.fearLadder.indexOf(step)] = data.step;
+        this.fearLadderActions.editFearLadderStep(step, { ...data.step });
       }
-
-      this.updateLocalFearLadder();
 
       const toast = this.toastCtrl.create(toastParams);
       toast.present();

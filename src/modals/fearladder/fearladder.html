@@ -12,7 +12,7 @@
 </ion-header>
 
 <ion-content>
-  <section *ngIf="!fearLadder?.length" class="c-emptystate">
+  <!-- <section *ngIf="!fearLadder$.loading" class="c-emptystate">
     <img src="assets/imgs/monsters/all.png" alt="" />
     <h1>
       {{ 'OOPS' | translate }}
@@ -20,20 +20,28 @@
     <p>
       {{ 'WARNING_NO_FEARS' | translate }}
     </p>
+  </section> -->
+  <section *ngIf="(fearLadder$ | async).loading">
+    loading
   </section>
-  <ion-item-group
-    *ngFor="let level of fearLadder | groupByImpure: 'fearRating' | pairs"
-  >
-    <ion-item-divider color="light">
-      {{ 'LEVEL' | translate }} {{ level[0] }}
-    </ion-item-divider>
-    <button ion-item *ngFor="let step of level[1]" (click)="editStep(step)">
-      <h2 text-wrap>
-        {{ step.fear?.situation }}
-      </h2>
-      <p text-wrap>{{ 'WITHOUT' | translate }}: {{ step.fear?.without }}</p>
-    </button>
-  </ion-item-group>
+  <section *ngIf="!(fearLadder$ | async).loading">
+    <section *ngIf="!(fearLadder$ | async).steps">
+      no steps
+    </section>
+    <section *ngIf="(fearLadder$ | async).steps">
+      <ion-item-group *ngFor="let level of (fearLadder$ | async).steps | groupByImpure: 'fearRating' | pairs">
+        <ion-item-divider color="light">
+          {{ 'LEVEL' | translate }} {{ level[0] }}
+        </ion-item-divider>
+        <button ion-item *ngFor="let step of level[1]" (click)="editStep(step)">
+          <h2 text-wrap>
+            {{ step.fear?.situation }}
+          </h2>
+          <p text-wrap>{{ 'WITHOUT' | translate }}: {{ step.fear?.without }}</p>
+        </button>
+      </ion-item-group>
+    </section>
+  </section>
 </ion-content>
 
 <ion-footer>
