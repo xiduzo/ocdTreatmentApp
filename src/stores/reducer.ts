@@ -10,9 +10,12 @@ import {
   IFearLadderState
 } from '@/stores/fearLadder/fearLadder.reducer';
 
+import { badgeReducer, IBadgeState } from '@/stores/badge/badge.reducer';
+
 export interface IAppState {
   exercises: IExerciseState;
   fearLadder: IFearLadderState;
+  badges: IBadgeState;
 }
 export const INITIAL_STATE: IAppState = {
   exercises: {
@@ -24,10 +27,16 @@ export const INITIAL_STATE: IAppState = {
     steps: [],
     loading: true,
     errors: []
+  },
+  badges: {
+    list: [],
+    loading: true,
+    errors: []
   }
 };
 
 export const rootReducer: Reducer<IAppState> = (state: IAppState, action) => ({
   exercises: exercisesReducer(state.exercises, action),
-  fearLadder: fearLadderReducer(state.fearLadder, action)
+  fearLadder: fearLadderReducer(state.fearLadder, action),
+  badges: badgeReducer(state.badges, action)
 });

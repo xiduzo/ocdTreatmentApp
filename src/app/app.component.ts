@@ -31,15 +31,18 @@ import { FearLadderActions } from '@/stores/fearLadder/fearLadder.action';
 import { IExerciseState } from '@/stores/exercise/exercise.reducer';
 import { ExerciseActions } from '@/stores/exercise/exercise.action';
 
+import { IBadgeState } from '@/stores/badge/badge.reducer';
+import { BadgeActions } from '@/stores/badge/badge.action';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @select() readonly fearLadder$: Observable<IFearLadderState>;
   @select() readonly exercises$: Observable<IExerciseState>;
+  @select() readonly badges$: Observable<IBadgeState>;
 
   private rootPage: any = LoginPage; // Always start the app with the LoginPage to be sure
-  private user: any;
 
   constructor(
     private platform: Platform,
@@ -51,7 +54,8 @@ export class MyApp {
     private screenOrientation: ScreenOrientation,
     private amplifyService: AmplifyService,
     private exerciseActions: ExerciseActions,
-    private fearLadderActions: FearLadderActions
+    private fearLadderActions: FearLadderActions,
+    private badgeActions: BadgeActions
   ) {
     this.platform.ready().then(
       (): void => {
@@ -83,16 +87,13 @@ export class MyApp {
     this.amplifyService.authStateChange$.subscribe(authState => {
       switch (authState.state) {
         case 'signedIn':
-          this.user = authState.user;
           this.setTabsOrOnboardingPage();
           break;
         case 'signedOut':
           this.rootPage = LoginPage;
         case 'confirmSignUp':
-          this.user = authState.user;
           break;
         case 'signIn':
-          // console.log(this.user);
           break;
         default:
           // TODO:
@@ -106,6 +107,7 @@ export class MyApp {
   initReduxStates(): void {
     this.exerciseActions.loadExercises();
     this.fearLadderActions.loadFearLadder();
+    this.badgeActions.loadBadges();
   }
 
   observeReduxStates(): void {
@@ -116,6 +118,10 @@ export class MyApp {
     // Subscribe on exercise events
     this.exercises$.subscribe((exerciseState: IExerciseState) => {
       this.storage.set('exercises', exerciseState.list);
+    });
+    // Subscribe on badge events
+    this.badges$.subscribe((badgeState: IBadgeState) => {
+      this.storage.set('badges', badgeState.list);
     });
   }
 
@@ -167,7 +173,7 @@ export class MyApp {
 
   getSuitableLanguage(language: string): string {
     language = language.substring(0, 2).toLowerCase();
-    return availableLanguages.some(x => x.code == language)
+    return availableLanguages.some(lang => lang.code == language)
       ? language
       : defaultLanguage;
   }

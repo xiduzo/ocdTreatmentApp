@@ -119,13 +119,19 @@ import {
   NgRedux,
   DevToolsExtension
 } from '@angular-redux/store';
+
+// Logger
 declare var require;
 var reduxLogger = require('redux-logger');
 import reduxLogger from 'redux-logger';
+
+// Thunk
 import thunk from 'redux-thunk';
+
 // Actions
 import { ExerciseActions } from '@/stores/exercise/exercise.action';
 import { FearLadderActions } from '@/stores/fearLadder/fearLadder.action';
+import { BadgeActions } from '@/stores/badge/badge.action';
 
 // Reducers
 import { rootReducer, IAppState, INITIAL_STATE } from '@/stores/reducer';
@@ -248,6 +254,7 @@ export function createTranslateLoader(http: Http) {
     BadgeFactory,
     ExerciseActions,
     FearLadderActions,
+    BadgeActions,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     { provide: HighchartsStatic, useFactory: highchartsFactory },
     {
