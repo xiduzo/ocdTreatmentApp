@@ -4,16 +4,17 @@ import { NavParams, ViewController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
 import { Step, Fear } from '@/lib/Exercise';
+import { IStep } from '@/stores/exercise/exercise.model';
 
 @Component({
-  selector: 'fearladder-step-modal',
-  templateUrl: 'fearladder.step.html'
+  selector: 'fearLadder-step-modal',
+  templateUrl: 'fearLadder.step.html'
 })
-export class FearladderStepModal {
-  public step: Step = new Step({ fearRating: 1 });
+export class FearLadderStepModal {
+  public step: IStep = new Step({ fearRating: 1 });
 
   public buttonText: string = 'ADD';
-  public headerText: string = 'FEARLADDER_STEP_HEADER_ADD';
+  public headerText: string = 'FEAR_LADDER_STEP_HEADER_ADD';
 
   public editStep: boolean = false;
 
@@ -31,7 +32,7 @@ export class FearladderStepModal {
 
       // Change the button texts
       this.buttonText = 'SAVE';
-      this.headerText = 'FEARLADDER_STEP_HEADER_EDIT';
+      this.headerText = 'FEAR_LADDER_STEP_HEADER_EDIT';
     } else {
       this.step.fear = new Fear();
     }

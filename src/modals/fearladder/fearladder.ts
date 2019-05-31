@@ -6,9 +6,7 @@ import {
   ToastController
 } from 'ionic-angular';
 
-import { FearladderStepModal } from '@/modals/fearladder/step/fearladder.step';
-
-import { Step } from '@/lib/Exercise';
+import { FearLadderStepModal } from '@/modals/fearLadder/step/fearLadder.step';
 
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
@@ -17,12 +15,11 @@ import { FearLadderActions } from '@/stores/fearLadder/fearLadder.action';
 import { IStep } from '@/stores/exercise/exercise.model';
 
 @Component({
-  selector: 'fearladder-modal',
-  templateUrl: 'fearladder.html'
+  selector: 'fearLadder-modal',
+  templateUrl: 'fearLadder.html'
 })
-export class FearladderModal {
+export class FearLadderModal {
   @select() readonly fearLadder$: Observable<IFearLadderState>;
-  public fearLadder: Array<Step> = [];
 
   constructor(
     private params: NavParams,
@@ -31,7 +28,7 @@ export class FearladderModal {
     private toastCtrl: ToastController,
     private fearLadderActions: FearLadderActions
   ) {
-    // When user visits fearladder from home screen for the first time
+    // When user visits fearLadder from home screen for the first time
     if (this.params.get('addNewFear')) this.addStep();
   }
 
@@ -39,7 +36,7 @@ export class FearladderModal {
     this.viewCtrl.dismiss();
   }
   addStep() {
-    let modal = this.modalCtrl.create(FearladderStepModal);
+    let modal = this.modalCtrl.create(FearLadderStepModal);
     modal.onDidDismiss(data => {
       if (!data) return; // Modal has been closed
 
@@ -58,7 +55,9 @@ export class FearladderModal {
   }
 
   editStep(step: IStep) {
-    let modal = this.modalCtrl.create(FearladderStepModal, { step: step });
+    const modal = this.modalCtrl.create(FearLadderStepModal, {
+      step: step
+    });
 
     modal.onDidDismiss(data => {
       if (!data) return; // Modal has been closed

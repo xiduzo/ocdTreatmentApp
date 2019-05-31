@@ -64,9 +64,9 @@ import { TabsPage } from '@/pages/tabs/tabs';
 ------------------------------*/
 //Settings
 import { SettingsModal } from '@/modals/settings/settings';
-// Fearladder
-import { FearladderModal } from '@/modals/fearladder/fearladder';
-import { FearladderStepModal } from '@/modals/fearladder/step/fearladder.step';
+// Fear ladder
+import { FearLadderModal } from '@/modals/fearLadder/fearLadder';
+import { FearLadderStepModal } from '@/modals/fearLadder/step/fearLadder.step';
 // Exercise
 import { ExerciseMoodModal } from '@/modals/exercise/mood/exercise.mood';
 import { ExerciseDuringModal } from '@/modals/exercise/during/exercise.during';
@@ -173,8 +173,8 @@ export function createTranslateLoader(http: Http) {
     ExerciseTriggerModal,
     ExerciseSuccessModal,
     ExerciseListModal,
-    FearladderModal,
-    FearladderStepModal,
+    FearLadderModal,
+    FearLadderStepModal,
     // Pipes
     accumulateTimePipe,
     msToTimePipe,
@@ -225,10 +225,10 @@ export function createTranslateLoader(http: Http) {
     ExercisePage,
     // Modals
     BadgeModal,
-    FearladderStepModal,
+    FearLadderStepModal,
     BadgeEarnedModal,
     SettingsModal,
-    FearladderModal,
+    FearLadderModal,
     ExerciseMoodModal,
     ExerciseDuringModal,
     ExerciseTriggerModal,

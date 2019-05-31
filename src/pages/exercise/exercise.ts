@@ -5,7 +5,7 @@ import { ExerciseListModal } from '@/modals/exercise/list/exercise.list';
 
 import { ToastController } from 'ionic-angular';
 
-import { FearladderModal } from '@/modals/fearladder/fearladder';
+import { FearLadderModal } from '@/modals/fearLadder/fearLadder';
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
@@ -37,7 +37,7 @@ export class ExercisePage {
   }
 
   addFearsAndCompulsions() {
-    let modal = this.modalCtrl.create(FearladderModal, {
+    let modal = this.modalCtrl.create(FearLadderModal, {
       addNewFear: true
     });
 
