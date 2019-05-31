@@ -14,27 +14,27 @@ import {
 
 import { Storage } from '@ionic/storage';
 
-export class ReceivedFearLadderAction implements Action {
+class ReceivedFearLadderAction implements Action {
   readonly type: string = RECEIVED_FEAR_LADDER;
   constructor(public payload: IStep[]) {}
 }
 
-export class RequestFearLadderAction implements Action {
+class RequestFearLadderAction implements Action {
   readonly type: string = REQUEST_FEAR_LADDER;
   constructor() {}
 }
 
-export class AddFearLadderStepAction implements Action {
+class AddFearLadderStepAction implements Action {
   readonly type: string = ADD_FEAR_LADDER_STEP;
   constructor(public payload: IStep) {}
 }
 
-export class RemoveFearLadderStepAction implements Action {
+class RemoveFearLadderStepAction implements Action {
   readonly type: string = REMOVE_FEAR_LADDER_STEP;
   constructor(public payload: IStep) {}
 }
 
-export class EditFearLadderStepAction implements Action {
+class EditFearLadderStepAction implements Action {
   readonly type: string = EDIT_FEAR_LADDER_STEP;
   constructor(public payload: IStep) {}
 }
