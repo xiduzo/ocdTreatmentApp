@@ -2,6 +2,8 @@ export interface IMood {
   mood: number;
   explanation: string;
   mappedMood: number;
+
+  getMappedMood: () => number;
 }
 
 export interface ITrigger {
@@ -38,4 +40,8 @@ export interface IExercise {
   start: Date;
   end: Date;
   erp: IErp;
+
+  getErpTimeDifference: () => number;
+  getTotalTimeDifference: () => number;
+  getPointsForExercise: () => number;
 }
