@@ -2,12 +2,19 @@ import { UUID } from 'angular2-uuid';
 import moment from 'moment';
 
 import { mapRange } from '@/lib/helpers';
+import {
+  IMood,
+  IStep,
+  IErp,
+  ITrigger,
+  IFear
+} from '@/stores/exercise/exercise.model';
 
 export class Step {
   public id: string;
   public fearRating: number;
-  public triggers: Array<Trigger>;
-  public fear: Fear;
+  public triggers: ITrigger[];
+  public fear: IFear;
 
   constructor({
     id = UUID.UUID(),
@@ -58,12 +65,12 @@ export class Fear {
 
 export class Exercise {
   public id: string;
-  public afterMood: Mood;
-  public beforeMood: Mood;
-  public step: Step;
+  public afterMood: IMood;
+  public beforeMood: IMood;
+  public step: IStep;
   public start: Date;
   public end: Date;
-  public erp: Erp;
+  public erp: IErp;
 
   constructor({
     id = UUID.UUID(),
