@@ -110,7 +110,7 @@ export class SettingsModal {
               amount: Math.round(Math.random() * 5)
             }),
             new Trigger({
-              verbose: 'INTENSITY_COMPULSIVE_BEHAVIOUR',
+              verbose: 'INTENSITY_COMPULSIVE_BEHAVIOR',
               enabled: Math.random() >= 0.4,
               amount: Math.round(Math.random() * 5)
             })

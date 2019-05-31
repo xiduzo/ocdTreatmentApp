@@ -14,7 +14,7 @@ export class Step {
     fearRating = 1,
     triggers = [
       new Trigger({ verbose: 'INTENSITY_OBSESSIVE_THOUGHTS' }),
-      new Trigger({ verbose: 'INTENSITY_COMPULSIVE_BEHAVIOUR' })
+      new Trigger({ verbose: 'INTENSITY_COMPULSIVE_BEHAVIOR' })
     ],
     fear = new Fear()
   } = {}) {
