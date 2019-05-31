@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
-import { Storage } from '@ionic/storage';
 
-import { NavParams, ViewController, ModalController } from 'ionic-angular';
+import {
+  NavParams,
+  ViewController,
+  ModalController,
+  Modal
+} from 'ionic-angular';
 import {
   NativePageTransitions,
   NativeTransitionOptions
@@ -9,9 +13,10 @@ import {
 
 import { ExerciseMoodModal } from '@/modals/exercise/mood/exercise.mood';
 
-import { Exercise } from '@/lib/Exercise';
+import { Exercise, Erp } from '@/lib/Exercise';
 
-import { EventsService } from 'angular-event-service';
+import { ExerciseActions } from '@/stores/exercise/exercise.action';
+import { IErp, IExercise } from '@/stores/exercise/exercise.model';
 
 @Component({
   selector: 'page-exercise-during',
@@ -21,6 +26,8 @@ export class ExerciseDuringModal {
   private level: any;
   private exercise: Exercise;
 
+  private erp: IErp = new Erp();
+
   private transitionOptions: NativeTransitionOptions = {
     direction: 'left'
   };
@@ -29,9 +36,8 @@ export class ExerciseDuringModal {
     private params: NavParams,
     public viewCtrl: ViewController,
     private modalCtrl: ModalController,
-    private storage: Storage,
     private nativePageTransitions: NativePageTransitions,
-    private eventService: EventsService
+    private exerciseActions: ExerciseActions
   ) {
     this.nativePageTransitions.slide(this.transitionOptions);
   }
@@ -42,36 +48,28 @@ export class ExerciseDuringModal {
   }
 
   ionViewWillEnter() {
-    this.exercise.erp.start = new Date();
+    this.erp.start = new Date();
+    this.editExercise();
+  }
 
-    this.storage.get('exercises').then(exercises => {
-      exercises[exercises.length - 1] = this.exercise;
-      this.storage.set('exercises', exercises);
+  editExercise(): IExercise {
+    this.exerciseActions.editExercise(this.exercise, { erp: this.erp });
 
-      this.eventService.broadcast('exercise_update', this.exercise);
-    });
+    return { ...this.exercise, ...{ erp: this.erp } };
   }
 
   finishExercise(gaveInToCompulsion: boolean) {
-    // Check if the user gave in to his compulsion
-    this.exercise.erp.gaveInToCompulsion = gaveInToCompulsion;
+    this.erp.end = new Date();
+    this.erp.gaveInToCompulsion = gaveInToCompulsion;
+    const exercise: IExercise = this.editExercise();
 
-    this.exercise.erp.end = new Date();
-
-    this.storage.get('exercises').then(exercises => {
-      exercises[exercises.length - 1] = this.exercise;
-      this.storage.set('exercises', exercises);
-
-      this.eventService.broadcast('exercise_update', this.exercise);
-
-      let moodModal = this.modalCtrl.create(ExerciseMoodModal, {
-        level: this.level,
-        exercise: this.exercise,
-        before: false
-      });
-
-      moodModal.present();
-      this.viewCtrl.dismiss();
+    const modal: Modal = this.modalCtrl.create(ExerciseMoodModal, {
+      level: this.level,
+      exercise: exercise,
+      before: false
     });
+
+    modal.present();
+    this.viewCtrl.dismiss();
   }
 }

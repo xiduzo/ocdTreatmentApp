@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
-import { Storage } from '@ionic/storage';
 
-import { NavParams, ViewController, ModalController } from 'ionic-angular';
+import {
+  NavParams,
+  ViewController,
+  ModalController,
+  Modal
+} from 'ionic-angular';
 import {
   NativePageTransitions,
   NativeTransitionOptions
@@ -10,31 +14,28 @@ import {
 import { ExerciseSuccessModal } from '@/modals/exercise/success/exercise.success';
 
 import { Trigger, Exercise } from '@/lib/Exercise';
-
-import { EventsService } from 'angular-event-service';
+import { IStep, IExercise, ITrigger } from '@/stores/exercise/exercise.model';
+import { ExerciseActions } from '@/stores/exercise/exercise.action';
 
 @Component({
   selector: 'page-exercise-trigger',
   templateUrl: 'exercise.trigger.html'
 })
 export class ExerciseTriggerModal {
-  public level: any;
-  public exercise: Exercise;
-  public triggers: Array<Trigger>;
-
+  private level: IStep[];
+  private exercise: IExercise;
+  public triggers: ITrigger[];
   public range: any = { min: 0, max: 5 };
-
   private transitionOptions: NativeTransitionOptions = {
     direction: 'left'
   };
 
   constructor(
     private params: NavParams,
-    public viewCtrl: ViewController,
+    private viewCtrl: ViewController,
     private modalCtrl: ModalController,
-    private storage: Storage,
     private nativePageTransitions: NativePageTransitions,
-    private eventService: EventsService
+    private exerciseActions: ExerciseActions
   ) {
     this.nativePageTransitions.slide(this.transitionOptions);
   }
@@ -44,27 +45,26 @@ export class ExerciseTriggerModal {
     this.exercise = this.params.get('exercise');
 
     // Only use triggers the user selected
-    this.triggers = this.exercise.step.triggers.filter(trigger => {
-      return trigger.enabled;
-    });
+    this.triggers = this.exercise.step.triggers.filter(
+      trigger => trigger.enabled
+    );
+  }
+
+  editExercise(): IExercise {
+    const change = { end: new Date() };
+    this.exerciseActions.editExercise(this.exercise, change);
+
+    return { ...this.exercise, ...change };
   }
 
   done() {
-    this.exercise.end = new Date();
+    const exercise = this.editExercise();
 
-    this.storage.get('exercises').then(exercises => {
-      exercises[exercises.length - 1] = this.exercise;
-      this.storage.set('exercises', exercises);
-
-      this.eventService.broadcast('exercise_update', this.exercise);
-
-      let successModal = this.modalCtrl.create(ExerciseSuccessModal, {
-        level: this.level,
-        exercise: this.exercise
-      });
-
-      successModal.present();
-      this.viewCtrl.dismiss();
+    const modal: Modal = this.modalCtrl.create(ExerciseSuccessModal, {
+      exercise: exercise
     });
+
+    modal.present();
+    this.viewCtrl.dismiss();
   }
 }

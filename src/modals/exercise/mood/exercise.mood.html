@@ -16,7 +16,7 @@
       </div>
     </strong>
 
-    <section class="c-mood__circle" *ngIf="!focusedOnMoodExplenation">
+    <section class="c-mood__circle">
       <section [className]="moodClass">
         <div class="c-mood__face">
           <section class="face__attributes">
@@ -43,52 +43,27 @@
     </section>
 
     <form>
-      <ion-item class="transparent" *ngIf="!focusedOnMoodExplenation">
-        <ion-range
-          class="show-pin big-slider"
-          color="light"
-          [(ngModel)]="mood.mood"
-          name="moodNumber"
-          (ngModelChange)="setMood()"
-          min="0"
-          max="500"
-        >
+      <ion-item class="transparent">
+        <ion-range class="show-pin big-slider" color="light" [(ngModel)]="mood.mood" name="moodNumber"
+          (ngModelChange)="setMood()" min="0" max="500">
         </ion-range>
       </ion-item>
       <ion-item>
         <ion-label floating>
-          {{ 'MOOD_EXPLENATION' | translate }}
+          {{ 'MOOD_EXPLANATION' | translate }}
         </ion-label>
-        <ion-textarea
-          [(ngModel)]="mood.explanation"
-          name="moodExplanation"
-          (ionFocus)="!(focusedOnMoodExplenation = true)"
-          (ionBlur)="!(focusedOnMoodExplenation = false)"
-        ></ion-textarea>
+        <ion-textarea [(ngModel)]="mood.explanation" name="moodExplanation">
+        </ion-textarea>
       </ion-item>
     </form>
   </div>
 </ion-content>
 
 <ion-footer>
-  <button
-    no-margin
-    ion-button
-    large
-    block
-    (click)="startExercise()"
-    *ngIf="beforeMeasure"
-  >
+  <button no-margin ion-button large block (click)="startExercise()" *ngIf="beforeMeasure">
     <ion-icon name="checkmark"></ion-icon>
   </button>
-  <button
-    no-margin
-    ion-button
-    large
-    block
-    (click)="finishExercise()"
-    *ngIf="!beforeMeasure"
-  >
+  <button no-margin ion-button large block (click)="finishExercise()" *ngIf="!beforeMeasure">
     <ion-icon name="checkmark"></ion-icon>
   </button>
 </ion-footer>

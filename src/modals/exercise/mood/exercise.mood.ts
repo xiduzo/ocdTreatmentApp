@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Storage } from '@ionic/storage';
 
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
 import {
@@ -8,7 +7,7 @@ import {
 } from '@ionic-native/native-page-transitions';
 
 import { mapRange } from '@/lib/helpers';
-import { Mood, Exercise } from '@/lib/Exercise';
+import { Mood } from '@/lib/Exercise';
 
 import {
   trigger,
@@ -40,13 +39,13 @@ import { ExerciseActions } from '@/stores/exercise/exercise.action';
   ]
 })
 export class ExerciseMoodModal {
-  public mood: Mood = new Mood({ mood: 0 });
+  public mood: IMood = new Mood({ mood: 0 });
   public moodClass: string = 'content';
   public moodNumber: number = 1;
 
   private level: IStep[];
   private exercise: IExercise;
-  private beforeMeasure: boolean = false;
+  public beforeMeasure: boolean = false;
 
   private transitionOptions: NativeTransitionOptions = {
     direction: 'left'
@@ -92,12 +91,20 @@ export class ExerciseMoodModal {
     }
   }
 
+  editExercise(exercise: IExercise, change: any): IExercise {
+    this.exerciseActions.editExercise(exercise, change);
+
+    return { ...exercise, ...change };
+  }
+
   startExercise() {
-    this.exerciseActions.editExercise(this.exercise, { beforeMood: this.mood });
+    const exercise: IExercise = this.editExercise(this.exercise, {
+      beforeMood: this.mood
+    });
 
     const duringModal = this.modalCtrl.create(ExerciseDuringModal, {
       level: this.level,
-      exercise: this.exercise
+      exercise: exercise
     });
 
     duringModal.present();
@@ -105,7 +112,9 @@ export class ExerciseMoodModal {
   }
 
   finishExercise() {
-    this.exerciseActions.editExercise(this.exercise, { afterMood: this.mood });
+    const exercise: IExercise = this.editExercise(this.exercise, {
+      afterMood: this.mood
+    });
 
     const hasATriggerEnabled = this.exercise.step.triggers.find(
       trigger => trigger.enabled
@@ -114,7 +123,7 @@ export class ExerciseMoodModal {
       hasATriggerEnabled ? ExerciseTriggerModal : ExerciseSuccessModal,
       {
         level: this.level,
-        exercise: this.exercise
+        exercise: exercise
       }
     );
 

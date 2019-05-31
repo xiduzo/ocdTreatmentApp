@@ -18,7 +18,10 @@ export const exercisesReducer: Reducer<IExerciseState> = (
 ) => {
   switch (action.type) {
     case ADD_EXERCISE:
-      return { ...state, list: [...state.list, action.payload] };
+      return {
+        ...state,
+        list: [...state.list, action.payload]
+      };
     case REQUEST_EXERCISES:
       return { ...state, loading: true };
     case RECEIVED_EXERCISES:

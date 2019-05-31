@@ -4,7 +4,6 @@ import {
   NativePageTransitions,
   NativeTransitionOptions
 } from '@ionic-native/native-page-transitions';
-import { Storage } from '@ionic/storage';
 
 import { confettiSettings } from '@/lib/Confetti';
 
@@ -12,23 +11,22 @@ declare var ConfettiGenerator: any;
 import 'confetti-js';
 
 import { Exercise } from '@/lib/Exercise';
-import { Level } from '@/lib/Level';
-
-import { EventsService } from 'angular-event-service';
 
 import { Badge, BadgeFactory } from '@/lib/badge/Badge';
 import { BadgeEarnedModal } from '@/modals/badgeEarned/badgeEarned';
 
 import { EXERCISE_BADGE } from '@/lib/badge/templates/exercise';
 import { FIRST_TIME_BADGE } from '@/lib/badge/templates/firstTime';
+import { IStep, IExercise } from '@/stores/exercise/exercise.model';
+import { ExerciseActions } from '@/stores/exercise/exercise.action';
 
 @Component({
   selector: 'page-exercise-success',
   templateUrl: 'exercise.success.html'
 })
 export class ExerciseSuccessModal {
-  public level: Level;
-  public exercise: Exercise;
+  private level: IStep[];
+  private exercise: IExercise = new Exercise();
   public exerciseBadge: Badge = this.badgeFctry.createBadge(EXERCISE_BADGE);
   public firstTimeBadge: Badge = this.badgeFctry.createBadge(FIRST_TIME_BADGE);
 
@@ -46,15 +44,13 @@ export class ExerciseSuccessModal {
     public viewCtrl: ViewController,
     private modalCtrl: ModalController,
     private nativePageTransitions: NativePageTransitions,
-    private storage: Storage,
-    private eventService: EventsService,
-    private badgeFctry: BadgeFactory
+    private badgeFctry: BadgeFactory,
+    private exerciseActions: ExerciseActions
   ) {
     this.nativePageTransitions.slide(this.transitionOptions);
   }
 
   ionViewWillEnter() {
-    this.level = this.params.get('level');
     this.exercise = this.params.get('exercise');
     this.updateStepCompletion();
   }
@@ -75,42 +71,36 @@ export class ExerciseSuccessModal {
     }
   }
 
-  updateStepCompletion() {
-    this.storage.get('fearLadder').then(fearLadder => {
-      try {
-        const step = fearLadder.find(step => step.id === this.exercise.step.id);
-        if (step) {
-          this.exercise.step.fear.completion += this.exercise.getPointsForExercise();
-          step.fear.completion = this.exercise.step.fear.completion;
-        }
-      } catch (err) {
-        console.log(`err: ${err}`);
-      } finally {
-        this.updateExerciseBadge();
-        this.eventService.broadcast('completed_exercise', this.exercise);
-        this.storage.set('fearLadder', fearLadder);
-      }
-    });
+  editExercise(change: IExercise): IExercise {
+    this.exerciseActions.editExercise(this.exercise, change);
+
+    return { ...this.exercise, ...change };
   }
 
-  updateExerciseBadge() {
-    this.exerciseBadge.addProgress(50).then(finishedStage => {
-      // TODO: move this responsibility to the badge class
-      if (finishedStage) {
-        this.showBadge.modal = BadgeEarnedModal;
-        this.showBadge.badge = this.exerciseBadge;
-      }
-      this.eventService.broadcast('badge_update', this.exerciseBadge);
-    });
+  updateStepCompletion() {
+    const exercise: IExercise = new Exercise(this.exercise);
+    exercise.step.fear.completion += exercise.getPointsForExercise();
+
+    this.editExercise(exercise);
   }
+
+  // updateExerciseBadges() {
+  //   // this.exerciseBadge.addProgress(50).then(finishedStage => {
+  //   //   // TODO: move this responsibility to the badge class
+  //   //   if (finishedStage) {
+  //   //     this.showBadge.modal = BadgeEarnedModal;
+  //   //     this.showBadge.badge = this.exerciseBadge;
+  //   //   }
+  //   // });
+  // }
 
   close() {
-    if (this.showBadge.modal && this.showBadge.badge) {
-      const modal = this.modalCtrl.create(this.showBadge.modal, {
-        badge: this.showBadge.badge
-      });
-      modal.present();
-    }
+    // if (this.showBadge.modal && this.showBadge.badge) {
+    //   const modal = this.modalCtrl.create(this.showBadge.modal, {
+    //     badge: this.showBadge.badge
+    //   });
+    //   modal.present();
+    // }
     this.viewCtrl.dismiss();
   }
 }
