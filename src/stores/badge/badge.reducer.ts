@@ -23,5 +23,7 @@ export const badgeReducer: Reducer<IBadgeState> = (
         list: [...state.list, ...action.payload],
         loading: false
       };
+    default:
+      return state;
   }
 };
