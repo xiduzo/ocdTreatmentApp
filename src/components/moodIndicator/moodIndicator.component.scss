@@ -13,10 +13,12 @@ spirit-mood-indicator {
     min-height: $o-mood-indicator-size;
     border-radius: 50%;
     border: 1px dashed lighten(color($colors, dark, base), 50);
+    background: white;
     @each $moodIndicator, $mood in $moods {
       &.#{$moodIndicator} {
         border: none;
         background: $mood;
+        border: 1px dashed $mood;
       }
     }
 
@@ -34,9 +36,12 @@ spirit-mood-indicator {
       border-bottom: 1px dashed lighten(color($colors, dark, base), 50);
       width: $o-mood-indicator-size / 2;
       height: $o-mood-indicator-size;
-      margin-left: $o-mood-indicator-size/ 2;
+      margin-left: $o-mood-indicator-size/ 2 - 1px; // -[border_size]px
       border-bottom-right-radius: $o-mood-indicator-size * 2;
       border-top-right-radius: $o-mood-indicator-size * 2;
+      background: white;
+      position: absolute;
+      top: 0;
       @each $moodIndicator, $mood in $moods {
         &.#{$moodIndicator} {
           border: none;
