@@ -51,7 +51,16 @@ export class ExerciseTriggerModal {
   }
 
   editExercise(): IExercise {
-    const change = { end: new Date() };
+    const change = {
+      end: new Date(),
+      step: {
+        ...this.exercise.step,
+        triggers: {
+          ...this.exercise.step.triggers,
+          ...this.triggers
+        }
+      }
+    };
     this.exerciseActions.editExercise(this.exercise, change);
 
     return { ...this.exercise, ...change };
