@@ -1,10 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 import moment from 'moment';
+import { IExercise } from '@/stores/exercise/exercise.model';
 
 @Pipe({ name: 'accumulateTime' })
 export class accumulateTimePipe implements PipeTransform {
-  transform(exercises: Array<any>): number {
+  transform(exercises: IExercise[]): number {
     if (!exercises) return 0;
 
     let time: number = 0;
