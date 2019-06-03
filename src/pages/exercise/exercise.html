@@ -16,17 +16,18 @@
       </button>
     </section>
     <ion-list *ngIf="(fearLadder$ | async).steps.length" no-lines class="exercise__levels">
-      <div class="level" *ngFor="let level of (fearLadder$ | async).steps | groupByImpure: 'fearRating' | pairs">
+      <div class="level" *ngFor="let level of levels">
         <ion-item>
-          <div class="c-level__monster" (click)="goToLevel(level[1])">
+          <div class="c-level__monster" (click)="goToLevel(level)">
             <div class="monster__icon">
-              <div class="monster" [style.backgroundImage]="'url(assets/imgs/monsters/monster-0' + level[0] + '.svg)'">
+              <div class="monster"
+                [style.backgroundImage]="'url(assets/imgs/monsters/monster-0' + level.stepNumber + '.svg)'">
               </div>
             </div>
-            <round-progress [current]="getCompletion(level[1])" [max]="100" [radius]="60" [stroke]="5" [duration]="1">
+            <round-progress [current]="level.completion" [max]="100" [radius]="60" [stroke]="5" [duration]="1">
             </round-progress>
             <strong class="level__number">
-              {{ 'LEVEL' | translate }} {{ level[0] }}
+              {{ 'LEVEL' | translate }} {{ level.stepNumber }}
             </strong>
           </div>
         </ion-item>

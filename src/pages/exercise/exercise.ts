@@ -17,6 +17,7 @@ import { IFearLadderState } from '@/stores/fearLadder/fearLadder.reducer';
 import { IStep } from '@/stores/exercise/exercise.model';
 
 import { getLevelCompletion } from '@/lib/Level';
+import { IFearLadder } from '@/stores/fearLadder/fearLadder.model';
 
 @Component({
   selector: 'page-exercise',
@@ -25,15 +26,31 @@ import { getLevelCompletion } from '@/lib/Level';
 export class ExercisePage {
   @select() readonly fearLadder$: Observable<IFearLadderState>;
 
+  public levels: IFearLadder[] = [];
+
   constructor(
     public appCtrl: App,
     public toastCtrl: ToastController,
     private modalCtrl: ModalController,
     private translate: TranslateService
-  ) {}
-
-  getCompletion(level: IStep[]): number {
-    return getLevelCompletion(level);
+  ) {
+    this.fearLadder$.subscribe((fearLadderState: IFearLadderState) => {
+      this.levels = fearLadderState.steps
+        .reduce((a, b) => {
+          (a[b['fearRating']] = a[b['fearRating']] || []).push(b);
+          return a;
+        }, [])
+        .filter(arr => arr.length)
+        .map(
+          (steps: IStep[]): IFearLadder => {
+            return {
+              stepNumber: steps[0].fearRating,
+              steps: steps,
+              completion: getLevelCompletion(steps)
+            };
+          }
+        );
+    });
   }
 
   addFearsAndCompulsions() {
@@ -42,8 +59,6 @@ export class ExercisePage {
     });
 
     modal.onDidDismiss(data => {
-      // this.setLevelsMonsterAndCompletion();
-
       this.translate
         .get('MESSAGE_CHANGE_FEAR_LADDER')
         .subscribe((text: string) => {
@@ -61,9 +76,9 @@ export class ExercisePage {
     modal.present();
   }
 
-  goToLevel(level: IStep[]): void {
+  goToLevel(level: IFearLadder): void {
     // Don't need to go there if there are no exercises
-    if (!level.length) return;
+    if (!level.steps.length) return;
 
     this.appCtrl.getRootNav().push(ExerciseListModal, {
       level: level
