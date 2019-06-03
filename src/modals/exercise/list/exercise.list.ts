@@ -12,6 +12,7 @@ import { IStep, IExercise } from '@/stores/exercise/exercise.model';
 
 import { getLevelCompletion } from '@/lib/Level';
 import { ExerciseActions } from '@/stores/exercise/exercise.action';
+import { IFearLadder } from '@/stores/fearLadder/fearLadder.model';
 
 @Component({
   selector: 'exercise-list-page',
@@ -19,7 +20,7 @@ import { ExerciseActions } from '@/stores/exercise/exercise.action';
 })
 export class ExerciseListModal {
   public FEAR_COMPLETION_POSITIVE_LIMIT: number = FEAR_COMPLETION_POSITIVE_LIMIT;
-  public level: IStep[];
+  public level: IFearLadder;
 
   constructor(
     private params: NavParams,
@@ -28,15 +29,10 @@ export class ExerciseListModal {
     private exerciseActions: ExerciseActions
   ) {
     this.level = this.params.get('level');
-    console.log(this.level);
   }
 
   close() {
     this.appCtrl.getRootNav().pop();
-  }
-
-  getCompletion(): number {
-    return getLevelCompletion(this.level);
   }
 
   selectStep(step: IStep) {
