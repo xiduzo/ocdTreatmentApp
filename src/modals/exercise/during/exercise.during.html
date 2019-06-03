@@ -1,7 +1,9 @@
 <ion-content>
   <div ion-fixed>
     <section class="monster">
-      <div class="monster__illustration" [style.backgroundImage]="'url(' + level?.monster_sized + ')'"></div>
+      <div class="monster__illustration"
+        [style.backgroundImage]="'url(assets/imgs/monsters/monster-0' + exercise?.step.fearRating + '_sized.svg)'">
+      </div>
       <div class="monster__rings"></div>
     </section>
     <section class="exercise">
