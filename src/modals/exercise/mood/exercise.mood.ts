@@ -97,7 +97,7 @@ export class ExerciseMoodModal {
     return { ...exercise, ...change };
   }
 
-  startExercise() {
+  startExercise(): void {
     const exercise: IExercise = this.editExercise(this.exercise, {
       beforeMood: this.mood
     });
@@ -111,7 +111,7 @@ export class ExerciseMoodModal {
     this.viewCtrl.dismiss();
   }
 
-  finishExercise() {
+  finishExercise(): void {
     const exercise: IExercise = this.editExercise(this.exercise, {
       afterMood: this.mood
     });
@@ -119,6 +119,7 @@ export class ExerciseMoodModal {
     const hasATriggerEnabled = this.exercise.step.triggers.find(
       trigger => trigger.enabled
     );
+
     const modal = this.modalCtrl.create(
       hasATriggerEnabled ? ExerciseTriggerModal : ExerciseSuccessModal,
       {
