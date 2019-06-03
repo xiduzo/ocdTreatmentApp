@@ -1,8 +1,8 @@
 import { FEAR_COMPLETION_POSITIVE_LIMIT } from './constants';
 import { IStep } from '@/stores/exercise/exercise.model';
-export function getLevelCompletion(level: IStep[]): number {
+export function getLevelCompletion(steps: IStep[]): number {
   return (
-    level
+    steps
       // Map to array of completion percentages
       .map(
         (step: IStep): number =>
@@ -14,6 +14,6 @@ export function getLevelCompletion(level: IStep[]): number {
         (previousValue: number, currentValue: number): number =>
           currentValue + previousValue,
         0 // <-- Starting count of reduce
-      ) / level.length // Divide by amount of steps we have
+      ) / steps.length // Divide by amount of steps we have
   );
 }
