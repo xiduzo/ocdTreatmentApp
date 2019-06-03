@@ -3,7 +3,6 @@ import { dispatch } from '@angular-redux/store';
 import { Action } from '@ngrx/store';
 
 import { IStep } from '@/stores/exercise/exercise.model';
-import { IFearLadder } from '@/stores/fearLadder/fearLadder.model';
 import {
   RECEIVED_FEAR_LADDER,
   REQUEST_FEAR_LADDER,

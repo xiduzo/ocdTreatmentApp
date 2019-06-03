@@ -40,7 +40,6 @@ export const fearLadderReducer: Reducer<IFearLadderState> = (
           return step.id == action.payload.id ? action.payload : step;
         })
       };
-      return state;
     default:
       return state;
   }
