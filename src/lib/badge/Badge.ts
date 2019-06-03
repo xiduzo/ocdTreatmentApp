@@ -7,12 +7,11 @@ import { BadgeModal } from '@/modals/badge/badge';
 
 export class Badge {
   public name: string;
-  private verbose: string;
-  private description: string;
+  public verbose: string;
+  public description: string;
   public stages: Array<Stage>;
   private storage: Storage;
   private modalCtrl: ModalController;
-
   public currentStage: Stage = new Stage();
   private totalPointsGained: number = 0;
   private pointsProgressToNextStage: number = 0;
@@ -41,7 +40,9 @@ export class Badge {
   }
 
   showModal(): void {
-    const badgeModal = this.modalCtrl.create(BadgeModal, { badge: this });
+    const badgeModal = this.modalCtrl.create(BadgeModal, {
+      badge: this
+    });
     badgeModal.present();
   }
 
