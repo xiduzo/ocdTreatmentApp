@@ -16,7 +16,7 @@ import { Observable } from 'rxjs/Observable';
 import { IFearLadderState } from '@/stores/fearLadder/fearLadder.reducer';
 import { IStep } from '@/stores/exercise/exercise.model';
 
-import { getLevelCompletion } from '@/lib/Level';
+import { generateLevelsFromFearLadderSteps } from '@/lib/Level';
 import { IFearLadder } from '@/stores/fearLadder/fearLadder.model';
 
 @Component({
@@ -35,21 +35,9 @@ export class ExercisePage {
     private translate: TranslateService
   ) {
     this.fearLadder$.subscribe((fearLadderState: IFearLadderState) => {
-      this.levels = fearLadderState.steps
-        .reduce((a, b) => {
-          (a[b['fearRating']] = a[b['fearRating']] || []).push(b);
-          return a;
-        }, [])
-        .filter(arr => arr.length)
-        .map(
-          (steps: IStep[]): IFearLadder => {
-            return {
-              stepNumber: steps[0].fearRating,
-              steps: steps,
-              completion: getLevelCompletion(steps)
-            };
-          }
-        );
+      this.levels = generateLevelsFromFearLadderSteps(
+        fearLadderState.steps || []
+      );
     });
   }
 
