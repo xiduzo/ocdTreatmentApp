@@ -55,7 +55,7 @@ export class ExerciseDuringModal {
   editExercise(): IExercise {
     this.exerciseActions.editExercise(this.exercise, { erp: this.erp });
 
-    return { ...this.exercise, ...{ erp: this.erp } };
+    return new Exercise({ ...this.exercise, ...{ erp: this.erp } });
   }
 
   finishExercise(gaveInToCompulsion: boolean) {
