@@ -63,6 +63,13 @@ export class MyApp {
         // Here you can do any higher level native things you might need.
         this.statusBar.styleDefault();
         this.splashScreen.hide();
+
+        // Init the redux states
+        this.initReduxStates();
+
+        // Observe changes for local storage
+        // TODO fix this in the actions (thunk)
+        this.observeReduxStates();
       }
     );
   }
@@ -70,13 +77,6 @@ export class MyApp {
   ngOnInit(): any {
     // Set the language for the app
     this.setLanguage();
-
-    // Init the redux states
-    this.initReduxStates();
-
-    // Observe changes for local storage
-    // TODO fix this in the actions (thunk)
-    this.observeReduxStates();
 
     // We only let the users use the app in portrait, bc its fucked up in landscape (sorry not sorry)
     if (this.platform.is('cordova')) {
