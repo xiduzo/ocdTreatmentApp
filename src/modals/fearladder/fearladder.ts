@@ -13,6 +13,9 @@ import { Observable } from 'rxjs/Observable';
 import { IFearLadderState } from '@/stores/fearLadder/fearLadder.reducer';
 import { FearLadderActions } from '@/stores/fearLadder/fearLadder.action';
 import { IStep } from '@/stores/exercise/exercise.model';
+import { IFearLadder } from '@/stores/fearLadder/fearLadder.model';
+
+import { generateLevelsFromFearLadderSteps } from '@/lib/Level';
 
 @Component({
   selector: 'fearLadder-modal',
@@ -20,6 +23,8 @@ import { IStep } from '@/stores/exercise/exercise.model';
 })
 export class FearLadderModal {
   @select() readonly fearLadder$: Observable<IFearLadderState>;
+
+  public levels: IFearLadder[] = [];
 
   constructor(
     private params: NavParams,
@@ -30,6 +35,12 @@ export class FearLadderModal {
   ) {
     // When user visits fearLadder from home screen for the first time
     if (this.params.get('addNewFear')) this.addStep();
+
+    this.fearLadder$.subscribe((fearLadderState: IFearLadderState) => {
+      this.levels = generateLevelsFromFearLadderSteps(
+        fearLadderState.steps || []
+      );
+    });
   }
 
   close() {

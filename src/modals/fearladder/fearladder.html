@@ -25,15 +25,15 @@
     loading
   </section>
   <section *ngIf="!(fearLadder$ | async).loading">
-    <section *ngIf="!(fearLadder$ | async).steps">
+    <section *ngIf="!(fearLadder$ | async).steps.length">
       no steps
     </section>
-    <section *ngIf="(fearLadder$ | async).steps">
-      <ion-item-group *ngFor="let level of (fearLadder$ | async).steps | groupByImpure: 'fearRating' | pairs">
+    <section *ngIf="(fearLadder$ | async).steps.length">
+      <ion-item-group *ngFor="let level of levels">
         <ion-item-divider color="light">
-          {{ 'LEVEL' | translate }} {{ level[0] }}
+          {{ 'LEVEL' | translate }} {{ level.stepNumber }}
         </ion-item-divider>
-        <button ion-item *ngFor="let step of level[1]" (click)="editStep(step)">
+        <button ion-item *ngFor="let step of level.steps" (click)="editStep(step)">
           <h2 text-wrap>
             {{ step.fear?.situation }}
           </h2>
