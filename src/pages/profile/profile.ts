@@ -44,7 +44,7 @@ export class ProfilePage {
     private eventService: EventsService
   ) {
     this.badgeTemplates.forEach(badge => {
-      this.badges.push(this.badgeFctry.createBadge(badge));
+      // this.badges.push(this.badgeFctry.createBadge(badge));
     });
   }
 

@@ -28,8 +28,8 @@ import { FearLadderActions } from '@/stores/fearLadder/fearLadder.action';
 export class ExerciseSuccessModal {
   private level: IStep[];
   private exercise: IExercise = new Exercise();
-  public exerciseBadge: Badge = this.badgeFctry.createBadge(EXERCISE_BADGE);
-  public firstTimeBadge: Badge = this.badgeFctry.createBadge(FIRST_TIME_BADGE);
+  // public exerciseBadge: Badge = this.badgeFctry.createBadge(EXERCISE_BADGE);
+  // public firstTimeBadge: Badge = this.badgeFctry.createBadge(FIRST_TIME_BADGE);
 
   private transitionOptions: NativeTransitionOptions = {
     direction: 'left'
