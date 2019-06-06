@@ -8,7 +8,7 @@ import regression from 'regression';
 import { mapRange } from '@/lib/helpers';
 
 import { select } from '@angular-redux/store';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { IExerciseState } from '@/stores/exercise/exercise.reducer';
 import { IExercise } from '@/stores/exercise/exercise.model';
 

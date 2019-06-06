@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Exercise } from '@/lib/Exercise';
 
 import { select } from '@angular-redux/store';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { IExerciseState } from '@/stores/exercise/exercise.reducer';
 
 @Component({

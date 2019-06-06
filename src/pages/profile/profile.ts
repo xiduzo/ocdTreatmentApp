@@ -21,7 +21,7 @@ import { EventsService } from 'angular-event-service';
   providers: [BadgeFactory]
 })
 export class ProfilePage {
-  @ViewChild('personalGoal') personalGoalTextArea: TextInput;
+  @ViewChild('personalGoal', { static: true }) personalGoalTextArea: TextInput;
 
   public personalGoalText: string;
   public editGoal: boolean = false;

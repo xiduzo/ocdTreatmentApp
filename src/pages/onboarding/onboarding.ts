@@ -9,7 +9,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'onboarding.html'
 })
 export class OnboardingPage {
-  @ViewChild(Slides) slides: Slides;
+  @ViewChild(Slides, { static: true }) slides: Slides;
 
   public buttonText: string = 'ONBOARDING_NEXT';
   public isEnd: boolean = false;

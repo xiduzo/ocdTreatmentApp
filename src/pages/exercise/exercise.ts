@@ -12,7 +12,7 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import { FEAR_COMPLETION_POSITIVE_LIMIT } from '@/lib/constants';
 
 import { select } from '@angular-redux/store';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { IFearLadderState } from '@/stores/fearLadder/fearLadder.reducer';
 import { IStep } from '@/stores/exercise/exercise.model';
 

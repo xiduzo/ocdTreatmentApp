@@ -14,7 +14,7 @@ import { LogbookPage } from '@/pages/logbook/logbook';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-  @ViewChild('mainTabs') tabRef: Tabs;
+  @ViewChild('mainTabs', { static: true }) tabRef: Tabs;
 
   loaded: boolean = false;
   tabIndex: number = 0;
