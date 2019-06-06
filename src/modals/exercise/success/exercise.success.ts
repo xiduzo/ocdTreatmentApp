@@ -19,6 +19,7 @@ import { EXERCISE_BADGE } from '@/lib/badge/templates/exercise';
 import { FIRST_TIME_BADGE } from '@/lib/badge/templates/firstTime';
 import { IStep, IExercise } from '@/stores/exercise/exercise.model';
 import { ExerciseActions } from '@/stores/exercise/exercise.action';
+import { FearLadderActions } from '@/stores/fearLadder/fearLadder.action';
 
 @Component({
   selector: 'page-exercise-success',
@@ -45,7 +46,8 @@ export class ExerciseSuccessModal {
     private modalCtrl: ModalController,
     private nativePageTransitions: NativePageTransitions,
     private badgeFctry: BadgeFactory,
-    private exerciseActions: ExerciseActions
+    private exerciseActions: ExerciseActions,
+    private fearLadderActions: FearLadderActions
   ) {
     this.nativePageTransitions.slide(this.transitionOptions);
   }
@@ -77,11 +79,17 @@ export class ExerciseSuccessModal {
     return { ...this.exercise, ...change };
   }
 
+  editStep(change: IStep): void {
+    this.fearLadderActions.editFearLadderStep(this.exercise.step, change);
+  }
+
   updateStepCompletion() {
     const exercise: IExercise = new Exercise(this.exercise);
+    exercise.end = new Date();
     exercise.step.fear.completion += exercise.getPointsForExercise();
 
     this.editExercise(exercise);
+    this.editStep(exercise.step);
   }
 
   // updateExerciseBadges() {
