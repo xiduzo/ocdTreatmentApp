@@ -23,8 +23,8 @@ import { IErp, IExercise } from '@/stores/exercise/exercise.model';
   templateUrl: 'exercise.during.html'
 })
 export class ExerciseDuringModal {
-  private level: any;
-  private exercise: Exercise;
+  public level: any;
+  public exercise: Exercise;
 
   private erp: IErp = new Erp();
 
