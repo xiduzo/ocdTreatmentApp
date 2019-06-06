@@ -113,15 +113,17 @@ export class MyApp {
   observeReduxStates(): void {
     // Subscribe on fear ladder events
     this.fearLadder$.subscribe((fearLadderState: IFearLadderState) => {
-      this.storage.set('fearLadder', fearLadderState.steps);
+      if (!fearLadderState.loading)
+        this.storage.set('fearLadder', fearLadderState.steps);
     });
     // Subscribe on exercise events
     this.exercises$.subscribe((exerciseState: IExerciseState) => {
-      this.storage.set('exercises', exerciseState.list);
+      if (!exerciseState.loading)
+        this.storage.set('exercises', exerciseState.list);
     });
     // Subscribe on badge events
     this.badges$.subscribe((badgeState: IBadgeState) => {
-      this.storage.set('badges', badgeState.list);
+      if (!badgeState.loading) this.storage.set('badges', badgeState.list);
     });
   }
 
