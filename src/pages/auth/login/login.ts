@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { App } from 'ionic-angular';
-import { ToastController, LoadingController } from 'ionic-angular';
+import { App } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular';
 
 import { Auth } from 'aws-amplify';
 

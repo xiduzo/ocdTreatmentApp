@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { App } from 'ionic-angular';
+import { App } from '@ionic/angular';
 
 import { Auth } from 'aws-amplify';
 
-import { ToastController } from 'ionic-angular';
+import { ToastController } from '@ionic/angular';
 
 import {
   FormBuilder,

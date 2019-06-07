@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavParams, ViewController, ModalController } from 'ionic-angular';
+import { NavParams, ViewController, ModalController } from '@ionic/angular';
 import {
   NativePageTransitions,
   NativeTransitionOptions

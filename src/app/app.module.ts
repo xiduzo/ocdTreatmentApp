@@ -2,7 +2,7 @@
   App
 ------------------------------*/
 import { MyApp } from './app.component';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonApp, IonicModule } from '@ionic/angular';
 
 /*------------------------------
   Angular

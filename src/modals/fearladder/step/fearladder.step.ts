@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController } from 'ionic-angular';
+import { NavParams, ViewController } from '@ionic/angular';
 
-import { AlertController } from 'ionic-angular';
+import { AlertController } from '@ionic/angular';
 
 import { Step, Fear } from '@/lib/Exercise';
 import { IStep } from '@/stores/exercise/exercise.model';

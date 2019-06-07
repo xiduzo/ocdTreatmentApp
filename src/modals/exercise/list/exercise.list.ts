@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { App, NavParams, ModalController } from 'ionic-angular';
+import { App, NavParams, ModalController } from '@ionic/angular';
 
 import { ExerciseMoodModal } from '@/modals/exercise/mood/exercise.mood';
 

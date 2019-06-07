@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController, ModalController } from 'ionic-angular';
+import { NavParams, ViewController, ModalController } from '@ionic/angular';
 
 import { Badge } from '@/lib/badge/Badge';
 import { BadgeEarnedModal } from '@/modals/badgeEarned/badgeEarned';

@@ -5,7 +5,7 @@ import {
   ViewController,
   ModalController,
   LoadingController
-} from 'ionic-angular';
+} from '@ionic/angular';
 
 import { RatingPage } from '@/pages/rating/rating'; // actually a modal - to lazy to care
 

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Tabs } from 'ionic-angular';
+import { Tabs } from '@ionic/angular';
 import {
   NativePageTransitions,
   NativeTransitionOptions

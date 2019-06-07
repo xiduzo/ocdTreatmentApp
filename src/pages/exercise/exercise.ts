@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { App, ModalController } from 'ionic-angular';
+import { App, ModalController } from '@ionic/angular';
 
 import { ExerciseListModal } from '@/modals/exercise/list/exercise.list';
 
-import { ToastController } from 'ionic-angular';
+import { ToastController } from '@ionic/angular';
 
 import { FearLadderModal } from '@/modals/fearLadder/fearLadder';
 

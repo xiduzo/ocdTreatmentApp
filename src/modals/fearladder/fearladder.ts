@@ -4,7 +4,7 @@ import {
   ViewController,
   ModalController,
   ToastController
-} from 'ionic-angular';
+} from '@ionic/angular';
 
 import { FearLadderStepModal } from '@/modals/fearLadder/step/fearLadder.step';
 

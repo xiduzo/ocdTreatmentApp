@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { App, Slides } from 'ionic-angular';
+import { App, Slides } from '@ionic/angular';
 import { TabsPage } from '@/pages/tabs/tabs';
 
 import { Storage } from '@ionic/storage';

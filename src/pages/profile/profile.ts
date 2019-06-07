@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, ModalController, TextInput } from 'ionic-angular';
+import { NavController, ModalController, TextInput } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 import { Badge, BadgeFactory } from '@/lib/badge/Badge';

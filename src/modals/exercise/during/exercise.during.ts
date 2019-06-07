@@ -5,7 +5,7 @@ import {
   ViewController,
   ModalController,
   Modal
-} from 'ionic-angular';
+} from '@ionic/angular';
 import {
   NativePageTransitions,
   NativeTransitionOptions
