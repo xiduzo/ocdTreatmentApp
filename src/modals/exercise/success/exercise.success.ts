@@ -3,7 +3,7 @@ import { NavParams, ViewController, ModalController } from 'ionic-angular';
 import {
   NativePageTransitions,
   NativeTransitionOptions
-} from '@ionic-native/native-page-transitions';
+} from '@ionic-native/native-page-transitions/ngx';
 
 import { confettiSettings } from '@/lib/Confetti';
 

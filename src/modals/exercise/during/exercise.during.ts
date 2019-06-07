@@ -9,7 +9,7 @@ import {
 import {
   NativePageTransitions,
   NativeTransitionOptions
-} from '@ionic-native/native-page-transitions';
+} from '@ionic-native/native-page-transitions/ngx';
 
 import { ExerciseMoodModal } from '@/modals/exercise/mood/exercise.mood';
 

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 import { Storage } from '@ionic/storage';
 
@@ -11,7 +11,7 @@ import { OnboardingPage } from '@/pages/onboarding/onboarding';
 import { LoginPage } from '@/pages/auth/login/login';
 
 import { TranslateService } from 'ng2-translate';
-import { Globalization } from '@ionic-native/globalization';
+import { Globalization } from '@ionic-native/globalization/ngx';
 import {
   defaultLanguage,
   availableLanguages,

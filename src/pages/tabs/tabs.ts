@@ -3,7 +3,7 @@ import { Tabs } from 'ionic-angular';
 import {
   NativePageTransitions,
   NativeTransitionOptions
-} from '@ionic-native/native-page-transitions';
+} from '@ionic-native/native-page-transitions/ngx';
 
 import { ExercisePage } from '@/pages/exercise/exercise';
 import { ProgressPage } from '@/pages/progress/progress';

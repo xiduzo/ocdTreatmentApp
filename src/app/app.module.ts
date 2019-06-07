@@ -17,15 +17,15 @@ import { HttpClientModule } from '@angular/common/http';
   Ionic
 ------------------------------*/
 // Native
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { EmailComposer } from '@ionic-native/email-composer';
-import { Globalization } from '@ionic-native/globalization';
-import { LocalNotifications } from '@ionic-native/local-notifications';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
+import { Globalization } from '@ionic-native/globalization/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { IonicStorageModule } from '@ionic/storage';
-import { NativePageTransitions } from '@ionic-native/native-page-transitions';
-import { File } from '@ionic-native/file';
+import { NativePageTransitions } from '@ionic-native/native-page-transitions/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 /*------------------------------
   AWS
