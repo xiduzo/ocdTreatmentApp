@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController, ModalController } from '@ionic/angular';
+import { NavParams, ModalController } from '@ionic/angular';
 
 import { Badge } from '@/lib/badge/Badge';
 import { BadgeEarnedModal } from '@/modals/badgeEarned/badgeEarned';
@@ -11,11 +11,7 @@ import { BadgeEarnedModal } from '@/modals/badgeEarned/badgeEarned';
 export class BadgeModal {
   public badge: Badge = new Badge();
 
-  constructor(
-    public viewCtrl: ViewController,
-    public params: NavParams,
-    public modalCtrl: ModalController
-  ) {
+  constructor(public params: NavParams, public modalCtrl: ModalController) {
     this.badge = new Badge(this.params.get('badge'));
   }
 
@@ -31,6 +27,7 @@ export class BadgeModal {
   };
 
   close() {
-    this.viewCtrl.dismiss();
+    // TODO: fix this with angular routing
+    // this.viewCtrl.dismiss();
   }
 }

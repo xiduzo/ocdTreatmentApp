@@ -29,7 +29,7 @@ page-profile {
       border-radius: 0;
     }
 
-    ion-scroll {
+    div[scrollY="true"] {
       flex-grow: 1;
 
       .scroll-content {

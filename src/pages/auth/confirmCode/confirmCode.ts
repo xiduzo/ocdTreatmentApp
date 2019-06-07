@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { Auth } from 'aws-amplify';
 
-import { App, ToastController, NavParams } from '@ionic/angular';
+import { ToastController, NavParams } from '@ionic/angular';
 
 import {
   FormBuilder,
@@ -24,8 +24,7 @@ export class ConfirmCodePage {
   constructor(
     private formBuilder: FormBuilder,
     private toastCtrl: ToastController,
-    private params: NavParams,
-    private appCtrl: App
+    private params: NavParams
   ) {
     this.user = this.params.get('user');
   }
@@ -56,7 +55,8 @@ export class ConfirmCodePage {
         // Go back to the sign in page'
         // TODO: sign in automatically
         this.showMessage(`Signup completed, login to continue.`);
-        this.appCtrl.getRootNav().pop();
+        // TODO: fix this with angular routing
+        // this.appCtrl.getRootNav().pop();
       })
       .catch((error: any) => {
         this.confirmCodeButtonEnabled = true;

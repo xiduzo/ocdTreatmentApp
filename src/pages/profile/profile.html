@@ -22,37 +22,16 @@
           <h1 *ngIf="!editGoal" text-center>
             {{ personalGoalText || 'NO_GOAL_SPECIFIED_YET' | translate }}
           </h1>
-          <ion-textarea
-            *ngIf="editGoal"
-            [(ngModel)]="personalGoalText"
-            (change)="safePersonalGoal()"
-            placeholder="{{ 'NO_GOAL_SPECIFIED_YET' | translate }}"
-            #personalGoal
-          ></ion-textarea>
+          <ion-textarea *ngIf="editGoal" [(ngModel)]="personalGoalText" (change)="safePersonalGoal()"
+            placeholder="{{ 'NO_GOAL_SPECIFIED_YET' | translate }}" #personalGoal></ion-textarea>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <button
-            ion-button
-            icon-only
-            color="dark"
-            small
-            clear
-            *ngIf="!editGoal"
-            (click)="togglePersonalGoalEdit()"
-          >
+          <button ion-button icon-only color="dark" small clear *ngIf="!editGoal" (click)="togglePersonalGoalEdit()">
             <ion-icon name="md-create"></ion-icon>
           </button>
-          <button
-            ion-button
-            icon-only
-            color="dark"
-            small
-            clear
-            *ngIf="editGoal"
-            (click)="togglePersonalGoalEdit()"
-          >
+          <button ion-button icon-only color="dark" small clear *ngIf="editGoal" (click)="togglePersonalGoalEdit()">
             <ion-icon name="md-checkmark"></ion-icon>
           </button>
         </ion-col>
@@ -66,46 +45,27 @@
     <ion-list-header>
       {{ 'MY_BADGES' | translate }}
     </ion-list-header>
-    <ion-scroll>
+    <div scrollY="true">
       <ion-grid>
         <ion-row>
-          <ion-col
-            col-4
-            *ngFor="let badge of badges"
-            (click)="showBadge(badge)"
-          >
+          <ion-col col-4 *ngFor="let badge of badges" (click)="showBadge(badge)">
             <div class="o-badge">
               <span class="badge__name">
                 {{ badge.verbose }}
               </span>
               <div class="badge__progress">
-                <img
-                  src="{{ badge.currentStage.image }}"
-                  alt="{{ badge.verbose }}"
-                />
-                <round-progress
-                  [current]="
+                <img src="{{ badge.currentStage.image }}" alt="{{ badge.verbose }}" />
+                <round-progress [current]="
                     badge.finishedStages
                       ? badge.currentStage.amountNeeded
                       : badge.pointsProgressToNextStage
-                  "
-                  [max]="badge.currentStage.amountNeeded"
-                  [radius]="45"
-                  [stroke]="4"
-                  [duration]="1"
-                ></round-progress>
+                  " [max]="badge.currentStage.amountNeeded" [radius]="45" [stroke]="4" [duration]="1"></round-progress>
               </div>
-              <span
-                class="badge__progress__numbers"
-                *ngIf="!badge.finishedStages"
-              >
+              <span class="badge__progress__numbers" *ngIf="!badge.finishedStages">
                 <strong>{{ badge.pointsProgressToNextStage }}</strong> /
                 {{ badge.currentStage.amountNeeded }}
               </span>
-              <span
-                class="badge__progress__numbers"
-                *ngIf="badge.finishedStages"
-              >
+              <span class="badge__progress__numbers" *ngIf="badge.finishedStages">
                 <strong>{{ badge.currentStage.amountNeeded }}</strong> /
                 {{ badge.currentStage.amountNeeded }}
               </span>
@@ -113,6 +73,6 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-scroll>
+    </div>
   </div>
 </ion-content>

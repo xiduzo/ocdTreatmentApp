@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 
 import { ExerciseListModal } from '@/modals/exercise/list/exercise.list';
 
@@ -29,7 +29,6 @@ export class ExercisePage {
   public levels: IFearLadder[] = [];
 
   constructor(
-    public appCtrl: App,
     public toastCtrl: ToastController,
     private modalCtrl: ModalController,
     private translate: TranslateService
@@ -73,8 +72,9 @@ export class ExercisePage {
     // Don't need to go there if there are no exercises
     if (!level.steps.length) return;
 
-    this.appCtrl.getRootNav().push(ExerciseListModal, {
-      level: level
-    });
+    // TODO: Fix this with angular routing
+    // this.appCtrl.getRootNav().push(ExerciseListModal, {
+    //   level: level
+    // });
   }
 }

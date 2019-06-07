@@ -1,7 +1,7 @@
 <ion-content>
   <div ion-fixed>
-    <ion-slides pager (ionSlideDidChange)="ionSlideDidChange()" class="c-onboarding">
-      <ion-slide class="c-onboarding__slide" *ngFor="let slide of _slides; let i = index">
+    <ion-slides #slides pager [options]="_slideOpts" (ionSlideDidChange)="ionSlideDidChange()" class="c-onboarding">
+      <ion-slide *ngFor="let slide of _slides; let i = index" class="c-onboarding__slide">
         <div class="c-onboarding__illustration" [style.backgroundImage]="
             'url(assets/imgs/onboarding/step' + (i + 1) + '.png)'
           "></div>
@@ -10,6 +10,16 @@
         </article>
       </ion-slide>
     </ion-slides>
+    <!-- <ion-slides (ionSlideDidChange)="ionSlideDidChange()" class="c-onboarding">
+      <ion-slide class="c-onboarding__slide" *ngFor="let slide of _slides; let i = index">
+        <div class="c-onboarding__illustration" [style.backgroundImage]="
+            'url(assets/imgs/onboarding/step' + (i + 1) + '.png)'
+          "></div>
+        <article class="c-onboarding__text" padding>
+          <p>{{ slide | translate }}</p>
+        </article>
+      </ion-slide>
+    </ion-slides> -->
   </div>
 </ion-content>
 <ion-footer>

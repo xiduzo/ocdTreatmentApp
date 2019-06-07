@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { App, Slides } from '@ionic/angular';
 import { TabsPage } from '@/pages/tabs/tabs';
 
 import { Storage } from '@ionic/storage';
@@ -9,11 +8,16 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'onboarding.html'
 })
 export class OnboardingPage {
-  @ViewChild(Slides, { static: true }) slides: Slides;
+  @ViewChild('slides', { static: true }) slides: any;
 
   public buttonText: string = 'ONBOARDING_NEXT';
   public isEnd: boolean = false;
   public isBeginning: boolean = true;
+
+  public _slideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
 
   public _slides: Array<string> = [
     'ONBOARDING_SLIDE_1',
@@ -24,7 +28,7 @@ export class OnboardingPage {
     'ONBOARDING_SLIDE_6'
   ];
 
-  constructor(private appCtrl: App, private storage: Storage) {}
+  constructor(private storage: Storage) {}
 
   ionViewDidEnter() {
     // Prevent the user from swiping into the void
@@ -33,7 +37,8 @@ export class OnboardingPage {
 
   done() {
     // this.appCtrl.getRootNav().pop(); // Remove the onboarding from the stack
-    this.appCtrl.getRootNav().push(TabsPage);
+    // TODO: fix this with angular routing
+    // this.appCtrl.getRootNav().push(TabsPage);
     this.storage.set('onboardingCompleted', true);
   }
 

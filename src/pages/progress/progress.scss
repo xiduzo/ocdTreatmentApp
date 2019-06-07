@@ -13,7 +13,7 @@ progress-page {
     display: flex;
     flex-direction: column;
 
-    ion-scroll {
+    div[scrollY="true"] {
       flex-grow: 1;
 
       .scroll-content {
@@ -94,7 +94,7 @@ progress-page {
             font-weight: 500;
 
             &:after {
-              content: '%';
+              content: "%";
             }
           }
         }

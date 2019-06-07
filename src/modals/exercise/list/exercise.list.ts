@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { App, NavParams, ModalController } from '@ionic/angular';
+import { NavParams, ModalController } from '@ionic/angular';
 
 import { ExerciseMoodModal } from '@/modals/exercise/mood/exercise.mood';
 
@@ -25,14 +25,14 @@ export class ExerciseListModal {
   constructor(
     private params: NavParams,
     private modalCtrl: ModalController,
-    private appCtrl: App,
     private exerciseActions: ExerciseActions
   ) {
     this.level = this.params.get('level');
   }
 
   close() {
-    this.appCtrl.getRootNav().pop();
+    // TODO fix this with angular routing (?)
+    // this.appCtrl.getRootNav().pop();
   }
 
   selectStep = async (step: IStep): Promise<void> => {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController, ModalController } from '@ionic/angular';
+import { NavParams, ModalController } from '@ionic/angular';
 import {
   NativePageTransitions,
   NativeTransitionOptions
@@ -42,7 +42,6 @@ export class ExerciseSuccessModal {
 
   constructor(
     private params: NavParams,
-    public viewCtrl: ViewController,
     private modalCtrl: ModalController,
     private nativePageTransitions: NativePageTransitions,
     private badgeFctry: BadgeFactory,
@@ -109,6 +108,7 @@ export class ExerciseSuccessModal {
     //   });
     //   modal.present();
     // }
-    this.viewCtrl.dismiss();
+    // TODO: fix this with angular routing
+    // this.viewCtrl.dismiss();
   }
 }

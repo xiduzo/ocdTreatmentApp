@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { App } from '@ionic/angular';
 import { ToastController, LoadingController } from '@ionic/angular';
 
 import { Auth } from 'aws-amplify';
@@ -25,7 +24,6 @@ export class LoginPage {
   public signInButtonEnabled: boolean = true;
 
   constructor(
-    private appCtrl: App,
     private formBuilder: FormBuilder,
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController
@@ -70,9 +68,10 @@ export class LoginPage {
         this.signInButtonEnabled = true;
         switch (error.code) {
           case 'UserNotConfirmedException':
-            this.appCtrl.getRootNav().push(ConfirmCodePage, {
-              user: { username: this.username }
-            });
+            // TODO: fix this with angular routing
+            // this.appCtrl.getRootNav().push(ConfirmCodePage, {
+            //   user: { username: this.username }
+            // });
             break;
           default:
             console.log(error);
@@ -93,6 +92,7 @@ export class LoginPage {
   }
 
   signUp() {
-    this.appCtrl.getRootNav().push(SignUpPage);
+    // TODO: fix this with angular routing
+    // this.appCtrl.getRootNav().push(SignUpPage);
   }
 }

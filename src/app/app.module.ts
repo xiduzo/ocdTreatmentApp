@@ -12,6 +12,7 @@ import { Http } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 /*------------------------------
   Ionic
@@ -207,6 +208,8 @@ export function createTranslateLoader(http: Http) {
     RoundProgressModule,
     NgxPaginationModule,
     AmplifyAngularModule,
+    FormsModule,
+    ReactiveFormsModule,
     EventsServiceModule.forRoot(),
     TranslateModule.forRoot({
       provide: TranslateLoader,

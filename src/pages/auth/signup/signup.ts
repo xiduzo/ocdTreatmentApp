@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { App } from '@ionic/angular';
 
 import { Auth } from 'aws-amplify';
 
@@ -27,8 +26,7 @@ export class SignUpPage {
 
   constructor(
     private formBuilder: FormBuilder,
-    private toastCtrl: ToastController,
-    private appCtrl: App
+    private toastCtrl: ToastController
   ) {}
 
   passwordCriteria(passwordKey: string) {
@@ -73,7 +71,8 @@ export class SignUpPage {
   }
 
   back() {
-    this.appCtrl.getRootNav().pop();
+    // TODO: fix this with angular routing
+    // this.appCtrl.getRootNav().pop();
   }
 
   signUp() {
@@ -86,10 +85,11 @@ export class SignUpPage {
       }
     })
       .then((response: any) => {
-        this.appCtrl.getRootNav().pop();
-        this.appCtrl.getRootNav().push(ConfirmCodePage, {
-          user: response.user
-        });
+        // TODO: fix this with angular routing
+        // this.appCtrl.getRootNav().pop();
+        // this.appCtrl.getRootNav().push(ConfirmCodePage, {
+        //   user: response.user
+        // });
       })
       .catch(error => {
         this.signupButtonEnabled = true;

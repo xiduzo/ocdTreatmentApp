@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
-import {
-  ViewController,
-  ModalController,
-  LoadingController
-} from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
 
 import { RatingPage } from '@/pages/rating/rating'; // actually a modal - to lazy to care
 
@@ -27,7 +23,6 @@ export class SettingsModal {
   public languages: Array<ILanguageCode>;
 
   constructor(
-    private viewCtrl: ViewController,
     private translate: TranslateService,
     private storage: Storage,
     private modalCtrl: ModalController,
@@ -61,7 +56,8 @@ export class SettingsModal {
   }
 
   close() {
-    this.viewCtrl.dismiss();
+    // TODO: fix this with angular routing
+    // this.viewCtrl.dismiss();
   }
 
   sendData = async (): Promise<void> => {

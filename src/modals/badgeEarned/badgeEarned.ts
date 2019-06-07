@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController } from '@ionic/angular';
+import { NavParams } from '@ionic/angular';
 
 import { Badge } from '@/lib/badge/Badge';
 
@@ -15,7 +15,7 @@ import 'confetti-js';
 export class BadgeEarnedModal {
   public badge: Badge = new Badge();
 
-  constructor(public viewCtrl: ViewController, public params: NavParams) {
+  constructor(public params: NavParams) {
     this.badge = this.params.get('badge');
   }
 
@@ -33,6 +33,7 @@ export class BadgeEarnedModal {
   }
 
   close() {
-    this.viewCtrl.dismiss();
+    // TODO: Fix this with angular routing
+    // this.viewCtrl.dismiss();
   }
 }

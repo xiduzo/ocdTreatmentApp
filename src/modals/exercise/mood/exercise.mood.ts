@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavParams, ViewController, ModalController } from '@ionic/angular';
+import { NavParams, ModalController } from '@ionic/angular';
 import {
   NativePageTransitions,
   NativeTransitionOptions
@@ -53,7 +53,6 @@ export class ExerciseMoodModal {
 
   constructor(
     private params: NavParams,
-    public viewCtrl: ViewController,
     private modalCtrl: ModalController,
     private nativePageTransitions: NativePageTransitions,
     private exerciseActions: ExerciseActions
@@ -111,7 +110,8 @@ export class ExerciseMoodModal {
     });
 
     duringModal.present();
-    this.viewCtrl.dismiss();
+    // TODO: Fix this with angular routing
+    // this.viewCtrl.dismiss();
   };
 
   finishExercise = async (): Promise<void> => {
@@ -134,10 +134,12 @@ export class ExerciseMoodModal {
     });
 
     modal.present();
-    this.viewCtrl.dismiss();
+    // TODO: Fix this with angular routing
+    // this.viewCtrl.dismiss();
   };
 
   stopExercise() {
-    this.viewCtrl.dismiss();
+    // TODO: Fix this with angular routing
+    // this.viewCtrl.dismiss();
   }
 }

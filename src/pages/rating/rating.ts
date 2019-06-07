@@ -1,43 +1,38 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
-import { ViewController } from '@ionic/angular';
-
 import moment from 'moment';
 
 @Component({
   selector: 'rating',
   templateUrl: 'rating.html'
 })
-
 export class RatingPage {
   public currentRating;
   public currentRatingIndex = 0;
   public exercises = [];
-  public ratings = []
+  public ratings = [];
   public rating = 0;
 
-  constructor(
-    private viewCtrl: ViewController,
-    private storage: Storage
-  ) {
-  }
+  constructor(private storage: Storage) {}
 
   close() {
-    this.viewCtrl.dismiss();
+    // this.viewCtrl.dismiss();
   }
 
   getDiff() {
-    this.currentRating.timeDiff = moment.duration(
-      moment(this.currentRating.end).diff(
-        moment(this.currentRating.start)
+    this.currentRating.timeDiff = moment
+      .duration(
+        moment(this.currentRating.end).diff(moment(this.currentRating.start))
       )
-    ).asSeconds();
-    this.currentRating.erpDiff = moment.duration(
-      moment(this.currentRating.erp.end).diff(
-        moment(this.currentRating.erp.start)
+      .asSeconds();
+    this.currentRating.erpDiff = moment
+      .duration(
+        moment(this.currentRating.erp.end).diff(
+          moment(this.currentRating.erp.start)
+        )
       )
-    ).asSeconds();
+      .asSeconds();
   }
 
   next() {
@@ -48,7 +43,8 @@ export class RatingPage {
 
   calculateRating() {
     console.log(this.currentRating);
-    const moodDiff = this.currentRating.beforeMood.mood - this.currentRating.afterMood.mood;
+    const moodDiff =
+      this.currentRating.beforeMood.mood - this.currentRating.afterMood.mood;
 
     let points = 0;
 
@@ -64,7 +60,7 @@ export class RatingPage {
     });
 
     // duration
-    points += this.currentRating.erpDiff / this.currentRating.timeDiff * 25;
+    points += (this.currentRating.erpDiff / this.currentRating.timeDiff) * 25;
 
     console.log(`
       moodDiff: ${moodDiff},
@@ -72,7 +68,7 @@ export class RatingPage {
       erpDuration: ${this.currentRating.erpDiff},
       totalDuration: ${this.currentRating.timeDiff},
       obsessive_thoughts: ${this.currentRating.step.triggers[0].range},
-      compulsive behaviour: ${this.currentRating.step.triggers[1].range},
+      compulsive behavior: ${this.currentRating.step.triggers[1].range},
       points: ${points}
       `);
     this.next();
@@ -81,15 +77,15 @@ export class RatingPage {
   rate() {
     let output = {};
     if (this.rating > 0) {
-      output = { positive: Math.abs(this.rating / 100) }
+      output = { positive: Math.abs(this.rating / 100) };
     } else {
-      output = { negative: Math.abs(this.rating / 100) }
+      output = { negative: Math.abs(this.rating / 100) };
     }
 
     const tempObj = {
       input: this.currentRating,
       output: output
-    }
+    };
     this.ratings.push(tempObj);
     this.rating = 0;
     this.next();
@@ -109,7 +105,6 @@ export class RatingPage {
     //   this.emailComposer.open(email);
     // });
   }
-
 
   ionViewDidLoad() {
     this.storage.get('exercises').then(exercises => {

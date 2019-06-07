@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 
-import {
-  NavParams,
-  ViewController,
-  ModalController,
-  Modal
-} from '@ionic/angular';
+import { NavParams, ModalController } from '@ionic/angular';
 import {
   NativePageTransitions,
   NativeTransitionOptions
@@ -32,7 +27,6 @@ export class ExerciseTriggerModal {
 
   constructor(
     private params: NavParams,
-    private viewCtrl: ViewController,
     private modalCtrl: ModalController,
     private nativePageTransitions: NativePageTransitions,
     private exerciseActions: ExerciseActions
@@ -69,7 +63,7 @@ export class ExerciseTriggerModal {
   done = async (): Promise<void> => {
     const exercise = this.editExercise();
 
-    const modal: Modal = await this.modalCtrl.create({
+    const modal: HTMLIonModalElement = await this.modalCtrl.create({
       component: ExerciseSuccessModal,
       componentProps: {
         exercise: exercise
@@ -77,6 +71,7 @@ export class ExerciseTriggerModal {
     });
 
     modal.present();
-    this.viewCtrl.dismiss();
+    // TODO: fix this with angular routing
+    // this.viewCtrl.dismiss();
   };
 }

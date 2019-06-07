@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  NavParams,
-  ViewController,
-  ModalController,
-  ToastController
-} from '@ionic/angular';
+import { NavParams, ModalController, ToastController } from '@ionic/angular';
 
 import { FearLadderStepModal } from '@/modals/fearLadder/step/fearLadder.step';
 
@@ -28,7 +23,6 @@ export class FearLadderModal {
 
   constructor(
     private params: NavParams,
-    private viewCtrl: ViewController,
     private modalCtrl: ModalController,
     private toastCtrl: ToastController,
     private fearLadderActions: FearLadderActions
@@ -44,7 +38,8 @@ export class FearLadderModal {
   }
 
   close() {
-    this.viewCtrl.dismiss();
+    // TODO: fix this with angular routing
+    // this.viewCtrl.dismiss();
   }
   addStep = async (): Promise<void> => {
     let modal = await this.modalCtrl.create({

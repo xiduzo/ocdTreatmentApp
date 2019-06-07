@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController } from '@ionic/angular';
+import { NavParams } from '@ionic/angular';
 
 import { AlertController } from '@ionic/angular';
 
@@ -18,11 +18,7 @@ export class FearLadderStepModal {
 
   public editStep: boolean = false;
 
-  constructor(
-    public viewCtrl: ViewController,
-    public alertCtrl: AlertController,
-    private params: NavParams
-  ) {}
+  constructor(public alertCtrl: AlertController, private params: NavParams) {}
 
   ionViewDidEnter() {
     // For when we edit a step
@@ -39,11 +35,13 @@ export class FearLadderStepModal {
   }
 
   close() {
-    this.viewCtrl.dismiss();
+    // TODO: fix this with angular routing
+    // this.viewCtrl.dismiss();
   }
 
   addFear() {
-    this.viewCtrl.dismiss({ step: this.step });
+    // TODO: fix this with angular routing
+    // this.viewCtrl.dismiss({ step: this.step });
   }
 
   removeFear = async (): Promise<void> => {
@@ -57,8 +55,10 @@ export class FearLadderStepModal {
         },
         {
           text: 'Remove fear',
-          handler: () =>
-            this.viewCtrl.dismiss({ step: this.step, remove: true })
+          handler: () => {
+            // TODO: fix this with angular routing
+            // this.viewCtrl.dismiss({ step: this.step, remove: true })
+          }
         }
       ]
     });

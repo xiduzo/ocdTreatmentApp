@@ -1,6 +1,35 @@
-<ion-tabs (ionChange)="transition($event)" #mainTabs>
+<!-- <ion-tabs (ionChange)="transition($event)" #mainTabs>
   <ion-tab [root]="ExercisePageRoot" tabIcon="md-home">home</ion-tab>
   <ion-tab [root]="ProgressPageRoot" tabIcon="md-stats">progress</ion-tab>
   <ion-tab [root]="LogbookPageRoot" tabIcon="md-book">logbook</ion-tab>
   <ion-tab [root]="ProfilePageRoot" tabIcon="md-person">user</ion-tab>
+</ion-tabs> -->
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+
+    <ion-tab-button tab="home">
+      <ion-label>Home</ion-label>
+      <ion-icon name="home"></ion-icon>
+      <ion-badge>6</ion-badge>
+    </ion-tab-button>
+
+    <ion-tab-button tab="progress">
+      <ion-label>Progress</ion-label>
+      <ion-icon name="stats"></ion-icon>
+      <ion-badge>6</ion-badge>
+    </ion-tab-button>
+
+    <ion-tab-button tab="logbook">
+      <ion-label>Logbook</ion-label>
+      <ion-icon name="book"></ion-icon>
+      <ion-badge>6</ion-badge>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profile">
+      <ion-label>Profile</ion-label>
+      <ion-icon name="person"></ion-icon>
+      <ion-badge>6</ion-badge>
+    </ion-tab-button>
+
+  </ion-tab-bar>
 </ion-tabs>

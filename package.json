@@ -68,6 +68,7 @@
     "es6-promise-plugin": "^4.2.2",
     "flux-standard-action": "^2.1.0",
     "highcharts": "^7.1.1",
+    "ionic-angular": "^3.9.6",
     "ionicons": "^4.5.5",
     "moment": "^2.22.2",
     "ng2-translate": "^5.0.0",

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Tabs } from '@ionic/angular';
+
 import {
   NativePageTransitions,
   NativeTransitionOptions
@@ -14,7 +14,7 @@ import { LogbookPage } from '@/pages/logbook/logbook';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-  @ViewChild('mainTabs', { static: true }) tabRef: Tabs;
+  @ViewChild('mainTabs', { static: true }) tabRef: any;
 
   loaded: boolean = false;
   tabIndex: number = 0;
