@@ -31,10 +31,10 @@ export class LoginPage {
     private loadingCtrl: LoadingController
   ) {}
 
-  ngOnInit() {
+  ngOnInit = async (): Promise<void> => {
     this.buildForm();
-    const loader = this.loadingCtrl.create({
-      content: 'Loading user data...',
+    const loader = await this.loadingCtrl.create({
+      message: 'Loading user data...',
       duration: 60 * 1000
     });
 
@@ -48,7 +48,7 @@ export class LoginPage {
       .catch(error => {
         loader.dismiss();
       });
-  }
+  };
 
   buildForm() {
     this.loginForm = this.formBuilder.group({

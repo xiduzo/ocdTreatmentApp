@@ -64,9 +64,9 @@ export class SettingsModal {
     this.viewCtrl.dismiss();
   }
 
-  sendData() {
-    const loader = this.loadingCtrl.create({
-      content: 'Sending data...',
+  sendData = async (): Promise<void> => {
+    const loader = await this.loadingCtrl.create({
+      message: 'Sending data...',
       duration: 60 * 1000
     });
 
@@ -85,7 +85,7 @@ export class SettingsModal {
           .catch(err => loader.dismiss());
       });
     });
-  }
+  };
 
   openRatingPage = async (): Promise<void> => {
     const ratingModal = await this.modalCtrl.create({
