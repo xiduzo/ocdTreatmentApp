@@ -40,6 +40,7 @@ export class SettingsModal {
     this.storage.get('language').then(val => {
       this.language = val;
     });
+    console.log(this.getDataDir());
   }
 
   signOut() {
