@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, ModalController, TextInput } from '@ionic/angular';
+import { NavController, ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 import { Badge, BadgeFactory } from '@/lib/badge/Badge';
@@ -21,7 +21,7 @@ import { EventsService } from 'angular-event-service';
   providers: [BadgeFactory]
 })
 export class ProfilePage {
-  @ViewChild('personalGoal', { static: true }) personalGoalTextArea: TextInput;
+  @ViewChild('personalGoal', { static: true }) personalGoalTextArea: any;
 
   public personalGoalText: string;
   public editGoal: boolean = false;
