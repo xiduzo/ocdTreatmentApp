@@ -46,9 +46,9 @@ export class FearLadderStepModal {
     this.viewCtrl.dismiss({ step: this.step });
   }
 
-  removeFear() {
-    const confirmation = this.alertCtrl.create({
-      title: 'Are you sure you want to remove this fear?',
+  removeFear = async (): Promise<void> => {
+    const confirmation = await this.alertCtrl.create({
+      header: 'Are you sure you want to remove this fear?',
       message: 'This action is irreversible',
       buttons: [
         {
@@ -64,5 +64,5 @@ export class FearLadderStepModal {
     });
 
     confirmation.present();
-  }
+  };
 }
