@@ -19,12 +19,16 @@ export class BadgeModal {
     this.badge = new Badge(this.params.get('badge'));
   }
 
-  testCompletion() {
-    const modal = this.modalCtrl.create(BadgeEarnedModal, {
-      badge: this.badge
+  testCompletion = async (): Promise<void> => {
+    const modal = await this.modalCtrl.create({
+      component: BadgeEarnedModal,
+      componentProps: {
+        badge: this.badge
+      }
     });
+
     modal.present();
-  }
+  };
 
   close() {
     this.viewCtrl.dismiss();

@@ -58,18 +58,21 @@ export class ExerciseDuringModal {
     return new Exercise({ ...this.exercise, ...{ erp: this.erp } });
   }
 
-  finishExercise(gaveInToCompulsion: boolean) {
+  finishExercise = async (gaveInToCompulsion: boolean): Promise<void> => {
     this.erp.end = new Date();
     this.erp.gaveInToCompulsion = gaveInToCompulsion;
     const exercise: IExercise = this.editExercise();
 
-    const modal: Modal = this.modalCtrl.create(ExerciseMoodModal, {
-      level: this.level,
-      exercise: exercise,
-      before: false
+    const modal: Modal = await this.modalCtrl.create({
+      component: ExerciseMoodModal,
+      componentProps: {
+        level: this.level,
+        exercise: exercise,
+        before: false
+      }
     });
 
     modal.present();
     this.viewCtrl.dismiss();
-  }
+  };
 }

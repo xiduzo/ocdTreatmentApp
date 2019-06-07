@@ -46,51 +46,61 @@ export class FearLadderModal {
   close() {
     this.viewCtrl.dismiss();
   }
-  addStep() {
-    let modal = this.modalCtrl.create(FearLadderStepModal);
-    modal.onDidDismiss(data => {
-      if (!data) return; // Modal has been closed
-
-      this.fearLadderActions.addFearLadderStep(data.step);
-
-      let toast = this.toastCtrl.create({
-        message: 'Fear added successfully',
-        duration: 2000,
-        position: 'bottom'
-      });
-
-      toast.present();
+  addStep = async (): Promise<void> => {
+    let modal = await this.modalCtrl.create({
+      component: FearLadderStepModal
     });
+
+    // TODO
+    // FIX THIS CALLBACK
+    // modal.onDidDismiss(data => {
+    //   if (!data) return; // Modal has been closed
+
+    //   this.fearLadderActions.addFearLadderStep(data.step);
+
+    //   let toast = this.toastCtrl.create({
+    //     message: 'Fear added successfully',
+    //     duration: 2000,
+    //     position: 'bottom'
+    //   });
+
+    //   toast.present();
+    // });
 
     modal.present();
-  }
+  };
 
-  editStep(step: IStep) {
-    const modal = this.modalCtrl.create(FearLadderStepModal, {
-      step: step
-    });
-
-    modal.onDidDismiss(data => {
-      if (!data) return; // Modal has been closed
-
-      let toastParams = {
-        duration: 2000,
-        position: 'bottom',
-        message: ''
-      };
-
-      if (data.remove) {
-        toastParams.message = 'Fear removed successfully';
-        this.fearLadderActions.removeFearLadderStep(step);
-      } else {
-        toastParams.message = 'Fear edited successfully';
-        this.fearLadderActions.editFearLadderStep(step, { ...data.step });
+  editStep = async (step: IStep): Promise<void> => {
+    const modal = await this.modalCtrl.create({
+      component: FearLadderStepModal,
+      componentProps: {
+        step: step
       }
-
-      const toast = this.toastCtrl.create(toastParams);
-      toast.present();
     });
 
+    // TODO
+    // FIX THIS CALLBACK
+    // modal.onDidDismiss(data => {
+    //   if (!data) return; // Modal has been closed
+
+    //   let toastParams = {
+    //     duration: 2000,
+    //     position: 'bottom',
+    //     message: ''
+    //   };
+
+    //   if (data.remove) {
+    //     toastParams.message = 'Fear removed successfully';
+    //     this.fearLadderActions.removeFearLadderStep(step);
+    //   } else {
+    //     toastParams.message = 'Fear edited successfully';
+    //     this.fearLadderActions.editFearLadderStep(step, { ...data.step });
+    //   }
+
+    //   const toast = this.toastCtrl.create(toastParams);
+    //   toast.present();
+    // });
+
     modal.present();
-  }
+  };
 }

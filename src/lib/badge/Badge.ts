@@ -39,14 +39,18 @@ export class Badge {
       .catch(error => console.log(error));
   }
 
-  showModal(): void {
-    const badgeModal = this.modalCtrl.create(BadgeModal, {
-      badge: this
+  showModal = async (): Promise<void> => {
+    const badgeModal = await this.modalCtrl.create({
+      component: BadgeModal,
+      componentProps: {
+        badge: this
+      }
     });
-    badgeModal.present();
-  }
 
-  setCurrentStage(): Promise<Stage> {
+    badgeModal.present();
+  };
+
+  setCurrentStage = (): Promise<Stage> => {
     let pickedStage = null;
     let points = this.totalPointsGained;
 
@@ -70,7 +74,7 @@ export class Badge {
       if (!pickedStage) reject('No stage picked');
       else resolve(pickedStage);
     });
-  }
+  };
 
   async getProgress(): Promise<number> {
     if (!this.name) return;

@@ -87,10 +87,13 @@ export class SettingsModal {
     });
   }
 
-  openRatingPage() {
-    const ratingModal = this.modalCtrl.create(RatingPage);
+  openRatingPage = async (): Promise<void> => {
+    const ratingModal = await this.modalCtrl.create({
+      component: RatingPage
+    });
+
     ratingModal.present();
-  }
+  };
 
   clearLocalStorage() {
     this.storage.clear();

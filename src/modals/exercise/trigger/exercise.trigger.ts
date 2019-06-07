@@ -66,14 +66,17 @@ export class ExerciseTriggerModal {
     return { ...this.exercise, ...change };
   }
 
-  done() {
+  done = async (): Promise<void> => {
     const exercise = this.editExercise();
 
-    const modal: Modal = this.modalCtrl.create(ExerciseSuccessModal, {
-      exercise: exercise
+    const modal: Modal = await this.modalCtrl.create({
+      component: ExerciseSuccessModal,
+      componentProps: {
+        exercise: exercise
+      }
     });
 
     modal.present();
     this.viewCtrl.dismiss();
-  }
+  };
 }

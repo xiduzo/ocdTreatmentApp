@@ -35,7 +35,7 @@ export class ExerciseListModal {
     this.appCtrl.getRootNav().pop();
   }
 
-  selectStep(step: IStep) {
+  selectStep = async (step: IStep): Promise<void> => {
     // We can't start an exercise when you've completed it
     if (step.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT) return;
 
@@ -44,14 +44,17 @@ export class ExerciseListModal {
       step: step
     });
 
-    const exerciseMoodModal = this.modalCtrl.create(ExerciseMoodModal, {
-      level: this.level,
-      exercise: exercise,
-      before: true
+    const exerciseMoodModal = await this.modalCtrl.create({
+      component: ExerciseMoodModal,
+      componentProps: {
+        level: this.level,
+        exercise: exercise,
+        before: true
+      }
     });
 
     this.exerciseActions.addExercise(exercise);
 
     exerciseMoodModal.present();
-  }
+  };
 }

@@ -97,15 +97,19 @@ export class ProfilePage {
     }, 100);
   }
 
-  openSettings() {
-    const modal = this.modalCtrl.create(SettingsModal);
+  openSettings = async (): Promise<void> => {
+    const modal = await this.modalCtrl.create({
+      component: SettingsModal
+    });
     modal.present();
-  }
+  };
 
-  openFearLadder() {
-    const modal = this.modalCtrl.create(FearLadderModal);
+  openFearLadder = async (): Promise<void> => {
+    const modal = await this.modalCtrl.create({
+      component: FearLadderModal
+    });
     modal.present();
-  }
+  };
 
   showBadge(badge: any) {
     badge.showModal();

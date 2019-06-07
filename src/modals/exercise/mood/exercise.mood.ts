@@ -97,21 +97,24 @@ export class ExerciseMoodModal {
     return { ...exercise, ...change };
   }
 
-  startExercise(): void {
+  startExercise = async (): Promise<void> => {
     const exercise: IExercise = this.editExercise(this.exercise, {
       beforeMood: this.mood
     });
 
-    const duringModal = this.modalCtrl.create(ExerciseDuringModal, {
-      level: this.level,
-      exercise: exercise
+    const duringModal = await this.modalCtrl.create({
+      component: ExerciseDuringModal,
+      componentProps: {
+        level: this.level,
+        exercise: exercise
+      }
     });
 
     duringModal.present();
     this.viewCtrl.dismiss();
-  }
+  };
 
-  finishExercise(): void {
+  finishExercise = async (): Promise<void> => {
     const exercise: IExercise = this.editExercise(this.exercise, {
       afterMood: this.mood
     });
@@ -120,17 +123,19 @@ export class ExerciseMoodModal {
       trigger => trigger.enabled
     );
 
-    const modal = this.modalCtrl.create(
-      hasATriggerEnabled ? ExerciseTriggerModal : ExerciseSuccessModal,
-      {
+    const modal = await this.modalCtrl.create({
+      component: hasATriggerEnabled
+        ? ExerciseTriggerModal
+        : ExerciseSuccessModal,
+      componentProps: {
         level: this.level,
         exercise: exercise
       }
-    );
+    });
 
     modal.present();
     this.viewCtrl.dismiss();
-  }
+  };
 
   stopExercise() {
     this.viewCtrl.dismiss();

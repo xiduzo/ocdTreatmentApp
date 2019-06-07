@@ -41,28 +41,33 @@ export class ExercisePage {
     });
   }
 
-  addFearsAndCompulsions() {
-    let modal = this.modalCtrl.create(FearLadderModal, {
-      addNewFear: true
+  addFearsAndCompulsions = async (): Promise<void> => {
+    let modal = await this.modalCtrl.create({
+      component: FearLadderModal,
+      componentProps: {
+        addNewFear: true
+      }
     });
 
-    modal.onDidDismiss(data => {
-      this.translate
-        .get('MESSAGE_CHANGE_FEAR_LADDER')
-        .subscribe((text: string) => {
-          const toast = this.toastCtrl.create({
-            message: text,
-            position: 'bottom',
-            showCloseButton: true,
-            closeButtonText: 'Ok',
-            dismissOnPageChange: true
-          });
-          toast.present();
-        });
-    });
+    // TODO
+    // FIX THIS CALLBACK
+    // modal.onDidDismiss(data => {
+    //   this.translate
+    //     .get('MESSAGE_CHANGE_FEAR_LADDER')
+    //     .subscribe((text: string) => {
+    //       const toast = this.toastCtrl.create({
+    //         message: text,
+    //         position: 'bottom',
+    //         showCloseButton: true,
+    //         closeButtonText: 'Ok',
+    //         dismissOnPageChange: true
+    //       });
+    //       toast.present();
+    //     });
+    // });
 
     modal.present();
-  }
+  };
 
   goToLevel(level: IFearLadder): void {
     // Don't need to go there if there are no exercises
