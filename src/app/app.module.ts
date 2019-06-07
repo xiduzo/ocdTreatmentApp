@@ -215,7 +215,7 @@ export function createTranslateLoader(http: Http) {
     }),
     NgReduxModule
   ],
-  bootstrap: [IonicApp],
+  bootstrap: [IonApp],
   entryComponents: [
     MyApp,
     // Pages
@@ -255,7 +255,7 @@ export function createTranslateLoader(http: Http) {
     ExerciseActions,
     FearLadderActions,
     BadgeActions,
-    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    // { provide: ErrorHandler, useClass: IonicErrorHandler },
     { provide: HighchartsStatic, useFactory: highchartsFactory },
     {
       provide: DevToolsExtension,
