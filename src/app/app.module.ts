@@ -151,6 +151,8 @@ import { SpiritMoodIndicator } from '@/components/moodIndicator/moodIndicator.co
 ------------------------------*/
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { Routes, RouterModule } from '@angular/router';
+import { AppRouting } from './app.routing';
 
 // Language settings
 export function createTranslateLoader(http: Http) {
@@ -194,11 +196,8 @@ export function createTranslateLoader(http: Http) {
     NgPipesModule,
     BrowserModule,
     BrowserAnimationsModule,
-    IonicModule.forRoot(MyApp, {
-      tabsPlacement: 'bottom',
-      scrollPadding: false,
-      scrollAssist: false
-    }),
+    IonicModule.forRoot(),
+    AppRouting,
     IonicStorageModule.forRoot({
       name: '__spiritDB',
       driverOrder: ['indexeddb', 'sqlite', 'websql']
@@ -218,7 +217,8 @@ export function createTranslateLoader(http: Http) {
     }),
     NgReduxModule
   ],
-  bootstrap: [IonApp],
+  exports: [RouterModule],
+  bootstrap: [MyApp],
   entryComponents: [
     MyApp,
     // Pages
