@@ -33,8 +33,6 @@ export class FearLadderStepModal {
       // Change the button texts
       this.buttonText = 'SAVE';
       this.headerText = 'FEAR_LADDER_STEP_HEADER_EDIT';
-    } else {
-      this.step.fear = new Fear();
     }
   }
 

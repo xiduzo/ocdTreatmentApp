@@ -12,40 +12,26 @@ import 'confetti-js';
 
 import { Exercise } from '@/lib/Exercise';
 
-import { Badge, BadgeFactory } from '@/lib/badge/Badge';
-import { BadgeEarnedModal } from '@/modals/badgeEarned/badgeEarned';
-
-import { EXERCISE_BADGE } from '@/lib/badge/templates/exercise';
-import { FIRST_TIME_BADGE } from '@/lib/badge/templates/firstTime';
 import { IStep, IExercise } from '@/stores/exercise/exercise.model';
 import { ExerciseActions } from '@/stores/exercise/exercise.action';
 import { FearLadderActions } from '@/stores/fearLadder/fearLadder.action';
+import { calculateNewPoissonValue } from '@/lib/poisson';
 
 @Component({
   selector: 'page-exercise-success',
   templateUrl: 'exercise.success.html'
 })
 export class ExerciseSuccessModal {
-  private level: IStep[];
-  private exercise: IExercise = new Exercise();
-  // public exerciseBadge: Badge = this.badgeFctry.createBadge(EXERCISE_BADGE);
-  // public firstTimeBadge: Badge = this.badgeFctry.createBadge(FIRST_TIME_BADGE);
+  private exercise: IExercise;
 
   private transitionOptions: NativeTransitionOptions = {
     direction: 'left'
   };
 
-  private showBadge: any = {
-    modal: null,
-    badge: null
-  };
-
   constructor(
     private params: NavParams,
     public viewCtrl: ViewController,
-    private modalCtrl: ModalController,
     private nativePageTransitions: NativePageTransitions,
-    private badgeFctry: BadgeFactory,
     private exerciseActions: ExerciseActions,
     private fearLadderActions: FearLadderActions
   ) {
@@ -84,31 +70,19 @@ export class ExerciseSuccessModal {
   }
 
   updateStepCompletion() {
-    const exercise: IExercise = new Exercise(this.exercise);
+    const exercise: IExercise = { ...this.exercise };
     exercise.end = new Date();
-    exercise.step.fear.completion += exercise.getPointsForExercise();
+    console.log('poisson', exercise.step.fear.poissonValue);
+    exercise.step.fear.poissonValue = calculateNewPoissonValue(
+      exercise.step.fear.poissonValue,
+      exercise.beforeMood,
+      exercise.afterMood
+    );
 
     this.editExercise(exercise);
     this.editStep(exercise.step);
   }
-
-  // updateExerciseBadges() {
-  //   // this.exerciseBadge.addProgress(50).then(finishedStage => {
-  //   //   // TODO: move this responsibility to the badge class
-  //   //   if (finishedStage) {
-  //   //     this.showBadge.modal = BadgeEarnedModal;
-  //   //     this.showBadge.badge = this.exerciseBadge;
-  //   //   }
-  //   // });
-  // }
-
   close() {
-    // if (this.showBadge.modal && this.showBadge.badge) {
-    //   const modal = this.modalCtrl.create(this.showBadge.modal, {
-    //     badge: this.showBadge.badge
-    //   });
-    //   modal.present();
-    // }
     this.viewCtrl.dismiss();
   }
 }

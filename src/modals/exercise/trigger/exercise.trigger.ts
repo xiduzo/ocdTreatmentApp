@@ -55,10 +55,10 @@ export class ExerciseTriggerModal {
       end: new Date(),
       step: {
         ...this.exercise.step,
-        triggers: {
+        triggers: [
           ...this.exercise.step.triggers,
           ...this.triggers
-        }
+        ]
       }
     };
     this.exerciseActions.editExercise(this.exercise, change);

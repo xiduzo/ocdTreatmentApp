@@ -8,9 +8,10 @@ import regression from 'regression';
 import { mapRange } from '@/lib/helpers';
 
 import { select } from '@angular-redux/store';
-import { Observable } from 'rxjs/Observable';
 import { IExerciseState } from '@/stores/exercise/exercise.reducer';
 import { IExercise } from '@/stores/exercise/exercise.model';
+import { calculateRegressionPoints } from '@/lib/regression';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'progress-page',
@@ -55,10 +56,12 @@ export class ProgressPage {
 
   ionViewDidEnter = (): void => {
     this.setChartOptions();
-    this.setChartData();
   };
 
-  setChart = (chart: any) => (this.chart = chart);
+  setChart = (chart: any) => {
+    this.chart = chart;
+    this.setChartData();
+  };
 
   setChartOptions = (): void => {
     this.chartOptions = {
@@ -101,7 +104,7 @@ export class ProgressPage {
       series: [
         {
           // https://github.com/virtualstaticvoid/highcharts_trendline
-          type: 'line',
+          type: 'spline',
           dashStyle: 'Dash',
           name: 'Regression Line',
           data: [],
@@ -134,8 +137,8 @@ export class ProgressPage {
   clearSeries = (seriesNumber: number): void => {
     if (!this.chart) return;
 
-    const amount = this.chart.series[seriesNumber].data.length;
-    for (let i = 0; i < amount; i++) {
+    const loopAmount = this.chart.series[seriesNumber].data.length;
+    for (let i = 0; i < loopAmount; i++) {
       this.chart.series[seriesNumber].removePoint(0);
     }
   };
@@ -160,7 +163,6 @@ export class ProgressPage {
           exercise.beforeMood.mood !== null &&
           exercise.afterMood.mood !== null
         ) {
-          console.log(exercise);
           this.addExerciseToGraph(exercise);
         }
       }
@@ -168,22 +170,11 @@ export class ProgressPage {
   };
 
   addRegressionToGraph = (): void => {
-    this.clearRegression();
+    const points = calculateRegressionPoints();
 
-    regression.polynomial(
-      this.chart.series[1].data
-        .map((point: any): string[] => [`${point.x}`, `${point.y}`])
-        .points.map(
-          (x: number[]): string[] => [x[0].toString(), x[1].toString()]
-        )
-        .sort()
-        .forEach(
-          (point: string[]): void => {
-            console.log(point);
-            this.chart.series.addPoint(point);
-          }
-        )
-    );
+    points.forEach((point: number[]) => {
+      this.chart.series[0].addPoint(point);
+    });
   };
 
   changeTimeFrame = (direction: number): void => {
@@ -228,7 +219,8 @@ export class ProgressPage {
         if (returnExercise) return exercise;
       }
     );
-    console.log(this.thisTimeFrameExercises);
+
+    if (this.chart) this.addExercisesToGraph();
   };
 
   checkIfInTimeFrame = (

@@ -15,6 +15,7 @@ export interface ITrigger {
 
 export interface IFear {
   completion: number;
+  poissonValue: number;
   situation: string;
   without: string;
 }

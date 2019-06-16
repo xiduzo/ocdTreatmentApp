@@ -1,3 +1,4 @@
+// TODO: remove old code below from project
 import { UUID } from 'angular2-uuid';
 import moment from 'moment';
 
@@ -55,11 +56,18 @@ export class Fear {
   public completion: number;
   public situation: string;
   public without: string;
+  public poissonValue: number;
 
-  constructor({ completion = 0, situation = '', without = '' } = {}) {
+  constructor({
+    completion = 0,
+    situation = '',
+    without = '',
+    poissonValue = 1
+  } = {}) {
     this.completion = completion;
     this.situation = situation;
     this.without = without;
+    this.poissonValue = poissonValue;
   }
 }
 
