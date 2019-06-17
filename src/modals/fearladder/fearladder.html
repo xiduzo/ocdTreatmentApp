@@ -12,15 +12,6 @@
 </ion-header>
 
 <ion-content>
-  <!-- <section *ngIf="!fearLadder$.loading" class="c-emptystate">
-    <img src="assets/imgs/monsters/all.png" alt="" />
-    <h1>
-      {{ 'OOPS' | translate }}
-    </h1>
-    <p>
-      {{ 'WARNING_NO_FEARS' | translate }}
-    </p>
-  </section> -->
   <section *ngIf="(fearLadder$ | async).loading">
     loading
   </section>

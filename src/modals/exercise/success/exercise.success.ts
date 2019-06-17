@@ -59,10 +59,8 @@ export class ExerciseSuccessModal {
     }
   }
 
-  editExercise(change: IExercise): IExercise {
+  editExercise(change: IExercise): void {
     this.exerciseActions.editExercise(this.exercise, change);
-
-    return { ...this.exercise, ...change };
   }
 
   editStep(change: IStep): void {
@@ -72,7 +70,6 @@ export class ExerciseSuccessModal {
   updateStepCompletion() {
     const exercise: IExercise = { ...this.exercise };
     exercise.end = new Date();
-    console.log('poisson', exercise.step.fear.poissonValue);
     exercise.step.fear.poissonValue = calculateNewPoissonValue(
       exercise.step.fear.poissonValue,
       exercise.beforeMood,

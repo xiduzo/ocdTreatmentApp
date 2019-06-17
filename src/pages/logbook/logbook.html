@@ -15,7 +15,7 @@
       no items
     </section>
     <section *ngIf="(exercises$ | async).list.length" no-lines class="c-logbook">
-      <div *ngFor="let exercise of (exercises$ | async).list | orderByImpure '-start'" class="c-logbook__item">
+      <div *ngFor="let exercise of (exercises$ | async).list" class="c-logbook__item">
         <div class="c-timeline">
           <spirit-mood-indicator [mood]="exercise.beforeMood.mood || -1" [afterMood]="exercise.afterMood.mood || -1">
           </spirit-mood-indicator>

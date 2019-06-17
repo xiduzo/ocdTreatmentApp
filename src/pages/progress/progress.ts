@@ -120,10 +120,6 @@ export class ProgressPage {
           enableMouseTracking: false,
           marker: { symbol: 'round', radius: 6 }
         }
-        // {
-        //   name: 'Calibration',
-        //   data: [1,2,3,4,5].map(x => [x,x])
-        // }
       ],
       credits: { href: null, text: '' }
     };
