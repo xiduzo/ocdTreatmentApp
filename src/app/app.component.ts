@@ -42,7 +42,7 @@ export class MyApp {
   @select() readonly exercises$: Observable<IExerciseState>;
   @select() readonly badges$: Observable<IBadgeState>;
 
-  private rootPage: any = LoginPage; // Always start the app with the LoginPage to be sure
+  public rootPage: any = LoginPage; // Always start the app with the LoginPage to be sure
 
   constructor(
     private platform: Platform,

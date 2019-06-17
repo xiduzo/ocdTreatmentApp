@@ -13,7 +13,6 @@ import { FIRST_TIME_BADGE } from '@/lib/badge/templates/firstTime';
 
 import { SettingsModal } from '@/modals/settings/settings';
 import { FearLadderModal } from '@/modals/fearLadder/fearLadder';
-import { EventsService } from 'angular-event-service';
 
 @Component({
   selector: 'page-profile',
@@ -40,8 +39,7 @@ export class ProfilePage {
     public navCtrl: NavController,
     private storage: Storage,
     private modalCtrl: ModalController,
-    private badgeFctry: BadgeFactory,
-    private eventService: EventsService
+    private badgeFctry: BadgeFactory
   ) {
     this.badgeTemplates.forEach(badge => {
       // this.badges.push(this.badgeFctry.createBadge(badge));
@@ -50,11 +48,6 @@ export class ProfilePage {
 
   ionViewWillLoad() {
     this.getPersonalGoal();
-    this.eventService.on('badge_update', this.updateBadge.bind(this));
-  }
-
-  ionViewWillUnload() {
-    this.eventService.destroyListener('badge_update', this.updateBadge);
   }
 
   updateBadge(badge: Badge) {

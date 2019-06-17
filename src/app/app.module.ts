@@ -19,13 +19,11 @@ import { HttpClientModule } from '@angular/common/http';
 // Native
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { EmailComposer } from '@ionic-native/email-composer';
 import { Globalization } from '@ionic-native/globalization';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { IonicStorageModule } from '@ionic/storage';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
-import { File } from '@ionic-native/file';
 
 /*------------------------------
   AWS
@@ -139,7 +137,6 @@ import { rootReducer, IAppState, INITIAL_STATE } from '@/stores/reducer';
 /*------------------------------
   Global events
 ------------------------------*/
-import { EventsServiceModule } from 'angular-event-service';
 
 /*------------------------------
   Components
@@ -149,7 +146,6 @@ import { SpiritMoodIndicator } from '@/components/moodIndicator/moodIndicator.co
   Other
 ------------------------------*/
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 // Language settings
 export function createTranslateLoader(http: Http) {
@@ -205,9 +201,7 @@ export function createTranslateLoader(http: Http) {
     ChartModule,
     HttpClientModule,
     RoundProgressModule,
-    NgxPaginationModule,
     AmplifyAngularModule,
-    EventsServiceModule.forRoot(),
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: createTranslateLoader,
@@ -244,13 +238,11 @@ export function createTranslateLoader(http: Http) {
   providers: [
     StatusBar,
     SplashScreen,
-    EmailComposer,
     NativePageTransitions,
     ScreenOrientation,
     LocalNotifications,
     Globalization,
     AmplifyService,
-    File,
     BadgeFactory,
     ExerciseActions,
     FearLadderActions,
