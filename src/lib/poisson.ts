@@ -7,7 +7,7 @@ const oldProbability = 30;
 const newProbability = 7;
 const regressionDeviation = 0.175; // Percentage => 0.2 = 20%
 
-export const poissonThreshold = 100;
+export const poissonThreshold = 40;
 
 const poissonGoodMultiplier = 1 / newProbability / (1 / oldProbability);
 const poissonBadMultiplier =
@@ -20,7 +20,7 @@ export function calculateNewPoissonValue(
   beforeMood: IMood,
   afterMood: IMood
 ): number {
-  if (!currentPoissonValue) currentPoissonValue = 1; // When no current poisson value has been set yet
+  if (!currentPoissonValue) currentPoissonValue = 1;
 
   const mappedAfterMood = mapRange(afterMood.mood, 0, 500, 1, 5);
   const mappedBeforeMood = mapRange(beforeMood.mood, 0, 500, 1, 5);
@@ -34,13 +34,16 @@ export function calculateNewPoissonValue(
     .predict(mappedAfterMood);
   const predictedYValue = prediction[1];
 
-  let newPoissonValue: number;
-
-  newPoissonValue = isMoodWithinRange(mappedBeforeMood, predictedYValue)
-    ? newPoissonValue * poissonGoodMultiplier
-    : newPoissonValue * poissonBadMultiplier;
+  let newPoissonValue: number = isMoodWithinRange(
+    mappedBeforeMood,
+    predictedYValue
+  )
+    ? currentPoissonValue * poissonGoodMultiplier
+    : currentPoissonValue * poissonBadMultiplier;
 
   if (newPoissonValue < 1) newPoissonValue = 1; // Reset when poisson value get below 1
+
+  console.log(newPoissonValue);
 
   return newPoissonValue;
 }
