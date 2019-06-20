@@ -10,7 +10,7 @@ import { TabsPage } from '@/pages/tabs/tabs';
 import { OnboardingPage } from '@/pages/onboarding/onboarding';
 import { LoginPage } from '@/pages/auth/login/login';
 
-import { TranslateService } from 'ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 import { Globalization } from '@ionic-native/globalization';
 import {
   defaultLanguage,
