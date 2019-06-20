@@ -9,7 +9,7 @@ import {
 
 import { RatingPage } from '@/pages/rating/rating'; // actually a modal - to lazy to care
 
-import { TranslateService } from 'ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 import { availableLanguages, sysOptions, ILanguageCode } from '@/lib/language';
 
 import moment from 'moment';

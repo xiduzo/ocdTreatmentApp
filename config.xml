@@ -84,6 +84,8 @@
     <plugin name="cordova-plugin-device" spec="^2.0.1" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="com.telerik.plugins.nativepagetransitions" spec="^0.6.5" />
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
     <allow-navigation href="http://172.18.12.251:8100" />
     <plugin name="cordova-plugin-screen-orientation" spec="^3.0.1" />
     <allow-navigation href="http://145.109.168.112:8100" />
@@ -92,14 +94,10 @@
     <allow-navigation href="http://192.168.1.116:8100" />
     <allow-navigation href="http://145.109.203.155:8100" />
     <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
-    <plugin name="cordova-plugin-file" spec="^6.0.1" />
-    <plugin name="cordova-plugin-email-composer" spec="^0.8.15" />
     <allow-navigation href="http://145.109.144.131:8100" />
     <allow-navigation href="http://100.72.63.114:8100" />
     <plugin name="cordova-sqlite-storage" spec="^2.4.0" />
     <allow-navigation href="http://192.168.0.51:8100" sessionid="fe21fc8b" />
     <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
     <allow-navigation href="http://192.168.0.46:8100" sessionid="a72ce854" />
-    <engine name="browser" spec="^5.0.4" />
-    <engine name="android" spec="7.1.4" />
 </widget>

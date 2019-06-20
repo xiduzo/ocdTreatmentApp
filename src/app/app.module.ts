@@ -11,7 +11,7 @@ import { NgModule, ErrorHandler, ApplicationRef } from '@angular/core';
 import { Http } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 /*------------------------------
   Ionic
@@ -95,11 +95,13 @@ import { BadgeFactory } from '@/lib/badge/Badge';
 /*------------------------------
   Translation
 ------------------------------*/
-import { TranslateModule } from 'ng2-translate/ng2-translate';
-import {
-  TranslateLoader,
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpModule } from '@angular/http';
   TranslateStaticLoader
-} from 'ng2-translate/src/translate.service';
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 /*------------------------------
   Datavisualizations
@@ -202,10 +204,13 @@ export function createTranslateLoader(http: Http) {
     HttpClientModule,
     RoundProgressModule,
     AmplifyAngularModule,
+    HttpModule,
     TranslateModule.forRoot({
-      provide: TranslateLoader,
-      useFactory: createTranslateLoader,
-      deps: [Http]
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      }
     }),
     NgReduxModule
   ],
