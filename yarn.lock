@@ -603,10 +603,10 @@ android-versions@1.4.0:
   dependencies:
     semver "^5.4.1"
 
-angular-svg-round-progressbar@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/angular-svg-round-progressbar/-/angular-svg-round-progressbar-2.0.0.tgz#39fbad9deea6bc10efe74d4e8d99f61561589461"
-  integrity sha512-NYG8ryX/YvHomvpWd7/z+2aIuJhBu9wlRHpDD3jnkh4v+rLFY48D5lbICUNcYML9ptNUyzzkuhBBTLSgOyfRPw==
+angular-svg-round-progressbar@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/angular-svg-round-progressbar/-/angular-svg-round-progressbar-3.0.1.tgz#c9488ace5d4c5bb9406219ddf0a23514435432f2"
+  integrity sha512-sH9dW/VoPb4sWwPQyuj+N4HmLxn1okUPJmB1UG979vDS9zzMGpSc6Cg8W/ixWmws5J3KMBH1XTWa6Aj7h4hhng==
 
 angular2-highcharts@^0.5.5:
   version "0.5.5"
