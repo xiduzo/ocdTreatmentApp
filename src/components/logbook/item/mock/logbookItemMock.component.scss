@@ -1,0 +1,25 @@
+spirit-logbook-item-mock {
+  width: 100%;
+  ion-card.card {
+    margin: 0 8px 0 24px;
+    box-shadow: none;
+    min-height: 50px;
+    padding-bottom: 16px;
+    ion-card-header {
+      .u-skeleton {
+        background-color: #ddd;
+        min-height: 19px;
+      }
+    }
+    h1 {
+      .u-skeleton {
+        min-height: 18px;
+      }
+    }
+    h2 {
+      .u-skeleton {
+        min-height: 15px;
+      }
+    }
+  }
+}

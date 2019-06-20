@@ -1,0 +1,21 @@
+spirit-mood-indicator-mock {
+  @extend .u-skeleton;
+  display: flex;
+  min-width: $o-mood-indicator-size;
+  min-height: $o-mood-indicator-size;
+  border-radius: 50%;
+
+  > div {
+    width: $o-mood-indicator-size;
+    height: $o-mood-indicator-size;
+    min-width: $o-mood-indicator-size;
+    min-height: $o-mood-indicator-size;
+
+    &:not(.combined) {
+      width: $o-mood-indicator-size / 1.5;
+      height: $o-mood-indicator-size / 1.5;
+      min-width: $o-mood-indicator-size / 1.5;
+      min-height: $o-mood-indicator-size / 1.5;
+    }
+  }
+}

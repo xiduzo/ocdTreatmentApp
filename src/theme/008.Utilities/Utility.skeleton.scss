@@ -1,0 +1,23 @@
+$base-color: #f4f4f4;
+$shine-color: rgba(229, 229, 229, 0.8);
+$animation-duration: 2s;
+
+@keyframes skeletonShimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.u-skeleton {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: skeletonShimmer;
+  animation-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  background: $base-color;
+  background: linear-gradient(to right, $base-color 0%, $shine-color 50%, $base-color 100%);
+  background-size: 200% 100%;
+}

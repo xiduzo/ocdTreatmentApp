@@ -14,8 +14,4 @@ export class LogbookPage {
   @select() readonly exercises$: Observable<IExerciseState>;
 
   constructor() {}
-
-  toggleExerciseContent(exercise: Exercise) {
-    exercise['openedContent'] = !exercise['openedContent'];
-  }
 }

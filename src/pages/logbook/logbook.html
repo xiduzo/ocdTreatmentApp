@@ -7,8 +7,16 @@
 </ion-header>
 
 <ion-content>
-  <section *ngIf="(exercises$ | async).loading">
-    loading items
+  <section>
+  </section>
+  <section *ngIf="(exercises$ | async).loading" class="c-logbook">
+    <div class="c-logbook__item" *ngFor="let x of [1,2,3,4,5,6,7]">
+      <div class="c-timeline">
+        <spirit-mood-indicator-mock></spirit-mood-indicator-mock>
+        <div class="c-timeline__extender"></div>
+      </div>
+      <spirit-logbook-item-mock></spirit-logbook-item-mock>
+    </div>
   </section>
   <section *ngIf="!(exercises$ | async).loading">
     <section *ngIf="!(exercises$ | async).list.length">
@@ -21,52 +29,7 @@
           </spirit-mood-indicator>
           <div class="c-timeline__extender"></div>
         </div>
-        <ion-card (click)="toggleExerciseContent(exercise)">
-          <ion-card-header>
-            {{ exercise.start | relativeTime | async }}
-          </ion-card-header>
-          <ion-card-content>
-            <h1 text-wrap>
-              {{ exercise.step.fear.situation }}
-            </h1>
-            <h2 text-wrap>
-              {{ 'WITHOUT' | translate }}: {{ exercise.step.fear.without }}
-            </h2>
-            <section class="c-item__detail" [class.active]="exercise.openedContent"
-              [class.inactive]="!exercise.openedContent">
-              <ion-item-group>
-                <ion-item-divider>
-                  {{ 'BEFORE' | translate }}
-                  <spirit-mood-indicator [mood]="exercise.beforeMood.mood || -1"></spirit-mood-indicator>
-                </ion-item-divider>
-                <ion-item text-wrap *ngIf="exercise.beforeMood.explanation">{{ exercise.beforeMood.explanation }}
-                </ion-item>
-              </ion-item-group>
-              <ion-item-group>
-                <ion-item-divider>
-                  {{ 'AFTER' | translate }}
-                  <spirit-mood-indicator [mood]="exercise.afterMood.mood || -1"></spirit-mood-indicator>
-                </ion-item-divider>
-                <ion-item text-wrap *ngIf="exercise.afterMood.explanation">
-                  {{ exercise.afterMood.explanation }}
-                </ion-item>
-              </ion-item-group>
-              <div *ngIf="exercise.step.triggers">
-                <ion-item-group *ngFor="let trigger of exercise.step.triggers">
-                  <div *ngIf="trigger.enabled">
-                    <ion-item-divider>
-                      {{ trigger.verbose | translate }}
-                      <span>{{ trigger.amount }} / 5</span>
-                    </ion-item-divider>
-                    <ion-item text-wrap *ngIf="trigger.explanation">
-                      {{ trigger.explanation }}
-                    </ion-item>
-                  </div>
-                </ion-item-group>
-              </div>
-            </section>
-          </ion-card-content>
-        </ion-card>
+        <spirit-logbook-item [exercise]="exercise"></spirit-logbook-item>
       </div>
     </section>
   </section>
