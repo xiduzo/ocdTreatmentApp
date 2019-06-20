@@ -6,8 +6,8 @@ import {
   NativeTransitionOptions
 } from '@ionic-native/native-page-transitions';
 
-import { mapRange } from '@/lib/helpers';
-import { Mood } from '@/lib/Exercise';
+import { mapRange } from '@lib/helpers';
+import { Mood } from '@lib/Exercise';
 
 import {
   trigger,
@@ -17,12 +17,12 @@ import {
   transition
 } from '@angular/animations';
 
-import { ExerciseDuringModal } from '@/modals/exercise/during/exercise.during';
-import { ExerciseTriggerModal } from '@/modals/exercise/trigger/exercise.trigger';
-import { ExerciseSuccessModal } from '@/modals/exercise/success/exercise.success';
+import { ExerciseDuringModal } from '@modals/exercise/during/exercise.during';
+import { ExerciseTriggerModal } from '@modals/exercise/trigger/exercise.trigger';
+import { ExerciseSuccessModal } from '@modals/exercise/success/exercise.success';
 
-import { IStep, IExercise, IMood } from '@/stores/exercise/exercise.model';
-import { ExerciseActions } from '@/stores/exercise/exercise.action';
+import { IStep, IExercise, IMood } from '@stores/exercise/exercise.model';
+import { ExerciseActions } from '@stores/exercise/exercise.action';
 
 @Component({
   selector: 'exercise-mood-modal',

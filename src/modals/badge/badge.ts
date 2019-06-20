@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
 
-import { Badge } from '@/lib/badge/Badge';
-import { BadgeEarnedModal } from '@/modals/badgeEarned/badgeEarned';
+import { Badge } from '@lib/badge/Badge';
+import { BadgeEarnedModal } from '@modals/badgeEarned/badgeEarned';
 
 @Component({
   selector: 'badge',

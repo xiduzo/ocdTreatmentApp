@@ -4,9 +4,9 @@ import { Action } from '@ngrx/store';
 
 import { Storage } from '@ionic/storage';
 
-import { IBadge } from '@/stores/badge/badge.model';
+import { IBadge } from '@stores/badge/badge.model';
 
-import { REQUEST_BADGES, RECEIVED_BADGES } from '@/stores/badge/badge.reducer';
+import { REQUEST_BADGES, RECEIVED_BADGES } from '@stores/badge/badge.reducer';
 
 class RequestBadgesAction implements Action {
   readonly type: string = REQUEST_BADGES;

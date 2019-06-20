@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
-import { Badge } from '@/lib/badge/Badge';
+import { Badge } from '@lib/badge/Badge';
 
-import { confettiSettings } from '@/lib/Confetti';
+import { confettiSettings } from '@lib/Confetti';
 
 declare var ConfettiGenerator: any;
 import 'confetti-js';

@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { dispatch } from '@angular-redux/store';
 import { Action } from '@ngrx/store';
 
-import { IStep } from '@/stores/exercise/exercise.model';
+import { IStep } from '@stores/exercise/exercise.model';
 import {
   RECEIVED_FEAR_LADDER,
   REQUEST_FEAR_LADDER,
   ADD_FEAR_LADDER_STEP,
   REMOVE_FEAR_LADDER_STEP,
   EDIT_FEAR_LADDER_STEP
-} from '@/stores/fearLadder/fearLadder.reducer';
+} from '@stores/fearLadder/fearLadder.reducer';
 
 import { Storage } from '@ionic/storage';
 

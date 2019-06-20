@@ -4,14 +4,14 @@ import { Action } from '@ngrx/store';
 
 import { Storage } from '@ionic/storage';
 
-import { IExercise } from '@/stores/exercise/exercise.model';
+import { IExercise } from '@stores/exercise/exercise.model';
 
 import {
   ADD_EXERCISE,
   REQUEST_EXERCISES,
   RECEIVED_EXERCISES,
   EDIT_EXERCISE
-} from '@/stores/exercise/exercise.reducer';
+} from '@stores/exercise/exercise.reducer';
 
 class AddExerciseAction implements Action {
   readonly type: string = ADD_EXERCISE;

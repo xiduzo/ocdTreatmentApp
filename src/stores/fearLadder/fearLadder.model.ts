@@ -1,4 +1,4 @@
-import { IStep } from '@/stores/exercise/exercise.model';
+import { IStep } from '@stores/exercise/exercise.model';
 
 export interface IFearLadder {
   stepNumber: number;

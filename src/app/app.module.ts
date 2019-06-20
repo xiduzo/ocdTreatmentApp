@@ -8,7 +8,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
   Angular
 ------------------------------*/
 import { NgModule, ErrorHandler, ApplicationRef } from '@angular/core';
-import { Http } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -40,53 +39,53 @@ import Auth from '@aws-amplify/auth';
   Pages
 ------------------------------*/
 // Exercise
-import { ExercisePage } from '@/pages/exercise/exercise';
-import { RatingPage } from '@/pages/rating/rating';
+import { ExercisePage } from '@pages/exercise/exercise';
+import { RatingPage } from '@pages/rating/rating';
 // Auth
-import { LoginPage } from '@/pages/auth/login/login';
-import { SignUpPage } from '@/pages/auth/signup/signup';
-import { ConfirmCodePage } from '@/pages/auth/confirmCode/confirmCode';
+import { LoginPage } from '@pages/auth/login/login';
+import { SignUpPage } from '@pages/auth/signup/signup';
+import { ConfirmCodePage } from '@pages/auth/confirmCode/confirmCode';
 // Onboarding
-import { OnboardingPage } from '@/pages/onboarding/onboarding';
+import { OnboardingPage } from '@pages/onboarding/onboarding';
 // Logbook
-import { LogbookPage } from '@/pages/logbook/logbook';
+import { LogbookPage } from '@pages/logbook/logbook';
 // Profile
-import { ProfilePage } from '@/pages/profile/profile';
+import { ProfilePage } from '@pages/profile/profile';
 // Progress
-import { ProgressPage } from '@/pages/progress/progress';
+import { ProgressPage } from '@pages/progress/progress';
 // Tabs (navigation)
-import { TabsPage } from '@/pages/tabs/tabs';
+import { TabsPage } from '@pages/tabs/tabs';
 
 /*------------------------------
   Modals
 ------------------------------*/
 //Settings
-import { SettingsModal } from '@/modals/settings/settings';
+import { SettingsModal } from '@modals/settings/settings';
 // Fear ladder
-import { FearLadderModal } from '@/modals/fearLadder/fearLadder';
-import { FearLadderStepModal } from '@/modals/fearLadder/step/fearLadder.step';
+import { FearLadderModal } from '@modals/fearLadder/fearLadder';
+import { FearLadderStepModal } from '@modals/fearLadder/step/fearLadder.step';
 // Exercise
-import { ExerciseMoodModal } from '@/modals/exercise/mood/exercise.mood';
-import { ExerciseDuringModal } from '@/modals/exercise/during/exercise.during';
-import { ExerciseTriggerModal } from '@/modals/exercise/trigger/exercise.trigger';
-import { ExerciseSuccessModal } from '@/modals/exercise/success/exercise.success';
-import { ExerciseListModal } from '@/modals/exercise/list/exercise.list';
+import { ExerciseMoodModal } from '@modals/exercise/mood/exercise.mood';
+import { ExerciseDuringModal } from '@modals/exercise/during/exercise.during';
+import { ExerciseTriggerModal } from '@modals/exercise/trigger/exercise.trigger';
+import { ExerciseSuccessModal } from '@modals/exercise/success/exercise.success';
+import { ExerciseListModal } from '@modals/exercise/list/exercise.list';
 // Badge
-import { BadgeModal } from '@/modals/badge/badge';
-import { BadgeEarnedModal } from '@/modals/badgeEarned/badgeEarned';
+import { BadgeModal } from '@modals/badge/badge';
+import { BadgeEarnedModal } from '@modals/badgeEarned/badgeEarned';
 
 /*------------------------------
   Lib
 ------------------------------*/
 // pipes
 import { NgPipesModule } from 'ngx-pipes';
-import { msToTimePipe } from '@/lib/pipes/msToTime';
-import { accumulateTimePipe } from '@/lib/pipes/accumulateTime';
-import { differencePipe } from '@/lib/pipes/difference';
-import { relativeTimePipe } from '@/lib/pipes/relativeTime';
+import { msToTimePipe } from '@lib/pipes/msToTime';
+import { accumulateTimePipe } from '@lib/pipes/accumulateTime';
+import { differencePipe } from '@lib/pipes/difference';
+import { relativeTimePipe } from '@lib/pipes/relativeTime';
 
 // badge
-import { BadgeFactory } from '@/lib/badge/Badge';
+import { BadgeFactory } from '@lib/badge/Badge';
 
 /*------------------------------
   Directives
@@ -98,7 +97,7 @@ import { BadgeFactory } from '@/lib/badge/Badge';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpModule } from '@angular/http';
-  TranslateStaticLoader
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -129,30 +128,28 @@ import reduxLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 
 // Actions
-import { ExerciseActions } from '@/stores/exercise/exercise.action';
-import { FearLadderActions } from '@/stores/fearLadder/fearLadder.action';
-import { BadgeActions } from '@/stores/badge/badge.action';
+import { ExerciseActions } from '@stores/exercise/exercise.action';
+import { FearLadderActions } from '@stores/fearLadder/fearLadder.action';
+import { BadgeActions } from '@stores/badge/badge.action';
 
 // Reducers
-import { rootReducer, IAppState, INITIAL_STATE } from '@/stores/reducer';
-
-/*------------------------------
-  Global events
-------------------------------*/
+import { rootReducer, IAppState, INITIAL_STATE } from '@stores/reducer';
 
 /*------------------------------
   Components
 ------------------------------*/
-import { SpiritMoodIndicator } from '@/components/moodIndicator/moodIndicator.component';
+import { SpiritMoodIndicator } from '@components/moodIndicator/moodIndicator.component';
+import { SpiritLogbookItem } from '@components/logbook/item/logbookItem.component';
+
+// Mocks
+import { SpiritMoodIndicatorMock } from '@components/moodIndicator/mock/moodIndicatorMock.component';
+import { SpiritLogbookItemMock } from '@components/logbook/item/mock/logbookItemMock.component';
+
 /*------------------------------
   Other
 ------------------------------*/
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
-
-// Language settings
-export function createTranslateLoader(http: Http) {
-  return new TranslateStaticLoader(http, 'assets/language', '.json');
-}
+import { environment } from '@lib/environment';
 
 @NgModule({
   declarations: [
@@ -185,7 +182,10 @@ export function createTranslateLoader(http: Http) {
     differencePipe,
     relativeTimePipe,
     // Components
-    SpiritMoodIndicator
+    SpiritMoodIndicator,
+    SpiritMoodIndicatorMock,
+    SpiritLogbookItem,
+    SpiritLogbookItemMock
   ],
   imports: [
     NgPipesModule,

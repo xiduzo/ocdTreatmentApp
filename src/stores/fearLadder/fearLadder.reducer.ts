@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { IStep } from '@/stores/exercise/exercise.model';
+import { IStep } from '@stores/exercise/exercise.model';
 
 export interface IFearLadderState {
   steps: IStep[];

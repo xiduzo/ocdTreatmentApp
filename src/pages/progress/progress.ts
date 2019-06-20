@@ -5,12 +5,12 @@ import { unitOfTime } from 'moment';
 
 import regression from 'regression';
 
-import { mapRange } from '@/lib/helpers';
+import { mapRange } from '@lib/helpers';
 
 import { select } from '@angular-redux/store';
-import { IExerciseState } from '@/stores/exercise/exercise.reducer';
-import { IExercise } from '@/stores/exercise/exercise.model';
-import { calculateRegressionPoints } from '@/lib/regression';
+import { IExerciseState } from '@stores/exercise/exercise.reducer';
+import { IExercise } from '@stores/exercise/exercise.model';
+import { calculateRegressionPoints } from '@lib/regression';
 import { Observable } from 'rxjs';
 
 @Component({

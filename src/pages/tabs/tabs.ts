@@ -5,10 +5,10 @@ import {
   NativeTransitionOptions
 } from '@ionic-native/native-page-transitions';
 
-import { ExercisePage } from '@/pages/exercise/exercise';
-import { ProgressPage } from '@/pages/progress/progress';
-import { ProfilePage } from '@/pages/profile/profile';
-import { LogbookPage } from '@/pages/logbook/logbook';
+import { ExercisePage } from '@pages/exercise/exercise';
+import { ProgressPage } from '@pages/progress/progress';
+import { ProfilePage } from '@pages/profile/profile';
+import { LogbookPage } from '@pages/logbook/logbook';
 
 @Component({
   templateUrl: 'tabs.html'

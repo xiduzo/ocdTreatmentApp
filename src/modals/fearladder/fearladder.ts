@@ -6,16 +6,16 @@ import {
   ToastController
 } from 'ionic-angular';
 
-import { FearLadderStepModal } from '@/modals/fearLadder/step/fearLadder.step';
+import { FearLadderStepModal } from '@modals/fearLadder/step/fearLadder.step';
 
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
-import { IFearLadderState } from '@/stores/fearLadder/fearLadder.reducer';
-import { FearLadderActions } from '@/stores/fearLadder/fearLadder.action';
-import { IStep } from '@/stores/exercise/exercise.model';
-import { IFearLadder } from '@/stores/fearLadder/fearLadder.model';
+import { IFearLadderState } from '@stores/fearLadder/fearLadder.reducer';
+import { FearLadderActions } from '@stores/fearLadder/fearLadder.action';
+import { IStep } from '@stores/exercise/exercise.model';
+import { IFearLadder } from '@stores/fearLadder/fearLadder.model';
 
-import { generateLevelsFromFearLadderSteps } from '@/lib/Level';
+import { generateLevelsFromFearLadderSteps } from '@lib/Level';
 
 @Component({
   selector: 'fearLadder-modal',

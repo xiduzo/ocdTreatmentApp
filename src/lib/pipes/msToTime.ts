@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { zeroPad } from '@/lib/helpers';
+import { zeroPad } from '@lib/helpers';
 
 @Pipe({ name: 'msToTime' })
 export class msToTimePipe implements PipeTransform {

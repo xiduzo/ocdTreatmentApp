@@ -3,14 +3,14 @@ import { Reducer } from 'redux';
 import {
   exercisesReducer,
   IExerciseState
-} from '@/stores/exercise/exercise.reducer';
+} from '@stores/exercise/exercise.reducer';
 
 import {
   fearLadderReducer,
   IFearLadderState
-} from '@/stores/fearLadder/fearLadder.reducer';
+} from '@stores/fearLadder/fearLadder.reducer';
 
-import { badgeReducer, IBadgeState } from '@/stores/badge/badge.reducer';
+import { badgeReducer, IBadgeState } from '@stores/badge/badge.reducer';
 
 export interface IAppState {
   exercises: IExerciseState;

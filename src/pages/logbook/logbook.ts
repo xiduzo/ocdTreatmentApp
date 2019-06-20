@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
-import { Exercise } from '@/lib/Exercise';
+import { Exercise } from '@lib/Exercise';
 
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
-import { IExerciseState } from '@/stores/exercise/exercise.reducer';
+import { IExerciseState } from '@stores/exercise/exercise.reducer';
 
 @Component({
   selector: 'logbook-page',

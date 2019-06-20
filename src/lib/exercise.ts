@@ -2,14 +2,14 @@
 import { UUID } from 'angular2-uuid';
 import moment from 'moment';
 
-import { mapRange } from '@/lib/helpers';
+import { mapRange } from '@lib/helpers';
 import {
   IMood,
   IStep,
   IErp,
   ITrigger,
   IFear
-} from '@/stores/exercise/exercise.model';
+} from '@stores/exercise/exercise.model';
 
 export class Step {
   public id: string;

@@ -1,22 +1,22 @@
 import { Component } from '@angular/core';
 import { App, ModalController } from 'ionic-angular';
 
-import { ExerciseListModal } from '@/modals/exercise/list/exercise.list';
+import { ExerciseListModal } from '@modals/exercise/list/exercise.list';
 
 import { ToastController } from 'ionic-angular';
 
-import { FearLadderModal } from '@/modals/fearLadder/fearLadder';
+import { FearLadderModal } from '@modals/fearLadder/fearLadder';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { FEAR_COMPLETION_POSITIVE_LIMIT } from '@/lib/constants';
+import { FEAR_COMPLETION_POSITIVE_LIMIT } from '@lib/constants';
 
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs';
-import { IFearLadderState } from '@/stores/fearLadder/fearLadder.reducer';
+import { IFearLadderState } from '@stores/fearLadder/fearLadder.reducer';
 
-import { generateLevelsFromFearLadderSteps } from '@/lib/Level';
-import { IFearLadder } from '@/stores/fearLadder/fearLadder.model';
+import { generateLevelsFromFearLadderSteps } from '@lib/Level';
+import { IFearLadder } from '@stores/fearLadder/fearLadder.model';
 
 @Component({
   selector: 'page-exercise',

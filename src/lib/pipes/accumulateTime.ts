@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 import moment from 'moment';
-import { IExercise } from '@/stores/exercise/exercise.model';
+import { IExercise } from '@stores/exercise/exercise.model';
 
 @Pipe({ name: 'accumulateTime' })
 export class accumulateTimePipe implements PipeTransform {

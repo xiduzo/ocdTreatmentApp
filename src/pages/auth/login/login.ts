@@ -4,8 +4,8 @@ import { ToastController, LoadingController } from 'ionic-angular';
 
 import { Auth } from 'aws-amplify';
 
-import { SignUpPage } from '@/pages/auth/signup/signup';
-import { ConfirmCodePage } from '@/pages/auth/confirmCode/confirmCode';
+import { SignUpPage } from '@pages/auth/signup/signup';
+import { ConfirmCodePage } from '@pages/auth/confirmCode/confirmCode';
 
 import {
   FormBuilder,

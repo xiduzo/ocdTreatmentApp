@@ -7,14 +7,14 @@ import {
   LoadingController
 } from 'ionic-angular';
 
-import { RatingPage } from '@/pages/rating/rating'; // actually a modal - to lazy to care
+import { RatingPage } from '@pages/rating/rating'; // actually a modal - to lazy to care
 
 import { TranslateService } from '@ngx-translate/core';
-import { availableLanguages, sysOptions, ILanguageCode } from '@/lib/language';
+import { availableLanguages, sysOptions, ILanguageCode } from '@lib/language';
 
 import moment from 'moment';
 
-import { Fear, Trigger, Exercise, Mood, Step, Erp } from '@/lib/Exercise';
+import { Fear, Trigger, Exercise, Mood, Step, Erp } from '@lib/Exercise';
 
 import { Auth, Storage as AwsStorage } from 'aws-amplify';
 

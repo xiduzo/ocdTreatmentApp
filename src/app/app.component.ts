@@ -6,9 +6,9 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { Storage } from '@ionic/storage';
 
-import { TabsPage } from '@/pages/tabs/tabs';
-import { OnboardingPage } from '@/pages/onboarding/onboarding';
-import { LoginPage } from '@/pages/auth/login/login';
+import { TabsPage } from '@pages/tabs/tabs';
+import { OnboardingPage } from '@pages/onboarding/onboarding';
+import { LoginPage } from '@pages/auth/login/login';
 
 import { TranslateService } from '@ngx-translate/core';
 import { Globalization } from '@ionic-native/globalization';
@@ -25,14 +25,14 @@ import moment from 'moment';
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 
-import { IFearLadderState } from '@/stores/fearLadder/fearLadder.reducer';
-import { FearLadderActions } from '@/stores/fearLadder/fearLadder.action';
+import { IFearLadderState } from '@stores/fearLadder/fearLadder.reducer';
+import { FearLadderActions } from '@stores/fearLadder/fearLadder.action';
 
-import { IExerciseState } from '@/stores/exercise/exercise.reducer';
-import { ExerciseActions } from '@/stores/exercise/exercise.action';
+import { IExerciseState } from '@stores/exercise/exercise.reducer';
+import { ExerciseActions } from '@stores/exercise/exercise.action';
 
-import { IBadgeState } from '@/stores/badge/badge.reducer';
-import { BadgeActions } from '@/stores/badge/badge.action';
+import { IBadgeState } from '@stores/badge/badge.reducer';
+import { BadgeActions } from '@stores/badge/badge.action';
 
 @Component({
   templateUrl: 'app.html'

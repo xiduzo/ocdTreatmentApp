@@ -2,17 +2,17 @@ import { Component } from '@angular/core';
 
 import { App, NavParams, ModalController } from 'ionic-angular';
 
-import { ExerciseMoodModal } from '@/modals/exercise/mood/exercise.mood';
+import { ExerciseMoodModal } from '@modals/exercise/mood/exercise.mood';
 
-import { Exercise } from '@/lib/Exercise';
+import { Exercise } from '@lib/Exercise';
 
-import { FEAR_COMPLETION_POSITIVE_LIMIT } from '@/lib/constants';
+import { FEAR_COMPLETION_POSITIVE_LIMIT } from '@lib/constants';
 
-import { IStep, IExercise } from '@/stores/exercise/exercise.model';
+import { IStep, IExercise } from '@stores/exercise/exercise.model';
 
-import { getLevelCompletion } from '@/lib/Level';
-import { ExerciseActions } from '@/stores/exercise/exercise.action';
-import { IFearLadder } from '@/stores/fearLadder/fearLadder.model';
+import { getLevelCompletion } from '@lib/Level';
+import { ExerciseActions } from '@stores/exercise/exercise.action';
+import { IFearLadder } from '@stores/fearLadder/fearLadder.model';
 
 @Component({
   selector: 'exercise-list-page',

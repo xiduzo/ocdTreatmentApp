@@ -2,17 +2,17 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, ModalController, TextInput } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-import { Badge, BadgeFactory } from '@/lib/badge/Badge';
+import { Badge, BadgeFactory } from '@lib/badge/Badge';
 
-import { STREAK_BADGE } from '@/lib/badge/templates/streak';
-import { EXERCISE_BADGE } from '@/lib/badge/templates/exercise';
-import { FIRST_TIME_BADGE } from '@/lib/badge/templates/firstTime';
+import { STREAK_BADGE } from '@lib/badge/templates/streak';
+import { EXERCISE_BADGE } from '@lib/badge/templates/exercise';
+import { FIRST_TIME_BADGE } from '@lib/badge/templates/firstTime';
 // import { TEST_ONE_BADGE } from '../../lib/badges/templates/test1';
 // import { TEST_TWO_BADGE } from '../../lib/badges/templates/test2';
 // import { TEST_THREE_BADGE } from '../../lib/badges/templates/test3';
 
-import { SettingsModal } from '@/modals/settings/settings';
-import { FearLadderModal } from '@/modals/fearLadder/fearLadder';
+import { SettingsModal } from '@modals/settings/settings';
+import { FearLadderModal } from '@modals/fearLadder/fearLadder';
 
 @Component({
   selector: 'page-profile',

@@ -3,7 +3,7 @@ import { Storage } from '@ionic/storage';
 
 import moment from 'moment';
 
-import { sysOptions } from '@/lib/language';
+import { sysOptions } from '@lib/language';
 
 @Pipe({ name: 'relativeTime' })
 export class relativeTimePipe implements PipeTransform {

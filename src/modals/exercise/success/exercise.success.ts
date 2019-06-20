@@ -5,17 +5,17 @@ import {
   NativeTransitionOptions
 } from '@ionic-native/native-page-transitions';
 
-import { confettiSettings } from '@/lib/Confetti';
+import { confettiSettings } from '@lib/Confetti';
 
 declare var ConfettiGenerator: any;
 import 'confetti-js';
 
-import { Exercise } from '@/lib/Exercise';
+import { Exercise } from '@lib/Exercise';
 
-import { IStep, IExercise } from '@/stores/exercise/exercise.model';
-import { ExerciseActions } from '@/stores/exercise/exercise.action';
-import { FearLadderActions } from '@/stores/fearLadder/fearLadder.action';
-import { calculateNewPoissonValue } from '@/lib/poisson';
+import { IStep, IExercise } from '@stores/exercise/exercise.model';
+import { ExerciseActions } from '@stores/exercise/exercise.action';
+import { FearLadderActions } from '@stores/fearLadder/fearLadder.action';
+import { calculateNewPoissonValue } from '@lib/poisson';
 
 @Component({
   selector: 'page-exercise-success',

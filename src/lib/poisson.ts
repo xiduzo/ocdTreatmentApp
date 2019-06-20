@@ -1,7 +1,7 @@
 import regression from 'regression';
-import { calculateRegressionPoints } from '@/lib/regression';
-import { mapRange } from '@/lib/helpers';
-import { IMood } from '@/stores/exercise/exercise.model';
+import { calculateRegressionPoints } from '@lib/regression';
+import { mapRange } from '@lib/helpers';
+import { IMood } from '@stores/exercise/exercise.model';
 
 const oldProbability = 30;
 const newProbability = 7;

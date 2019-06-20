@@ -12,7 +12,7 @@ import {
   AbstractControl
 } from '@angular/forms';
 
-import { ConfirmCodePage } from '@/pages/auth/confirmCode/confirmCode';
+import { ConfirmCodePage } from '@pages/auth/confirmCode/confirmCode';
 
 @Component({
   selector: 'page-signup',
@@ -100,9 +100,9 @@ export class SignUpPage {
           // case 'InvalidParameterException':
           // this.showMessage(`Username and/or email already registered`);
           case 'InvalidPasswordException':
-            const regex = /(?<=: ).*$/gm;
-            const matches = regex.exec(error.message);
-            this.showMessage(matches[0]);
+            // const regex = /(?<=: ).*$/gm;
+            // const matches = regex.exec(error.message);
+            this.showMessage(`Password has the wrong format`);
           default:
             console.log(error);
         }

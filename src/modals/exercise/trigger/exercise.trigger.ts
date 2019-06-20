@@ -11,11 +11,11 @@ import {
   NativeTransitionOptions
 } from '@ionic-native/native-page-transitions';
 
-import { ExerciseSuccessModal } from '@/modals/exercise/success/exercise.success';
+import { ExerciseSuccessModal } from '@modals/exercise/success/exercise.success';
 
-import { Trigger, Exercise } from '@/lib/Exercise';
-import { IStep, IExercise, ITrigger } from '@/stores/exercise/exercise.model';
-import { ExerciseActions } from '@/stores/exercise/exercise.action';
+import { Trigger, Exercise } from '@lib/Exercise';
+import { IStep, IExercise, ITrigger } from '@stores/exercise/exercise.model';
+import { ExerciseActions } from '@stores/exercise/exercise.action';
 
 @Component({
   selector: 'page-exercise-trigger',
@@ -55,10 +55,7 @@ export class ExerciseTriggerModal {
       end: new Date(),
       step: {
         ...this.exercise.step,
-        triggers: [
-          ...this.exercise.step.triggers,
-          ...this.triggers
-        ]
+        triggers: [...this.exercise.step.triggers, ...this.triggers]
       }
     };
     this.exerciseActions.editExercise(this.exercise, change);

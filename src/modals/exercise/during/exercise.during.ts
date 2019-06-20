@@ -11,12 +11,12 @@ import {
   NativeTransitionOptions
 } from '@ionic-native/native-page-transitions';
 
-import { ExerciseMoodModal } from '@/modals/exercise/mood/exercise.mood';
+import { ExerciseMoodModal } from '@modals/exercise/mood/exercise.mood';
 
-import { Exercise, Erp } from '@/lib/Exercise';
+import { Exercise, Erp } from '@lib/Exercise';
 
-import { ExerciseActions } from '@/stores/exercise/exercise.action';
-import { IErp, IExercise } from '@/stores/exercise/exercise.model';
+import { ExerciseActions } from '@stores/exercise/exercise.action';
+import { IErp, IExercise } from '@stores/exercise/exercise.model';
 
 @Component({
   selector: 'page-exercise-during',

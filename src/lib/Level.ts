@@ -1,6 +1,6 @@
 import { FEAR_COMPLETION_POSITIVE_LIMIT } from './constants';
-import { IStep } from '@/stores/exercise/exercise.model';
-import { IFearLadder } from '@/stores/fearLadder/fearLadder.model';
+import { IStep } from '@stores/exercise/exercise.model';
+import { IFearLadder } from '@stores/fearLadder/fearLadder.model';
 
 export function getLevelCompletion(steps: IStep[]): number {
   return (
