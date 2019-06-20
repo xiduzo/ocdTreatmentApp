@@ -278,7 +278,7 @@ export class AppModule {
       rootReducer,
       INITIAL_STATE,
       [reduxLogger.createLogger(), thunk],
-      [this.devTools.enhancer()]
+      environment.development ? [this.devTools.enhancer()] : [] // Make sure we can build for devices
     );
   }
 }
