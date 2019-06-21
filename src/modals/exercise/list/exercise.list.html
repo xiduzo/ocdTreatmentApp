@@ -11,7 +11,8 @@
 
 <ion-content>
   <ion-list *ngIf="level.steps.length">
-    <button *ngFor="let step of level.steps" ion-item (click)="selectStep(step)" text-wrap
+    <spirit-exercise-level-step *ngFor="let step of level.steps"></spirit-exercise-level-step>
+    <!-- <button ion-item (click)="selectStep(step)" text-wrap
       [disabled]="step.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT">
       <ion-avatar item-start text-center>
         <ion-icon name="md-square-outline" *ngIf="step.fear.completion < FEAR_COMPLETION_POSITIVE_LIMIT"></ion-icon>
@@ -24,6 +25,6 @@
         {{ 'WITHOUT' | translate }}: {{ step.fear.without }}
       </p>
       <spirit-progress-bar [progress]="step.fear.poissonValue"></spirit-progress-bar>
-    </button>
+    </button> -->
   </ion-list>
 </ion-content>

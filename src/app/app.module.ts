@@ -155,6 +155,9 @@ import { EmptyStateComponent } from '@components/emptyState/emptyState.component
 // Exercise level
 import { ExerciseLevelComponent } from '@components/exerciseLevel/exerciseLevel.component';
 
+// Exercise level step
+import { ExerciseLevelStepComponent } from '@components/exerciseLevelStep/exerciseLevelStep.component';
+
 /*------------------------------
   Other
 ------------------------------*/
@@ -198,7 +201,8 @@ import { environment } from '@lib/environment';
     SpiritLogbookItemMock,
     ProgressBarComponent,
     EmptyStateComponent,
-    ExerciseLevelComponent
+    ExerciseLevelComponent,
+    ExerciseLevelStepComponent
   ],
   imports: [
     NgPipesModule,
