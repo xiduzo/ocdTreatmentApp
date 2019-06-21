@@ -27,6 +27,8 @@ export class ExercisePage {
 
   public levels: IFearLadder[] = [];
 
+  public emptyStateCallBack: Function;
+
   constructor(
     public appCtrl: App,
     public toastCtrl: ToastController,
@@ -40,35 +42,36 @@ export class ExercisePage {
     });
   }
 
-  addFearsAndCompulsions() {
-    let modal = this.modalCtrl.create(FearLadderModal, {
+  ngOnInit = (): void => {
+    this.addFearsAndCompulsions = this.addFearsAndCompulsions.bind(this);
+  };
+
+  addFearsAndCompulsions = async (event: any) => {
+    let modal = await this.modalCtrl.create(FearLadderModal, {
       addNewFear: true
     });
 
-    modal.onDidDismiss(data => {
+    modal.onDidDismiss((data: any) => {
       this.translate
         .get('MESSAGE_CHANGE_FEAR_LADDER')
-        .subscribe((text: string) => {
-          const toast = this.toastCtrl.create({
+        .subscribe(async (text: string) => {
+          const toast = await this.toastCtrl.create({
             message: text,
             position: 'bottom',
             showCloseButton: true,
             closeButtonText: 'Ok',
             dismissOnPageChange: true
           });
-          toast.present();
+          await toast.present();
         });
     });
 
-    modal.present();
-  }
+    await modal.present();
+  };
 
-  goToLevel(level: IFearLadder): void {
-    // Don't need to go there if there are no exercises
-    if (!level.steps.length) return;
-
+  goToLevel = (level: IFearLadder): void => {
     this.appCtrl.getRootNav().push(ExerciseListModal, {
       level: level
     });
-  }
+  };
 }

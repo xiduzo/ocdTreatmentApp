@@ -1,11 +1,9 @@
 page-exercise {
   ion-content {
-    .c-emptystate {
-      height: 100%;
-    }
-
-    > div.scroll-content {
-      background: white;
+    div.scroll-content {
+      > section {
+        height: 100%;
+      }
     }
 
     .exercise__levels {
@@ -13,57 +11,30 @@ page-exercise {
 
       .level {
         &:not(:last-of-type) {
-          &:after {
-            content: "";
-            height: calc(12px * 5 - 6px);
-            margin: 0 auto 8px;
-            display: block;
-            width: 6px;
-            background-image: url("../assets/imgs/misc/dot.svg");
-            opacity: 0.25;
+          ion-label.label {
+            &:after {
+              content: "";
+              height: calc(12px * 5 - 6px);
+              margin: 0 auto 8px;
+              display: block;
+              width: 6px;
+              background-image: url("../assets/imgs/misc/dot.svg");
+              opacity: 0.25;
+            }
           }
         }
 
-        ion-item {
-          padding: 0;
+        ion-label.label {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
 
-          &.done {
-            .item-inner {
-              opacity: 0.5;
-            }
-
-            &:before {
-              content: " ";
-              height: 120px;
-              background-image: url("../assets/imgs/misc/cage.svg");
-              width: 120px;
-              background-repeat: no-repeat;
-              position: absolute;
-              margin: 0 auto;
-              left: calc(50% - 60px);
-              z-index: 99;
-            }
-          }
-
-          .item-inner {
-            padding: 0;
-
-            ion-label {
-              margin: 0;
-
-              .c-level__monster {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-
-                .level__number {
-                  text-transform: uppercase;
-                  font-size: 14px;
-                  padding: 16px 0;
-                  color: lighten(color($colors, dark, base), 25);
-                }
-              }
-            }
+          .level__number {
+            text-transform: uppercase;
+            font-size: 14px;
+            padding: 16px 0;
+            color: lighten(color($colors, dark, base), 25);
           }
         }
       }

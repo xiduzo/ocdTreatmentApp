@@ -5,14 +5,7 @@
     </button>
   </ion-fab>
   <ion-toolbar color="secondary" padding>
-    <div class="c-level__monster">
-      <div class="monster__icon">
-        <div class="monster"
-          [style.backgroundImage]="'url(assets/imgs/monsters/monster-0' + level.stepNumber + '.svg)'"></div>
-      </div>
-      <round-progress [current]="level.completion" [max]="100" [radius]="60" [stroke]="5" [duration]="1">
-      </round-progress>
-    </div>
+    <spirit-exercise-level [level]="level"></spirit-exercise-level>
   </ion-toolbar>
 </ion-header>
 

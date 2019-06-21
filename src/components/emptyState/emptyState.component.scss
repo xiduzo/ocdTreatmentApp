@@ -1,0 +1,17 @@
+spirit-empty-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+
+  p {
+    color: lighten(color($colors, dark, base), 50);
+    max-width: 80%;
+    text-align: center;
+  }
+
+  button[ion-button] {
+    margin: 16px;
+  }
+}

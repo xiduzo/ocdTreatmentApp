@@ -1,0 +1,26 @@
+.c-exercise-level {
+  display: flex;
+  min-height: 120px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+
+  .monster__icon {
+    width: 100px;
+    height: 100px;
+    background: #fcd28a;
+    overflow: hidden;
+    border-radius: 50%;
+
+    .monster {
+      margin-top: 20px;
+      height: inherit;
+      width: inherit;
+    }
+  }
+
+  > * {
+    position: absolute;
+  }
+}

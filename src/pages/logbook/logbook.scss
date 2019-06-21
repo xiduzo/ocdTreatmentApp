@@ -13,6 +13,11 @@ logbook-page {
   }
 
   ion-content {
+    > div.scroll-content {
+      > section {
+        height: 100%;
+      }
+    }
     .c-logbook {
       padding: 16px 0;
 

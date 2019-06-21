@@ -1,0 +1,10 @@
+<img *ngIf="imageSource" src="{{imageSource}}" alt="" />
+<h1 *ngIf="title">
+  {{ title | translate }}
+</h1>
+<p *ngIf="subtitle">
+  {{ subtitle | translate }}
+</p>
+<button *ngIf="buttonText" color="secondary" ion-button round (click)="buttonClick()">
+  {{ buttonText | translate }}
+</button>

@@ -149,6 +149,12 @@ import { SpiritLogbookItemMock } from '@components/logbook/item/mock/logbookItem
 // Progress bar
 import { ProgressBarComponent } from '@components/progressBar/progressBar.component';
 
+// Empty state
+import { EmptyStateComponent } from '@components/emptyState/emptyState.component';
+
+// Exercise level
+import { ExerciseLevelComponent } from '@components/exerciseLevel/exerciseLevel.component';
+
 /*------------------------------
   Other
 ------------------------------*/
@@ -190,7 +196,9 @@ import { environment } from '@lib/environment';
     SpiritMoodIndicatorMock,
     SpiritLogbookItem,
     SpiritLogbookItemMock,
-    ProgressBarComponent
+    ProgressBarComponent,
+    EmptyStateComponent,
+    ExerciseLevelComponent
   ],
   imports: [
     NgPipesModule,
@@ -282,7 +290,7 @@ export class AppModule {
     this.ngRedux.configureStore(
       rootReducer,
       INITIAL_STATE,
-      [reduxLogger.createLogger(), thunk],
+      environment.development ? [reduxLogger.createLogger(), thunk] : [thunk], // Skip logger for non dev builds
       environment.development ? [this.devTools.enhancer()] : [] // Make sure we can build for devices
     );
   }

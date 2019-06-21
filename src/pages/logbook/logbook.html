@@ -7,8 +7,6 @@
 </ion-header>
 
 <ion-content>
-  <section>
-  </section>
   <section *ngIf="(exercises$ | async).loading" class="c-logbook">
     <div class="c-logbook__item" *ngFor="let x of [1,2,3,4,5,6,7]">
       <div class="c-timeline">
@@ -19,9 +17,9 @@
     </div>
   </section>
   <section *ngIf="!(exercises$ | async).loading">
-    <section *ngIf="!(exercises$ | async).list.length">
-      no items
-    </section>
+    <spirit-empty-state *ngIf="!(exercises$ | async).list.length" [title]="'OOPS'"
+      [subtitle]="'WARNING_NO_LOGGED_EXERCISES'" [imageSource]="'assets/imgs/monsters/all.png'">
+    </spirit-empty-state>
     <section *ngIf="(exercises$ | async).list.length" no-lines class="c-logbook">
       <div *ngFor="let exercise of (exercises$ | async).list" class="c-logbook__item">
         <div class="c-timeline">

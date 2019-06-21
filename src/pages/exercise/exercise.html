@@ -3,35 +3,17 @@
     loading
   </section>
   <section *ngIf="!(fearLadder$ | async).loading">
-    <section *ngIf="!(fearLadder$ | async).steps.length">
-      <img src="assets/imgs/monsters/all.png" alt="" />
-      <h1>
-        {{ 'OOPS' | translate }}
-      </h1>
-      <p>
-        {{ 'WARNING_BEFORE_YOU_CAN_START' | translate }}
-      </p>
-      <button color="secondary" ion-button large block (click)="addFearsAndCompulsions()">
-        {{ 'MY_FEAR_LADDER' | translate }}
-      </button>
-    </section>
+    <spirit-empty-state *ngIf="!(fearLadder$ | async).steps.length" [title]="'OOPS'"
+      [subtitle]="'WARNING_BEFORE_YOU_CAN_START'" [imageSource]="'assets/imgs/monsters/all.png'"
+      [buttonText]="'MY_FEAR_LADDER'" (callback)="addFearsAndCompulsions($event)">
+    </spirit-empty-state>
     <ion-list *ngIf="(fearLadder$ | async).steps.length" no-lines class="exercise__levels">
-      <div class="level" *ngFor="let level of levels">
-        <ion-item>
-          <div class="c-level__monster" (click)="goToLevel(level)">
-            <div class="monster__icon">
-              <div class="monster"
-                [style.backgroundImage]="'url(assets/imgs/monsters/monster-0' + level.stepNumber + '.svg)'">
-              </div>
-            </div>
-            <round-progress [current]="level.completion" [max]="100" [radius]="60" [stroke]="5" [duration]="1">
-            </round-progress>
-            <strong class="level__number">
-              {{ 'LEVEL' | translate }} {{ level.stepNumber }}
-            </strong>
-          </div>
-        </ion-item>
-      </div>
+      <ion-item *ngFor="let level of levels" class="level">
+        <spirit-exercise-level (click)="goToLevel(level)" [level]="level"></spirit-exercise-level>
+        <strong class="level__number">
+          {{ 'LEVEL' | translate }} {{ level.stepNumber }}
+        </strong>
+      </ion-item>
     </ion-list>
   </section>
 </ion-content>
