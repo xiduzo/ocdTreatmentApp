@@ -3,11 +3,11 @@ import { calculateRegressionPoints } from '@lib/regression';
 import { mapRange } from '@lib/helpers';
 import { IMood } from '@stores/exercise/exercise.model';
 
+export const POISSON_THRESHOLD = 40;
+
 const oldProbability = 30;
 const newProbability = 7;
-const regressionDeviation = 0.175; // Percentage => 0.2 = 20%
-
-export const poissonThreshold = 40;
+const regressionDeviation = 0.125; // Percentage => 0.2 = 20%
 
 const poissonGoodMultiplier = 1 / newProbability / (1 / oldProbability);
 const poissonBadMultiplier =
@@ -32,6 +32,7 @@ export function calculateNewPoissonValue(
   const prediction = regression
     .polynomial(regressionPoints)
     .predict(mappedAfterMood);
+
   const predictedYValue = prediction[1];
 
   let newPoissonValue: number = isMoodWithinRange(
@@ -42,8 +43,6 @@ export function calculateNewPoissonValue(
     : currentPoissonValue * poissonBadMultiplier;
 
   if (newPoissonValue < 1) newPoissonValue = 1; // Reset when poisson value get below 1
-
-  console.log(newPoissonValue);
 
   return newPoissonValue;
 }
