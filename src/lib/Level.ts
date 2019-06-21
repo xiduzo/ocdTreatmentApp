@@ -1,16 +1,18 @@
-import { FEAR_COMPLETION_POSITIVE_LIMIT } from './constants';
+import { POISSON_THRESHOLD } from './constants';
 import { IStep } from '@stores/exercise/exercise.model';
 import { IFearLadder } from '@stores/fearLadder/fearLadder.model';
-import { POISSON_THRESHOLD } from '@lib/poisson';
 
 export function getLevelCompletion(steps: IStep[]): number {
   return (
     steps
       // Map to array of completion percentages
       .map(
-        (step: IStep): number =>
+        (step: IStep): number => {
           // Use constant to calculate completion of step
-          (step.fear.poissonValue * 100) / POISSON_THRESHOLD
+          let completion: number =
+            (step.fear.poissonValue * 100) / POISSON_THRESHOLD;
+          return completion > 100 ? 100 : completion;
+        }
       )
       // Combine all the percentages into one number
       .reduce(

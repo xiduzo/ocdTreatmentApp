@@ -3,7 +3,8 @@
     <div class="monster" [style.backgroundImage]="'url(assets/imgs/monsters/monster-0' + level.stepNumber + '.svg)'">
     </div>
   </div>
-  <round-progress [current]="level.completion" [max]="100" [radius]="60" [stroke]="5" [duration]="1">
+  <round-progress [current]="level.completion" [max]="100" [radius]="60" [stroke]="5" [duration]="350"
+    [animationDelay]="level.stepNumber * 100">
   </round-progress>
 </section>
 

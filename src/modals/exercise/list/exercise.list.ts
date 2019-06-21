@@ -6,7 +6,7 @@ import { ExerciseMoodModal } from '@modals/exercise/mood/exercise.mood';
 
 import { Exercise } from '@lib/Exercise';
 
-import { FEAR_COMPLETION_POSITIVE_LIMIT } from '@lib/constants';
+import { POISSON_THRESHOLD } from '@lib/constants';
 
 import { IStep, IExercise } from '@stores/exercise/exercise.model';
 
@@ -19,7 +19,6 @@ import { IFearLadder } from '@stores/fearLadder/fearLadder.model';
   templateUrl: 'exercise.list.html'
 })
 export class ExerciseListModal {
-  public FEAR_COMPLETION_POSITIVE_LIMIT: number = FEAR_COMPLETION_POSITIVE_LIMIT;
   public level: IFearLadder;
 
   constructor(
@@ -37,7 +36,7 @@ export class ExerciseListModal {
 
   selectStep(step: IStep) {
     // We can't start an exercise when you've completed it
-    if (step.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT) return;
+    if ((step.fear.poissonValue * 100) / POISSON_THRESHOLD >= 100) return;
 
     const exercise: IExercise = new Exercise({
       start: new Date(),

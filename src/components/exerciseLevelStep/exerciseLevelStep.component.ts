@@ -1,12 +1,21 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IStep } from '@stores/exercise/exercise.model';
+import { getLevelCompletion } from '@lib/Level';
 
 @Component({
   selector: 'spirit-exercise-level-step',
   templateUrl: 'exerciseLevelStep.component.html'
 })
-export class ExerciseLevelStepComponent {
+export class ExerciseLevelStepComponent implements OnInit {
   @Input('step') readonly step: IStep;
 
+  public stepCompletion: number = 0;
+
   constructor() {}
+
+  ngOnInit(): void {
+    console.log(this.step);
+    this.stepCompletion = getLevelCompletion([this.step]);
+    console.log(this.stepCompletion);
+  }
 }

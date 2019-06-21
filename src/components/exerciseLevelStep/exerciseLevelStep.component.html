@@ -1,17 +1,14 @@
-<!-- <button *ngFor="let step of level.steps" ion-item (click)="selectStep(step)" text-wrap
-  [disabled]="step.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT">
-  <ion-avatar item-start text-center>
-    <ion-icon name="md-square-outline" *ngIf="step.fear.completion < FEAR_COMPLETION_POSITIVE_LIMIT"></ion-icon>
-    <ion-icon name="checkbox" *ngIf="step.fear.completion >= FEAR_COMPLETION_POSITIVE_LIMIT"></ion-icon>
-  </ion-avatar>
-  <h2>
-    {{ step.fear.situation }}
-  </h2>
-  <p *ngIf="step.fear.without">
-    {{ 'WITHOUT' | translate }}: {{ step.fear.without }}
-  </p>
-  <spirit-progress-bar [progress]="step.fear.poissonValue"></spirit-progress-bar>
-</button> -->
+<!-- TODO: disable when > 100% completion -->
 <ion-card>
-  steppie
+  <ion-card-header>
+    <ion-card-title>
+      <h1 text-wrap>
+        {{ step.fear.situation }}
+      </h1>
+      <h2 text-wrap>
+        {{ 'WITHOUT' | translate }}: {{ step.fear.without }}
+      </h2>
+    </ion-card-title>
+  </ion-card-header>
+  <spirit-progress-bar [progress]="stepCompletion"></spirit-progress-bar>
 </ion-card>

@@ -3,11 +3,9 @@ import { calculateRegressionPoints } from '@lib/regression';
 import { mapRange } from '@lib/helpers';
 import { IMood } from '@stores/exercise/exercise.model';
 
-export const POISSON_THRESHOLD = 40;
-
 const oldProbability = 30;
 const newProbability = 7;
-const regressionDeviation = 0.125; // Percentage => 0.2 = 20%
+const regressionDeviation = 0.175; // Percentage => 0.2 = 20%
 
 const poissonGoodMultiplier = 1 / newProbability / (1 / oldProbability);
 const poissonBadMultiplier =
