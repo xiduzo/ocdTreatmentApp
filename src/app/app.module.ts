@@ -138,12 +138,16 @@ import { rootReducer, IAppState, INITIAL_STATE } from '@stores/reducer';
 /*------------------------------
   Components
 ------------------------------*/
+// Mood indicator
 import { SpiritMoodIndicator } from '@components/moodIndicator/moodIndicator.component';
-import { SpiritLogbookItem } from '@components/logbook/item/logbookItem.component';
-
-// Mocks
 import { SpiritMoodIndicatorMock } from '@components/moodIndicator/mock/moodIndicatorMock.component';
+
+// Logbook item
+import { SpiritLogbookItem } from '@components/logbook/item/logbookItem.component';
 import { SpiritLogbookItemMock } from '@components/logbook/item/mock/logbookItemMock.component';
+
+// Progress bar
+import { ProgressBarComponent } from '@components/progressBar/progressBar.component';
 
 /*------------------------------
   Other
@@ -185,7 +189,8 @@ import { environment } from '@lib/environment';
     SpiritMoodIndicator,
     SpiritMoodIndicatorMock,
     SpiritLogbookItem,
-    SpiritLogbookItemMock
+    SpiritLogbookItemMock,
+    ProgressBarComponent
   ],
   imports: [
     NgPipesModule,

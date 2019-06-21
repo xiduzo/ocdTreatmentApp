@@ -1,0 +1,15 @@
+spirit-progress-bar {
+  div {
+    width: 100%;
+    min-height: 4px;
+    background: lighten(color($colors, primary, base), 33);
+
+    span.inner {
+      background: color($colors, primary, base);
+      width: 50%;
+      min-height: inherit;
+      display: block;
+      transition: all 300ms;
+    }
+  }
+}

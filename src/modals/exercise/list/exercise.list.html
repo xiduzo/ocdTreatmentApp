@@ -30,9 +30,7 @@
       <p *ngIf="step.fear.without">
         {{ 'WITHOUT' | translate }}: {{ step.fear.without }}
       </p>
-      <p>
-        {{ step.fear.completion }}
-      </p>
+      <spirit-progress-bar [progress]="step.fear.poissonValue"></spirit-progress-bar>
     </button>
   </ion-list>
 </ion-content>
