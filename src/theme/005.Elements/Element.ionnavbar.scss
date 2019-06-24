@@ -1,14 +1,14 @@
 ion-navbar {
   &.toolbar-ios {
     // Iphone X
-    @media only screen and (device-width : 375px) and (device-height : 812px) and (-webkit-device-pixel-ratio : 3) {
-      min-height: 64px;
-      padding-left: 24px;
-      padding-right: 24px;
+    // @media only screen and (device-width : 375px) and (device-height : 812px) and (-webkit-device-pixel-ratio : 3) {
+    //   min-height: 64px;
+    //   padding-left: 24px;
+    //   padding-right: 24px;
 
-      ion-title {
-        margin-top: 16px;
-      }
-    }
+    //   ion-title {
+    //     margin-top: 16px;
+    //   }
+    // }
   }
 }

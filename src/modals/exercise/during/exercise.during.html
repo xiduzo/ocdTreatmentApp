@@ -2,19 +2,19 @@
   <div ion-fixed>
     <section class="monster">
       <div class="monster__illustration"
-        [style.backgroundImage]="'url(assets/imgs/monsters/monster-0' + exercise?.step.fearRating + '_sized.svg)'">
+        [style.backgroundImage]="'url(assets/imgs/monsters/monster-0' + (exercises$ | async).current.step.fearRating + '_sized.svg)'">
       </div>
       <div class="monster__rings"></div>
     </section>
     <section class="exercise">
       <h1 class="situation">
-        {{ exercise?.step.fear.situation }}
+        {{ (exercises$ | async).current.step.fear.situation }}
       </h1>
       <div class="between__text">
         {{ 'WITHOUT' | translate }}
       </div>
       <h2 class="without">
-        {{ exercise?.step.fear.without }}
+        {{ (exercises$ | async).current.step.fear.without }}
       </h2>
     </section>
   </div>

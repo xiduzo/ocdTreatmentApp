@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController, ModalController } from 'ionic-angular';
+import { ViewController } from 'ionic-angular';
 import {
   NativePageTransitions,
   NativeTransitionOptions
@@ -10,26 +10,33 @@ import { confettiSettings } from '@lib/Confetti';
 declare var ConfettiGenerator: any;
 import 'confetti-js';
 
-import { Exercise } from '@lib/Exercise';
+import { Exercise, Fear } from '@lib/Exercise';
 
-import { IStep, IExercise } from '@stores/exercise/exercise.model';
+import {
+  IStep,
+  IExercise,
+  ITrigger,
+  IFear
+} from '@stores/exercise/exercise.model';
 import { ExerciseActions } from '@stores/exercise/exercise.action';
 import { FearLadderActions } from '@stores/fearLadder/fearLadder.action';
 import { calculateNewPoissonValue } from '@lib/poisson';
+import { Observable } from 'rxjs/Observable';
+import { IExerciseState } from '@stores/exercise/exercise.reducer';
+import { select } from '@angular-redux/store';
 
 @Component({
   selector: 'page-exercise-success',
   templateUrl: 'exercise.success.html'
 })
 export class ExerciseSuccessModal {
-  private exercise: IExercise;
+  @select() readonly exercises$: Observable<IExerciseState>;
 
   private transitionOptions: NativeTransitionOptions = {
     direction: 'left'
   };
 
   constructor(
-    private params: NavParams,
     public viewCtrl: ViewController,
     private nativePageTransitions: NativePageTransitions,
     private exerciseActions: ExerciseActions,
@@ -39,7 +46,6 @@ export class ExerciseSuccessModal {
   }
 
   ionViewWillEnter() {
-    this.exercise = this.params.get('exercise');
     this.updateStepCompletion();
   }
 
@@ -59,25 +65,25 @@ export class ExerciseSuccessModal {
     }
   }
 
-  editExercise(change: IExercise): void {
-    this.exerciseActions.editExercise(this.exercise, change);
-  }
-
-  editStep(change: IStep): void {
-    this.fearLadderActions.editFearLadderStep(this.exercise.step, change);
-  }
-
   updateStepCompletion() {
-    const exercise: IExercise = { ...this.exercise };
-    exercise.end = new Date();
-    exercise.step.fear.poissonValue = calculateNewPoissonValue(
-      exercise.step.fear.poissonValue,
-      exercise.beforeMood,
-      exercise.afterMood
-    );
+    this.exercises$.subscribe((exerciseState: IExerciseState) => {
+      const newPoissonValue = calculateNewPoissonValue(
+        exerciseState.current.step.fear.poissonValue,
+        exerciseState.current.beforeMood,
+        exerciseState.current.afterMood
+      );
 
-    this.editExercise(exercise);
-    this.editStep(exercise.step);
+      const fear: IFear = new Fear(exerciseState.current.step.fear);
+      fear.poissonValue = newPoissonValue;
+
+      this.exerciseActions.editExercise({
+        end: new Date()
+      });
+
+      this.fearLadderActions.editFearLadderStep(exerciseState.current.step, {
+        fear: fear
+      });
+    });
   }
   close() {
     this.viewCtrl.dismiss();

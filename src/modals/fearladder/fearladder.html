@@ -24,12 +24,8 @@
         <ion-item-divider color="light">
           {{ 'LEVEL' | translate }} {{ level.stepNumber }}
         </ion-item-divider>
-        <button ion-item *ngFor="let step of level.steps" (click)="editStep(step)">
-          <h2 text-wrap>
-            {{ step.fear?.situation }}
-          </h2>
-          <p text-wrap>{{ 'WITHOUT' | translate }}: {{ step.fear?.without }}</p>
-        </button>
+        <spirit-exercise-level-step *ngFor="let step of level.steps" (click)="editStep(step)" [step]="step">
+        </spirit-exercise-level-step>
       </ion-item-group>
     </section>
   </section>

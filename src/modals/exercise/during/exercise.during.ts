@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 
-import {
-  NavParams,
-  ViewController,
-  ModalController,
-  Modal
-} from 'ionic-angular';
+import { ViewController, ModalController, Modal } from 'ionic-angular';
 import {
   NativePageTransitions,
   NativeTransitionOptions
@@ -17,14 +12,16 @@ import { Exercise, Erp } from '@lib/Exercise';
 
 import { ExerciseActions } from '@stores/exercise/exercise.action';
 import { IErp, IExercise } from '@stores/exercise/exercise.model';
+import { select } from '@angular-redux/store';
+import { Observable } from 'rxjs/Observable';
+import { IExerciseState } from '@stores/exercise/exercise.reducer';
 
 @Component({
   selector: 'page-exercise-during',
   templateUrl: 'exercise.during.html'
 })
 export class ExerciseDuringModal {
-  public level: any;
-  public exercise: Exercise;
+  @select() readonly exercises$: Observable<IExerciseState>;
 
   private erp: IErp = new Erp();
 
@@ -33,7 +30,6 @@ export class ExerciseDuringModal {
   };
 
   constructor(
-    private params: NavParams,
     public viewCtrl: ViewController,
     private modalCtrl: ModalController,
     private nativePageTransitions: NativePageTransitions,
@@ -42,30 +38,22 @@ export class ExerciseDuringModal {
     this.nativePageTransitions.slide(this.transitionOptions);
   }
 
-  ionViewDidLoad() {
-    this.level = this.params.get('level');
-    this.exercise = this.params.get('exercise');
-  }
-
   ionViewWillEnter() {
     this.erp.start = new Date();
     this.editExercise();
   }
 
-  editExercise(): IExercise {
-    this.exerciseActions.editExercise(this.exercise, { erp: this.erp });
-
-    return new Exercise({ ...this.exercise, ...{ erp: this.erp } });
+  editExercise(): void {
+    this.exerciseActions.editExercise({ erp: this.erp });
   }
 
   finishExercise(gaveInToCompulsion: boolean) {
     this.erp.end = new Date();
     this.erp.gaveInToCompulsion = gaveInToCompulsion;
-    const exercise: IExercise = this.editExercise();
+
+    this.editExercise();
 
     const modal: Modal = this.modalCtrl.create(ExerciseMoodModal, {
-      level: this.level,
-      exercise: exercise,
       before: false
     });
 

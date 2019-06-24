@@ -20,6 +20,7 @@ export interface IAppState {
 export const INITIAL_STATE: IAppState = {
   exercises: {
     list: [],
+    current: null,
     loading: true,
     errors: []
   },

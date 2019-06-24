@@ -3,6 +3,7 @@ import { IExercise } from './exercise.model';
 
 export interface IExerciseState {
   list: IExercise[];
+  current: IExercise; // index
   loading: boolean;
   errors: any[];
 }
@@ -11,6 +12,7 @@ export const ADD_EXERCISE: string = 'ADD_EXERCISE';
 export const REQUEST_EXERCISES: string = 'REQUEST_EXERCISES';
 export const RECEIVED_EXERCISES: string = 'RECEIVED_EXERCISES';
 export const EDIT_EXERCISE: string = 'EDIT_EXERCISE';
+export const SELECT_EXERCISE: string = 'SELECT_EXERCISE';
 
 export const exercisesReducer: Reducer<IExerciseState> = (
   state: IExerciseState,
@@ -34,8 +36,16 @@ export const exercisesReducer: Reducer<IExerciseState> = (
       return {
         ...state,
         list: state.list.map((exercise: IExercise) => {
-          return exercise.id == action.payload.id ? action.payload : exercise;
-        })
+          return exercise.id == state.current.id
+            ? { ...exercise, ...action.payload }
+            : exercise;
+        }),
+        current: { ...state.current, ...action.payload }
+      };
+    case SELECT_EXERCISE:
+      return {
+        ...state,
+        current: action.payload
       };
     default:
       return state;

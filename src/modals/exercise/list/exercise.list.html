@@ -1,17 +1,19 @@
 <ion-header>
-  <ion-fab top right (click)="close()">
-    <button ion-fab mini color="light">
-      <ion-icon name="close"></ion-icon>
-    </button>
-  </ion-fab>
-  <ion-toolbar color="secondary" padding>
+  <ion-toolbar padding color="secondary">
+    <ion-fab top right (click)="close()">
+      <button ion-fab mini color="light">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-fab>
     <spirit-exercise-level [level]="level"></spirit-exercise-level>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
   <ion-list *ngIf="level.steps.length">
-    <spirit-exercise-level-step *ngFor="let step of level.steps" (click)="selectStep(step)" [step]="step">
+    <spirit-exercise-level-step *ngFor="let step of level.steps" (click)="selectStep(step)" [step]="step"
+      [class.finished]="step.fear.poissonValue >= POISSON_THRESHOLD">
     </spirit-exercise-level-step>
   </ion-list>
 </ion-content>

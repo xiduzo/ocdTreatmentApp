@@ -23,6 +23,10 @@ import { ExerciseSuccessModal } from '@modals/exercise/success/exercise.success'
 
 import { IStep, IExercise, IMood } from '@stores/exercise/exercise.model';
 import { ExerciseActions } from '@stores/exercise/exercise.action';
+import { select } from '@angular-redux/store';
+import { Observable } from 'rxjs';
+import { IFearLadderState } from '@stores/fearLadder/fearLadder.reducer';
+import { IExerciseState } from '@stores/exercise/exercise.reducer';
 
 @Component({
   selector: 'exercise-mood-modal',
@@ -47,6 +51,8 @@ export class ExerciseMoodModal {
   private exercise: IExercise;
   public beforeMeasure: boolean = false;
 
+  @select() readonly exercises$: Observable<IExerciseState>;
+
   private transitionOptions: NativeTransitionOptions = {
     direction: 'left'
   };
@@ -62,8 +68,6 @@ export class ExerciseMoodModal {
   }
 
   ionViewWillEnter() {
-    this.level = this.params.get('level');
-    this.exercise = this.params.get('exercise');
     this.beforeMeasure = this.params.get('before');
   }
 
@@ -91,45 +95,34 @@ export class ExerciseMoodModal {
     }
   }
 
-  editExercise(exercise: IExercise, change: any): IExercise {
-    this.exerciseActions.editExercise(exercise, change);
-
-    return { ...exercise, ...change };
-  }
-
   startExercise(): void {
-    const exercise: IExercise = this.editExercise(this.exercise, {
+    this.exerciseActions.editExercise({
       beforeMood: this.mood
     });
 
-    const duringModal = this.modalCtrl.create(ExerciseDuringModal, {
-      level: this.level,
-      exercise: exercise
-    });
+    const duringModal = this.modalCtrl.create(ExerciseDuringModal);
 
     duringModal.present();
     this.viewCtrl.dismiss();
   }
 
   finishExercise(): void {
-    const exercise: IExercise = this.editExercise(this.exercise, {
+    this.exerciseActions.editExercise({
       afterMood: this.mood
     });
 
-    const hasATriggerEnabled = this.exercise.step.triggers.find(
-      trigger => trigger.enabled
-    );
+    this.exercises$.subscribe((exerciseState: IExerciseState) => {
+      const hasATriggerEnabled = exerciseState.current.step.triggers.find(
+        trigger => trigger.enabled
+      );
 
-    const modal = this.modalCtrl.create(
-      hasATriggerEnabled ? ExerciseTriggerModal : ExerciseSuccessModal,
-      {
-        level: this.level,
-        exercise: exercise
-      }
-    );
+      const modal = this.modalCtrl.create(
+        hasATriggerEnabled ? ExerciseTriggerModal : ExerciseSuccessModal
+      );
 
-    modal.present();
-    this.viewCtrl.dismiss();
+      modal.present();
+      this.viewCtrl.dismiss();
+    });
   }
 
   stopExercise() {

@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 
-import {
-  NavParams,
-  ViewController,
-  ModalController,
-  Modal
-} from 'ionic-angular';
+import { ViewController, ModalController, Modal } from 'ionic-angular';
 import {
   NativePageTransitions,
   NativeTransitionOptions
@@ -16,13 +11,16 @@ import { ExerciseSuccessModal } from '@modals/exercise/success/exercise.success'
 import { Trigger, Exercise } from '@lib/Exercise';
 import { IStep, IExercise, ITrigger } from '@stores/exercise/exercise.model';
 import { ExerciseActions } from '@stores/exercise/exercise.action';
+import { select } from '@angular-redux/store';
+import { Observable } from 'rxjs/Observable';
+import { IExerciseState } from '@stores/exercise/exercise.reducer';
 
 @Component({
   selector: 'page-exercise-trigger',
   templateUrl: 'exercise.trigger.html'
 })
 export class ExerciseTriggerModal {
-  private level: IStep[];
+  @select() readonly exercises$: Observable<IExerciseState>;
   private exercise: IExercise;
   public triggers: ITrigger[];
   public range: any = { min: 0, max: 5 };
@@ -31,7 +29,6 @@ export class ExerciseTriggerModal {
   };
 
   constructor(
-    private params: NavParams,
     private viewCtrl: ViewController,
     private modalCtrl: ModalController,
     private nativePageTransitions: NativePageTransitions,
@@ -41,36 +38,29 @@ export class ExerciseTriggerModal {
   }
 
   ionViewWillEnter() {
-    this.level = this.params.get('level');
-    this.exercise = this.params.get('exercise');
-
-    // Only use triggers the user selected
-    this.triggers = this.exercise.step.triggers.filter(
-      trigger => trigger.enabled
-    );
-  }
-
-  editExercise(): IExercise {
-    const change = {
-      end: new Date(),
-      step: {
-        ...this.exercise.step,
-        triggers: [...this.exercise.step.triggers, ...this.triggers]
-      }
-    };
-    this.exerciseActions.editExercise(this.exercise, change);
-
-    return { ...this.exercise, ...change };
+    this.exercises$.subscribe((exerciseState: IExerciseState) => {
+      // Only use triggers the user selected
+      this.triggers = exerciseState.current.step.triggers.filter(
+        trigger => trigger.enabled
+      );
+    });
   }
 
   done() {
-    const exercise = this.editExercise();
+    // TODO: fix callstack
+    // probably need to give step in done function
+    this.exercises$.subscribe((exerciseState: IExerciseState) => {
+      this.exerciseActions.editExercise({
+        step: {
+          ...exerciseState.current.step,
+          triggers: [...this.triggers]
+        }
+      });
 
-    const modal: Modal = this.modalCtrl.create(ExerciseSuccessModal, {
-      exercise: exercise
+      const modal: Modal = this.modalCtrl.create(ExerciseSuccessModal);
+
+      modal.present();
+      this.viewCtrl.dismiss();
     });
-
-    modal.present();
-    this.viewCtrl.dismiss();
   }
 }

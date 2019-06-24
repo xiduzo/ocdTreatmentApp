@@ -14,8 +14,6 @@ export class ExerciseLevelStepComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.step);
     this.stepCompletion = getLevelCompletion([this.step]);
-    console.log(this.stepCompletion);
   }
 }

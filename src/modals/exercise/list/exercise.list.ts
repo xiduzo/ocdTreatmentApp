@@ -20,6 +20,7 @@ import { IFearLadder } from '@stores/fearLadder/fearLadder.model';
 })
 export class ExerciseListModal {
   public level: IFearLadder;
+  public POISSON_THRESHOLD: number = POISSON_THRESHOLD;
 
   constructor(
     private params: NavParams,
@@ -44,11 +45,10 @@ export class ExerciseListModal {
     });
 
     const exerciseMoodModal = this.modalCtrl.create(ExerciseMoodModal, {
-      level: this.level,
-      exercise: exercise,
       before: true
     });
 
+    this.exerciseActions.selectExercise(exercise);
     this.exerciseActions.addExercise(exercise);
 
     exerciseMoodModal.present();

@@ -10,7 +10,8 @@ import {
   ADD_EXERCISE,
   REQUEST_EXERCISES,
   RECEIVED_EXERCISES,
-  EDIT_EXERCISE
+  EDIT_EXERCISE,
+  SELECT_EXERCISE
 } from '@stores/exercise/exercise.reducer';
 
 class AddExerciseAction implements Action {
@@ -30,6 +31,12 @@ class ReceivedExercisesAction implements Action {
 
 class EditExerciseAction implements Action {
   readonly type: string = EDIT_EXERCISE;
+  constructor(public payload: any) {}
+}
+
+class SelectExerciseAction implements Action {
+  readonly type: string = SELECT_EXERCISE;
+
   constructor(public payload: IExercise) {}
 }
 
@@ -51,9 +58,14 @@ export class ExerciseActions {
     payload: exercises
   });
   @dispatch()
-  editExercise = (exercise: IExercise, change: any): EditExerciseAction => ({
+  editExercise = (change: any): EditExerciseAction => ({
     type: EDIT_EXERCISE,
-    payload: { ...exercise, ...change }
+    payload: change
+  });
+  @dispatch()
+  selectExercise = (exercise: IExercise): SelectExerciseAction => ({
+    type: SELECT_EXERCISE,
+    payload: exercise
   });
   loadExercises = (): any => {
     this.requestExercises();
