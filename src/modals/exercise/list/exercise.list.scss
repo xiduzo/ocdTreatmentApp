@@ -1,2 +1,9 @@
 exercise-list-page {
+  spirit-exercise-level-step {
+    &.finished {
+      ion-card {
+        opacity: 0.6;
+      }
+    }
+  }
 }

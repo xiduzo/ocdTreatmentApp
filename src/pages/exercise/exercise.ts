@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, ModalController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 
 import { ExerciseListModal } from '@modals/exercise/list/exercise.list';
 
@@ -25,10 +25,7 @@ export class ExercisePage {
 
   public levels: IFearLadder[] = [];
 
-  public emptyStateCallBack: Function;
-
   constructor(
-    public appCtrl: App,
     public toastCtrl: ToastController,
     private modalCtrl: ModalController,
     private translate: TranslateService
@@ -45,7 +42,7 @@ export class ExercisePage {
   };
 
   addFearsAndCompulsions = async (event: any) => {
-    let modal = await this.modalCtrl.create(FearLadderModal, {
+    const modal = await this.modalCtrl.create(FearLadderModal, {
       addNewFear: true
     });
 
@@ -67,9 +64,11 @@ export class ExercisePage {
     await modal.present();
   };
 
-  goToLevel = (level: IFearLadder): void => {
-    this.appCtrl.getRootNav().push(ExerciseListModal, {
-      level: level
+  goToLevel = async (level: IFearLadder): Promise<void> => {
+    const modal = await this.modalCtrl.create(ExerciseListModal, {
+      stepNumber: level.stepNumber
     });
+
+    await modal.present();
   };
 }

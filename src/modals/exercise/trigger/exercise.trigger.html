@@ -14,13 +14,7 @@
           <ion-label floating>
             {{ trigger.verbose | translate }} ({{ trigger.amount }})
           </ion-label>
-          <ion-range
-            min="{{ range.min }}"
-            max="{{ range.max }}"
-            [(ngModel)]="trigger.amount"
-            pin="true"
-            snaps="true"
-          >
+          <ion-range min="{{ range.min }}" max="{{ range.max }}" [(ngModel)]="trigger.amount" pin="true" snaps="true">
             <ion-label range-left>{{ range.min }}</ion-label>
             <ion-label range-right>{{ range.max }}</ion-label>
           </ion-range>
@@ -29,10 +23,7 @@
           <ion-label floating>
             {{ 'INTENSITY_WHY' | translate }}
           </ion-label>
-          <ion-textarea
-            [(ngModel)]="trigger.explanation"
-            name="trigger.verbose"
-          ></ion-textarea>
+          <ion-textarea [(ngModel)]="trigger.explanation" name="trigger.verbose"></ion-textarea>
         </ion-item>
       </div>
     </ion-list>

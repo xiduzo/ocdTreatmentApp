@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 
-import { NavParams, ViewController, ModalController } from 'ionic-angular';
+import {
+  NavParams,
+  ViewController,
+  ModalController,
+  Modal
+} from 'ionic-angular';
 import {
   NativePageTransitions,
   NativeTransitionOptions
@@ -21,11 +26,15 @@ import { ExerciseDuringModal } from '@modals/exercise/during/exercise.during';
 import { ExerciseTriggerModal } from '@modals/exercise/trigger/exercise.trigger';
 import { ExerciseSuccessModal } from '@modals/exercise/success/exercise.success';
 
-import { IStep, IExercise, IMood } from '@stores/exercise/exercise.model';
+import {
+  IStep,
+  IExercise,
+  IMood,
+  ITrigger
+} from '@stores/exercise/exercise.model';
 import { ExerciseActions } from '@stores/exercise/exercise.action';
 import { select } from '@angular-redux/store';
-import { Observable } from 'rxjs';
-import { IFearLadderState } from '@stores/fearLadder/fearLadder.reducer';
+import { Observable, Subscription } from 'rxjs';
 import { IExerciseState } from '@stores/exercise/exercise.reducer';
 
 @Component({
@@ -43,15 +52,14 @@ import { IExerciseState } from '@stores/exercise/exercise.reducer';
   ]
 })
 export class ExerciseMoodModal {
+  @select() readonly exercises$: Observable<IExerciseState>;
+  private exerciseSubscription: Subscription;
+  private currentExercise: IExercise;
+
   public mood: IMood = new Mood({ mood: 0 });
   public moodClass: string = 'content';
   public moodNumber: number = 1;
-
-  private level: IStep[];
-  private exercise: IExercise;
   public beforeMeasure: boolean = false;
-
-  @select() readonly exercises$: Observable<IExerciseState>;
 
   private transitionOptions: NativeTransitionOptions = {
     direction: 'left'
@@ -65,13 +73,18 @@ export class ExerciseMoodModal {
     private exerciseActions: ExerciseActions
   ) {
     this.nativePageTransitions.slide(this.transitionOptions);
+    this.exerciseSubscription = this.exercises$.subscribe(
+      (exerciseState: IExerciseState) => {
+        this.currentExercise = { ...exerciseState.current };
+      }
+    );
   }
 
-  ionViewWillEnter() {
+  ionViewWillEnter = (): void => {
     this.beforeMeasure = this.params.get('before');
-  }
+  };
 
-  setMood() {
+  setMood = (): void => {
     // We want to have a more accurate tracking for the therapist
     // But for the user we use a 1-5 scale
     this.moodNumber = Math.round(mapRange(this.mood.mood, 0, 500, 1, 5));
@@ -93,39 +106,35 @@ export class ExerciseMoodModal {
         this.moodClass = 'panic';
         break;
     }
-  }
+  };
 
-  startExercise(): void {
-    this.exerciseActions.editExercise({
-      beforeMood: this.mood
-    });
+  startExercise = async (): Promise<void> => {
+    this.exerciseActions.editExercise({ beforeMood: this.mood });
 
-    const duringModal = this.modalCtrl.create(ExerciseDuringModal);
+    const modal: Modal = await this.modalCtrl.create(ExerciseDuringModal);
+    await modal.present();
 
-    duringModal.present();
+    this.close();
+  };
+
+  finishExercise = async (): Promise<void> => {
+    this.exerciseActions.editExercise({ afterMood: this.mood });
+
+    const hasATriggerEnabled: any = this.currentExercise.step.triggers.find(
+      (trigger: ITrigger) => trigger.enabled
+    );
+
+    const modal: Modal = await this.modalCtrl.create(
+      hasATriggerEnabled ? ExerciseTriggerModal : ExerciseSuccessModal
+    );
+    await modal.present();
+
+    this.close();
+  };
+
+  close = (): void => {
+    this.exerciseSubscription.unsubscribe();
+
     this.viewCtrl.dismiss();
-  }
-
-  finishExercise(): void {
-    this.exerciseActions.editExercise({
-      afterMood: this.mood
-    });
-
-    this.exercises$.subscribe((exerciseState: IExerciseState) => {
-      const hasATriggerEnabled = exerciseState.current.step.triggers.find(
-        trigger => trigger.enabled
-      );
-
-      const modal = this.modalCtrl.create(
-        hasATriggerEnabled ? ExerciseTriggerModal : ExerciseSuccessModal
-      );
-
-      modal.present();
-      this.viewCtrl.dismiss();
-    });
-  }
-
-  stopExercise() {
-    this.viewCtrl.dismiss();
-  }
+  };
 }

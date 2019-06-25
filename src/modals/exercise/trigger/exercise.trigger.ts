@@ -8,12 +8,12 @@ import {
 
 import { ExerciseSuccessModal } from '@modals/exercise/success/exercise.success';
 
-import { Trigger, Exercise } from '@lib/Exercise';
-import { IStep, IExercise, ITrigger } from '@stores/exercise/exercise.model';
+import { ITrigger, IExercise } from '@stores/exercise/exercise.model';
 import { ExerciseActions } from '@stores/exercise/exercise.action';
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import { IExerciseState } from '@stores/exercise/exercise.reducer';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'page-exercise-trigger',
@@ -21,7 +21,9 @@ import { IExerciseState } from '@stores/exercise/exercise.reducer';
 })
 export class ExerciseTriggerModal {
   @select() readonly exercises$: Observable<IExerciseState>;
-  private exercise: IExercise;
+  private currentExercise: IExercise;
+  private exerciseSubscription: Subscription;
+
   public triggers: ITrigger[];
   public range: any = { min: 0, max: 5 };
   private transitionOptions: NativeTransitionOptions = {
@@ -35,32 +37,34 @@ export class ExerciseTriggerModal {
     private exerciseActions: ExerciseActions
   ) {
     this.nativePageTransitions.slide(this.transitionOptions);
+
+    this.exerciseSubscription = this.exercises$.subscribe(
+      (exerciseState: IExerciseState): void => {
+        this.currentExercise = { ...exerciseState.current };
+        // Only use triggers the user selected
+        this.triggers = this.currentExercise.step.triggers.filter(
+          trigger => trigger.enabled
+        );
+      }
+    );
   }
 
-  ionViewWillEnter() {
-    this.exercises$.subscribe((exerciseState: IExerciseState) => {
-      // Only use triggers the user selected
-      this.triggers = exerciseState.current.step.triggers.filter(
-        trigger => trigger.enabled
-      );
+  done = async (): void => {
+    this.exerciseActions.editExercise({
+      step: {
+        ...this.currentExercise.step,
+        triggers: [...this.triggers]
+      }
     });
-  }
 
-  done() {
-    // TODO: fix callstack
-    // probably need to give step in done function
-    this.exercises$.subscribe((exerciseState: IExerciseState) => {
-      this.exerciseActions.editExercise({
-        step: {
-          ...exerciseState.current.step,
-          triggers: [...this.triggers]
-        }
-      });
+    const modal: Modal = await this.modalCtrl.create(ExerciseSuccessModal);
+    await modal.present();
 
-      const modal: Modal = this.modalCtrl.create(ExerciseSuccessModal);
+    this.close();
+  };
 
-      modal.present();
-      this.viewCtrl.dismiss();
-    });
-  }
+  close = (): void => {
+    this.exerciseSubscription.unsubscribe();
+    this.viewCtrl.dismiss();
+  };
 }

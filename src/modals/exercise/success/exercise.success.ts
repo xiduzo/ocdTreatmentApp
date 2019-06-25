@@ -24,6 +24,7 @@ import { calculateNewPoissonValue } from '@lib/poisson';
 import { Observable } from 'rxjs/Observable';
 import { IExerciseState } from '@stores/exercise/exercise.reducer';
 import { select } from '@angular-redux/store';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'page-exercise-success',
@@ -31,6 +32,8 @@ import { select } from '@angular-redux/store';
 })
 export class ExerciseSuccessModal {
   @select() readonly exercises$: Observable<IExerciseState>;
+  private exerciseSubscription: Subscription;
+  private currentExercise: IExercise;
 
   private transitionOptions: NativeTransitionOptions = {
     direction: 'left'
@@ -43,6 +46,12 @@ export class ExerciseSuccessModal {
     private fearLadderActions: FearLadderActions
   ) {
     this.nativePageTransitions.slide(this.transitionOptions);
+
+    this.exerciseSubscription = this.exercises$.subscribe(
+      (exerciseState: IExerciseState) => {
+        this.currentExercise = { ...exerciseState.current };
+      }
+    );
   }
 
   ionViewWillEnter() {
@@ -66,26 +75,25 @@ export class ExerciseSuccessModal {
   }
 
   updateStepCompletion() {
-    this.exercises$.subscribe((exerciseState: IExerciseState) => {
-      const newPoissonValue = calculateNewPoissonValue(
-        exerciseState.current.step.fear.poissonValue,
-        exerciseState.current.beforeMood,
-        exerciseState.current.afterMood
-      );
+    const newPoissonValue = calculateNewPoissonValue(
+      this.currentExercise.step.fear.poissonValue,
+      this.currentExercise.beforeMood,
+      this.currentExercise.afterMood
+    );
 
-      const fear: IFear = new Fear(exerciseState.current.step.fear);
-      fear.poissonValue = newPoissonValue;
+    const fear: IFear = new Fear(this.currentExercise.step.fear);
+    fear.poissonValue = newPoissonValue;
 
-      this.exerciseActions.editExercise({
-        end: new Date()
-      });
+    this.exerciseActions.editExercise({
+      end: new Date()
+    });
 
-      this.fearLadderActions.editFearLadderStep(exerciseState.current.step, {
-        fear: fear
-      });
+    this.fearLadderActions.editFearLadderStep(this.currentExercise.step, {
+      fear: fear
     });
   }
   close() {
+    this.exerciseSubscription.unsubscribe();
     this.viewCtrl.dismiss();
   }
 }
