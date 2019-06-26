@@ -49,7 +49,7 @@ export class ExerciseTriggerModal {
     );
   }
 
-  done = async (): void => {
+  done = async (): Promise<void> => {
     this.exerciseActions.editExercise({
       step: {
         ...this.currentExercise.step,
