@@ -226,15 +226,18 @@ export class ProgressPage {
     switch (this.timeFrame) {
       case 'day':
         return Boolean(
-          moment(timeFrame).day() === moment(beginOfTimeFrame).day()
+          moment(timeFrame).day() === moment(beginOfTimeFrame).day() &&
+            moment(timeFrame).year() === moment(beginOfTimeFrame).year() // also validate year
         );
       case 'week':
         return Boolean(
-          moment(timeFrame).week() === moment(beginOfTimeFrame).week()
+          moment(timeFrame).week() === moment(beginOfTimeFrame).week() &&
+            moment(timeFrame).year() === moment(beginOfTimeFrame).year() // also validate year
         );
       case 'month':
         return Boolean(
-          moment(timeFrame).month() === moment(beginOfTimeFrame).month()
+          moment(timeFrame).month() === moment(beginOfTimeFrame).month() &&
+            moment(timeFrame).year() === moment(beginOfTimeFrame).year() // also validate year
         );
       case 'year':
         return Boolean(
