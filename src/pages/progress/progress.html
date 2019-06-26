@@ -18,63 +18,19 @@
 </ion-header>
 <ion-content>
   <chart [options]="chartOptions" style="display: block" (load)="setChart($event.context)" type="chart"></chart>
-  <ion-grid>
-    <ion-row>
-      <ion-col col-12>
-        <ion-icon name="ribbon"></ion-icon>
-        <span>
-          {{ 'PROGRESS_EXERCISES_DONE' | translate }}
-        </span>
-      </ion-col>
-      <ion-col col-12 class="stats">
-        <h1 class="title">
-          {{ thisTimeFrameExercises?.length || '0' }}
-        </h1>
-        <span class="stat">
-          {{ 'EXERCISES' | translate }}
-        </span>
-        <span *ngIf="previousTimeFrameExercises.length" class="difference">
-          {{ previousTimeFrameExercises.length | difference: thisTimeFrameExercises.length }}
-        </span>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-12>
-        <ion-icon name="timer"></ion-icon>
-        <span>
-          {{ 'PROGRESS_TOTAL_EXERCISE_TIME' | translate }}
-        </span>
-      </ion-col>
-      <ion-col col-12 class="stats">
-        <h1 class="title">
-          {{ (thisTimeFrameExercises | accumulateTime | msToTime: 'hours') || '0' }}
-        </h1>
-        <span class="stat">
-          {{ 'HOURS' | translate }}
-        </span>
-        <span *ngIf="previousTimeFrameExercises.length" class="difference">
-          {{ previousTimeFrameExercises | accumulateTime | difference: (thisTimeFrameExercises | accumulateTime) }}
-        </span>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-12>
-        <ion-icon name="md-stopwatch"></ion-icon>
-        <span>
-          {{ 'PROGRESS_AVERAGE_EXERCISE_TIME' | translate }}
-        </span>
-      </ion-col>
-      <ion-col col-12 class="stats">
-        <h1 class="title">
-          {{ ((thisTimeFrameExercises | accumulateTime) / thisTimeFrameExercises?.length | msToTime: 'minutes') || '0' }}
-        </h1>
-        <span class="stat">
-          {{ 'MINUTES' | translate }}
-        </span>
-        <span *ngIf="previousTimeFrameExercises.length" class="difference">
-          {{ (previousTimeFrameExercises | accumulateTime) / previousTimeFrameExercises.length | difference : (thisTimeFrameExercises | accumulateTime) / thisTimeFrameExercises.length }}
-        </span>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <section>
+    <spirit-progress-stat [icon]="'ribbon'" [title]="'PROGRESS_EXERCISES_DONE'" [amount]="thisTimeFrameExercises.length"
+      [item]="'EXERCISES'"
+      [previousAmount]="previousTimeFrameExercises.length | difference: thisTimeFrameExercises.length">
+    </spirit-progress-stat>
+    <spirit-progress-stat [icon]="'timer'" [title]="'PROGRESS_TOTAL_EXERCISE_TIME'"
+      [amount]="thisTimeFrameExercises | accumulateTime | msToTime: 'hours'" [item]="'HOURS'"
+      [previousAmount]="previousTimeFrameExercises | accumulateTime | difference: (thisTimeFrameExercises | accumulateTime)">
+    </spirit-progress-stat>
+    <spirit-progress-stat [icon]="'stopwatch'" [title]="'PROGRESS_AVERAGE_EXERCISE_TIME'"
+      [amount]="(thisTimeFrameExercises | accumulateTime) / thisTimeFrameExercises.length | msToTime: 'minutes'"
+      [item]="'MINUTES'"
+      [previousAmount]="(previousTimeFrameExercises | accumulateTime) / previousTimeFrameExercises.length | difference : (thisTimeFrameExercises | accumulateTime) / thisTimeFrameExercises.length">
+    </spirit-progress-stat>
+  </section>
 </ion-content>

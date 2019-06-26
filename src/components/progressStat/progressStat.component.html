@@ -1,0 +1,15 @@
+<section class="title">
+  <ion-icon name="{{icon}}"></ion-icon>
+  {{ title | translate }}
+</section>
+<section class="amount">
+  <h1>
+    {{ amount }}
+    <span>
+      {{ item | translate }}
+    </span>
+  </h1>
+  <span *ngIf="previousAmount">
+    {{ previousAmount }}
+  </span>
+</section>

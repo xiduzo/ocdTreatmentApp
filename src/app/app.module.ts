@@ -158,6 +158,9 @@ import { ExerciseLevelComponent } from '@components/exerciseLevel/exerciseLevel.
 // Exercise level step
 import { ExerciseLevelStepComponent } from '@components/exerciseLevelStep/exerciseLevelStep.component';
 
+// Progress stat
+import { ProgressStatComponent } from '@components/progressStat/progressStat.component';
+
 /*------------------------------
   Other
 ------------------------------*/
@@ -202,7 +205,8 @@ import { environment } from '@lib/environment';
     ProgressBarComponent,
     EmptyStateComponent,
     ExerciseLevelComponent,
-    ExerciseLevelStepComponent
+    ExerciseLevelStepComponent,
+    ProgressStatComponent
   ],
   imports: [
     NgPipesModule,

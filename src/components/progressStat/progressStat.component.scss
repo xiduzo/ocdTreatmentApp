@@ -1,0 +1,38 @@
+spirit-progress-stat {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 48px;
+
+  .title {
+    ion-icon {
+      font-size: 2em;
+      color: color($colors, contrast, base);
+      margin-right: 1em;
+    }
+    font-weight: 100;
+    text-transform: uppercase;
+  }
+  .amount {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+
+    h1 {
+      margin: 0;
+      font-weight: 900;
+      font-size: 3.25em;
+      color: color($colors, secondary, base);
+      span {
+        color: color($colors, dark, base);
+        font-weight: 400;
+        font-size: 0.33em;
+      }
+    }
+    > span {
+      color: color($colors, contrast, base);
+      &:after {
+        content: "%";
+      }
+    }
+  }
+}
