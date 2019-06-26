@@ -1,4 +1,3 @@
-// TODO: remove old code below from project
 import { UUID } from 'angular2-uuid';
 import moment from 'moment';
 
