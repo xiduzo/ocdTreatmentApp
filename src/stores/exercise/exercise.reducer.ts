@@ -8,6 +8,13 @@ export interface IExerciseState {
   errors: any[];
 }
 
+export const INITIAL_EXERCISE_STATE: IExerciseState = {
+  list: [],
+  current: null,
+  loading: false,
+  errors: []
+};
+
 export const ADD_EXERCISE: string = 'ADD_EXERCISE';
 export const REQUEST_EXERCISES: string = 'REQUEST_EXERCISES';
 export const RECEIVED_EXERCISES: string = 'RECEIVED_EXERCISES';

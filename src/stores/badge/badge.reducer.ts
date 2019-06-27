@@ -7,6 +7,12 @@ export interface IBadgeState {
   errors: any[];
 }
 
+export const INITIAL_BADGE_STATE: IBadgeState = {
+  list: [],
+  loading: true,
+  errors: []
+};
+
 export const REQUEST_BADGES = 'REQUEST_BADGES';
 export const RECEIVED_BADGES = 'RECEIVED_BADGES';
 

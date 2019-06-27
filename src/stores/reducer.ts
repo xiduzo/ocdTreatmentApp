@@ -2,15 +2,21 @@ import { Reducer } from 'redux';
 
 import {
   exercisesReducer,
-  IExerciseState
+  IExerciseState,
+  INITIAL_EXERCISE_STATE
 } from '@stores/exercise/exercise.reducer';
 
 import {
   fearLadderReducer,
-  IFearLadderState
+  IFearLadderState,
+  INITIAL_FEAR_LADDER_STATE
 } from '@stores/fearLadder/fearLadder.reducer';
 
-import { badgeReducer, IBadgeState } from '@stores/badge/badge.reducer';
+import {
+  badgeReducer,
+  IBadgeState,
+  INITIAL_BADGE_STATE
+} from '@stores/badge/badge.reducer';
 
 export interface IAppState {
   exercises: IExerciseState;
@@ -18,22 +24,9 @@ export interface IAppState {
   badges: IBadgeState;
 }
 export const INITIAL_STATE: IAppState = {
-  exercises: {
-    list: [],
-    current: null,
-    loading: true,
-    errors: []
-  },
-  fearLadder: {
-    steps: [],
-    loading: true,
-    errors: []
-  },
-  badges: {
-    list: [],
-    loading: true,
-    errors: []
-  }
+  exercises: INITIAL_EXERCISE_STATE,
+  fearLadder: INITIAL_FEAR_LADDER_STATE,
+  badges: INITIAL_BADGE_STATE
 };
 
 export const rootReducer: Reducer<IAppState> = (state: IAppState, action) => ({

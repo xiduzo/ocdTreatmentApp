@@ -7,6 +7,12 @@ export interface IFearLadderState {
   errors: any[];
 }
 
+export const INITIAL_FEAR_LADDER_STATE: IFearLadderState = {
+  steps: [],
+  loading: true,
+  errors: []
+};
+
 export const RECEIVED_FEAR_LADDER: string = 'RECEIVED_FEAR_LADDER';
 export const REQUEST_FEAR_LADDER: string = 'REQUEST_FEAR_LADDER';
 export const ADD_FEAR_LADDER_STEP: string = 'ADD_FEAR_LADDER_STEP';
