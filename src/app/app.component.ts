@@ -33,6 +33,7 @@ import { ExerciseActions } from '@stores/exercise/exercise.action';
 
 import { IBadgeState } from '@stores/badge/badge.reducer';
 import { BadgeActions } from '@stores/badge/badge.action';
+import { environment } from '@lib/environment';
 
 @Component({
   templateUrl: 'app.html'
@@ -42,7 +43,7 @@ export class MyApp {
   @select() readonly exercises$: Observable<IExerciseState>;
   @select() readonly badges$: Observable<IBadgeState>;
 
-  public rootPage: any = LoginPage; // Always start the app with the LoginPage to be sure
+  public rootPage: any = environment.offline ? TabsPage : LoginPage; // Always start the app with the LoginPage to be sure
 
   constructor(
     private platform: Platform,
@@ -85,6 +86,8 @@ export class MyApp {
 
     // Subscribe on auth events
     this.amplifyService.authStateChange$.subscribe(authState => {
+      if (environment.offline) return true;
+
       switch (authState.state) {
         case 'signedIn':
           this.setTabsOrOnboardingPage();

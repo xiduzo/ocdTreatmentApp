@@ -24,9 +24,9 @@ const analyticsConfig = {
   }
 };
 Analytics.configure(analyticsConfig);
-Analytics.record({ name: 'anEvent' });
+// Analytics.record({ name: 'anEvent' });
 
-// Analytics.configure({ disabled: true });
+if (environment.offline) Analytics.configure({ disabled: true });
 
 if (environment.production) enableProdMode();
 
