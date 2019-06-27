@@ -2,14 +2,14 @@ export interface IBadge {
   name: string;
   verbose: string;
   description: string;
-  states: IStage[];
-  currentStage: IStage;
+  stages: IStage[];
   totalPointsGained: number;
-  finishedStages: boolean;
+
+  getCurrentStage?: () => IStage;
 }
 
 export interface IStage {
-  amountNeeder: number;
+  amountNeeded: number;
   description: string;
   image: string;
 }

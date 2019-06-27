@@ -1,6 +1,8 @@
 import { Reducer } from 'redux';
 import { IBadge } from './badge.model';
 
+import { STREAK_BADGE } from '@lib/badge/templates/streak';
+
 export interface IBadgeState {
   list: IBadge[];
   loading: boolean;
@@ -8,7 +10,7 @@ export interface IBadgeState {
 }
 
 export const INITIAL_BADGE_STATE: IBadgeState = {
-  list: [],
+  list: [STREAK_BADGE],
   loading: true,
   errors: []
 };

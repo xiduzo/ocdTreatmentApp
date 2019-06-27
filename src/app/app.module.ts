@@ -84,9 +84,6 @@ import { accumulateTimePipe } from '@lib/pipes/accumulateTime';
 import { differencePipe } from '@lib/pipes/difference';
 import { relativeTimePipe } from '@lib/pipes/relativeTime';
 
-// badge
-import { BadgeFactory } from '@lib/badge/Badge';
-
 /*------------------------------
   Directives
 ------------------------------*/
@@ -269,7 +266,6 @@ import { environment } from '@lib/environment';
     LocalNotifications,
     Globalization,
     AmplifyService,
-    BadgeFactory,
     ExerciseActions,
     FearLadderActions,
     BadgeActions,
