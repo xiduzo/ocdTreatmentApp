@@ -1,106 +1,55 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, ModalController, TextInput } from 'ionic-angular';
+import { ModalController, TextInput, Modal } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-
-import { Badge, BadgeFactory } from '@lib/badge/Badge';
-
-import { STREAK_BADGE } from '@lib/badge/templates/streak';
-import { EXERCISE_BADGE } from '@lib/badge/templates/exercise';
-import { FIRST_TIME_BADGE } from '@lib/badge/templates/firstTime';
-// import { TEST_ONE_BADGE } from '../../lib/badges/templates/test1';
-// import { TEST_TWO_BADGE } from '../../lib/badges/templates/test2';
-// import { TEST_THREE_BADGE } from '../../lib/badges/templates/test3';
 
 import { SettingsModal } from '@modals/settings/settings';
 import { FearLadderModal } from '@modals/fearLadder/fearLadder';
+import { async } from 'rxjs/internal/scheduler/async';
 
 @Component({
   selector: 'page-profile',
-  templateUrl: 'profile.html',
-  providers: [BadgeFactory]
+  templateUrl: 'profile.html'
 })
 export class ProfilePage {
   @ViewChild('personalGoal') personalGoalTextArea: TextInput;
 
   public personalGoalText: string;
   public editGoal: boolean = false;
-  public view: string = 'journey';
-  public badges: Array<Badge> = [];
-  private badgeTemplates: Array<any> = [
-    STREAK_BADGE,
-    EXERCISE_BADGE,
-    FIRST_TIME_BADGE
-    // TEST_ONE_BADGE,
-    // TEST_TWO_BADGE,
-    // TEST_THREE_BADGE,
-  ];
 
-  constructor(
-    public navCtrl: NavController,
-    private storage: Storage,
-    private modalCtrl: ModalController,
-    private badgeFctry: BadgeFactory
-  ) {
-    this.badgeTemplates.forEach(badge => {
-      // this.badges.push(this.badgeFctry.createBadge(badge));
-    });
-  }
+  constructor(private storage: Storage, private modalCtrl: ModalController) {}
 
-  ionViewWillLoad() {
+  ionViewWillLoad = (): void => {
     this.getPersonalGoal();
-  }
+  };
 
-  updateBadge(badge: Badge) {
-    const localBadge = this.badges.find(
-      currBadge => currBadge.name == badge.name
-    );
-
-    if (localBadge) {
-      localBadge.getProgress().then(() => {
-        localBadge
-          .setCurrentStage()
-          .then(response => {
-            localBadge.currentStage = response;
-          })
-          .catch(err => {
-            console.log(`err: ${err}`);
-          });
-      });
-    }
-  }
-
-  getPersonalGoal() {
+  getPersonalGoal = (): void => {
     this.storage.get('personalGoal').then((goal: string) => {
       if (!goal) return;
 
       this.personalGoalText = goal;
     });
-  }
+  };
 
-  safePersonalGoal() {
+  safePersonalGoal = (): void => {
     this.storage.set('personalGoal', this.personalGoalText);
-  }
+  };
 
-  togglePersonalGoalEdit() {
+  togglePersonalGoalEdit = (): void => {
     this.editGoal = !this.editGoal;
 
     // We need to wait a bit before the element is added to the DOM
     setTimeout(() => {
       if (this.editGoal) this.personalGoalTextArea.setFocus();
     }, 100);
-  }
+  };
 
-  openSettings() {
-    const modal = this.modalCtrl.create(SettingsModal);
-    modal.present();
-  }
+  openSettings = async (): Promise<void> => {
+    const modal: Modal = await this.modalCtrl.create(SettingsModal);
+    await modal.present();
+  };
 
-  openFearLadder() {
-    const modal = this.modalCtrl.create(FearLadderModal);
-    modal.present();
-  }
-
-  showBadge(badge: any) {
-    badge.showModal();
-  }
+  openFearLadder = async (): Promise<void> => {
+    const modal: Modal = await this.modalCtrl.create(FearLadderModal);
+    await modal.present();
+  };
 }
