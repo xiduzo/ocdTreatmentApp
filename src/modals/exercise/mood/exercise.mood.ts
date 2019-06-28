@@ -132,6 +132,8 @@ export class ExerciseMoodModal {
     this.close();
   };
 
+  trackByFn = (index: number): number => index;
+
   close = (): void => {
     this.exerciseSubscription.unsubscribe();
 

@@ -1,5 +1,5 @@
-<div [class.content]="mood >= 0" [class.ok]="mood >= 100" [class.meh]="mood >= 200" [class.worried]="mood >= 400"
-  [class.panic]="mood >= 500" [class.combined]="afterMood">
-  <span *ngIf="afterMood >= -1" class="after" [class.content]="afterMood >= 100" [class.ok]="afterMood >= 200"
-    [class.meh]="afterMood >= 300" [class.worried]="afterMood >= 400" [class.panic]="afterMood >= 500"></span>
+<div [class.content]="mood >= 0" [class.ok]="mood >= 63" [class.meh]="mood >= 188" [class.worried]="mood >= 313"
+  [class.panic]="mood >= 493" [class.combined]="afterMood >=0">
+  <span *ngIf="afterMood >= 0" class="after" [class.content]="afterMood >= 0" [class.ok]="afterMood >= 63"
+    [class.meh]="afterMood >= 188" [class.worried]="afterMood >= 313" [class.panic]="afterMood >= 493"></span>
 </div>

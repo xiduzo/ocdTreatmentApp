@@ -13,7 +13,8 @@
       <ion-item-group>
         <ion-item-divider>
           {{ 'BEFORE' | translate }}
-          <spirit-mood-indicator [mood]="exercise.beforeMood.mood || -1"></spirit-mood-indicator>
+          <spirit-mood-indicator [mood]="exercise.beforeMood.mood >= 0 ? exercise.beforeMood.mood : -1">
+          </spirit-mood-indicator>
         </ion-item-divider>
         <ion-item text-wrap *ngIf="exercise.beforeMood.explanation">{{ exercise.beforeMood.explanation }}
         </ion-item>
@@ -21,7 +22,8 @@
       <ion-item-group>
         <ion-item-divider>
           {{ 'AFTER' | translate }}
-          <spirit-mood-indicator [mood]="exercise.afterMood.mood || -1"></spirit-mood-indicator>
+          <spirit-mood-indicator [mood]="exercise.afterMood.mood >= 0 ? exercise.afterMood.mood : -1">
+          </spirit-mood-indicator>
         </ion-item-divider>
         <ion-item text-wrap *ngIf="exercise.afterMood.explanation">
           {{ exercise.afterMood.explanation }}

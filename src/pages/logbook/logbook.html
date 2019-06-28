@@ -8,7 +8,7 @@
 
 <ion-content>
   <section *ngIf="(exercises$ | async).loading" class="c-logbook">
-    <div class="c-logbook__item" *ngFor="let x of [1,2,3,4,5,6,7]">
+    <div class="c-logbook__item" *ngFor="let x of [1, 2, 3, 4, 5, 6, 7]">
       <div class="c-timeline">
         <spirit-mood-indicator-mock></spirit-mood-indicator-mock>
         <div class="c-timeline__extender"></div>
@@ -21,9 +21,10 @@
       [subtitle]="'WARNING_NO_LOGGED_EXERCISES'" [imageSource]="'assets/imgs/monsters/all.png'">
     </spirit-empty-state>
     <section *ngIf="(exercises$ | async).list.length" no-lines class="c-logbook">
-      <div *ngFor="let exercise of exercises" class="c-logbook__item">
+      <div *ngFor="let exercise of exercises; trackBy: trackByFn" class="c-logbook__item">
         <div class="c-timeline">
-          <spirit-mood-indicator [mood]="exercise.beforeMood.mood || -1" [afterMood]="exercise.afterMood.mood || -1">
+          <spirit-mood-indicator [mood]="exercise.beforeMood.mood >= 0 ? exercise.beforeMood.mood : -1"
+            [afterMood]="exercise.afterMood.mood >= 0 ? exercise.afterMood.mood : -1">
           </spirit-mood-indicator>
           <div class="c-timeline__extender"></div>
         </div>
