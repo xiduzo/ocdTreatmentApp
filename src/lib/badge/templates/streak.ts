@@ -2,7 +2,7 @@ export const STREAK_BADGE = {
   name: 'streakBadge',
   verbose: 'Streak',
   description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-  totalPointsGained = 0,
+  totalPointsGained: 0,
   stages: [
     {
       amountNeeded: 1,

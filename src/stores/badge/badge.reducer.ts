@@ -1,7 +1,8 @@
 import { Reducer } from 'redux';
-import { IBadge } from './badge.model';
+import { IBadge } from '@stores/badge/badge.model';
 
 import { STREAK_BADGE } from '@lib/badge/templates/streak';
+import { FIRST_TIME_BADGE } from '@lib/badge/templates/firstTime';
 
 export interface IBadgeState {
   list: IBadge[];
@@ -10,7 +11,7 @@ export interface IBadgeState {
 }
 
 export const INITIAL_BADGE_STATE: IBadgeState = {
-  list: [STREAK_BADGE],
+  list: [STREAK_BADGE, FIRST_TIME_BADGE],
   loading: true,
   errors: []
 };
@@ -26,9 +27,32 @@ export const badgeReducer: Reducer<IBadgeState> = (
     case REQUEST_BADGES:
       return { ...state, loading: true };
     case RECEIVED_BADGES:
+      const combinedBadges: IBadge[] = state.list.map(
+        (stateBadge: IBadge): IBadge => {
+          // See if we also have the badge in our local storage
+          const actionPayLoadBadge = action.payload.filter(
+            (payloadBadge: IBadge): boolean =>
+              // Match on name
+              payloadBadge.name === stateBadge.name
+          );
+
+          console.log(actionPayLoadBadge);
+
+          // If we have a local badge, update the state badge
+          return actionPayLoadBadge
+            ? {
+                ...stateBadge,
+                totalPointsGained: actionPayLoadBadge.totalPointsGained
+              }
+            : stateBadge;
+        }
+      );
+
+      console.log(combinedBadges);
+
       return {
         ...state,
-        list: [...state.list, ...action.payload],
+        list: [],
         loading: false
       };
     default:

@@ -11,12 +11,14 @@ export class Badge {
     name = '',
     verbose = '',
     description = '',
-    stages = [new Stage()]
+    stages = [new Stage()],
+    totalPointsGained = 0
   } = {}) {
     this.name = name;
     this.verbose = verbose;
     this.description = description;
     this.stages = stages.map(stage => new Stage(stage));
+    this.totalPointsGained = totalPointsGained;
   }
 }
 
