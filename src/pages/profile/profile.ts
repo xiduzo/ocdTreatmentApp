@@ -4,7 +4,9 @@ import { Storage } from '@ionic/storage';
 
 import { SettingsModal } from '@modals/settings/settings';
 import { FearLadderModal } from '@modals/fearLadder/fearLadder';
-import { async } from 'rxjs/internal/scheduler/async';
+import { select } from '@angular-redux/store';
+import { Observable } from 'rxjs/Observable';
+import { IBadgeState } from '@stores/badge/badge.reducer';
 
 @Component({
   selector: 'page-profile',
@@ -12,6 +14,7 @@ import { async } from 'rxjs/internal/scheduler/async';
 })
 export class ProfilePage {
   @ViewChild('personalGoal') personalGoalTextArea: TextInput;
+  @select() readonly badges$: Observable<IBadgeState>;
 
   public personalGoalText: string;
   public editGoal: boolean = false;

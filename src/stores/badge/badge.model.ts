@@ -13,3 +13,8 @@ export interface IStage {
   description: string;
   image: string;
 }
+
+export interface ICurrentBadgeStage {
+  stage: IStage;
+  pointsToNextStage: number;
+}

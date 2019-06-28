@@ -6,8 +6,18 @@ export const STREAK_BADGE = {
   stages: [
     {
       amountNeeded: 1,
-      description: 'Hard work pays off! Keep on going.',
+      description: 'streakBadge1.',
       image: 'assets/imgs/badges/exercise_streak_dayly_1.svg'
+    },
+    {
+      amountNeeded: 5,
+      description: 'streakBadge2.',
+      image: 'assets/imgs/badges/exercise_streak_weekly_5.svg'
+    },
+    {
+      amountNeeded: 30,
+      description: 'streakBadge2.',
+      image: 'assets/imgs/badges/exercise_streak_monthly_30.svg'
     }
   ]
 };

@@ -1,0 +1,12 @@
+<h1 class="badge__name">
+    {{ badge.verbose }}
+</h1>
+<section class="badge__progress" *ngIf="currentStage?.stage">
+    <img src="{{ currentStage.stage.image }}" alt="{{ badge.verbose }}" />
+    <round-progress [current]="currentStage.pointsToNextStage" [max]="currentStage.stage.amountNeeded" [radius]="45"
+        [stroke]="4" [duration]="1"></round-progress>
+</section>
+<section class="badge__progress__numbers" *ngIf="currentStage?.stage">
+    <strong>{{ currentStage.pointsToNextStage }}</strong> /
+    {{ currentStage.stage.amountNeeded }}
+</section>

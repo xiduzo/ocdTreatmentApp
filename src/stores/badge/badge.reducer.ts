@@ -30,13 +30,11 @@ export const badgeReducer: Reducer<IBadgeState> = (
       const combinedBadges: IBadge[] = state.list.map(
         (stateBadge: IBadge): IBadge => {
           // See if we also have the badge in our local storage
-          const actionPayLoadBadge = action.payload.filter(
+          const actionPayLoadBadge: IBadge = action.payload.find(
             (payloadBadge: IBadge): boolean =>
               // Match on name
               payloadBadge.name === stateBadge.name
           );
-
-          console.log(actionPayLoadBadge);
 
           // If we have a local badge, update the state badge
           return actionPayLoadBadge
@@ -52,7 +50,7 @@ export const badgeReducer: Reducer<IBadgeState> = (
 
       return {
         ...state,
-        list: [],
+        list: combinedBadges,
         loading: false
       };
     default:

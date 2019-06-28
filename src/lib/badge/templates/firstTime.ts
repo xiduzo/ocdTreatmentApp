@@ -6,7 +6,7 @@ export const FIRST_TIME_BADGE = {
   stages: [
     {
       amountNeeded: 1,
-      description: 'Hard work pays off! Keep on going.',
+      description: 'firstTimeBadge.',
       image: 'assets/imgs/badges/first_time_exercise.svg'
     }
   ]

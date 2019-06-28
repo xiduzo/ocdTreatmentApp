@@ -45,34 +45,12 @@
     <ion-list-header>
       {{ 'MY_BADGES' | translate }}
     </ion-list-header>
-    <ion-scroll>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-4 *ngFor="let badge of badges" (click)="showBadge(badge)">
-            <div class="o-badge">
-              <span class="badge__name">
-                {{ badge.verbose }}
-              </span>
-              <div class="badge__progress">
-                <img src="{{ badge.currentStage.image }}" alt="{{ badge.verbose }}" />
-                <round-progress [current]="
-                    badge.finishedStages
-                      ? badge.currentStage.amountNeeded
-                      : badge.pointsProgressToNextStage
-                  " [max]="badge.currentStage.amountNeeded" [radius]="45" [stroke]="4" [duration]="1"></round-progress>
-              </div>
-              <span class="badge__progress__numbers" *ngIf="!badge.finishedStages">
-                <strong>{{ badge.pointsProgressToNextStage }}</strong> /
-                {{ badge.currentStage.amountNeeded }}
-              </span>
-              <span class="badge__progress__numbers" *ngIf="badge.finishedStages">
-                <strong>{{ badge.currentStage.amountNeeded }}</strong> /
-                {{ badge.currentStage.amountNeeded }}
-              </span>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-scroll>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4 *ngFor="let badge of (badges$ | async).list">
+          <spirit-badge [badge]=badge></spirit-badge>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>

@@ -1,4 +1,4 @@
-import { IStage, IBadge } from '@stores/badge/badge.model';
+import { IStage, IBadge, ICurrentBadgeStage } from '@stores/badge/badge.model';
 
 export class Badge {
   public name: string;
@@ -32,4 +32,21 @@ export class Stage {
     this.description = description;
     this.image = image;
   }
+}
+
+export function getCurrentStage(badge: IBadge): ICurrentBadgeStage {
+  let { totalPointsGained } = badge;
+  let currentStageIndex: number = 0;
+
+  badge.stages.forEach((stage: IStage) => {
+    if (totalPointsGained >= stage.amountNeeded) {
+      totalPointsGained -= stage.amountNeeded;
+      if (badge.stages.length - 1 > currentStageIndex) currentStageIndex++;
+    }
+  });
+
+  return {
+    stage: badge.stages[currentStageIndex],
+    pointsToNextStage: totalPointsGained
+  };
 }
