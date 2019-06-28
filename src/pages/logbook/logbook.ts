@@ -13,14 +13,16 @@ import moment from 'moment';
 })
 export class LogbookPage {
   @select() readonly exercises$: Observable<IExerciseState>;
-
   public exercises: IExercise[] = [];
+
   constructor() {
     this.exercises$.subscribe((exerciseState: IExerciseState) => {
       this.exercises = [...exerciseState.list];
       this.filterAndSortExercises();
     });
   }
+
+  trackByFn = (index: number): number => index;
 
   filterAndSortExercises = (): void => {
     // TODO: add optional filtering
