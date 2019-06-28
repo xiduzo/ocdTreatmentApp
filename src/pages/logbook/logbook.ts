@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 
-import { Exercise } from '@lib/Exercise';
-
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import { IExerciseState } from '@stores/exercise/exercise.reducer';
+import { IExercise } from '@stores/exercise/exercise.model';
+
+import moment from 'moment';
 
 @Component({
   selector: 'logbook-page',
@@ -13,5 +14,18 @@ import { IExerciseState } from '@stores/exercise/exercise.reducer';
 export class LogbookPage {
   @select() readonly exercises$: Observable<IExerciseState>;
 
-  constructor() {}
+  public exercises: IExercise[] = [];
+  constructor() {
+    this.exercises$.subscribe((exerciseState: IExerciseState) => {
+      this.exercises = [...exerciseState.list];
+      this.filterAndSortExercises();
+    });
+  }
+
+  filterAndSortExercises = (): void => {
+    // TODO: add optional filtering
+    this.exercises.sort((a: IExercise, b: IExercise) => {
+      return moment(b.start).unix() - moment(a.start).unix();
+    });
+  };
 }

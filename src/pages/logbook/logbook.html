@@ -21,7 +21,7 @@
       [subtitle]="'WARNING_NO_LOGGED_EXERCISES'" [imageSource]="'assets/imgs/monsters/all.png'">
     </spirit-empty-state>
     <section *ngIf="(exercises$ | async).list.length" no-lines class="c-logbook">
-      <div *ngFor="let exercise of (exercises$ | async).list" class="c-logbook__item">
+      <div *ngFor="let exercise of exercises" class="c-logbook__item">
         <div class="c-timeline">
           <spirit-mood-indicator [mood]="exercise.beforeMood.mood || -1" [afterMood]="exercise.afterMood.mood || -1">
           </spirit-mood-indicator>
