@@ -46,8 +46,6 @@ export const badgeReducer: Reducer<IBadgeState> = (
         }
       );
 
-      console.log(combinedBadges);
-
       return {
         ...state,
         list: combinedBadges,
