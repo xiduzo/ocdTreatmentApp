@@ -1,4 +1,10 @@
 settings-modal {
+  .mail-data {
+    display: flex;
+    margin: 16px;
+    align-items: center;
+    justify-content: center;
+  }
   ion-footer {
     button.button {
       margin: 0;
