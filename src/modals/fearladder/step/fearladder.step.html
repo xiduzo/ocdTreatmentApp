@@ -18,7 +18,7 @@
     </ion-item-divider>
     <ion-item>
       <ion-label floating>
-        {{ 'FEARLADDER_STEP_I_WANT_TO' | translate }}
+        {{ 'FEAR_LADDER_STEP_I_WANT_TO' | translate }}
       </ion-label>
       <ion-input type="text" [(ngModel)]="step.fear.situation"></ion-input>
     </ion-item>
@@ -30,15 +30,9 @@
     </ion-item>
     <ion-item>
       <ion-label floating>
-        {{ 'FEARLADDER_STEP_FEAR_RATING' | translate }} ({{ step.fearRating }})
+        {{ 'FEAR_LADDER_STEP_FEAR_RATING' | translate }} ({{ step.fearRating }})
       </ion-label>
-      <ion-range
-        [(ngModel)]="step.fearRating"
-        min="1"
-        max="8"
-        pin="true"
-        snaps="true"
-      >
+      <ion-range [(ngModel)]="step.fearRating" min="1" max="8" pin="true" snaps="true">
         <ion-label range-left>1</ion-label>
         <ion-label range-right>8</ion-label>
       </ion-range>
@@ -50,7 +44,7 @@
     </ion-item-divider>
     <ion-item *ngFor="let trigger of step.triggers" text-wrap>
       <ion-label>
-        {{ 'FEARLADDER_STEP_THIS_TRIGGERS' | translate }}
+        {{ 'FEAR_LADDER_STEP_THIS_TRIGGERS' | translate }}
         {{ trigger.verbose | translate }}
       </ion-label>
       <ion-checkbox [(ngModel)]="trigger.enabled"></ion-checkbox>
@@ -59,23 +53,10 @@
 </ion-content>
 
 <ion-footer>
-  <button
-    *ngIf="editStep"
-    color="danger"
-    ion-button
-    large
-    block
-    (click)="removeFear()"
-  >
+  <button *ngIf="editStep" color="danger" ion-button large block (click)="removeFear()">
     {{ 'REMOVE' | translate }}
   </button>
-  <button
-    ion-button
-    large
-    block
-    (click)="addFear()"
-    [disabled]="!step.fear.situation || !step.fear.without"
-  >
+  <button ion-button large block (click)="addFear()" [disabled]="!step.fear.situation || !step.fear.without">
     {{ buttonText | translate }}
   </button>
 </ion-footer>
