@@ -48,7 +48,7 @@
     <ion-grid>
       <ion-row>
         <ion-col col-4 *ngFor="let badge of (badges$ | async).list">
-          <spirit-badge [badge]=badge></spirit-badge>
+          <spirit-badge (click)="openBadge(badge)" [badge]=badge></spirit-badge>
         </ion-col>
       </ion-row>
     </ion-grid>
