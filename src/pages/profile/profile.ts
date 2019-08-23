@@ -7,6 +7,8 @@ import { FearLadderModal } from '@modals/fearLadder/fearLadder';
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import { IBadgeState } from '@stores/badge/badge.reducer';
+import { IBadge } from '@stores/badge/badge.model';
+import { BadgeModal } from '@modals/badge/badge';
 
 @Component({
   selector: 'page-profile',
@@ -53,6 +55,13 @@ export class ProfilePage {
 
   openFearLadder = async (): Promise<void> => {
     const modal: Modal = await this.modalCtrl.create(FearLadderModal);
+    await modal.present();
+  };
+
+  openBadge = async (badge: IBadge): Promise<void> => {
+    const modal: Modal = await this.modalCtrl.create(BadgeModal, {
+      badge
+    });
     await modal.present();
   };
 }

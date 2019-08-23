@@ -5,7 +5,8 @@
     </button>
   </ion-fab>
   <section padding>
-    <div class="o-badge o-badge--big">
+    <spirit-badge [badge]=badge></spirit-badge>
+    <!-- <div class="o-badge o-badge--big">
       <span class="badge__name">
         {{ badge.verbose }}
       </span>
@@ -39,11 +40,6 @@
       <p>
         {{ badge.currentStage.description }}
       </p>
-    </article>
+    </article> -->
   </section>
 </ion-content>
-<ion-footer>
-  <button ion-button large block (click)="testCompletion()">
-    test completion
-  </button>
-</ion-footer>
