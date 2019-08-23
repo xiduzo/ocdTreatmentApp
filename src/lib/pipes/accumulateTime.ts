@@ -15,6 +15,6 @@ export class accumulateTimePipe implements PipeTransform {
       time += moment(exercise.end).diff(moment(exercise.start));
     });
 
-    return time;
+    return Math.max(0, time);
   }
 }
