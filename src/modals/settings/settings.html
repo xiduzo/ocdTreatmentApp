@@ -40,23 +40,11 @@
     </div>
   </ion-item>
 
-  <!-- <ion-list-header>
-    My profile
-  </ion-list-header> -->
-
-  <ion-list-header>
-    {{ 'MY_OBSESSIONS' | translate }}
-  </ion-list-header>
-  <ion-item>
-    <ion-label>
-      Mail data
-    </ion-label>
-    <div item-end>
-      <button ion-button (click)="sendData()">
-        send
-      </button>
-    </div>
-  </ion-item>
+  <section class="mail-data">
+    <button color="secondary" ion-button round (click)="sendData()">
+      {{ 'BUTTON_SEND_DATA' | translate }}
+    </button>
+  </section>
 
   <ion-list-header>
     {{ 'PREFERENCES' | translate }}
