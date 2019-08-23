@@ -12,7 +12,10 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin: 48px 0 0;
+  margin: 28px 0 0;
+  font-weight: 100;
+  font-size: 1.25em;
+  text-transform: uppercase;
 
   .mood__name {
     color: color($colors, light, base);

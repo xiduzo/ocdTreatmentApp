@@ -11,6 +11,7 @@ page-exercise-success {
         height: calc(100vh - 56px);
         width: 100vw;
         top: 0;
+        z-index: 5;
       }
 
       .message {
