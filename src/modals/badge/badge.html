@@ -5,7 +5,18 @@
     </button>
   </ion-fab>
   <section padding>
-    <spirit-badge [badge]=badge></spirit-badge>
+    <h1 class="badge__name">
+      {{ badge.verbose }}
+    </h1>
+    <span class="badge__description">
+      {{ badge.description }}
+    </span>
+    <section class="badge__progress" *ngIf="currentStage?.stage">
+      <img src="{{ currentStage.stage.image }}" alt="{{ badge.verbose }}" />
+      <round-progress [current]="currentStage.pointsToNextStage" [max]="currentStage.stage.amountNeeded" [radius]="155"
+        [stroke]="4" [duration]="1"></round-progress>
+    </section>
+    <!-- <spirit-badge [badge]=badge></spirit-badge> -->
     <!-- <div class="o-badge o-badge--big">
       <span class="badge__name">
         {{ badge.verbose }}

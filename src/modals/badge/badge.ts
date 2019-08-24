@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController, ModalController } from 'ionic-angular';
 
-import { Badge } from '@lib/badge/Badge';
+import { Badge, getCurrentStage } from '@lib/badge/Badge';
 import { BadgeEarnedModal } from '@modals/badgeEarned/badgeEarned';
+import { ICurrentBadgeStage } from '@stores/badge/badge.model';
 
 @Component({
-  selector: 'badge',
+  selector: 'badge-modal',
   templateUrl: 'badge.html'
 })
 export class BadgeModal {
   public badge: Badge = new Badge();
+  public currentStage: ICurrentBadgeStage;
 
   constructor(
     public viewCtrl: ViewController,
@@ -17,13 +19,7 @@ export class BadgeModal {
     public modalCtrl: ModalController
   ) {
     this.badge = new Badge(this.params.get('badge'));
-  }
-
-  testCompletion() {
-    const modal = this.modalCtrl.create(BadgeEarnedModal, {
-      badge: this.badge
-    });
-    modal.present();
+    this.currentStage = getCurrentStage(this.badge);
   }
 
   close() {

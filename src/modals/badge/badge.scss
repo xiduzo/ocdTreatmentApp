@@ -1,1 +1,27 @@
-page-badge-modal {}
+badge-modal {
+  .badge__name {
+    font-size: 2.25em;
+    margin: 28px 0 0 !important; // shame on me
+  }
+  .badge__description {
+    color: darken(map-get($colors, light), 50);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+  .badge__progress {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    round-progress {
+      position: absolute;
+    }
+
+    img {
+      width: 275px;
+      height: 275px;
+    }
+  }
+}
