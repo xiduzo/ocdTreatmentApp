@@ -26,12 +26,7 @@ import { ExerciseDuringModal } from '@modals/exercise/during/exercise.during';
 import { ExerciseTriggerModal } from '@modals/exercise/trigger/exercise.trigger';
 import { ExerciseSuccessModal } from '@modals/exercise/success/exercise.success';
 
-import {
-  IStep,
-  IExercise,
-  IMood,
-  ITrigger
-} from '@stores/exercise/exercise.model';
+import { IExercise, IMood, ITrigger } from '@stores/exercise/exercise.model';
 import { ExerciseActions } from '@stores/exercise/exercise.action';
 import { select } from '@angular-redux/store';
 import { Observable, Subscription } from 'rxjs';
