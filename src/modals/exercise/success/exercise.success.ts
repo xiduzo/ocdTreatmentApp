@@ -10,14 +10,9 @@ import { confettiSettings } from '@lib/Confetti';
 declare var ConfettiGenerator: any;
 import 'confetti-js';
 
-import { Exercise, Fear } from '@lib/Exercise';
+import { Fear } from '@lib/Exercise';
 
-import {
-  IStep,
-  IExercise,
-  ITrigger,
-  IFear
-} from '@stores/exercise/exercise.model';
+import { IExercise, IFear } from '@stores/exercise/exercise.model';
 import { ExerciseActions } from '@stores/exercise/exercise.action';
 import { FearLadderActions } from '@stores/fearLadder/fearLadder.action';
 import { calculateNewPoissonValue } from '@lib/poisson';
@@ -58,13 +53,6 @@ export class ExerciseSuccessModal {
     this.updateStepCompletion();
   }
 
-  ionViewDidEnter() {
-    // TODO decide when to show the confetti, don't want to show it each time (i think)
-    if (Math.random() > 0) {
-      this.renderConfetti();
-    }
-  }
-
   renderConfetti() {
     try {
       const confetti = new ConfettiGenerator(confettiSettings);
@@ -82,6 +70,10 @@ export class ExerciseSuccessModal {
     );
 
     const fear: IFear = new Fear(this.currentExercise.step.fear);
+
+    // When we increase the poissonValue, show some confetti!
+    if (newPoissonValue > fear.poissonValue) this.renderConfetti();
+
     fear.poissonValue = newPoissonValue;
 
     this.exerciseActions.editExercise({

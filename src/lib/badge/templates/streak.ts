@@ -16,7 +16,7 @@ export const STREAK_BADGE = {
     },
     {
       amountNeeded: 30,
-      description: 'streakBadge2.',
+      description: 'streakBadge3.',
       image: 'assets/imgs/badges/exercise_streak_monthly_30.svg'
     }
   ]

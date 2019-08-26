@@ -14,43 +14,20 @@
     <section class="badge__progress" *ngIf="currentStage?.stage">
       <img src="{{ currentStage.stage.image }}" alt="{{ badge.verbose }}" />
       <round-progress [current]="currentStage.pointsToNextStage" [max]="currentStage.stage.amountNeeded" [radius]="155"
-        [stroke]="4" [duration]="1"></round-progress>
+        [stroke]="6" [duration]="1"></round-progress>
     </section>
-    <!-- <spirit-badge [badge]=badge></spirit-badge> -->
-    <!-- <div class="o-badge o-badge--big">
-      <span class="badge__name">
-        {{ badge.verbose }}
-      </span>
-      <div class="badge__progress">
-        <img src="{{ badge.currentStage.image }}" alt="" />
-        <round-progress
-          [current]="
-            badge.finishedStages
-              ? badge.currentStage.amountNeeded
-              : badge.pointsProgressToNextStage
-          "
-          [max]="badge.currentStage.amountNeeded"
-          [radius]="125"
-          [stroke]="6"
-          [duration]="1"
-        ></round-progress>
+    <section class="current-stage">
+      <div class="progress">
+        {{currentStage.pointsToNextStage }} / {{currentStage.stage.amountNeeded }}
       </div>
-      <span class="badge__progress__numbers" *ngIf="!badge.finishedStages">
-        <strong>{{ badge.pointsProgressToNextStage }}</strong> /
-        {{ badge.currentStage.amountNeeded }}
-      </span>
-      <span class="badge__progress__numbers" *ngIf="badge.finishedStages">
-        <strong>{{ badge.currentStage.amountNeeded }}</strong> /
-        {{ badge.currentStage.amountNeeded }}
-      </span>
-    </div>
-    <article>
-      <p>
-        {{ badge.description }}
-      </p>
-      <p>
-        {{ badge.currentStage.description }}
-      </p>
-    </article> -->
+      <div class="description">
+        {{ currentStage.stage.description }}
+      </div>
+    </section>
+    <section class="">
+    </section>
   </section>
 </ion-content>
+<ion-footer>
+
+</ion-footer>

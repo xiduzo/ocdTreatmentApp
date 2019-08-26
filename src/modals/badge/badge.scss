@@ -1,7 +1,7 @@
 badge-modal {
   .badge__name {
     font-size: 2.25em;
-    margin: 28px 0 0 !important; // shame on me
+    margin: 36px 0 0 !important; // shame on me
   }
   .badge__description {
     color: darken(map-get($colors, light), 50);
@@ -14,6 +14,7 @@ badge-modal {
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    margin: 50px;
 
     round-progress {
       position: absolute;
@@ -22,6 +23,20 @@ badge-modal {
     img {
       width: 275px;
       height: 275px;
+    }
+  }
+
+  .current-stage {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .progress {
+      font-size: 1.75rem;
+      color: darken(map-get($colors, light), 50);
+    }
+    .description {
+      padding: 36px 0;
     }
   }
 }
