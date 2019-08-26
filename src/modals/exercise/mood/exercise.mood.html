@@ -1,7 +1,7 @@
 <ion-content [@trackMood]="moodClass">
   <div>
-    <ion-fab top right *ngIf="beforeMeasure">
-      <button ion-fab mini color="light" (click)="close()">
+    <ion-fab top right *ngIf="beforeMeasure" (click)="close()">
+      <button ion-fab mini clear color="light">
         <ion-icon name="close"></ion-icon>
       </button>
     </ion-fab>
