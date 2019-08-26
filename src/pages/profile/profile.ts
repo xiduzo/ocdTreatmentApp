@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import { IBadgeState } from '@stores/badge/badge.reducer';
 import { IBadge } from '@stores/badge/badge.model';
 import { BadgeModal } from '@modals/badge/badge';
+import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-profile',
@@ -21,7 +22,11 @@ export class ProfilePage {
   public personalGoalText: string;
   public editGoal: boolean = false;
 
-  constructor(private storage: Storage, private modalCtrl: ModalController) {}
+  constructor(
+    private storage: Storage,
+    private modalCtrl: ModalController,
+    public alertCtrl: AlertController
+  ) {}
 
   ionViewWillLoad = (): void => {
     this.getPersonalGoal();
@@ -35,17 +40,35 @@ export class ProfilePage {
     });
   };
 
-  safePersonalGoal = (): void => {
-    this.storage.set('personalGoal', this.personalGoalText);
+  safePersonalGoal = (goal: string): void => {
+    this.personalGoalText = goal;
+    this.storage.set('personalGoal', goal);
   };
 
-  togglePersonalGoalEdit = (): void => {
-    this.editGoal = !this.editGoal;
-
-    // We need to wait a bit before the element is added to the DOM
-    setTimeout(() => {
-      if (this.editGoal) this.personalGoalTextArea.setFocus();
-    }, 100);
+  editPersonalGoal = async (): Promise<void> => {
+    const prompt = await this.alertCtrl.create({
+      title: 'Goal',
+      message: 'What would you like to achieve',
+      inputs: [
+        {
+          name: 'goal',
+          placeholder: this.personalGoalText
+            ? this.personalGoalText
+            : 'No goal specified yet'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: (data: any) => {}
+        },
+        {
+          text: 'Save',
+          handler: (data: any) => this.safePersonalGoal(data.goal)
+        }
+      ]
+    });
+    await prompt.present();
   };
 
   openSettings = async (): Promise<void> => {

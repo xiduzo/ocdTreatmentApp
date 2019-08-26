@@ -1,40 +1,38 @@
 page-profile {
-  .scroll-content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  ion-textarea {
-    min-height: 9vh;
-    background: color($colors, light, base);
-    padding: 4px 0;
-
-    textarea {
-      padding: 8px;
-      height: inherit;
-      margin: 0;
-    }
-  }
-
-  ion-segment {
-    flex: inherit;
-  }
-
-  [ion-fixed] {
+  ion-content {
     display: flex;
     flex-direction: column;
 
-    button[ion-button] {
-      margin: 0;
-      border-radius: 0;
-    }
+    .c-big-header {
+      background: color($colors, contrast, base);
 
-    ion-scroll {
-      flex-grow: 1;
+      ion-textarea {
+        min-height: 9vh;
+        background: color($colors, light, base);
+        padding: 4px 0;
 
-      .scroll-content {
-        overflow-y: scroll;
+        textarea {
+          padding: 8px;
+          height: inherit;
+          margin: 0;
+        }
       }
+    }
+
+    .blob {
+      > div {
+        content: " ";
+        background-image: url("../assets/imgs/blobs/profile.png");
+        height: 5vh;
+        background-size: cover;
+        background-position: bottom;
+      }
+    }
+
+    .action {
+      display: flex;
+      justify-content: center;
+      margin-top: -5vh;
     }
   }
 }
