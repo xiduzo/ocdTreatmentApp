@@ -8,18 +8,20 @@ page-exercise {
 
     .exercise__levels {
       padding: 32px 0;
+      margin: 0;
 
       .level {
+        padding-left: 8px;
         &:not(:last-of-type) {
           ion-label.label {
             &:after {
               content: "";
-              height: calc(12px * 5 - 6px);
-              margin: 0 auto 8px;
+              height: calc(12px * 3 - 6px);
+              margin: 4px auto;
               display: block;
               width: 6px;
               background-image: url("../assets/imgs/misc/dot.svg");
-              opacity: 0.25;
+              opacity: 0.15;
             }
           }
         }
@@ -29,13 +31,7 @@ page-exercise {
           justify-content: center;
           align-items: center;
           flex-direction: column;
-
-          .level__number {
-            text-transform: uppercase;
-            font-size: 14px;
-            padding: 16px 0;
-            color: lighten(color($colors, dark, base), 25);
-          }
+          margin: 0 8px;
         }
       }
     }

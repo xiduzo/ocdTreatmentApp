@@ -1,14 +1,15 @@
+$c-exercise-level__width: 170px;
 .c-exercise-level {
   display: flex;
-  min-height: 120px;
+  min-height: $c-exercise-level__width;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   position: relative;
 
   .monster__icon {
-    width: 100px;
-    height: 100px;
+    width: $c-exercise-level__width * 0.8;
+    height: $c-exercise-level__width * 0.8;
     background: #fcd28a;
     overflow: hidden;
     border-radius: 50%;

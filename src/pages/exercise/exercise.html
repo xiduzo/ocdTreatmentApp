@@ -10,9 +10,6 @@
     <ion-list *ngIf="(fearLadder$ | async).steps.length" no-lines class="exercise__levels">
       <ion-item *ngFor="let level of levels" class="level">
         <spirit-exercise-level (click)="goToLevel(level)" [level]="level"></spirit-exercise-level>
-        <strong class="level__number">
-          {{ 'LEVEL' | translate }} {{ level.stepNumber }}
-        </strong>
       </ion-item>
     </ion-list>
   </section>
