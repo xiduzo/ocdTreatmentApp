@@ -15,6 +15,5 @@ export class BadgeComponent implements OnInit {
 
   ngOnInit() {
     this.currentStage = getCurrentStage(this.badge);
-    console.log(this.currentStage);
   }
 }

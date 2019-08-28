@@ -13,35 +13,32 @@
 
 <ion-content>
   <ion-item-group>
-    <ion-item-divider color="light">
+    <ion-item-divider>
       {{ 'EXERCISE' | translate }}
     </ion-item-divider>
     <ion-item>
-      <ion-label floating>
-        {{ 'FEAR_LADDER_STEP_I_WANT_TO' | translate }}
-      </ion-label>
-      <ion-input type="text" [(ngModel)]="step.fear.situation"></ion-input>
+      <ion-input class="text-input" type="text" placeholder="{{ 'FEAR_LADDER_STEP_I_WANT_TO' | translate }}..."
+        [(ngModel)]="step.fear.situation"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>
-        {{ 'WITHOUT' | translate }}
-      </ion-label>
-      <ion-input type="text" [(ngModel)]="step.fear.without"></ion-input>
+      <ion-input class="text-input" type="text" placeholder="{{ 'WITHOUT' | translate }}..."
+        [(ngModel)]="step.fear.without"></ion-input>
     </ion-item>
+
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider>
+      {{ 'FEAR_LADDER_STEP_FEAR_RATING' | translate }}
+    </ion-item-divider>
     <ion-item>
-      <ion-label floating>
-        {{ 'FEAR_LADDER_STEP_FEAR_RATING' | translate }} ({{ step.fearRating }})
-      </ion-label>
-      <ion-range [(ngModel)]="step.fearRating" min="1" max="8" pin="true" snaps="true">
+      <ion-range [(ngModel)]="step.fearRating" (ngModelChange)="updateLevel()" min="1" max="8" pin="true" snaps="true">
         <ion-label range-left>1</ion-label>
         <ion-label range-right>8</ion-label>
       </ion-range>
     </ion-item>
-  </ion-item-group>
-  <ion-item-group>
-    <ion-item-divider color="light">
-      {{ 'TRIGGERS' | translate }}
-    </ion-item-divider>
+    <ion-item>
+      <spirit-exercise-level [level]="level"></spirit-exercise-level>
+    </ion-item>
     <ion-item *ngFor="let trigger of step.triggers" text-wrap>
       <ion-label>
         {{ 'FEAR_LADDER_STEP_THIS_TRIGGERS' | translate }}

@@ -20,20 +20,20 @@ $app-direction: ltr;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 $colors: (
-  primary: #50D2C2,
-  secondary: #7D8CA9,
-  contrast: #FCD28A,
-  background: #EEEBE6,
-  danger: #F07879,
+  primary: #50d2c2,
+  secondary: #7d8ca9,
+  contrast: #fcd28a,
+  background: #f1f4fc,
+  danger: #f07879,
   light: #f4f4f4,
   dark: #222
 );
 $moods: (
-  content: #FCCA8B,
-  ok: #91CFCC,
-  meh: #D6D9CC,
-  worried: #529CCC,
-  panic: #F07879,
+  content: #fcca8b,
+  ok: #91cfcc,
+  meh: #d6d9cc,
+  worried: #529ccc,
+  panic: #f07879
 ); // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

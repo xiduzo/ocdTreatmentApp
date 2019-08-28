@@ -6,7 +6,6 @@ page-exercise-during {
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: color($colors, light, base);
   }
 
   .scroll-content {
@@ -37,7 +36,7 @@ page-exercise-during {
   }
 
   .monster {
-    background: #FCD28A;
+    background: #fcd28a;
     width: $monster-size;
     height: $monster-size;
     border-radius: 50%;
@@ -101,7 +100,7 @@ page-exercise-during {
   }
 
   50% {
-    opacity: 1.0;
+    opacity: 1;
   }
 
   100% {

@@ -5,6 +5,7 @@ import { AlertController } from 'ionic-angular';
 
 import { Step, Fear } from '@lib/Exercise';
 import { IStep } from '@stores/exercise/exercise.model';
+import { IFearLadder } from '@stores/fearLadder/fearLadder.model';
 
 @Component({
   selector: 'fearLadder-step-modal',
@@ -12,6 +13,11 @@ import { IStep } from '@stores/exercise/exercise.model';
 })
 export class FearLadderStepModal {
   public step: IStep = new Step({ fearRating: 1 });
+  public level: IFearLadder = {
+    stepNumber: 1,
+    completion: 0,
+    steps: []
+  };
 
   public buttonText: string = 'ADD';
   public headerText: string = 'FEAR_LADDER_STEP_HEADER_ADD';
@@ -33,8 +39,15 @@ export class FearLadderStepModal {
       // Change the button texts
       this.buttonText = 'SAVE';
       this.headerText = 'FEAR_LADDER_STEP_HEADER_EDIT';
+
+      // Update the monster
+      this.updateLevel();
     }
   }
+
+  updateLevel = (): void => {
+    this.level.stepNumber = this.step.fearRating;
+  };
 
   close() {
     this.viewCtrl.dismiss();

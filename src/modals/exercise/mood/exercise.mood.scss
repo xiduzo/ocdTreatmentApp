@@ -2,6 +2,10 @@ exercise-mood-modal {
   ion-content.content {
     background: rgb(252, 201, 138);
 
+    > div.fixed-content,
+    > div.scroll-content {
+      background-color: transparent;
+    }
     .scroll-content {
       > div {
         height: 100%;

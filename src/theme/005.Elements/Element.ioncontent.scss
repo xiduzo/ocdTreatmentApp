@@ -1,5 +1,9 @@
 ion-content.content {
-  // background-color: color($colors, background, base);
+  background-color: color($colors, background, base);
+  .fixed-content,
+  .scroll-content {
+    background-color: color($colors, background, base);
+  }
   [ion-fixed] {
     width: 100vw;
     height: 100%;
