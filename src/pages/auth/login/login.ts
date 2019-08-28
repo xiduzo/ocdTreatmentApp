@@ -13,6 +13,7 @@ import {
   Validators,
   AbstractControl
 } from '@angular/forms';
+import { clearUserName } from '@lib/helpers';
 
 @Component({
   selector: 'page-login',
@@ -62,7 +63,7 @@ export class LoginPage {
 
   login() {
     this.signInButtonEnabled = false;
-    Auth.signIn(this.username.value, this.password.value)
+    Auth.signIn(clearUserName(this.username.value), this.password.value)
       .then(user => {
         this.showMessage(`Welcome back ${user.username}!`);
       })

@@ -13,6 +13,7 @@ import {
 } from '@angular/forms';
 
 import { ConfirmCodePage } from '@pages/auth/confirmCode/confirmCode';
+import { clearUserName } from '@lib/helpers';
 
 @Component({
   selector: 'page-signup',
@@ -62,24 +63,25 @@ export class SignUpPage {
     this.password = this.registerForm.controls['password'];
   }
 
-  async showMessage(message: string) {
+  showMessage = async (message: string): Promise<void> => {
     const toast = await this.toastCtrl.create({
       message: message,
       showCloseButton: true,
       duration: 5000
     });
 
-    toast.present();
-  }
+    await toast.present();
+  };
 
-  back() {
+  back = (): void => {
     this.appCtrl.getRootNav().pop();
-  }
+  };
 
-  signUp() {
+  signUp = (): void => {
     this.signupButtonEnabled = false;
+
     Auth.signUp({
-      username: this.username.value,
+      username: clearUserName(this.username.value),
       password: this.password.value,
       attributes: {
         email: this.email.value
@@ -107,5 +109,5 @@ export class SignUpPage {
             console.log(error);
         }
       });
-  }
+  };
 }
