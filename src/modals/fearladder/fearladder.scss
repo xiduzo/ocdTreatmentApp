@@ -1,7 +1,9 @@
 fearLadder-modal {
   ion-content {
-    .c-emptystate {
-      height: 100%;
+    div.scroll-content {
+      > section {
+        height: 100%; // For empty state
+      }
     }
   }
   ion-footer {

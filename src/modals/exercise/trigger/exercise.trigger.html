@@ -7,27 +7,42 @@
 </ion-header>
 
 <ion-content>
-  <div ion-fixed>
-    <ion-list>
-      <div *ngFor="let trigger of triggers">
-        <ion-item>
-          <ion-label floating>
-            {{ trigger.verbose | translate }} ({{ trigger.amount }})
-          </ion-label>
-          <ion-range min="{{ range.min }}" max="{{ range.max }}" [(ngModel)]="trigger.amount" pin="true" snaps="true">
-            <ion-label range-left>{{ range.min }}</ion-label>
-            <ion-label range-right>{{ range.max }}</ion-label>
-          </ion-range>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>
-            {{ 'INTENSITY_WHY' | translate }}
-          </ion-label>
-          <ion-textarea [(ngModel)]="trigger.explanation" name="trigger.verbose"></ion-textarea>
-        </ion-item>
-      </div>
-    </ion-list>
-  </div>
+  <ion-item-group *ngFor="let trigger of triggers">
+    <ion-item-divider>
+      {{ trigger.verbose | translate }}
+    </ion-item-divider>
+    <ion-item>
+      <ion-range min="{{ range.min }}" max="{{ range.max }}" [(ngModel)]="trigger.amount" pin="true" snaps="true">
+        <ion-label range-left>{{ range.min }}</ion-label>
+        <ion-label range-right>{{ range.max }}</ion-label>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+      <!-- <ion-input class="text-input" type="text" placeholder="{{ 'WITHOUT' | translate }}..."
+          [(ngModel)]="step.fear.without"></ion-input> -->
+      <ion-textarea [(ngModel)]="trigger.explanation" name="trigger.verbose"
+        placeholder="{{'INTENSITY_WHY' | translate}}"></ion-textarea>
+    </ion-item>
+  </ion-item-group>
+  <!-- <ion-list>
+    <div *ngFor="let trigger of triggers">
+      <ion-item>
+        <ion-label floating>
+          {{ trigger.verbose | translate }} ({{ trigger.amount }})
+        </ion-label>
+        <ion-range min="{{ range.min }}" max="{{ range.max }}" [(ngModel)]="trigger.amount" pin="true" snaps="true">
+          <ion-label range-left>{{ range.min }}</ion-label>
+          <ion-label range-right>{{ range.max }}</ion-label>
+        </ion-range>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          {{ 'INTENSITY_WHY' | translate }}
+        </ion-label>
+        <ion-textarea [(ngModel)]="trigger.explanation" name="trigger.verbose"></ion-textarea>
+      </ion-item>
+    </div>
+  </ion-list> -->
 </ion-content>
 
 <ion-footer>

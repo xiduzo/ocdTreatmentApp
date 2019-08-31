@@ -12,6 +12,9 @@ progress-page {
   chart {
     span,
     svg {
+      .highcharts-background {
+        display: none;
+      }
       span,
       tspan {
         &.graphMood {

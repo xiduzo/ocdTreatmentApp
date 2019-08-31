@@ -16,7 +16,8 @@
           <spirit-mood-indicator [mood]="exercise.beforeMood.mood >= 0 ? exercise.beforeMood.mood : -1">
           </spirit-mood-indicator>
         </ion-item-divider>
-        <ion-item text-wrap *ngIf="exercise.beforeMood.explanation">{{ exercise.beforeMood.explanation }}
+        <ion-item text-wrap *ngIf="exercise.beforeMood.explanation">
+          <ion-icon name="text"></ion-icon>{{ exercise.beforeMood.explanation.trim() }}
         </ion-item>
       </ion-item-group>
       <ion-item-group>
@@ -26,7 +27,7 @@
           </spirit-mood-indicator>
         </ion-item-divider>
         <ion-item text-wrap *ngIf="exercise.afterMood.explanation">
-          {{ exercise.afterMood.explanation }}
+          <ion-icon name="text"></ion-icon>{{ exercise.afterMood.explanation.trim() }}
         </ion-item>
       </ion-item-group>
       <div *ngIf="exercise.step.triggers.length">
@@ -37,7 +38,7 @@
               <span>{{ trigger.amount }} / 5</span>
             </ion-item-divider>
             <ion-item text-wrap *ngIf="trigger.explanation">
-              {{ trigger.explanation }}
+              <ion-icon name="text"></ion-icon>{{ trigger.explanation.trim() }}
             </ion-item>
           </div>
         </ion-item-group>

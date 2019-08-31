@@ -1,3 +1,33 @@
 spirit-logbook-item {
   width: 100%;
+  ion-card.card {
+    background: transparent;
+
+    ion-item-group {
+      ion-item-divider {
+        padding: 0;
+        font-weight: 400;
+        span {
+          font-weight: 300;
+        }
+      }
+      ion-item.item {
+        font-size: 1em;
+        font-style: italic;
+        min-height: 0;
+        padding: 0;
+        .item-inner {
+          ion-label.label {
+            margin: 0;
+            display: flex;
+            text-align: justify;
+            ion-icon.icon {
+              opacity: 0.25;
+              margin-right: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
 }

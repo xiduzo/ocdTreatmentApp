@@ -42,9 +42,11 @@
     </button>
   </section>
 
-  <ion-list-header>
-    {{ 'MY_BADGES' | translate }}
-  </ion-list-header>
+  <ion-item-group>
+    <ion-item-divider>
+      {{ 'MY_BADGES' | translate }}
+    </ion-item-divider>
+  </ion-item-group>
   <ion-grid>
     <ion-row>
       <ion-col col-4 *ngFor="let badge of (badges$ | async).list">

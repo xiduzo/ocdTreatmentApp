@@ -74,7 +74,7 @@ logbook-page {
             }
             h2 {
               font-size: 1.25rem;
-              color: darken(color($colors, light, base), 25);
+              color: darken(color($colors, light, base), 50);
             }
             .c-item__detail {
               padding: 0;
@@ -98,14 +98,6 @@ logbook-page {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                  }
-                }
-
-                ion-item {
-                  .item-inner {
-                    ion-label {
-                      margin: 13px 0;
-                    }
                   }
                 }
               }

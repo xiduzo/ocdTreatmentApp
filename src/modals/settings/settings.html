@@ -12,33 +12,36 @@
 </ion-header>
 
 <ion-content>
-  <ion-list-header>
-    DEV
-  </ion-list-header>
-  <ion-item>
-    <ion-label>{{ 'PROFILE_RESET_MOCK_DATA' | translate }}</ion-label>
-    <div item-end>
-      <button ion-button (click)="resetMockData()">
-        {{ 'RESET' | translate }}
-      </button>
-    </div>
-  </ion-item>
-  <ion-item>
-    <ion-label>rating</ion-label>
-    <div item-end>
-      <button ion-button (click)="openRatingPage()">
-        open
-      </button>
-    </div>
-  </ion-item>
-  <ion-item>
-    <ion-label>clear storage</ion-label>
-    <div item-end>
-      <button ion-button (click)="clearLocalStorage()">
-        clear
-      </button>
-    </div>
-  </ion-item>
+  <ion-item-group>
+    <ion-item-divider>
+      DEV
+    </ion-item-divider>
+    <ion-item>
+      <ion-label>{{ 'PROFILE_RESET_MOCK_DATA' | translate }}</ion-label>
+      <div item-end>
+        <button ion-button (click)="resetMockData()">
+          {{ 'RESET' | translate }}
+        </button>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label>rating</ion-label>
+      <div item-end>
+        <button ion-button (click)="openRatingPage()">
+          open
+        </button>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label>clear storage</ion-label>
+      <div item-end>
+        <button ion-button (click)="clearLocalStorage()">
+          clear
+        </button>
+      </div>
+    </ion-item>
+  </ion-item-group>
+
 
   <section class="mail-data">
     <button color="secondary" ion-button round (click)="sendData()">
@@ -46,17 +49,19 @@
     </button>
   </section>
 
-  <ion-list-header>
-    {{ 'PREFERENCES' | translate }}
-  </ion-list-header>
-  <ion-item>
-    <ion-label>{{ 'LANGUAGE' | translate }}</ion-label>
-    <ion-select [(ngModel)]="language" (ngModelChange)="updateAppLanguage()">
-      <ion-option *ngFor="let language of languages" value="{{ language.code }}">
-        {{ language.name }}
-      </ion-option>
-    </ion-select>
-  </ion-item>
+  <ion-item-group>
+    <ion-item-divider>
+      {{ 'PREFERENCES' | translate }}
+    </ion-item-divider>
+    <ion-item>
+      <ion-label>{{ 'LANGUAGE' | translate }}</ion-label>
+      <ion-select [(ngModel)]="language" (ngModelChange)="updateAppLanguage()">
+        <ion-option *ngFor="let language of languages" value="{{ language.code }}">
+          {{ language.name }}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-item-group>
 </ion-content>
 
 <ion-footer>

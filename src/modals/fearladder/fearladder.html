@@ -16,13 +16,13 @@
     loading
   </section>
   <section *ngIf="!(fearLadder$ | async).loading">
-    <section *ngIf="!(fearLadder$ | async).steps.length">
-      no steps
-    </section>
+    <spirit-empty-state *ngIf="!(fearLadder$ | async).steps.length" [title]="'OOPS'"
+      [subtitle]="'WARNING_BEFORE_YOU_CAN_START'" [imageSource]="'assets/imgs/monsters/all.png'">
+    </spirit-empty-state>
     <section *ngIf="(fearLadder$ | async).steps.length">
       <ion-item-group *ngFor="let level of levels">
         <ion-item-divider color="light">
-          {{ 'LEVEL' | translate }} {{ level.stepNumber }}
+          {{ 'FEAR_LADDER_STEP_FEAR_RATING' | translate }} {{ level.stepNumber }}
         </ion-item-divider>
         <spirit-exercise-level-step *ngFor="let step of level.steps" (click)="editStep(step)" [step]="step">
         </spirit-exercise-level-step>

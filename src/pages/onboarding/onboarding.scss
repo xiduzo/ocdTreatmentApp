@@ -34,7 +34,7 @@ page-onboarding {
   //   bottom: 0;
   //   display: flex;
   //   justify-content: space-between;
-  
+
   //   .swiper-pagination-bullet {
   //     margin: 0;
   //     flex-grow: 1;
@@ -42,7 +42,7 @@ page-onboarding {
   //     height: 4px;
   //     transition: all 200ms ease-out;
   //   }
-  
+
   //   .swiper-pagination-bullet-active {
   //     transition: all 200ms ease-in;
   //     background: color($colors, light, base);
@@ -66,7 +66,7 @@ page-onboarding {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: color($colors, light, base);
+  background-color: color($colors, background, base);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
