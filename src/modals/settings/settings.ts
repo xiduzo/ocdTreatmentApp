@@ -1,30 +1,26 @@
-import { Component } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { Component } from '@angular/core'
+import { Storage } from '@ionic/storage'
 
-import {
-  ViewController,
-  ModalController,
-  LoadingController
-} from 'ionic-angular';
+import { ViewController, ModalController, LoadingController } from 'ionic-angular'
 
-import { RatingPage } from '@pages/rating/rating'; // actually a modal - to lazy to care
+import { RatingPage } from '@pages/rating/rating' // actually a modal - to lazy to care
 
-import { TranslateService } from '@ngx-translate/core';
-import { availableLanguages, sysOptions, ILanguageCode } from '@lib/language';
+import { TranslateService } from '@ngx-translate/core'
+import { availableLanguages, sysOptions, ILanguageCode } from '@lib/language'
 
-import moment from 'moment';
+import moment from 'moment'
 
-import { Fear, Trigger, Exercise, Mood, Step, Erp } from '@lib/Exercise';
+import { Fear, Trigger, Exercise, Mood, Step, Erp } from '@lib/Exercise'
 
-import { Auth, Storage as AwsStorage } from 'aws-amplify';
+import { Auth, Storage as AwsStorage } from 'aws-amplify'
 
 @Component({
   selector: 'settings-modal',
-  templateUrl: 'settings.html'
+  templateUrl: 'settings.html',
 })
 export class SettingsModal {
-  public language: string;
-  public languages: Array<ILanguageCode>;
+  public language: string
+  public languages: Array<ILanguageCode>
 
   constructor(
     private viewCtrl: ViewController,
@@ -33,72 +29,70 @@ export class SettingsModal {
     private modalCtrl: ModalController,
     private loadingCtrl: LoadingController
   ) {
-    this.languages = availableLanguages;
+    this.languages = availableLanguages
   }
 
   ionViewDidLoad() {
-    this.storage.get('language').then(val => {
-      this.language = val;
-    });
+    this.storage.get('language').then((val) => {
+      this.language = val
+    })
   }
 
   signOut() {
     Auth.signOut().then(() => {
-      this.close();
-    });
+      this.close()
+    })
     // .catch(error => {
     //   console.log(error);
     // });
   }
 
   updateAppLanguage() {
-    this.translate.use(this.language);
-    sysOptions.systemLanguage = this.language;
-    this.storage.set('language', this.language);
+    this.translate.use(this.language)
+    sysOptions.systemLanguage = this.language
+    this.storage.set('language', this.language)
 
     // Update moment language
-    moment.locale(this.language);
+    moment.locale(this.language)
   }
 
   close() {
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss()
   }
 
   sendData() {
     const loader = this.loadingCtrl.create({
       content: 'Sending data...',
-      duration: 60 * 1000
-    });
+      duration: 60 * 1000,
+    })
 
-    loader.present();
+    loader.present()
 
-    Auth.currentAuthenticatedUser().then(userSession => {
-      const { username } = userSession;
-      const fileName: string = `${username}/${moment(moment.now()).format(
-        'DDMMYYYY@HHmmsssssZ'
-      )}.json`;
-      this.storage.get('exercises').then(response => {
+    Auth.currentAuthenticatedUser().then((userSession) => {
+      const { username } = userSession
+      const fileName: string = `${username}/${moment(moment.now()).format('DDMMYYYY@HHmmssZ')}.json`
+      this.storage.get('exercises').then((response) => {
         AwsStorage.put(fileName, JSON.stringify(response), {
-          contentType: 'application/json'
+          contentType: 'application/json',
         })
-          .then(result => loader.dismiss())
-          .catch(err => loader.dismiss());
-      });
-    });
+          .then((result) => loader.dismiss())
+          .catch((err) => loader.dismiss())
+      })
+    })
   }
 
   openRatingPage() {
-    const ratingModal = this.modalCtrl.create(RatingPage);
-    ratingModal.present();
+    const ratingModal = this.modalCtrl.create(RatingPage)
+    ratingModal.present()
   }
 
   clearLocalStorage() {
-    this.storage.clear();
-    location.reload();
+    this.storage.clear()
+    location.reload()
   }
 
   resetMockData() {
-    let fearLadder = [];
+    let fearLadder = []
     for (let i = 0; i < 15; i++) {
       fearLadder.push(
         new Step({
@@ -107,40 +101,40 @@ export class SettingsModal {
             new Trigger({
               verbose: 'INTENSITY_OBSESSIVE_THOUGHTS',
               enabled: Math.random() >= 0.4,
-              amount: Math.round(Math.random() * 5)
+              amount: Math.round(Math.random() * 5),
             }),
             new Trigger({
               verbose: 'INTENSITY_COMPULSIVE_BEHAVIOR',
               enabled: Math.random() >= 0.4,
-              amount: Math.round(Math.random() * 5)
-            })
+              amount: Math.round(Math.random() * 5),
+            }),
           ],
           fear: new Fear({
             completion: Math.random() > 0.2 ? 100 : 0,
             situation: 'Lorem ipsum dolor sit amet',
-            without: 'consectetur adipiscing'
-          })
+            without: 'consectetur adipiscing',
+          }),
         })
-      );
+      )
     }
 
-    this.storage.set('fearLadder', fearLadder);
+    this.storage.set('fearLadder', fearLadder)
 
-    let exercises = [];
+    let exercises = []
     for (let i = 0; i < 25; i++) {
       let begin = moment(moment.now())
         .subtract(Math.round(Math.random() * 90), 'days')
         .subtract(Math.round(Math.random() * 12), 'hours')
         .subtract(Math.round(Math.random() * 50), 'minutes')
-        .subtract(Math.round(Math.random() * 50), 'seconds');
+        .subtract(Math.round(Math.random() * 50), 'seconds')
 
       exercises.push(
         new Exercise({
           beforeMood: new Mood({
-            mood: Math.round(Math.random() * 500)
+            mood: Math.round(Math.random() * 500),
           }),
           afterMood: new Mood({
-            mood: Math.round(Math.random() * 500)
+            mood: Math.round(Math.random() * 500),
           }),
           step: fearLadder[Math.round(Math.random() * fearLadder.length - 1)],
           start: begin.toDate(),
@@ -157,12 +151,12 @@ export class SettingsModal {
               .add(Math.round(Math.random() * 2) + 2, 'minutes')
               .add(Math.round(Math.random() * 50), 'seconds')
               .toDate(),
-            gaveInToCompulsion: Math.random() > 0.5
-          })
+            gaveInToCompulsion: Math.random() > 0.5,
+          }),
         })
-      );
+      )
     }
 
-    this.storage.set('exercises', exercises);
+    this.storage.set('exercises', exercises)
   }
 }
