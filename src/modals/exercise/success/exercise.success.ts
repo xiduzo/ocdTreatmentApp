@@ -9,6 +9,7 @@ import { confettiSettings } from '@lib/Confetti'
 
 declare var ConfettiGenerator: any
 import 'confetti-js'
+import moment from 'moment'
 
 import { Fear } from '@lib/Exercise'
 
@@ -22,6 +23,8 @@ import { IExerciseState } from '@stores/exercise/exercise.reducer'
 import { IBadgeState } from '@stores/badge/badge.reducer'
 import { select } from '@angular-redux/store'
 import { Subscription } from 'rxjs'
+import { IBadge, ICurrentBadgeStage } from '@stores/badge/badge.model'
+import { getCurrentStage } from '@lib/badge/Badge'
 
 @Component({
   selector: 'page-exercise-success',
@@ -36,7 +39,7 @@ export class ExerciseSuccessModal {
   private currentExercise: IExercise
   private exercises: IExercise[]
 
-  private badges: IBadge
+  private badges: IBadge[]
 
   private transitionOptions: NativeTransitionOptions = {
     direction: 'left',
@@ -67,21 +70,55 @@ export class ExerciseSuccessModal {
 
   ionViewDidEnter = (): void => {
     this.badges.forEach((badge: IBadge): void => {
-      if (badge.name === 'firstTimeBadge') this.updateFirstTimeBadge(badge)
-      if (badge.name === 'streakBadge') this.updateStreakBadge(badge)
+      const currentStage = getCurrentStage(badge)
+      if (badge.name === 'firstTimeBadge') this.updateFirstTimeBadge(badge, currentStage)
+      if (badge.name === 'streakBadge') this.updateStreakBadge(badge, currentStage)
     })
   }
 
-  updateFirstTimeBadge = (badge: IBadge): void => {
+  finalStageCompleted = (badge: IBadge, currentStage: ICurrentBadgeStage): boolean => {
+    const finalStageIndex = badge.stages.length - 1
+    // Check if the current stage is the final stage
+    if (badge.stages.indexOf(currentStage.stage) === finalStageIndex) {
+      // Check if the current stage is finished
+      if (currentStage.pointsToNextStage === currentStage.stage.amountNeeded) {
+        return true
+      }
+    }
+    return false
+  }
+
+  updateFirstTimeBadge = (badge: IBadge, currentStage: ICurrentBadgeStage): void => {
     if (badge.totalPointsGained > 0) return
+    if (this.finalStageCompleted(badge, currentStage)) return
     badge.totalPointsGained += 1
     this.badgeActions.updateBadge(badge)
   }
 
-  updateStreakBadge = (badge: IBadge): void => {
-    // TODO streak algorithm
-    console.log(badge, this.exercises)
+  updateStreakBadge = (badge: IBadge, currentStage: ICurrentBadgeStage): void => {
+    if (this.finalStageCompleted(badge, currentStage)) return
+
+    const streakToBeat = currentStage.pointsToNextStage - currentStage.stage.amountNeeded
+    if (this.canUpdateStreak(streakToBeat)) {
+      badge.totalPointsGained += 1
+    }
+
     this.badgeActions.updateBadge(badge)
+  }
+
+  canUpdateStreak = (streakToBeat: number): boolean => {
+    // If we have nothing to compare to, return false
+    if (this.exercises.length < 2) return false
+
+    const previousExerciseStart = moment(this.exercises[this.exercises.length - 2].start)
+
+    // If the previousExerciseStart day didn't happen on the previous day
+    if (previousExerciseStart.day() !== moment().subtract(1, 'day').day()) {
+      return false
+    }
+
+    // We have a winner!
+    return true
   }
 
   renderConfetti = (): void => {

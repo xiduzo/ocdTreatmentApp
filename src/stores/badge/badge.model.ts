@@ -1,20 +1,20 @@
 export interface IBadge {
-  name: string;
-  verbose: string;
-  description: string;
-  stages: IStage[];
-  totalPointsGained: number;
+  name: string
+  verbose: string
+  description: string
+  stages: IStage[]
+  totalPointsGained: number
 
-  getCurrentStage?: () => IStage;
+  getCurrentStage?: () => ICurrentBadgeStage
 }
 
 export interface IStage {
-  amountNeeded: number;
-  description: string;
-  image: string;
+  amountNeeded: number
+  description: string
+  image: string
 }
 
 export interface ICurrentBadgeStage {
-  stage: IStage;
-  pointsToNextStage: number;
+  stage: IStage
+  pointsToNextStage: number
 }
