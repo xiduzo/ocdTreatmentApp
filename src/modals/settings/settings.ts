@@ -42,9 +42,6 @@ export class SettingsModal {
     Auth.signOut().then(() => {
       this.close()
     })
-    // .catch(error => {
-    //   console.log(error);
-    // });
   }
 
   updateAppLanguage() {

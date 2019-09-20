@@ -49,7 +49,6 @@ export const badgeReducer: Reducer<IBadgeState> = (state: IBadgeState, action) =
         loading: false,
       }
     case UPDATE_BADGE_PROGRESS:
-      console.log(action.payload)
       return {
         ...state,
         list: state.list.map((badge: IBadge) => {
