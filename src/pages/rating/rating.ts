@@ -1,70 +1,60 @@
-import { Component } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { Component } from '@angular/core'
+import { Storage } from '@ionic/storage'
 
-import { ViewController } from 'ionic-angular';
+import { ViewController } from 'ionic-angular'
 
-import moment from 'moment';
+import moment from 'moment'
 
 @Component({
   selector: 'rating',
-  templateUrl: 'rating.html'
+  templateUrl: 'rating.html',
 })
-
 export class RatingPage {
-  public currentRating;
-  public currentRatingIndex = 0;
-  public exercises = [];
+  public currentRating
+  public currentRatingIndex = 0
+  public exercises = []
   public ratings = []
-  public rating = 0;
+  public rating = 0
 
-  constructor(
-    private viewCtrl: ViewController,
-    private storage: Storage
-  ) {
-  }
+  constructor(private viewCtrl: ViewController, private storage: Storage) {}
 
   close() {
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss()
   }
 
   getDiff() {
-    this.currentRating.timeDiff = moment.duration(
-      moment(this.currentRating.end).diff(
-        moment(this.currentRating.start)
-      )
-    ).asSeconds();
-    this.currentRating.erpDiff = moment.duration(
-      moment(this.currentRating.erp.end).diff(
-        moment(this.currentRating.erp.start)
-      )
-    ).asSeconds();
+    this.currentRating.timeDiff = moment
+      .duration(moment(this.currentRating.end).diff(moment(this.currentRating.start)))
+      .asSeconds()
+    this.currentRating.erpDiff = moment
+      .duration(moment(this.currentRating.erp.end).diff(moment(this.currentRating.erp.start)))
+      .asSeconds()
   }
 
   next() {
-    this.currentRatingIndex++;
-    this.currentRating = this.exercises[this.currentRatingIndex];
-    this.getDiff();
+    this.currentRatingIndex++
+    this.currentRating = this.exercises[this.currentRatingIndex]
+    this.getDiff()
   }
 
   calculateRating() {
-    console.log(this.currentRating);
-    const moodDiff = this.currentRating.beforeMood.mood - this.currentRating.afterMood.mood;
+    const moodDiff = this.currentRating.beforeMood.mood - this.currentRating.afterMood.mood
 
-    let points = 0;
+    let points = 0
 
     // Mood diff
-    points += moodDiff * 0.25;
+    points += moodDiff * 0.25
 
     // fearRating
-    points += this.currentRating.step.fearRating * 5;
+    points += this.currentRating.step.fearRating * 5
 
     // triggers
-    this.currentRating.step.triggers.forEach(trigger => {
-      points += trigger.amount * -7.5;
-    });
+    this.currentRating.step.triggers.forEach((trigger) => {
+      points += trigger.amount * -7.5
+    })
 
     // duration
-    points += this.currentRating.erpDiff / this.currentRating.timeDiff * 25;
+    points += this.currentRating.erpDiff / this.currentRating.timeDiff * 25
 
     console.log(`
       moodDiff: ${moodDiff},
@@ -74,12 +64,12 @@ export class RatingPage {
       obsessive_thoughts: ${this.currentRating.step.triggers[0].range},
       compulsive behaviour: ${this.currentRating.step.triggers[1].range},
       points: ${points}
-      `);
-    this.next();
+      `)
+    this.next()
   }
 
   rate() {
-    let output = {};
+    let output = {}
     if (this.rating > 0) {
       output = { positive: Math.abs(this.rating / 100) }
     } else {
@@ -88,11 +78,11 @@ export class RatingPage {
 
     const tempObj = {
       input: this.currentRating,
-      output: output
+      output: output,
     }
-    this.ratings.push(tempObj);
-    this.rating = 0;
-    this.next();
+    this.ratings.push(tempObj)
+    this.rating = 0
+    this.next()
   }
 
   save() {
@@ -110,12 +100,11 @@ export class RatingPage {
     // });
   }
 
-
   ionViewDidLoad() {
-    this.storage.get('exercises').then(exercises => {
-      this.exercises = exercises;
-      this.currentRating = this.exercises[this.currentRatingIndex];
-      this.getDiff();
-    });
+    this.storage.get('exercises').then((exercises) => {
+      this.exercises = exercises
+      this.currentRating = this.exercises[this.currentRatingIndex]
+      this.getDiff()
+    })
   }
 }
