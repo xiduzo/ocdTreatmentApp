@@ -5,19 +5,19 @@ export const STREAK_BADGE = {
   totalPointsGained: 0,
   stages: [
     {
-      amountNeeded: 1,
+      amountNeeded: 7,
       description: 'streakBadge1.',
-      image: 'assets/imgs/badges/exercise_streak_dayly_1.svg'
+      image: 'assets/imgs/badges/exercise_streak_dayly_1.svg',
     },
     {
-      amountNeeded: 5,
+      amountNeeded: 14,
       description: 'streakBadge2.',
-      image: 'assets/imgs/badges/exercise_streak_weekly_5.svg'
+      image: 'assets/imgs/badges/exercise_streak_weekly_5.svg',
     },
     {
-      amountNeeded: 30,
+      amountNeeded: 31,
       description: 'streakBadge3.',
-      image: 'assets/imgs/badges/exercise_streak_monthly_30.svg'
-    }
-  ]
-};
+      image: 'assets/imgs/badges/exercise_streak_monthly_30.svg',
+    },
+  ],
+}
