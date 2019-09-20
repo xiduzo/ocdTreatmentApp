@@ -122,25 +122,21 @@ export class ExerciseSuccessModal {
   }
 
   hasDoneExercisePreviousDay = (daysBack: number): boolean => {
-    const previousDayExercise = this.exercises.reverse().find((exercise: IExercise): IExercise => {
-      if (moment(exercise.start).isSame(moment().subtract(daysBack, 'days'), 'date')) {
-        return exercise
-      }
+    const previousDayExercise = this.exercises.reverse().find((exercise: IExercise): boolean => {
+      return moment(exercise.start).isSame(moment().subtract(daysBack, 'days'), 'date')
     })
 
-    if (!previousDayExercise) return false
+    if (previousDayExercise === null) return false
 
     return true
   }
 
   hasDoneExerciseToday = (): boolean => {
-    const todayExercise = this.exercises.reverse().find((exercise: IExercise): IExercise => {
-      if (moment(exercise.start).isSame(moment().day(), 'date')) {
-        return exercise
-      }
+    const todayExercise = this.exercises.reverse().find((exercise: IExercise): boolean => {
+      return moment(exercise.start).isSame(moment().day(), 'date')
     })
 
-    if (todayExercise) return true
+    if (todayExercise !== null) return true
 
     return false
   }
