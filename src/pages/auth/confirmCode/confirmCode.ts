@@ -1,91 +1,69 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
-import { Auth } from 'aws-amplify';
+import { Auth } from 'aws-amplify'
 
-import { App, ToastController, NavParams } from 'ionic-angular';
-
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  AbstractControl
-} from '@angular/forms';
+import { App, ToastController, NavParams } from 'ionic-angular'
+import { clearUserName } from '@lib/helpers'
 
 @Component({
   selector: 'page-confirmCode',
-  templateUrl: 'confirmCode.html'
+  templateUrl: 'confirmCode.html',
 })
 export class ConfirmCodePage {
-  private confirmCodeForm: FormGroup;
-  private confirmationCode: AbstractControl;
-  public confirmCodeButtonEnabled: boolean = true;
-  private user: any;
+  private user: any
+  public isSending: boolean = false
+  public hasError: boolean = false
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private toastCtrl: ToastController,
-    private params: NavParams,
-    private appCtrl: App
-  ) {
-    this.user = this.params.get('user');
+  constructor(private toastCtrl: ToastController, private params: NavParams, private appCtrl: App) {
+    this.user = this.params.get('user')
   }
 
   async showMessage(message: string) {
     const toast = await this.toastCtrl.create({
       message: message,
       showCloseButton: true,
-      duration: 5000
-    });
+      duration: 5000,
+    })
 
-    toast.present();
+    toast.present()
   }
 
-  ngOnInit() {
-    this.confirmCodeForm = this.formBuilder.group({
-      confirmationCode: ['', <any>[Validators.required]]
-    });
-
-    this.confirmationCode = this.confirmCodeForm.controls['confirmationCode'];
-  }
-
-  confirmCode(): void {
-    this.confirmCodeButtonEnabled = false;
-    const { username } = this.user;
-    Auth.confirmSignUp(username, this.confirmationCode.value)
-      .then(response => {
-        // Go back to the sign in page'
-        // TODO: sign in automatically
-        this.showMessage(`Signup completed, login to continue.`);
-        this.appCtrl.getRootNav().pop();
+  confirmCode(code: number): void {
+    this.isSending = true
+    this.hasError = false
+    const { username, password } = this.user
+    Auth.confirmSignUp(username, `${code}`)
+      .then((response) => {
+        this.appCtrl.getRootNav().pop()
+        Auth.signIn(clearUserName(username), password).then((user) => {
+          this.showMessage(`Welcome back ${user.username}!`)
+        })
       })
       .catch((error: any) => {
-        this.confirmCodeButtonEnabled = true;
+        this.isSending = false
+        this.hasError = true
         switch (error.code) {
           case 'CodeMismatchException':
-            this.showMessage(error.message);
-            break;
-          // default:
-          //   console.log(error);
-          //   break;
+            this.showMessage(error.message)
+            break
+          default:
+            // TODO: add more cases
+            this.showMessage(error.message)
+            break
         }
-      });
+      })
   }
 
   resendCode(): void {
-    this.confirmCodeButtonEnabled = false;
-    const { username } = this.user;
+    const { username } = this.user
     Auth.resendSignUp(username)
       .then((response: any) => {
-        this.confirmCodeButtonEnabled = true;
         this.showMessage(
-          `Confirmation code has been resend to ${
-            response.CodeDeliveryDetails.Destination
-          }`
-        );
-        console.log(response);
+          `Confirmation code has been resend to ${response.CodeDeliveryDetails.Destination}`
+        )
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch((error) => {
+        console.log(error)
+      })
   }
 }

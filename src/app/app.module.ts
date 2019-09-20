@@ -156,7 +156,11 @@ import { BadgeComponent } from '@components/badge/badge.component'
 /*------------------------------
   Other
 ------------------------------*/
+// 3th party modules
 import { RoundProgressModule } from 'angular-svg-round-progressbar'
+import { ionicPinCodeInputModule } from 'ionic3-pincode-input'
+
+// settings
 import { environment } from '@lib/environment'
 
 @NgModule({
@@ -217,6 +221,7 @@ import { environment } from '@lib/environment'
     ChartModule,
     HttpClientModule,
     RoundProgressModule,
+    ionicPinCodeInputModule,
     AmplifyAngularModule,
     HttpModule,
     TranslateModule.forRoot({
