@@ -105,8 +105,12 @@ export class ExerciseSuccessModal {
   updateStreakBadge = (badge: IBadge, currentStage: ICurrentBadgeStage): void => {
     if (this.finalStageCompleted(badge, currentStage)) return
 
-    const streakToBeat = currentStage.pointsToNextStage - currentStage.stage.amountNeeded
-    if (!this.canUpdateStreak(streakToBeat)) return
+    if (this.hasDoneExerciseToday()) return
+
+    if (!this.canUpdateStreak(currentStage)) {
+      // Reset our streak
+      badge.totalPointsGained -= currentStage.pointsToNextStage
+    }
 
     this.updateBadge(badge)
   }
@@ -117,15 +121,38 @@ export class ExerciseSuccessModal {
     this.updateBadge(badge)
   }
 
-  canUpdateStreak = (streakToBeat: number): boolean => {
+  hasDoneExercisePreviousDay = (daysBack: number): boolean => {
+    const previousDayExercise = this.exercises.reverse().find((exercise: IExercise): IExercise => {
+      if (moment(exercise.start).isSame(moment().subtract(daysBack, 'days'), 'date')) {
+        return exercise
+      }
+    })
+
+    if (!previousDayExercise) return false
+
+    return true
+  }
+
+  hasDoneExerciseToday = (): boolean => {
+    const todayExercise = this.exercises.reverse().find((exercise: IExercise): IExercise => {
+      if (moment(exercise.start).isSame(moment().day(), 'date')) {
+        return exercise
+      }
+    })
+
+    if (todayExercise) return true
+
+    return false
+  }
+
+  canUpdateStreak = (currentStage: ICurrentBadgeStage): boolean => {
     // If we have nothing to compare to, return false
-    if (this.exercises.length < 2) return false
+    if (this.exercises.length < currentStage.pointsToNextStage + 1) return false
 
-    const previousExerciseStart = moment(this.exercises[this.exercises.length - 2].start)
-
-    // If the previousExerciseStart day didn't happen on the previous day
-    if (previousExerciseStart.day() !== moment().subtract(1, 'day').day()) {
-      return false
+    // Check if we are still on streak
+    for (let index = 1; index <= currentStage.pointsToNextStage; index++) {
+      const canCallNext = this.hasDoneExercisePreviousDay(index)
+      if (!canCallNext) return false
     }
 
     // We have a winner!
