@@ -3,6 +3,7 @@ import { IBadge } from '@stores/badge/badge.model'
 
 import { STREAK_BADGE } from '@lib/badge/templates/streak'
 import { FIRST_TIME_BADGE } from '@lib/badge/templates/firstTime'
+import { EXERCISE_BADGE } from '@lib/badge/templates/exercise'
 
 export interface IBadgeState {
   list: IBadge[]
@@ -11,7 +12,7 @@ export interface IBadgeState {
 }
 
 export const INITIAL_BADGE_STATE: IBadgeState = {
-  list: [ STREAK_BADGE, FIRST_TIME_BADGE ],
+  list: [ STREAK_BADGE, FIRST_TIME_BADGE, EXERCISE_BADGE ],
   loading: true,
   errors: [],
 }

@@ -73,6 +73,7 @@ export class ExerciseSuccessModal {
       const currentStage = getCurrentStage(badge)
       if (badge.name === 'firstTimeBadge') this.updateFirstTimeBadge(badge, currentStage)
       if (badge.name === 'streakBadge') this.updateStreakBadge(badge, currentStage)
+      if (badge.name === 'exerciseBadge') this.updateExerciseBadge(badge, currentStage)
     })
   }
 
@@ -88,22 +89,32 @@ export class ExerciseSuccessModal {
     return false
   }
 
+  updateBadge = (badge: IBadge): void => {
+    // TODO: show modal when finishing stage
+    badge.totalPointsGained += 1
+    this.badgeActions.updateBadge(badge)
+  }
+
   updateFirstTimeBadge = (badge: IBadge, currentStage: ICurrentBadgeStage): void => {
     if (badge.totalPointsGained > 0) return
     if (this.finalStageCompleted(badge, currentStage)) return
-    badge.totalPointsGained += 1
-    this.badgeActions.updateBadge(badge)
+
+    this.updateBadge(badge)
   }
 
   updateStreakBadge = (badge: IBadge, currentStage: ICurrentBadgeStage): void => {
     if (this.finalStageCompleted(badge, currentStage)) return
 
     const streakToBeat = currentStage.pointsToNextStage - currentStage.stage.amountNeeded
-    if (this.canUpdateStreak(streakToBeat)) {
-      badge.totalPointsGained += 1
-    }
+    if (!this.canUpdateStreak(streakToBeat)) return
 
-    this.badgeActions.updateBadge(badge)
+    this.updateBadge(badge)
+  }
+
+  updateExerciseBadge = (badge: IBadge, currentStage: ICurrentBadgeStage): void => {
+    if (this.finalStageCompleted(badge, currentStage)) return
+
+    this.updateBadge(badge)
   }
 
   canUpdateStreak = (streakToBeat: number): boolean => {
