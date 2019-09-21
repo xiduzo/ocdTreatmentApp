@@ -1,9 +1,6 @@
 import { Component } from '@angular/core'
 import { ViewController } from 'ionic-angular'
-import {
-  NativePageTransitions,
-  NativeTransitionOptions,
-} from '@ionic-native/native-page-transitions'
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions'
 
 import { confettiSettings } from '@lib/Confetti'
 
@@ -122,23 +119,25 @@ export class ExerciseSuccessModal {
   }
 
   hasDoneExercisePreviousDay = (daysBack: number): boolean => {
-    const previousDayExercise = this.exercises.reverse().find((exercise: IExercise): boolean => {
-      return moment(exercise.start).isSame(moment().subtract(daysBack, 'days'), 'date')
-    })
+    const previousDayExercise = this.exercises
+      .reverse()
+      .find((exercise: IExercise): boolean =>
+        moment(exercise.start).isSame(moment().subtract(daysBack, 'days'), 'date')
+      )
 
-    if (previousDayExercise === null) return false
+    if (!previousDayExercise) return false
 
     return true
   }
 
   hasDoneExerciseToday = (): boolean => {
-    const todayExercise = this.exercises.reverse().find((exercise: IExercise): boolean => {
-      return moment(exercise.start).isSame(moment().day(), 'date')
-    })
+    const todayExercise = this.exercises
+      .reverse()
+      .find((exercise: IExercise): boolean => moment(exercise.start).isSame(moment(), 'date'))
 
-    if (todayExercise !== null) return true
+    if (!todayExercise) return false
 
-    return false
+    return true
   }
 
   canUpdateStreak = (currentStage: ICurrentBadgeStage): boolean => {
