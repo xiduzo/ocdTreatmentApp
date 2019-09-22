@@ -29,6 +29,7 @@
   "BACK": "Zurück",
   "CREATE": "Benutzerkonto",
   "ACCOUNT": "anlegen",
+  "COMPLETED": "Vollendet",
   "MOOD_HEADER": "Ich fühle mich",
   "MOOD_EXPLANATION": "Wodurch wird dieses Gefühl verursacht (optional)",
   "MOOD_SUCCESS": "Erfolg",

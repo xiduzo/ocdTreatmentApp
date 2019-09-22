@@ -29,6 +29,7 @@
   "BACK": "Back",
   "CREATE": "Create",
   "ACCOUNT": "Account",
+  "COMPLETED": "Completed",
   "MOOD_HEADER": "I am feeling",
   "MOOD_EXPLANATION": "What causes this mood (optional)",
   "MOOD_SUCCESS": "Success",
