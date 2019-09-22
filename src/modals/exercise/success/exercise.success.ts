@@ -124,7 +124,6 @@ export class ExerciseSuccessModal {
       .find((exercise: IExercise): boolean =>
         moment(exercise.start).isSame(moment().subtract(daysBack, 'days'), 'date')
       )
-
     if (!previousDayExercise) return false
 
     return true
@@ -145,7 +144,7 @@ export class ExerciseSuccessModal {
     if (this.exercises.length < currentStage.pointsToNextStage + 1) return false
 
     // Check if we are still on streak
-    for (let index = 1; index <= currentStage.pointsToNextStage; index++) {
+    for (let index = 0; index <= currentStage.pointsToNextStage; index++) {
       const canCallNext = this.hasDoneExercisePreviousDay(index)
       if (!canCallNext) return false
     }
