@@ -7,7 +7,7 @@ export const FIRST_TIME_BADGE = {
     {
       amountNeeded: 1,
       description: 'firstTimeBadge.',
-      image: 'assets/imgs/badges/first_time_exercise.svg'
-    }
-  ]
-};
+      image: 'assets/imgs/badges/first_time_exercise.svg',
+    },
+  ],
+}
