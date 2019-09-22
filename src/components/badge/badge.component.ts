@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
-import { IBadge, ICurrentBadgeStage } from '@stores/badge/badge.model'
+import { IBadge, ICurrentBadgeStage, IStage } from '@stores/badge/badge.model'
 import { getCurrentStage } from '@lib/badge/Badge'
 
 @Component({
@@ -8,12 +8,14 @@ import { getCurrentStage } from '@lib/badge/Badge'
 })
 export class BadgeComponent implements OnInit {
   @Input('badge') readonly badge: IBadge
+  @Input('stage') readonly stage?: IStage
+  @Input('pointsToNextStage') readonly pointsToNextStage?: number
 
   public currentStage: ICurrentBadgeStage
 
-  constructor() {}
-
   ngOnInit() {
-    this.currentStage = getCurrentStage(this.badge)
+    this.currentStage = this.stage
+      ? { stage: this.stage, pointsToNextStage: this.pointsToNextStage }
+      : getCurrentStage(this.badge)
   }
 }

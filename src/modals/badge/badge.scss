@@ -1,42 +1,83 @@
 badge-modal {
-  .badge__name {
-    font-size: 2.25em;
-    margin: 36px 0 0 !important; // shame on me
-  }
-  .badge__description {
-    color: darken(map-get($colors, light), 50);
-    font-size: 1rem;
-    font-weight: 400;
-    letter-spacing: 1px;
-  }
-  .badge__progress {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    margin: 50px;
+	ion-content {
+		.badge__name {
+			font-size: 2.25em;
+			margin: 36px 0 0 !important; // shame on me
+		}
+		.badge__description {
+			color: darken(map-get($colors, light), 50);
+			font-size: 1rem;
+			font-weight: 400;
+			letter-spacing: 1px;
+		}
+		.badge__progress {
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			justify-content: center;
+			margin: 50px;
 
-    round-progress {
-      position: absolute;
-    }
+			round-progress {
+				position: absolute;
+			}
 
-    img {
-      width: 275px;
-      height: 275px;
-    }
-  }
+			img {
+				width: 275px;
+				height: 275px;
+			}
+		}
 
-  .current-stage {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    .progress {
-      font-size: 1.75rem;
-      color: darken(map-get($colors, light), 50);
-    }
-    .description {
-      padding: 36px 0;
-    }
-  }
+		.current-stage {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			align-items: center;
+			.progress {
+				font-size: 1.75rem;
+				color: darken(map-get($colors, light), 50);
+			}
+			.description {
+				padding: 36px 0;
+			}
+		}
+	}
+
+	ion-footer {
+		ion-grid {
+			ion-row.row {
+				overflow: scroll;
+				padding: 16px 0;
+				flex-wrap: nowrap;
+				spirit-badge {
+					&.locked {
+						filter: grayscale(100%);
+						.badge__progress {
+							round-progress {
+								svg {
+									path {
+										stroke: none !important;
+									}
+								}
+							}
+						}
+					}
+					&.completed {
+						.badge__progress {
+							round-progress {
+								svg {
+									circle {
+										stroke: color($colors, primary, base) !important;
+									}
+								}
+							}
+						}
+					}
+					.badge__name,
+					.badge__progress__numbers {
+						display: none;
+					}
+				}
+			}
+		}
+	}
 }

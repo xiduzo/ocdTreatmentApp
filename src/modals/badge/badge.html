@@ -29,5 +29,19 @@
   </section>
 </ion-content>
 <ion-footer>
-
+  <ion-item-group>
+    <ion-item-divider>
+      {{ 'LEVELS' | translate }}
+    </ion-item-divider>
+  </ion-item-group>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4 *ngFor="let stage of badge.stages; let i = index">
+        <spirit-badge [stage]=stage [badge]=badge [pointsToNextStage]="currentStage.pointsToNextStage"
+          [class.current]="i === currentStageIndex" [class.completed]="i < currentStageIndex"
+          [class.locked]="i > currentStageIndex">
+        </spirit-badge>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-footer>
