@@ -30,6 +30,7 @@
     "@ionic-native/globalization": "^4.17.0",
     "@ionic-native/local-notifications": "^4.17.0",
     "@ionic-native/native-page-transitions": "^4.17.0",
+    "@ionic-native/push": "^5.14.0",
     "@ionic-native/screen-orientation": "^4.17.0",
     "@ionic-native/splash-screen": "4.17.0",
     "@ionic-native/status-bar": "4.17.0",
@@ -61,6 +62,7 @@
     "ionicons": "^4.5.5",
     "moment": "^2.22.2",
     "ngx-pipes": "^2.3.10",
+    "phonegap-plugin-push": "^2.3.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
@@ -94,7 +96,10 @@
       "cordova-plugin-whitelist": {},
       "cordova-sqlite-storage": {},
       "com.telerik.plugins.nativepagetransitions": {},
-      "es6-promise-plugin": {}
+      "es6-promise-plugin": {},
+      "phonegap-plugin-push": {
+        "SENDER_ID": "680404985058"
+      }
     },
     "platforms": [
       "browser"

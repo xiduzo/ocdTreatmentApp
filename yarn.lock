@@ -321,6 +321,13 @@
   resolved "https://registry.yarnpkg.com/@ionic-native/native-page-transitions/-/native-page-transitions-4.20.0.tgz#de2aa3fd695e82327738e3b36fdac7d890dc0383"
   integrity sha512-hUbhoRG8ts3U9LM63NovjrosuGLDl3yJJwRVgDFXALjh4L5j9wlrfrMOKfgniYkbTUDYsDc6C1NW9LkGw87+1Q==
 
+"@ionic-native/push@^5.14.0":
+  version "5.14.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/push/-/push-5.14.0.tgz#01270cae6df9885399affcd101f2d73a96fbbefe"
+  integrity sha512-22Ax08iYBSYfDE4wglZj7s3jRWVIptxHm5nbFh+8HK/rpBQ4F8PmUz5OPHP3sXxRSq3IFWTq3S75ysCcQx+sVw==
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic-native/screen-orientation@^4.17.0":
   version "4.20.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/screen-orientation/-/screen-orientation-4.20.0.tgz#4337f7e014d9d12d2d9a9b8f8ede9cefa55cf739"
@@ -544,6 +551,11 @@
     rxjs "6.3.3"
     semver "5.6.0"
     semver-intersect "1.4.0"
+
+"@types/cordova@latest":
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/@types/cordova/-/cordova-0.0.34.tgz#ea7addf74ecec3d7629827a0c39e2c9addc73d04"
+  integrity sha1-6nrd907Ow9dimCegw54smt3HPQQ=
 
 "@types/geojson@*":
   version "7946.0.7"

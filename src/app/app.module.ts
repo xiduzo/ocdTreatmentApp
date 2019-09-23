@@ -18,6 +18,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http'
 // Native
 import { StatusBar } from '@ionic-native/status-bar'
 import { SplashScreen } from '@ionic-native/splash-screen'
+import { Push } from '@ionic-native/push'
 import { Globalization } from '@ionic-native/globalization'
 import { LocalNotifications } from '@ionic-native/local-notifications'
 import { ScreenOrientation } from '@ionic-native/screen-orientation'
@@ -262,6 +263,7 @@ import { environment } from '@lib/environment'
   providers: [
     StatusBar,
     SplashScreen,
+    Push,
     NativePageTransitions,
     ScreenOrientation,
     LocalNotifications,
