@@ -91,7 +91,7 @@ export class ExerciseSuccessModal {
     return false
   }
 
-  badgeCompleted = async (badge: IBadge, completedStage: IStage): Promise<void> => {
+  stageCompleted = async (badge: IBadge, completedStage: IStage): Promise<void> => {
     const modal: Modal = this.modalCtrl.create(BadgeEarnedModal, {
       badge,
       completedStage,
@@ -104,8 +104,11 @@ export class ExerciseSuccessModal {
     badge.totalPointsGained += 1
     this.badgeActions.updateBadge(badge)
 
-    // TODO Add logic when to complete stage
-    this.badgeCompleted(badge, currentStage.stage)
+    // Stage completed when new stage is not same as current stage
+    const newStage = getCurrentStage(badge)
+    if (currentStage.stage.description !== newStage.stage.description) {
+      this.stageCompleted(badge, currentStage.stage)
+    }
   }
 
   updateFirstTimeBadge = (badge: IBadge, currentStage: ICurrentBadgeStage): void => {
