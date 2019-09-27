@@ -1,6 +1,10 @@
 import { Component } from '@angular/core'
-import { ViewController } from 'ionic-angular'
-import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions'
+import { ViewController, Modal, ModalController } from 'ionic-angular'
+import {
+  NativePageTransitions,
+  NativeTransitionOptions,
+} from '@ionic-native/native-page-transitions'
+import { BadgeEarnedModal } from '@modals/badgeEarned/badgeEarned'
 
 import { confettiSettings } from '@lib/Confetti'
 
@@ -20,7 +24,7 @@ import { IExerciseState } from '@stores/exercise/exercise.reducer'
 import { IBadgeState } from '@stores/badge/badge.reducer'
 import { select } from '@angular-redux/store'
 import { Subscription } from 'rxjs'
-import { IBadge, ICurrentBadgeStage } from '@stores/badge/badge.model'
+import { IBadge, ICurrentBadgeStage, IStage } from '@stores/badge/badge.model'
 import { getCurrentStage } from '@lib/badge/Badge'
 
 @Component({
@@ -47,7 +51,8 @@ export class ExerciseSuccessModal {
     private nativePageTransitions: NativePageTransitions,
     private exerciseActions: ExerciseActions,
     private fearLadderActions: FearLadderActions,
-    private badgeActions: BadgeActions
+    private badgeActions: BadgeActions,
+    private modalCtrl: ModalController
   ) {
     this.nativePageTransitions.slide(this.transitionOptions)
 
@@ -86,17 +91,28 @@ export class ExerciseSuccessModal {
     return false
   }
 
-  updateBadge = (badge: IBadge): void => {
-    // TODO: show modal when finishing stage
+  badgeCompleted = async (badge: IBadge, completedStage: IStage): Promise<void> => {
+    const modal: Modal = this.modalCtrl.create(BadgeEarnedModal, {
+      badge,
+      completedStage,
+    })
+    modal.present()
+    this.close()
+  }
+
+  updateBadge = (badge: IBadge, currentStage: ICurrentBadgeStage): void => {
     badge.totalPointsGained += 1
     this.badgeActions.updateBadge(badge)
+
+    // TODO Add logic when to complete stage
+    this.badgeCompleted(badge, currentStage.stage)
   }
 
   updateFirstTimeBadge = (badge: IBadge, currentStage: ICurrentBadgeStage): void => {
     if (badge.totalPointsGained > 0) return
     if (this.finalStageCompleted(badge, currentStage)) return
 
-    this.updateBadge(badge)
+    this.updateBadge(badge, currentStage)
   }
 
   updateStreakBadge = (badge: IBadge, currentStage: ICurrentBadgeStage): void => {
@@ -109,13 +125,13 @@ export class ExerciseSuccessModal {
       badge.totalPointsGained -= currentStage.pointsToNextStage
     }
 
-    this.updateBadge(badge)
+    this.updateBadge(badge, currentStage)
   }
 
   updateExerciseBadge = (badge: IBadge, currentStage: ICurrentBadgeStage): void => {
     if (this.finalStageCompleted(badge, currentStage)) return
 
-    this.updateBadge(badge)
+    this.updateBadge(badge, currentStage)
   }
 
   hasDoneExercisePreviousDay = (daysBack: number): boolean => {

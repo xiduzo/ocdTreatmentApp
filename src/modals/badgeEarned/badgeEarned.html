@@ -1,26 +1,29 @@
 <ion-content>
-  <canvas id="confetti"></canvas>
-  <ion-fab top right>
-    <button ion-fab mini color="light" (click)="close()">
-      <ion-icon name="close"></ion-icon>
-    </button>
-  </ion-fab>
-  <section padding>
-    <div class="o-badge o-badge--big">
-      <span class="badge__name">
+  <div ion-fixed>
+    <canvas id="confetti__badge-earned"></canvas>
+    <ion-fab top right>
+      <button ion-fab mini color="light" (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-fab>
+    <section padding>
+      <h1 class="badge__name">
         {{ badge.verbose }}
-      </span>
-      <div class="badge__progress">
-        <img src="{{ badge.currentStage.image }}" alt="" />
-      </div>
-    </div>
-    <article>
-      <p>
+      </h1>
+      <span class="badge__description">
         {{ badge.description }}
-      </p>
-      <p>
-        {{ badge.currentStage.description }}
-      </p>
-    </article>
-  </section>
+      </span>
+      <section class="badge__progress" *ngIf="completedStage">
+        <img src="{{ completedStage.image }}" alt="{{ badge.verbose }}" />
+        <round-progress [current]="100" [max]="100" [radius]="155" [stroke]="6" [duration]="1"></round-progress>
+      </section>
+      <section class="current-stage">
+        <div class="description">
+          {{ completedStage.description }}
+        </div>
+      </section>
+      <section class="">
+      </section>
+    </section>
+  </div>
 </ion-content>
