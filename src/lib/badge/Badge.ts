@@ -7,15 +7,7 @@ export class Badge {
   public stages: IStage[]
   public totalPointsGained: number = 0
 
-  constructor(
-    {
-      name = '',
-      verbose = '',
-      description = '',
-      stages = [ new Stage() ],
-      totalPointsGained = 0,
-    } = {}
-  ) {
+  constructor({ name = '', verbose = '', description = '', stages = [ new Stage() ], totalPointsGained = 0 } = {}) {
     this.name = name
     this.verbose = verbose
     this.description = description
@@ -41,17 +33,16 @@ export function getCurrentStage(badge: IBadge): ICurrentBadgeStage {
   let currentStageIndex: number = 0
 
   badge.stages.forEach((stage: IStage) => {
-    if (totalPointsGained >= stage.amountNeeded) {
+    const isFinalStage = badge.stages.length - 1 === currentStageIndex
+    const completedStage = totalPointsGained >= stage.amountNeeded
+    if (completedStage && !isFinalStage) {
       totalPointsGained -= stage.amountNeeded
-      if (badge.stages.length - 1 > currentStageIndex) currentStageIndex++
+      currentStageIndex++
     }
   })
 
   return {
     stage: badge.stages[currentStageIndex],
-    pointsToNextStage:
-      currentStageIndex === badge.stages.length - 1
-        ? badge.stages[currentStageIndex].amountNeeded
-        : totalPointsGained,
+    pointsToNextStage: totalPointsGained,
   }
 }
