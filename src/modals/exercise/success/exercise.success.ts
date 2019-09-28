@@ -1,9 +1,6 @@
 import { Component } from '@angular/core'
 import { ViewController, Modal, ModalController } from 'ionic-angular'
-import {
-  NativePageTransitions,
-  NativeTransitionOptions,
-} from '@ionic-native/native-page-transitions'
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions'
 import { BadgeEarnedModal } from '@modals/badgeEarned/badgeEarned'
 
 import { confettiSettings } from '@lib/Confetti'
@@ -104,9 +101,8 @@ export class ExerciseSuccessModal {
     badge.totalPointsGained += 1
     this.badgeActions.updateBadge(badge)
 
-    // Stage completed when new stage is not same as current stage
-    const newStage = getCurrentStage(badge)
-    if (currentStage.stage.description !== newStage.stage.description) {
+    // Show modal when we complete a stage
+    if (currentStage.pointsToNextStage + 1 === currentStage.stage.amountNeeded) {
       this.stageCompleted(badge, currentStage.stage)
     }
   }
