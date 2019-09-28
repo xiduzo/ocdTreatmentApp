@@ -18,9 +18,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http'
 // Native
 import { StatusBar } from '@ionic-native/status-bar'
 import { SplashScreen } from '@ionic-native/splash-screen'
-import { Push } from '@ionic-native/push'
+import { Push } from '@ionic-native/push/ngx'
 import { Globalization } from '@ionic-native/globalization'
-import { LocalNotifications } from '@ionic-native/local-notifications'
 import { ScreenOrientation } from '@ionic-native/screen-orientation'
 import { IonicStorageModule } from '@ionic/storage'
 import { NativePageTransitions } from '@ionic-native/native-page-transitions'
@@ -266,7 +265,6 @@ import { environment } from '@lib/environment'
     Push,
     NativePageTransitions,
     ScreenOrientation,
-    LocalNotifications,
     Globalization,
     AmplifyService,
     ExerciseActions,
