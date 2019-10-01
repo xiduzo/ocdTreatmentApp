@@ -1,6 +1,9 @@
 import { Component } from '@angular/core'
 import { ViewController, Modal, ModalController } from 'ionic-angular'
-import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions'
+import {
+  NativePageTransitions,
+  NativeTransitionOptions,
+} from '@ionic-native/native-page-transitions'
 import { BadgeEarnedModal } from '@modals/badgeEarned/badgeEarned'
 
 import { confettiSettings } from '@lib/Confetti'
@@ -117,8 +120,6 @@ export class ExerciseSuccessModal {
   updateStreakBadge = (badge: IBadge, currentStage: ICurrentBadgeStage): void => {
     if (this.finalStageCompleted(badge, currentStage)) return
 
-    if (this.hasDoneExerciseToday()) return
-
     if (!this.canUpdateStreak(currentStage)) {
       // Reset our streak
       badge.totalPointsGained -= currentStage.pointsToNextStage
@@ -133,23 +134,14 @@ export class ExerciseSuccessModal {
     this.updateBadge(badge, currentStage)
   }
 
-  hasDoneExercisePreviousDay = (daysBack: number): boolean => {
-    const previousDayExercise = this.exercises
+  hasDoneExerciseOnDay = (daysBack: number): boolean => {
+    const exercise = this.exercises
       .reverse()
       .find((exercise: IExercise): boolean =>
         moment(exercise.start).isSame(moment().subtract(daysBack, 'days'), 'date')
       )
-    if (!previousDayExercise) return false
 
-    return true
-  }
-
-  hasDoneExerciseToday = (): boolean => {
-    const todayExercise = this.exercises
-      .reverse()
-      .find((exercise: IExercise): boolean => moment(exercise.start).isSame(moment(), 'date'))
-
-    if (!todayExercise) return false
+    if (!exercise) return false
 
     return true
   }
@@ -159,8 +151,8 @@ export class ExerciseSuccessModal {
     if (this.exercises.length < currentStage.pointsToNextStage + 1) return false
 
     // Check if we are still on streak
-    for (let index = 0; index <= currentStage.pointsToNextStage; index++) {
-      const canCallNext = this.hasDoneExercisePreviousDay(index)
+    for (let daysBack = 0; daysBack <= currentStage.pointsToNextStage; daysBack++) {
+      const canCallNext = this.hasDoneExerciseOnDay(daysBack)
       if (!canCallNext) return false
     }
 
