@@ -41,6 +41,7 @@ import { RatingPage } from '@pages/rating/rating'
 import { LoginPage } from '@pages/auth/login/login'
 import { SignUpPage } from '@pages/auth/signup/signup'
 import { ConfirmCodePage } from '@pages/auth/confirmCode/confirmCode'
+import { ForgotPasswordPage } from '@pages/auth/forgotPassword/forgotPassword'
 // Onboarding
 import { OnboardingPage } from '@pages/onboarding/onboarding'
 // Logbook
@@ -170,6 +171,7 @@ import { environment } from '@lib/environment'
     LoginPage,
     SignUpPage,
     ConfirmCodePage,
+    ForgotPasswordPage,
     LogbookPage,
     ProfilePage,
     ProgressPage,
@@ -244,6 +246,7 @@ import { environment } from '@lib/environment'
     LoginPage,
     SignUpPage,
     ConfirmCodePage,
+    ForgotPasswordPage,
     LogbookPage,
     RatingPage,
     ExercisePage,

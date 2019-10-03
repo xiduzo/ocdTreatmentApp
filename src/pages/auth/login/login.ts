@@ -6,6 +6,7 @@ import { Auth } from 'aws-amplify'
 
 import { SignUpPage } from '@pages/auth/signup/signup'
 import { ConfirmCodePage } from '@pages/auth/confirmCode/confirmCode'
+import { ForgotPasswordPage } from '@pages/auth/forgotPassword/forgotPassword'
 
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 import { clearUserName } from '@lib/helpers'
@@ -46,7 +47,7 @@ export class LoginPage {
       })
   }
 
-  buildForm() {
+  buildForm = (): void => {
     this.loginForm = this.formBuilder.group({
       username: [ '', <any>[ Validators.required, Validators.minLength(6) ] ],
       password: [ '', <any>[ Validators.required, Validators.minLength(8) ] ],
@@ -56,7 +57,7 @@ export class LoginPage {
     this.password = this.loginForm.controls['password']
   }
 
-  login() {
+  login = (): void => {
     this.signInButtonEnabled = false
     const username = this.username.value
     const password = this.password.value
@@ -79,7 +80,7 @@ export class LoginPage {
       })
   }
 
-  async showMessage(message: string) {
+  showMessage = async (message: string): Promise<void> => {
     const toast = await this.toastCtrl.create({
       message: message,
       showCloseButton: true,
@@ -89,7 +90,11 @@ export class LoginPage {
     toast.present()
   }
 
-  signUp() {
+  signUp = (): void => {
     this.appCtrl.getRootNav().push(SignUpPage)
+  }
+
+  forgotPassword = (): void => {
+    this.appCtrl.getRootNav().push(ForgotPasswordPage)
   }
 }

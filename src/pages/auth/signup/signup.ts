@@ -15,7 +15,7 @@ import { clearUserName } from '@lib/helpers'
   templateUrl: 'signup.html',
 })
 export class SignUpPage {
-  private registerForm: FormGroup
+  public registerForm: FormGroup
   private username: AbstractControl
   private email: AbstractControl
   private password: AbstractControl
