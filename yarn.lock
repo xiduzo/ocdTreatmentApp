@@ -3203,6 +3203,11 @@ inquirer@^6.0.0:
     strip-ansi "^5.1.0"
     through "^2.3.6"
 
+install@^0.8.2:
+  version "0.8.9"
+  resolved "https://registry.yarnpkg.com/install/-/install-0.8.9.tgz#9f4b5c0d1851ef872e9df85e4f7162d4e5dcdbed"
+  integrity sha1-n0tcDRhR74cunfheT3Fi1OXc2+0=
+
 interpret@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.2.0.tgz#d5061a6224be58e8083985f5014d844359576296"
@@ -4718,6 +4723,13 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
+
+phonegap-plugin-push@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/phonegap-plugin-push/-/phonegap-plugin-push-2.3.0.tgz#2703cbcb139cffa426695ab7f2d5af3011d12578"
+  integrity sha512-0R35BGVvvNzov3fckBspc7snwsIdClIBhI7jUCIa7AgSZy2Lrwm8kPuLTyzMVSNR3MJTxWX6s06aDlVL7EvQ3w==
+  dependencies:
+    install "^0.8.2"
 
 pify@^2.0.0:
   version "2.3.0"
