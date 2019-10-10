@@ -22,7 +22,6 @@ export class ForgotPasswordPage {
 
   constructor(
     private toastCtrl: ToastController,
-    private params: NavParams,
     private formBuilder: FormBuilder,
     private appCtrl: App
   ) {}
@@ -70,6 +69,7 @@ export class ForgotPasswordPage {
     const username = this.username.value
     Auth.forgotPassword(username)
       .then((data) => {
+        this.receivedCode = true
         this.showMessage(
           `Confirmation code has been resend to ${data.CodeDeliveryDetails.Destination}`
         )
@@ -86,8 +86,9 @@ export class ForgotPasswordPage {
     const new_password = this.password.value
 
     Auth.forgotPasswordSubmit(username, code, new_password)
-      .then((data) => {
-        console.log(`confirmed`)
+      .then(() => {
+        this.showMessage(`Password has been reset`)
+        this.back()
       })
       .catch((error) => {
         this.showMessage(error.message ? error.message : error)
