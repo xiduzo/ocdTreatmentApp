@@ -3,7 +3,7 @@ import { Component } from '@angular/core'
 import { Auth } from 'aws-amplify'
 
 import { App, ToastController, NavParams } from 'ionic-angular'
-import { clearUserName } from '@lib/helpers'
+import { clearUserName, passwordCriteria } from '@lib/helpers'
 import { AbstractControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 
 @Component({
@@ -15,7 +15,10 @@ export class ForgotPasswordPage {
   public hasError: boolean = false
   public forgotPasswordForm: FormGroup
   public username: AbstractControl
+  public password: AbstractControl
+  public code: AbstractControl
   public actionButtonEnabled: boolean = true
+  public receivedCode: boolean = false
 
   constructor(
     private toastCtrl: ToastController,
@@ -25,15 +28,20 @@ export class ForgotPasswordPage {
   ) {}
 
   ngOnInit() {
-    this.forgotPasswordForm = this.formBuilder.group({
-      username: [ '', <any>[ Validators.required, Validators.minLength(6) ] ],
-      // email: ['', <any>[Validators.required, Validators.email]],
-      // password: ['', <any>[Validators.required, Validators.minLength(8)]],
-    })
+    this.forgotPasswordForm = this.formBuilder.group(
+      {
+        username: [ '', <any>[ Validators.required, Validators.minLength(6) ] ],
+        code: [ '', <any>[] ],
+        password: [ '', <any>[ Validators.minLength(8) ] ],
+      },
+      {
+        validator: passwordCriteria('password'),
+      }
+    )
 
     this.username = this.forgotPasswordForm.controls['username']
-    // this.email = this.registerForm.controls['email']
-    // this.password = this.registerForm.controls['password']
+    this.password = this.forgotPasswordForm.controls['password']
+    this.code = this.forgotPasswordForm.controls['code']
   }
 
   async showMessage(message: string) {
@@ -50,13 +58,39 @@ export class ForgotPasswordPage {
     this.appCtrl.getRootNav().pop()
   }
 
-  sendVerificationCode = () => {
-    Auth.forgotPassword(this.username.value)
-      .then(() => {
-        console.log(`auth code send`)
+  action = (): void => {
+    if (!this.receivedCode) {
+      return this.sendVerificationCode()
+    }
+
+    return this.resetPassword()
+  }
+
+  sendVerificationCode = (): void => {
+    const username = this.username.value
+    Auth.forgotPassword(username)
+      .then((data) => {
+        this.showMessage(
+          `Confirmation code has been resend to ${data.CodeDeliveryDetails.Destination}`
+        )
+        this.receivedCode = true
       })
       .catch((error) => {
-        this.showMessage(error)
+        this.showMessage(error.message ? error.message : error)
+      })
+  }
+
+  resetPassword = (): void => {
+    const username = this.username.value
+    const code = this.code.value
+    const new_password = this.password.value
+
+    Auth.forgotPasswordSubmit(username, code, new_password)
+      .then((data) => {
+        console.log(`confirmed`)
+      })
+      .catch((error) => {
+        this.showMessage(error.message ? error.message : error)
       })
   }
 }

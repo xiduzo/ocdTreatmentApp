@@ -8,7 +8,7 @@ import { ToastController } from 'ionic-angular'
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
 
 import { ConfirmCodePage } from '@pages/auth/confirmCode/confirmCode'
-import { clearUserName } from '@lib/helpers'
+import { clearUserName, passwordCriteria } from '@lib/helpers'
 
 @Component({
   selector: 'page-signup',
@@ -27,20 +27,6 @@ export class SignUpPage {
     private appCtrl: App
   ) {}
 
-  passwordCriteria(passwordKey: string) {
-    return (group: FormGroup): { [key: string]: any } => {
-      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/gm
-
-      const matches = regex.exec(group.controls[passwordKey].value)
-
-      if (!matches) {
-        return {
-          weakPassword: true,
-        }
-      }
-    }
-  }
-
   ngOnInit() {
     this.registerForm = this.formBuilder.group(
       {
@@ -49,7 +35,7 @@ export class SignUpPage {
         password: [ '', <any>[ Validators.required, Validators.minLength(8) ] ],
       },
       {
-        validator: this.passwordCriteria('password'),
+        validator: passwordCriteria('password'),
       }
     )
 

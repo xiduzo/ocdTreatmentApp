@@ -1,11 +1,13 @@
 <ion-content class="c-authpage">
-  <h1 ion-text color="light">Confirm <span>code</span></h1>
+
+  <h1 ion-text color="light">{{ 'CONFIRM' | translate }} <span>{{ 'CODE' | translate }}</span></h1>
 
   <pin-code codeSize="6" (onComplete)="confirmCode($event)" [class.isSending]="isSending" [class.hasError]="hasError">
   </pin-code>
+
 </ion-content>
 <ion-footer>
   <button ion-button color="dark" clear (click)="resendCode()">
-    Resend code
+    {{ 'BUTTON_RESEND_CODE' | translate }}
   </button>
 </ion-footer>
