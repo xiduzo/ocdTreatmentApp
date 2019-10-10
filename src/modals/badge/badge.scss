@@ -43,40 +43,46 @@ badge-modal {
     }
   }
 
-  ion-footer {
-    ion-grid {
-      ion-row.row {
-        overflow: scroll;
-        padding: 16px 0;
-        flex-wrap: nowrap;
-        spirit-badge {
-          &.locked {
-            filter: grayscale(100%);
-            .badge__progress {
-              round-progress {
-                svg {
-                  path {
-                    stroke: none !important;
-                  }
+  ion-grid {
+    ion-row.row {
+      overflow: scroll;
+      padding: 16px 0;
+      flex-wrap: nowrap;
+      spirit-badge {
+        .badge__progress {
+          margin: 0;
+          height: 90px;
+          img {
+            width: 70px;
+            height: 70px;
+          }
+        }
+        &.locked {
+          filter: grayscale(100%) blur(1px);
+          .badge__progress {
+            round-progress {
+              svg {
+                path {
+                  stroke: none !important;
                 }
               }
             }
           }
-          &.completed {
-            .badge__progress {
-              round-progress {
-                svg {
-                  circle {
-                    stroke: color($colors, primary, base) !important;
-                  }
+        }
+        &.completed {
+          .badge__progress {
+            round-progress {
+              svg {
+                circle {
+                  stroke: color($colors, primary, base) !important;
                 }
               }
             }
           }
-          .badge__name,
-          .badge__progress__numbers {
-            display: none;
-          }
+        }
+        .badge__name,
+        .badge__progress__numbers {
+          display: none;
         }
       }
     }
