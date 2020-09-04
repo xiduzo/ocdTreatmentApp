@@ -79,7 +79,7 @@
     "@types/regression": "^2.0.0",
     "core-js": "^2.5.7",
     "graceful-fs": "^4.1.15",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "tslint-eslint-rules": "^5.4.0",
     "typescript": "2.4.2",
     "ws": "^6.1.3"
